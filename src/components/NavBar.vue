@@ -12,6 +12,7 @@
                 <li><router-link to="/" exact>Home</router-link></li>
                 <li><router-link to="/about" exact>About</router-link></li>
                 <li><router-link to="/register" exact>Register</router-link></li>
+                <li><router-link to="/login" exact> Log In</router-link></li>
             </ul>
           </nav>
       </div>
