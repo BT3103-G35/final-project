@@ -1,7 +1,9 @@
 import About from './components/About.vue'
-import Hello from './components/HelloWorld.vue'
+import Landing from './components/HelloWorld.vue'
+import Registration from './components/Register.vue'
 
 export default[
-    { path: '/', component: Hello},
-    { path: '/about', component: About}
+    { path: '/', component: Landing},
+    { path: '/about', component: About},
+    { path: '/register', component: Registration}
 ]

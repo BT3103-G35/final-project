@@ -1,6 +1,9 @@
 <template>
   <div class="nav-container">
       <div class="wrapper">
+          <!--
+          <nav v-if="this.$route.path !== '/'">
+          -->
           <nav>
               <div class="logo">
                   Ainran
@@ -8,6 +11,7 @@
             <ul>
                 <li><router-link to="/" exact>Home</router-link></li>
                 <li><router-link to="/about" exact>About</router-link></li>
+                <li><router-link to="/register" exact>Register</router-link></li>
             </ul>
           </nav>
       </div>

@@ -43,8 +43,6 @@ export default {
 
 .about-container{
     display: flex;
-    align-items: center;
-    flex-direction: row;
 }
 
 header{
