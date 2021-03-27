@@ -34,7 +34,7 @@ export default {
                 .signInWithEmailAndPassword(this.email, this.password)
                 .then(data => {
                     console.log(data);
-                    this.$router.push({name: 'profile', params: {email: this.email}});
+                    this.$router.push('/profile');
                 })
                 .catch(error => {
                     this.error = error;

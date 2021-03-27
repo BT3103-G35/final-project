@@ -38,7 +38,7 @@ export default {
             .createUserWithEmailAndPassword(this.email, this.password)
             .then(() => {
             console.log("here");
-            this.$router.push({name: 'profile', params: {email: this.email}});
+            this.$router.push('/profile');
             })
             .catch(error => (this.error = error));
         }

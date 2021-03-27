@@ -8,11 +8,12 @@
               <div class="logo">
                   Ainran
               </div>
+              <p>Logged in as {{ this.currentUser }}</p>
               <ul>
                 <li><router-link to="/" exact>Home</router-link></li>
                 <li><router-link to="/about" exact>About</router-link></li>
                 <li><router-link to="/profile" exact>Profile</router-link></li>
-                <button @click="signOut">Sign out</button>
+                <li><button @click="signOut">Sign out</button></li>
               </ul>
           </nav>
 
@@ -42,7 +43,8 @@ export default {
     },
     data() {
         return {
-            loggedIn: false
+            loggedIn: false,
+            currentUser: false
         }
     },
     methods: {
@@ -50,12 +52,12 @@ export default {
             firebase.auth().onAuthStateChanged(user => {
                 if (user) {
                     // User is signed in.
-                    console.log("signed in");
                     this.loggedIn = true;
+                    this.currentUser = firebase.auth().currentUser.email;
                 } else {
                     // No user is signed in.
                     this.loggedIn = false;
-                    console.log("signed out", this.loggedIn);
+                    this.currentUser = false;
                 }
             });
         },
@@ -116,6 +118,7 @@ nav li a{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 button{
+    border: none;
     background: none;
     color: #021718;
     /*font-family: "Poppins", sans-serif;*/
