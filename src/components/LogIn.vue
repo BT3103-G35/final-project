@@ -74,19 +74,19 @@ button{
     height: 40px;
     width: 100px;
     font-size: 20px;
-    background-color: darkorange;
+    background-color: #EC6041;
     color: white;
 }
 img{
     float: left;
-    width: 550px;
-    height: 300px;
+    width: 650px;
+    height: 400px;
     margin-left: 5%;
 }
 h1{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 75px;
-    color:darkorange
+    color:#EC6041;
 }
 .content{
     text-align: left;
@@ -104,4 +104,5 @@ p{
     color: red;
     font-size: 12px;
 }
+
 </style>
