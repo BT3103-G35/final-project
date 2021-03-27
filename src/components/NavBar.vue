@@ -4,24 +4,72 @@
           <!--
           <nav v-if="this.$route.path !== '/'">
           -->
-          <nav>
+          <nav v-if="loggedIn">
               <div class="logo">
                   Ainran
               </div>
-            <ul>
+              <p>Logged in as {{ this.currentUser }}</p>
+              <ul>
                 <li><router-link to="/" exact>Home</router-link></li>
                 <li><router-link to="/about" exact>About</router-link></li>
-                <li><router-link to="/register" exact>Register</router-link></li>
-                <li><router-link to="/login" exact> Log In</router-link></li>
-            </ul>
+                <li><router-link to="/profile" exact>Profile</router-link></li>
+                <li><button @click="signOut">Sign out</button></li>
+              </ul>
+          </nav>
+
+          <nav v-else>
+              <div class="logo">
+                  Ainran
+              </div>
+                <ul>
+                    <li><router-link to="/" exact>Home</router-link></li>
+                    <li><router-link to="/about" exact>About</router-link></li>
+                    <li><router-link to="/register" exact>Register</router-link></li>
+                    <li><router-link to="/login" exact> Log In</router-link></li>
+                </ul>
           </nav>
       </div>
   </div>
 </template>
 
 <script>
-export default {
+import firebase from "firebase/app";
+import "firebase/auth";
 
+export default {
+    name: "navi",
+    mounted() {
+        this.setupFirebase();
+    },
+    data() {
+        return {
+            loggedIn: false,
+            currentUser: false
+        }
+    },
+    methods: {
+        setupFirebase() {
+            firebase.auth().onAuthStateChanged(user => {
+                if (user) {
+                    // User is signed in.
+                    this.loggedIn = true;
+                    this.currentUser = firebase.auth().currentUser.email;
+                } else {
+                    // No user is signed in.
+                    this.loggedIn = false;
+                    this.currentUser = false;
+                }
+            });
+        },
+        signOut() {
+            firebase
+                .auth()
+                .signOut()
+                .then(() => {
+                this.$router.replace({ name: "login" });
+                });
+        }
+    },
 }
 </script>
 
@@ -69,7 +117,15 @@ nav li a{
     text-decoration: none;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-
+button{
+    border: none;
+    background: none;
+    color: #021718;
+    /*font-family: "Poppins", sans-serif;*/
+    font-size: 20px;
+    text-decoration: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 
 
 
