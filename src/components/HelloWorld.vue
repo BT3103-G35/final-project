@@ -68,7 +68,7 @@ button2{
   background: #EC6041;
 /* Button / Primary */
 
-box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
-padding: 20px 24px;
+  box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+  padding: 20px 24px;
 }
 </style>

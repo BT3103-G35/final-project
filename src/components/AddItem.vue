@@ -1,24 +1,22 @@
 <template>
-    <div class="profile-container">
-        <div class="profile-info">
-            <div class="profile-name">
-                <img src="https://i.postimg.cc/yNMnZJp9/blank-profile-picture-973460-1280-1.png">
-                {{this.currentUser}}
-            </div>
-            <div class="bells">
-                <img src="https://i.postimg.cc/259ychNb/Bell.png">
-                <img src="https://i.postimg.cc/HWynzrZn/No-Bell.png">
-            </div>
-            <div class="num-items">
-                <h1>You Currently Have:</h1>
-            </div>
-    
+    <div class="additems-container">
+        <div class="add-need-ideas">
+            <br><br><br>
+            <h1>Add</h1>
+            <h2 style="font-size:20px">What clothes would you like to add to your wardrobe?</h2>
+            <br><br><br>
+            <h1>Need ideas?</h1>
+            <h2 style="font-size:20px">See what others in the community are wearing</h2>
+            <br><br>
+            <router-link to="/community" tag="button-community" exact>Community</router-link>
         </div>
-        <div class="add-item">
-            <h1>Oh no...</h1>
-            <h1>It seems you<br>have no items...</h1>
-            <router-link to="/additem" tag="button-additem" exact>Click to add!</router-link>
+        <div class="additems-images">
+            <img src="../images/Top.jpg">
+            <img src="../images/Outerwear.jpg">
+            <img src="../images/Bottom.jpg">
+            <img src="../images/Footwear.jpg">
         </div>
+
     </div>
 </template>
 
@@ -53,15 +51,10 @@ export default {
 </script>
 
 <style scoped>
-.profile-container{
+.additems-container{
     display: flex;
-    
 }
-.profile-info{
-    width: 40%;
-    margin-left: 100px;
-}
-.add-item{
+.add-need-ideas{
     width: 60%;
 }
 h1{
@@ -76,29 +69,14 @@ button{
     background: #EC6041;
     box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
 }
-button-additem{
-  font-size: 30px;
+button-community{
+  font-size: 18px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: white;
   background: #EC6041;
   box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
   padding: 20px 24px;
 }
-img{
-    width: 100px;
-    height: auto;
-    border-radius: 50%;
-}
-.bells img{
-    width: 50px;
-    height: auto;
-    padding: 15px;
-}
-.num-items h1{
-    font-size: 40px;
-}
-.profile-name{
-    padding: 50px;
-}
+
 
 </style>

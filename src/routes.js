@@ -3,11 +3,15 @@ import Landing from './components/HelloWorld.vue'
 import Registration from './components/Register.vue'
 import LogIn from './components/LogIn.vue'
 import Profile from './components/Profile.vue'
+import AddItem from './components/AddItem.vue'
+import Community from './components/Community.vue'
 
 export default[
     { path: '/', name: 'landing', component: Landing},
     { path: '/about', name: 'about', component: About},
     { path: '/register', name: 'register', component: Registration},
     { path: '/login', name: 'login', component: LogIn},
-    { path: '/profile', name: 'profile', component: Profile}
+    { path: '/profile', name: 'profile', component: Profile},
+    { path: '/community', name: 'community', component: Community},
+    { path: '/additem', name: 'additem', component: AddItem}
 ]
