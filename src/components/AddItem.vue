@@ -1,9 +1,9 @@
 <template>
     <div class="additems-container">
         <div class="add-need-ideas">
-            <br><br><br>
+            <br><br><br><br><br><br><br>
             <h1>Add</h1>
-            <h2 style="font-size:20px">What clothes would you like to add to your wardrobe?</h2>
+            <h2 style="font-size:20px">What clothes would you like <br> to add to your wardrobe?</h2>
             <br><br><br>
             <h1>Need ideas?</h1>
             <h2 style="font-size:20px">See what others in the community are wearing</h2>
@@ -51,23 +51,19 @@ export default {
 </script>
 
 <style scoped>
+h1{
+    text-decoration: underline #EC6041;
+    font-size: 70px;
+}
 .additems-container{
     display: flex;
 }
 .add-need-ideas{
     width: 60%;
 }
-h1{
-    font-size: 70px;
-}
-button{
-    height: 40px;
-    width: 200px;
-    font-size: 20px;
-    background-color: #EC6041;
-    color: white;
-    background: #EC6041;
-    box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+.additems-images{
+    margin-right: 100px;
+    margin-top: 80px;
 }
 button-community{
   font-size: 18px;
@@ -77,6 +73,4 @@ button-community{
   box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
   padding: 20px 24px;
 }
-
-
 </style>
