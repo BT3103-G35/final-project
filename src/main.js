@@ -9,13 +9,13 @@ Vue.config.productionTip = false
 
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
-    apiKey: "AIzaSyCcfdaM54FTcPalggApKjIs91IHVQHx02E",
-    authDomain: "ainran-53c80.firebaseapp.com",
-    projectId: "ainran-53c80",
-    storageBucket: "ainran-53c80.appspot.com",
-    messagingSenderId: "610279484901",
-    appId: "1:610279484901:web:4030459d145a75ef67d30c",
-    measurementId: "G-5FCQ3EZEE2"
+    apiKey: "AIzaSyABxUaQe2EBsPii9aHgVxrqIm4vENaVqGA",
+    authDomain: "ainran-4df4d.firebaseapp.com",
+    projectId: "ainran-4df4d",
+    storageBucket: "ainran-4df4d.appspot.com",
+    messagingSenderId: "198092064649",
+    appId: "1:198092064649:web:82c3b6e5630ea616618358",
+    measurementId: "G-Y87X8D2R0B"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
