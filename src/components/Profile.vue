@@ -5,6 +5,13 @@
                 <img src="https://i.postimg.cc/yNMnZJp9/blank-profile-picture-973460-1280-1.png">
                 {{this.currentUser}}
             </div>
+            <div class="bells">
+                <img src="https://i.postimg.cc/259ychNb/Bell.png">
+                <img src="https://i.postimg.cc/HWynzrZn/No-Bell.png">
+            </div>
+            <div class="num-items">
+                <h1>You Currently Have:</h1>
+            </div>
     
         </div>
         <div class="add-item">
@@ -52,6 +59,7 @@ export default {
 }
 .profile-info{
     width: 40%;
+    margin-left: 100px;
 }
 .add-item{
     width: 60%;
@@ -72,6 +80,17 @@ img{
     width: 100px;
     height: auto;
     border-radius: 50%;
+}
+.bells img{
+    width: 50px;
+    height: auto;
+    padding: 15px;
+}
+.num-items h1{
+    font-size: 40px;
+}
+.profile-name{
+    padding: 50px;
 }
 
 </style>
