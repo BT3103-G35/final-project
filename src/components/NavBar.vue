@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-container">
+  <div v-if="this.$route.path !== '/'" class="nav-container">
       <div class="wrapper">
           <!--
           <nav v-if="this.$route.path !== '/'">
