@@ -1,7 +1,7 @@
 <template>
     <div class="additems-container">
         <div class="add-need-ideas">
-            <br><br><br><br><br><br><br>
+            <br><br>
             <h1>Add</h1>
             <h2 style="font-size:20px">What clothes would you like <br> to add to your wardrobe?</h2>
             <br><br><br>
@@ -11,10 +11,7 @@
             <router-link to="/community" tag="button-community" exact>Community</router-link>
         </div>
         <div class="additems-images">
-            <img src="../images/Top.jpg">
-            <img src="../images/Outerwear.jpg">
-            <img src="../images/Bottom.jpg">
-            <img src="../images/Footwear.jpg">
+            <slider></slider>
         </div>
 
     </div>
@@ -22,6 +19,7 @@
 
 <script>
 import firebase from "firebase/app";
+import slider from "./Slider.vue"
 export default {
     mounted() {
         this.setupFirebase();
@@ -46,6 +44,9 @@ export default {
             loggedIn: false,
             currentUser: false
         }
+    },
+    components:{
+        slider
     }
 }
 </script>
