@@ -6,18 +6,18 @@
 
             <div class="slide first">
                 <ul>
-                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/L6qpR96r/top.png"></router-link></li>
-                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/Y0bHd0RS/outerwear.png"></router-link></li>
-                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/593b4KJM/bottom.png"></router-link></li>
-                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/YqD7g4jn/footwear.png"></router-link></li>
+                    <li><router-link :to="'/AddItem2?id=' + 'top'" tag="img" src="https://i.postimg.cc/L6qpR96r/top.png"></router-link></li>
+                    <li><router-link :to="'/AddItem2?id=' + 'outerwear'" tag="img" src="https://i.postimg.cc/Y0bHd0RS/outerwear.png"></router-link></li>
+                    <li><router-link :to="'/AddItem2?id=' + 'bottom'" tag="img" src="https://i.postimg.cc/593b4KJM/bottom.png"></router-link></li>
+                    <li><router-link :to="'/AddItem2?id=' + 'footwear'" tag="img" src="https://i.postimg.cc/YqD7g4jn/footwear.png"></router-link></li>
                 </ul>
             </div>
             <div class="slide">
                 <ul>
-                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/wTFB781s/Headwear.png"></router-link></li>
-                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/d1GxS688/Accessory.png"></router-link></li>
-                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/h4Jptchf/Jewellery.png"></router-link></li>
-                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/nLVCJYKs/Others.png"></router-link></li>
+                    <li><router-link :to="'/AddItem2?id=' + 'headwear'" tag="img" src="https://i.postimg.cc/kG8RYM9q/Headwear.png"></router-link></li>
+                    <li><router-link :to="'/AddItem2?id=' + 'accessory'" tag="img" src="https://i.postimg.cc/MpwV4Bv4/Accessory.png"></router-link></li>
+                    <li><router-link :to="'/AddItem2?id=' + 'jewellery'" tag="img" src="https://i.postimg.cc/x1jqM3k0/Jewellery.png"></router-link></li>
+                    <li><router-link :to="'/AddItem2?id=' + 'clothing'" tag="img" src="https://i.postimg.cc/ZqCRDYF2/Others.png"></router-link></li>
                 </ul>
             </div>
 
