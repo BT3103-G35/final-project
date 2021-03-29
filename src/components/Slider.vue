@@ -16,8 +16,8 @@
                 <ul>
                     <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/wTFB781s/Headwear.png"></router-link></li>
                     <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/d1GxS688/Accessory.png"></router-link></li>
-                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/L6qpR96r/top.png"></router-link></li>
-                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/L6qpR96r/top.png"></router-link></li>
+                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/h4Jptchf/Jewellery.png"></router-link></li>
+                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/nLVCJYKs/Others.png"></router-link></li>
                 </ul>
             </div>
 
