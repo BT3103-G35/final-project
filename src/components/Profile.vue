@@ -3,7 +3,7 @@
         <div class="profile-info">
             <div class="profile-name">
                 <img src="https://i.postimg.cc/yNMnZJp9/blank-profile-picture-973460-1280-1.png">
-                {{this.currentUser}}
+                <div id="displayName">{{this.currentUser.displayName}}</div>
             </div>
             <div class="bells">
                 <img src="https://i.postimg.cc/259ychNb/Bell.png">
@@ -25,7 +25,7 @@
 <script>
 import firebase from "firebase/app";
 export default {
-    mounted() {
+    created() {
         this.setupFirebase();
     },
     methods:{
@@ -34,7 +34,7 @@ export default {
                 if (user) {
                     // User is signed in.
                     this.loggedIn = true;
-                    this.currentUser = firebase.auth().currentUser.email;
+                    this.currentUser = firebase.auth().currentUser;
                 } else {
                     // No user is signed in.
                     this.loggedIn = false;
@@ -100,5 +100,9 @@ img{
 .profile-name{
     padding: 50px;
 }
-
+#displayName{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 20px;
+}
 </style>
