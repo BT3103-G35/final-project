@@ -10,8 +10,8 @@
                 <p><strong>There are so many opportunities to make a difference in your wardrobe! Sign up to join us!</strong></p>
                 <div v-if="error" class="error">{{error.message}}</div>
                 <form @submit.prevent="pressed">
-                        <!-- <label for="name">Name*:</label><br>
-                        <input type="text" id="name" name="name" size="65" required><br><br> -->
+                        <label for="name">Name*:</label><br>
+                        <input type="text" id="name" name="name" size="65" v-model="name" required><br><br>
                         <label for="email">Email Address*:</label><br>
                         <input type="email" size="65" v-model="email" required><br><br>
                         <label for="password">Password*:</label><br>
@@ -37,7 +37,9 @@ export default {
             .auth()
             .createUserWithEmailAndPassword(this.email, this.password)
             .then(() => {
-            console.log("here");
+            firebase.auth().currentUser.updateProfile({
+                displayName: this.name
+            });
             this.$router.push('/profile');
             })
             .catch(error => (this.error = error));
@@ -45,6 +47,7 @@ export default {
     },
     data() {
         return {
+            name: "",
             email: "",
             password: '',
             error: ''
