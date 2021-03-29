@@ -6,18 +6,18 @@
 
             <div class="slide first">
                 <ul>
-                    <li><img src="https://i.postimg.cc/L6qpR96r/top.png" alt="First gallery image" /></li>
-                    <li><img src="https://i.postimg.cc/Y0bHd0RS/outerwear.png" alt="Second gallery image" /></li>
-                    <li><img src="https://i.postimg.cc/593b4KJM/bottom.png" alt="Third gallery image" /></li>
-                    <li><img src="https://i.postimg.cc/YqD7g4jn/footwear.png" alt="Fourth gallery image" /></li>
+                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/L6qpR96r/top.png"></router-link></li>
+                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/Y0bHd0RS/outerwear.png"></router-link></li>
+                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/593b4KJM/bottom.png"></router-link></li>
+                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/YqD7g4jn/footwear.png"></router-link></li>
                 </ul>
             </div>
             <div class="slide">
                 <ul>
-                    <li><img src="https://i.postimg.cc/L6qpR96r/top.png" alt="First gallery image" /></li>
-                    <li><img src="https://i.postimg.cc/L6qpR96r/top.png" alt="Second gallery image" /></li>
-                    <li><img src="https://i.postimg.cc/L6qpR96r/top.png" alt="Third gallery image" /></li>
-                    <li><img src="https://i.postimg.cc/L6qpR96r/top.png" alt="Fourth gallery image" /></li>
+                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/L6qpR96r/top.png"></router-link></li>
+                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/L6qpR96r/top.png"></router-link></li>
+                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/L6qpR96r/top.png"></router-link></li>
+                    <li><router-link to="/AddItem2" tag="img" src="https://i.postimg.cc/L6qpR96r/top.png"></router-link></li>
                 </ul>
             </div>
 

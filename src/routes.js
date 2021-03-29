@@ -5,6 +5,7 @@ import LogIn from './components/LogIn.vue'
 import Profile from './components/Profile.vue'
 import AddItem from './components/AddItem.vue'
 import Community from './components/Community.vue'
+import AddItem2 from './components/AddItem2.vue'
 
 export default[
     { path: '/', name: 'landing', component: Landing},
@@ -13,5 +14,6 @@ export default[
     { path: '/login', name: 'login', component: LogIn},
     { path: '/profile', name: 'profile', component: Profile},
     { path: '/community', name: 'community', component: Community},
-    { path: '/additem', name: 'additem', component: AddItem}
+    { path: '/additem', name: 'additem', component: AddItem},
+    { path: '/additem2', name: 'additem2', component: AddItem2},
 ]

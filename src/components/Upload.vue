@@ -47,14 +47,14 @@ methods: {
 #app {
     text-align: center;
     background-image: url("https://i.postimg.cc/hGwHp57H/upload.jpg");
-    background-size: 500px 400px;
-    width: 500px;
-    height: 380px;
+    background-size: 450px 350px;
+    width: 450px;
+    height: 330px;
     border-radius: 5px;
 }
 img {
-  width: 500px;
-  height: 380px;
+  width: 450px;
+  height: 330px;
   margin: auto;
   display: block;
   margin-bottom: 10px;
