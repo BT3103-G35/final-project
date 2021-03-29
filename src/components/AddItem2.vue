@@ -1,10 +1,22 @@
 <template>
     <div class="additems-container">
-        <div class="search-bar">
-            <h1>Search Bar</h1>
+        <div class="what-kind">
+            <br><br><br>
+            <h1> i think instead of a search bar we should just ask them what kind of ____ is it bc search bar with enough options will be q hard.. </h1>
         </div>
         <div class="upload-image">
             <upload></upload>
+            <form @submit.prevent="pressed">
+                <label for="name">Name*:</label><br>
+                <input type="text" id="name" name="name" size="60" v-model="name" required><br><br>
+                <label for="detail">Details*:</label><br>
+                <textarea name="detail" rows="3" cols="60" v-model="detail" required></textarea><br><br>
+                <label for="notes">Notes*:</label><br>
+                <textarea name="notes" rows="6" cols="60" v-model="notes" required></textarea><br><br>
+                <button type="submit">Add</button>
+            </form>
+
+    
         </div>
     </div>
 </template>
@@ -34,7 +46,10 @@ export default {
     data(){
         return {
             loggedIn: false,
-            currentUser: false
+            currentUser: false,
+            name: '',
+            detail: '',
+            notes: ''
         }
     },
     components:{
@@ -46,18 +61,25 @@ export default {
 <style scoped>
 h1{
     text-decoration: underline #EC6041;
-    font-size: 70px;
+    font-size: 30px;
 }
 .additems-container{
     display:flex;
-    align-items: center;
     justify-content: space-between;
 }
 .upload-image{
     margin-right: 150px;
     margin-top: 50px;
 }
+
 .search-bar{
-    margin-left: 150px;
+    margin-left: 250px;
+}
+button{
+    background: #EC6041;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+    color: white;
+    width: 450px;
 }
 </style>
