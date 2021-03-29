@@ -76,6 +76,7 @@ button{
     font-size: 20px;
     background-color: #EC6041;
     color: white;
+    cursor: pointer;
 }
 img{
     float: left;

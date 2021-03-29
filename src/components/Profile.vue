@@ -83,6 +83,7 @@ button-additem{
   background: #EC6041;
   box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
   padding: 20px 24px;
+  cursor: pointer;
 }
 img{
     width: 100px;

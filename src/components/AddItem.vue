@@ -4,7 +4,7 @@
             <br><br>
             <h1>Add</h1>
             <h2 style="font-size:20px">What clothes would you like <br> to add to your wardrobe?</h2>
-            <br><br><br>
+            <br><br>
             <h1>Need ideas?</h1>
             <h2 style="font-size:20px">See what others in the community are wearing</h2>
             <br><br>
@@ -73,5 +73,7 @@ button-community{
   background: #EC6041;
   box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
   padding: 20px 24px;
+  cursor: pointer;
 }
+
 </style>

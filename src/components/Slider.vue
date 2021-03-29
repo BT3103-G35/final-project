@@ -129,4 +129,7 @@ export default {
 #radio2:checked ~ .first{
     margin-left:-20%;
 }
+img{
+    cursor: pointer;
+}
 </style>

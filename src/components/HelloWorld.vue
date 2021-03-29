@@ -60,15 +60,15 @@ button1{
   border: 2px solid #EC6041;
   box-sizing: border-box;
   padding: 20px 24px;
+  cursor: pointer;
 }
 button2{
   font-size: 30px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: white;
   background: #EC6041;
-/* Button / Primary */
-
   box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
   padding: 20px 24px;
+  cursor: pointer;
 }
 </style>
