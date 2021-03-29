@@ -1,11 +1,12 @@
 <template>
     <div class="additems-container">
         <div class="what-kind">
-            <br><br><br>
-            <h1> i think instead of a search bar we should just ask them what kind of ____ is it bc search bar with enough options will be q hard.. </h1>
+            <br><br><br><br>
+            <h1> What kind of {{ this.type }} is this? </h1>
         </div>
         <div class="upload-image">
             <upload></upload>
+            <br><br><br>
             <form @submit.prevent="pressed">
                 <label for="name">Name*:</label><br>
                 <input type="text" id="name" name="name" size="60" v-model="name" required><br><br>
@@ -49,7 +50,8 @@ export default {
             currentUser: false,
             name: '',
             detail: '',
-            notes: ''
+            notes: '',
+            type: this.$route.query.id
         }
     },
     components:{
@@ -62,6 +64,7 @@ export default {
 h1{
     text-decoration: underline #EC6041;
     font-size: 30px;
+    margin-left: 140px;
 }
 .additems-container{
     display:flex;
