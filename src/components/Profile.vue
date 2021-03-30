@@ -12,13 +12,21 @@
             <div class="num-items">
                 <h1>You Currently Have:</h1>
                 <p id="itemCount">{{ this.items.length }} Item/s</p>
+                <router-link to="/additem" tag="button-additem" exact v-if="this.items.length>0">Add more</router-link>
             </div>
     
         </div>
-        <div class="add-item">
+        <div class="add-item" v-if="this.items.length==0">
             <h1>Oh no...</h1>
             <h1>It seems you<br>have no items...</h1>
             <router-link to="/additem" tag="button-additem" exact>Click to add!</router-link>
+        </div>
+        <div class="add-item" v-else>
+            <ul>
+                <li v-for="item in items" v-bind:key="item.index">
+                    <img :src="item">
+                </li>
+            </ul>
         </div>
     </div>
 </template>
@@ -39,11 +47,9 @@ export default {
                     var listRef = firebase.storage().ref('uploads/' + this.currentUser.uid);
                     listRef.listAll().then((res) => {
                         res.items.forEach((itemRef) => {
-                            this.items.push(itemRef);
-                        });
-                    }).catch((error) => {
-                        console.log(error)
-                    });
+                            itemRef.getDownloadURL().then((url) => this.items.push(url))
+                        }
+                    )})
                 } else {
                     // No user is signed in.
                     this.loggedIn = false;
@@ -118,6 +124,15 @@ img{
 }
 #itemCount{
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 80px;
+    font-size: 60px;
+}
+ul{
+    list-style: none;
+    column-count: 2;
+}
+.add-item img{
+    width: 300px;
+    height: 300px;
+    border-radius: 0%;
 }
 </style>
