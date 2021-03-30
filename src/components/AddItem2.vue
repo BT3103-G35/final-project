@@ -9,12 +9,14 @@
             <br><br><br>
             <form @submit.prevent="pressed">
                 <label for="name">Name*:</label><br>
-                <input type="text" id="name" name="name" size="60" v-model="name" required><br><br>
+                <input type="text" id="name" name="name" size="65" v-model="name" required><br><br>
                 <label for="detail">Details*:</label><br>
                 <textarea name="detail" rows="3" cols="60" v-model="detail" required></textarea><br><br>
                 <label for="notes">Notes*:</label><br>
                 <textarea name="notes" rows="6" cols="60" v-model="notes" required></textarea><br><br>
+                <!--
                 <button type="submit">Add</button>
+                -->
             </form>
 
     
