@@ -6,9 +6,13 @@
                 <div id="displayName">{{this.currentUser.displayName}}</div>
             </div>
             <div class="bells">
-                <img id="image" src="https://i.postimg.cc/259ychNb/Bell.png" onclick="Notify()">
+                <!--
+                <img id="image1" src="https://i.postimg.cc/259ychNb/Bell.png" onclick="Notify()">
                 <img src="https://i.postimg.cc/HWynzrZn/No-Bell.png">
-
+                <button onclick="document.getElementById('image1').src = 'https://i.postimg.cc/C5qgg1K7/No-Bell-blue.png'">click</button>
+                -->
+                <input id="image1" type="image" src="https://i.postimg.cc/259ychNb/Bell.png" onclick="document.getElementById('image1').src = 'https://i.postimg.cc/d1s5KtqC/Bell-blue.png'; document.getElementById('image2').src = 'https://i.postimg.cc/HWynzrZn/No-Bell.png'">
+                <input id="image2" type="image" src="https://i.postimg.cc/HWynzrZn/No-Bell.png" onclick="document.getElementById('image2').src = 'https://i.postimg.cc/C5qgg1K7/No-Bell-blue.png'; document.getElementById('image1').src = 'https://i.postimg.cc/259ychNb/Bell.png'">
             </div>
             <div class="num-items">
                 <h1>You Currently Have:</h1>
@@ -42,16 +46,12 @@ export default {
                     this.currentUser = false;
                 }
             });
-        },
-        Notify(){
-            document.getElementById("image").src = "https://i.postimg.cc/C5qgg1K7/No-Bell-blue.png";  
         }
     },
     data(){
         return {
             loggedIn: false,
-            currentUser: false,
-            notify: false
+            currentUser: false
         }
     }
 }
@@ -100,7 +100,7 @@ img{
     height: auto;
     border-radius: 50%;
 }
-.bells img{
+input{
     width: 50px;
     height: auto;
     padding: 15px;
