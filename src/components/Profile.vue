@@ -6,8 +6,9 @@
                 <div id="displayName">{{this.currentUser.displayName}}</div>
             </div>
             <div class="bells">
-                <img src="https://i.postimg.cc/259ychNb/Bell.png">
+                <img id="image" src="https://i.postimg.cc/259ychNb/Bell.png" onclick="Notify()">
                 <img src="https://i.postimg.cc/HWynzrZn/No-Bell.png">
+
             </div>
             <div class="num-items">
                 <h1>You Currently Have:</h1>
@@ -17,7 +18,7 @@
         <div class="add-item">
             <h1>Oh no...</h1>
             <h1>It seems you<br>have no items...</h1>
-            <router-link to="/additem" tag="button-additem" exact>Click to add!</router-link>
+            <router-link to="/additem" exact><button id="button-community">Add Items!</button></router-link>
         </div>
     </div>
 </template>
@@ -41,12 +42,16 @@ export default {
                     this.currentUser = false;
                 }
             });
+        },
+        Notify(){
+            document.getElementById("image").src = "https://i.postimg.cc/C5qgg1K7/No-Bell-blue.png";  
         }
     },
     data(){
         return {
             loggedIn: false,
-            currentUser: false
+            currentUser: false,
+            notify: false
         }
     }
 }
@@ -76,7 +81,7 @@ button{
     background: #EC6041;
     box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
 }
-button-additem{
+button-community{
   font-size: 30px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: white;
@@ -84,6 +89,11 @@ button-additem{
   box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
   padding: 20px 24px;
   cursor: pointer;
+}
+image{
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
 }
 img{
     width: 100px;
