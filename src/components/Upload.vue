@@ -7,25 +7,36 @@
             </div>
             <div v-else>
                 <img :src="this.image" />
-                <button @click="removeImage()">Remove image</button>
+                <button @click="removeImage()">Remove image</button><span></span>
+                <button @click="uploadImage($event)">Confirm image</button>
             </div>
     </div>
 </template>
 
 <script>
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/storage";
 export default {
+    created() {
+        this.setupFirebase();
+    },
     data(){
         return{
-            image: false
-
+            image: false,
+            imageFile: false,
+            loggedIn: false,
+            currentUser: false
         }
     },
-methods: {
+    methods: {
     onFileChange(e) {
       //var files = e.target.files //|| e.dataTransfer.files;
       //if (!files.length)
         //return;
-      this.createImage(e.target.files[0]);
+      let file = e.target.files[0];
+      this.imageFile = file;
+      this.createImage(file);
     },
     createImage(file) {
       var reader = new FileReader();
@@ -37,6 +48,24 @@ methods: {
     },
     removeImage: function () {
       this.image = false; 
+      this.imageFile = false;
+    },
+    uploadImage() {
+      var storageRef = firebase.storage().ref('uploads/' + this.currentUser.uid + '/' + this.imageFile.name);
+      storageRef.put(this.imageFile);
+    },
+    setupFirebase() {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          // User is signed in.
+          this.loggedIn = true;
+          this.currentUser = firebase.auth().currentUser;
+        } else {
+          // No user is signed in.
+          this.loggedIn = false;
+          this.currentUser = false;
+        }
+      });
     }
   }
 }
