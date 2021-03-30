@@ -6,23 +6,19 @@
                 <div id="displayName">{{this.currentUser.displayName}}</div>
             </div>
             <div class="bells">
-                <!--
-                <img id="image1" src="https://i.postimg.cc/259ychNb/Bell.png" onclick="Notify()">
+                <img src="https://i.postimg.cc/259ychNb/Bell.png">
                 <img src="https://i.postimg.cc/HWynzrZn/No-Bell.png">
-                <button onclick="document.getElementById('image1').src = 'https://i.postimg.cc/C5qgg1K7/No-Bell-blue.png'">click</button>
-                -->
-                <input id="image1" type="image" src="https://i.postimg.cc/259ychNb/Bell.png" onclick="document.getElementById('image1').src = 'https://i.postimg.cc/d1s5KtqC/Bell-blue.png'; document.getElementById('image2').src = 'https://i.postimg.cc/HWynzrZn/No-Bell.png'">
-                <input id="image2" type="image" src="https://i.postimg.cc/HWynzrZn/No-Bell.png" onclick="document.getElementById('image2').src = 'https://i.postimg.cc/C5qgg1K7/No-Bell-blue.png'; document.getElementById('image1').src = 'https://i.postimg.cc/259ychNb/Bell.png'">
             </div>
             <div class="num-items">
                 <h1>You Currently Have:</h1>
+                <p id="itemCount">{{ this.items.length }} Item/s</p>
             </div>
     
         </div>
         <div class="add-item">
             <h1>Oh no...</h1>
             <h1>It seems you<br>have no items...</h1>
-            <router-link to="/additem" exact><button id="button-community">Add Items!</button></router-link>
+            <router-link to="/additem" tag="button-additem" exact>Click to add!</router-link>
         </div>
     </div>
 </template>
@@ -40,6 +36,14 @@ export default {
                     // User is signed in.
                     this.loggedIn = true;
                     this.currentUser = firebase.auth().currentUser;
+                    var listRef = firebase.storage().ref('uploads/' + this.currentUser.uid);
+                    listRef.listAll().then((res) => {
+                        res.items.forEach((itemRef) => {
+                            this.items.push(itemRef);
+                        });
+                    }).catch((error) => {
+                        console.log(error)
+                    });
                 } else {
                     // No user is signed in.
                     this.loggedIn = false;
@@ -51,7 +55,8 @@ export default {
     data(){
         return {
             loggedIn: false,
-            currentUser: false
+            currentUser: false,
+            items: []
         }
     }
 }
@@ -81,7 +86,7 @@ button{
     background: #EC6041;
     box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
 }
-button-community{
+button-additem{
   font-size: 30px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: white;
@@ -90,17 +95,12 @@ button-community{
   padding: 20px 24px;
   cursor: pointer;
 }
-image{
-    width: 100px;
-    height: auto;
-    border-radius: 50%;
-}
 img{
     width: 100px;
     height: auto;
     border-radius: 50%;
 }
-input{
+.bells img{
     width: 50px;
     height: auto;
     padding: 15px;
@@ -115,5 +115,9 @@ input{
     font-family:Georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
     font-size: 20px;
+}
+#itemCount{
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 80px;
 }
 </style>
