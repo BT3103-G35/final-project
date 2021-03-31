@@ -3,13 +3,22 @@
         <div class="what-kind">
             <br><br><br><br>
             <h1> What kind of {{ this.type }} is this? </h1>
+            <br>
+            <div v-if="this.type=='footwear'">
+                <ul style="list-style-type:none;">
+                    <li><img src="https://i.postimg.cc/TPT8Kh6p/Canvas-Low-Sneakers.png"></li>
+                    <li><img src="https://i.postimg.cc/vBSC2z6V/Hiking-Sneakers.png"></li>
+                    <li><img src="https://i.postimg.cc/9MKCwVbK/Old-Schools.png"></li>
+                    <li><img src="https://i.postimg.cc/vZqjZh3S/Athletic-Sneakers.png"></li>
+                </ul>
+            </div>
         </div>
         <div class="upload-image">
             <upload v-on:upload="onUpload"></upload>
             <br><br><br>
             <form @submit.prevent="pressed">
                 <label for="name">Name*:</label><br>
-                <input type="text" id="name" name="name" size="65" v-model="name" required><br><br>
+                <input type="text" id="name" name="name" size="60" v-model="name" required><br><br>
                 <label for="detail">Details*:</label><br>
                 <textarea name="detail" rows="3" cols="60" v-model="detail" required></textarea><br><br>
                 <label for="notes">Notes*:</label><br>
@@ -78,11 +87,12 @@ export default {
 h1{
     text-decoration: underline #EC6041;
     font-size: 30px;
-    margin-left: 140px;
+    margin-left: 70px;
 }
 .additems-container{
     display:flex;
     justify-content: space-between;
+    margin-left: 160px;
 }
 .upload-image{
     margin-right: 150px;
@@ -99,4 +109,8 @@ button{
     color: white;
     width: 450px;
 }
+ul {
+    columns:2;
+}
+
 </style>
