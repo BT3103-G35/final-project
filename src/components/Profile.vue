@@ -25,6 +25,7 @@
             <ul>
                 <li v-for="item in items" v-bind:key="item.index">
                     <img :src="item">
+                    <button @click="remove(item)">Remove</button>
                 </li>
             </ul>
         </div>
@@ -56,6 +57,11 @@ export default {
                     this.currentUser = false;
                 }
             });
+        },
+        remove(item){
+            var pictureRef = firebase.storage().refFromURL(item);
+            pictureRef.delete().then(()=> location.reload());
+            //alert("Item removed successfully")
         }
     },
     data(){
