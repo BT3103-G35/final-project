@@ -6,7 +6,7 @@
             <br>
             <div id="types" v-if="this.type=='footwear'">
                 <ul style="list-style-type:none;">
-                    <li><img src="https://i.postimg.cc/kXvWrFCV/Canvas-Low-Sneakers.png" class="img" v-on:click="chooseType('Canvas Low Sneakers')"></li>
+                    <li><img src="https://i.postimg.cc/rFPmdQSR/Canvas-Low-Sneakers.png" class="img" v-on:click="chooseType('Canvas Low Sneakers')"></li>
                     <li><img src="https://i.postimg.cc/vBSC2z6V/Hiking-Sneakers.png" class="img" v-on:click="chooseType('Hiking Sneakers')"></li>
                     <li><img src="https://i.postimg.cc/9MKCwVbK/Old-Schools.png" class="img" v-on:click="chooseType('Old Schools')"></li>
                     <li><img src="https://i.postimg.cc/vZqjZh3S/Athletic-Sneakers.png" class="img" v-on:click="chooseType('Athletic Sports Sneakers')"></li>
