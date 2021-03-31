@@ -7,8 +7,8 @@
             </div>
             <div v-else>
                 <img :src="this.image" />
-                <button @click="removeImage()">Remove image</button><span></span>
-                <button @click="uploadImage($event)">Confirm image</button>
+                <button @click="removeImage()" v-if="unselected">Remove image</button><span></span>
+                <button @click="uploadImage($event)" v-if="unselected">Confirm image</button>
             </div>
     </div>
 </template>
@@ -26,7 +26,8 @@ export default {
             image: false,
             imageFile: false,
             loggedIn: false,
-            currentUser: false
+            currentUser: false,
+            unselected: true
         }
     },
     methods: {
@@ -53,6 +54,9 @@ export default {
     uploadImage() {
       var storageRef = firebase.storage().ref('uploads/' + this.currentUser.uid + '/' + this.imageFile.name);
       storageRef.put(this.imageFile);
+      let filename = this.imageFile.name;
+      this.$emit('upload', filename);
+      this.unselected = false;
     },
     setupFirebase() {
       firebase.auth().onAuthStateChanged(user => {

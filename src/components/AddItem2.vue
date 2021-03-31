@@ -5,7 +5,7 @@
             <h1> What kind of {{ this.type }} is this? </h1>
         </div>
         <div class="upload-image">
-            <upload></upload>
+            <upload v-on:upload="onUpload"></upload>
             <br><br><br>
             <form @submit.prevent="pressed">
                 <label for="name">Name*:</label><br>
@@ -14,9 +14,7 @@
                 <textarea name="detail" rows="3" cols="60" v-model="detail" required></textarea><br><br>
                 <label for="notes">Notes*:</label><br>
                 <textarea name="notes" rows="6" cols="60" v-model="notes" required></textarea><br><br>
-                <!--
                 <button type="submit">Add</button>
-                -->
             </form>
 
     
@@ -26,6 +24,7 @@
 
 <script>
 import firebase from "firebase/app";
+import "firebase/firestore";
 import upload from "./Upload.vue"
 export default {
     mounted() {
@@ -37,13 +36,25 @@ export default {
                 if (user) {
                     // User is signed in.
                     this.loggedIn = true;
-                    this.currentUser = firebase.auth().currentUser.email;
+                    this.currentUser = firebase.auth().currentUser;
                 } else {
                     // No user is signed in.
                     this.loggedIn = false;
                     this.currentUser = false;
                 }
             });
+        },
+        onUpload(image) {
+            this.image = image;
+        },
+        pressed() {
+            var db = firebase.firestore();
+            db.collection(this.currentUser.uid).add({
+                name: this.name,
+                detail: this.detail,
+                notes: this.notes,
+                image: this.image
+            }).then(() => this.$router.push('/profile'))
         }
     },
     data(){
@@ -53,6 +64,7 @@ export default {
             name: '',
             detail: '',
             notes: '',
+            image: false,
             type: this.$route.query.id
         }
     },
