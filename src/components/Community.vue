@@ -30,11 +30,6 @@ export default {
                 }
             });
         },
-        remove(item){
-            var pictureRef = firebase.storage().refFromURL(item);
-            pictureRef.delete().then(()=> location.reload());
-            //alert("Item removed successfully")
-        }
     }
 }
 </script>
