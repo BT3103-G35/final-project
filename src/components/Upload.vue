@@ -53,6 +53,8 @@ export default {
     uploadImage() {
       var storageRef = firebase.storage().ref('uploads/' + this.currentUser.uid + '/' + this.imageFile.name);
       storageRef.put(this.imageFile);
+      let filename = this.imageFile.name;
+      this.$emit('upload', filename);
     },
     setupFirebase() {
       firebase.auth().onAuthStateChanged(user => {
