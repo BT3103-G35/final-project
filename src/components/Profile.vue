@@ -13,6 +13,7 @@
                 <h1>You Currently Have:</h1>
                 <p id="itemCount">{{ this.items.length }} Item/s</p>
                 <router-link to="/additem" tag="button-additem" exact v-if="this.items.length>0">Add more</router-link>
+                <router-link to="/wishlist" tag="button-additem" exact>wishlist placeholder</router-link>
             </div>
     
         </div>
@@ -25,6 +26,7 @@
             <ul>
                 <li v-for="item in items" v-bind:key="item.index">
                     <img :src="item">
+                    <button @click="remove(item)">Remove</button>
                 </li>
             </ul>
         </div>
@@ -56,6 +58,11 @@ export default {
                     this.currentUser = false;
                 }
             });
+        },
+        remove(item){
+            var pictureRef = firebase.storage().refFromURL(item);
+            pictureRef.delete().then(()=> location.reload());
+            //alert("Item removed successfully")
         }
     },
     data(){
@@ -71,7 +78,6 @@ export default {
 <style scoped>
 .profile-container{
     display: flex;
-    
 }
 .profile-info{
     width: 40%;

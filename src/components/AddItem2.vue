@@ -3,13 +3,22 @@
         <div class="what-kind">
             <br><br><br><br>
             <h1> What kind of {{ this.type }} is this? </h1>
+            <br>
+            <div id="types" v-if="this.type=='footwear'">
+                <ul style="list-style-type:none;">
+                    <li><img src="https://i.postimg.cc/rFPmdQSR/Canvas-Low-Sneakers.png" class="img" v-on:click="chooseType('Canvas Low Sneakers')"></li>
+                    <li><img src="https://i.postimg.cc/vBSC2z6V/Hiking-Sneakers.png" class="img" v-on:click="chooseType('Hiking Sneakers')"></li>
+                    <li><img src="https://i.postimg.cc/9MKCwVbK/Old-Schools.png" class="img" v-on:click="chooseType('Old Schools')"></li>
+                    <li><img src="https://i.postimg.cc/vZqjZh3S/Athletic-Sneakers.png" class="img" v-on:click="chooseType('Athletic Sports Sneakers')"></li>
+                </ul>
+            </div>
         </div>
         <div class="upload-image">
             <upload v-on:upload="onUpload"></upload>
             <br><br><br>
             <form @submit.prevent="pressed">
                 <label for="name">Name*:</label><br>
-                <input type="text" id="name" name="name" size="65" v-model="name" required><br><br>
+                <input type="text" id="name" name="name" size="60" v-model="name" required><br><br>
                 <label for="detail">Details*:</label><br>
                 <textarea name="detail" rows="3" cols="60" v-model="detail" required></textarea><br><br>
                 <label for="notes">Notes*:</label><br>
@@ -29,7 +38,9 @@ import upload from "./Upload.vue"
 export default {
     mounted() {
         this.setupFirebase();
+        this.tagListeners();
     },
+
     methods:{
         setupFirebase() {
             firebase.auth().onAuthStateChanged(user => {
@@ -53,8 +64,25 @@ export default {
                 name: this.name,
                 detail: this.detail,
                 notes: this.notes,
-                image: this.image
+                image: this.image,
+                type: this.itemType
             }).then(() => this.$router.push('/profile'))
+        },
+        chooseType(string) {
+            this.itemType = string;
+        },
+        tagListeners() {
+            var header = document.getElementById("types");
+            var imgs = header.getElementsByClassName("img");
+            for (var i = 0; i < imgs.length; i++) {
+                imgs[i].addEventListener("click", function() {
+                    var current = document.getElementsByClassName("active");
+                    if (current.length > 0) { 
+                        current[0].className = current[0].className.replace(" active", "");
+                    }
+                    this.className += " active";
+                });
+            } 
         }
     },
     data(){
@@ -65,7 +93,8 @@ export default {
             detail: '',
             notes: '',
             image: false,
-            type: this.$route.query.id
+            type: this.$route.query.id,
+            itemType: ''
         }
     },
     components:{
@@ -78,11 +107,12 @@ export default {
 h1{
     text-decoration: underline #EC6041;
     font-size: 30px;
-    margin-left: 140px;
+    margin-left: 70px;
 }
 .additems-container{
     display:flex;
     justify-content: space-between;
+    margin-left: 160px;
 }
 .upload-image{
     margin-right: 150px;
@@ -98,5 +128,14 @@ button{
     box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
     color: white;
     width: 450px;
+}
+ul {
+    columns:2;
+}
+img {
+    cursor: pointer;    
+}
+.active {
+    border: 2px dotted coral;
 }
 </style>
