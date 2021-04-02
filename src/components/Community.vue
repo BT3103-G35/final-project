@@ -1,14 +1,18 @@
 <template>
   <div>
     <h1> Community </h1>
+    {{profile}}
   </div>
 </template>
 
 <script>
 import firebase from "firebase/app";
+import "firebase/firestore";
+
 export default {
     created() {
         this.setupFirebase();
+        this.fetchItems();
     },
     methods:{
         setupFirebase() {
@@ -30,6 +34,22 @@ export default {
                 }
             });
         },
+        fetchItems: function(){
+            var database = firebase.firestore();
+            database.collection("dummyusers").get().then((SnapShot)=>{
+                let obj={}
+                SnapShot.forEach(doc=>{
+                    obj=doc.data()
+                    this.profile.push(obj)
+                })
+            })
+        }
+    },
+    data(){
+        return{
+            items:[],
+            profile: []
+        }
     }
 }
 </script>
