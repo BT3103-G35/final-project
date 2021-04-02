@@ -1,7 +1,12 @@
 <template>
   <div>
     <h1> Community </h1>
-    {{profile}}
+    <p>Discover. Be Inspired.</p>
+    <ul>
+        <li v-for="pic in profile" v-bind:key="pic">
+            <img v-bind:src="pic.profile">
+        </li>
+    </ul>
   </div>
 </template>
 
@@ -58,5 +63,23 @@ export default {
 h1{
     text-decoration: underline #EC6041;
     font-size: 70px;
+}
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  flex-grow: 1;
+  flex-basis: 300px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #EC6041;
+  margin: 10px;
+}
+img {
+  width: 125px;
+  height: auto;
 }
 </style>
