@@ -12,8 +12,8 @@
             <div class="num-items">
                 <h1>You Currently Have:</h1>
                 <p id="itemCount">{{ this.items.length }} Item/s</p>
-                <router-link to="/additem" tag="button-additem" exact v-if="this.items.length>0">Add more</router-link>
-                <router-link to="/wishlist" tag="button-additem" exact>wishlist placeholder</router-link>
+                <router-link to="/additem" tag="button-additem" exact v-if="this.items.length>0">Add item</router-link>
+                <router-link to="/wishlist" tag="button-additem" exact>Wishlist</router-link>
             </div>
     
         </div>
