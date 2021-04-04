@@ -64,7 +64,7 @@ export default {
                 name: this.name,
                 detail: this.detail,
                 notes: this.notes,
-                imageRef: 'uploads/' + this.currentUser.uid + '/' + this.image,
+                imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
                 user: this.currentUser.uid,
                 type: this.itemType
             })
@@ -72,7 +72,7 @@ export default {
                 name: this.name,
                 detail: this.detail,
                 notes: this.notes,
-                imageRef: 'uploads/' + this.currentUser.uid + '/' + this.image,
+                imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
                 type: this.itemType
             }).then(() => this.$router.push('/profile'))
         },
