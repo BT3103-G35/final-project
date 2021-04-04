@@ -10,9 +10,9 @@
               </div>
               <p>Logged in as {{ this.currentUser }}</p>
               <ul>
-                <li><router-link to="/" exact>Home</router-link></li>
-                <li><router-link to="/community" exact>Community</router-link></li>
                 <li><router-link to="/about" exact>About</router-link></li>
+                <li><router-link to="/community" exact>Community</router-link></li>
+                <li><router-link to="/marketplace" exact>Marketplace</router-link></li>
                 <li><router-link to="/profile" exact>Profile</router-link></li>
                 <li><button @click="signOut">Sign out</button></li>
               </ul>

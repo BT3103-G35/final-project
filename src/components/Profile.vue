@@ -48,7 +48,9 @@ export default {
                     this.currentUser = firebase.auth().currentUser;
                     var listRef = firebase.storage().ref('uploads/' + this.currentUser.uid);
                     listRef.listAll().then((res) => {
+                        console.log(res)
                         res.items.forEach((itemRef) => {
+                            console.log(itemRef);
                             itemRef.getDownloadURL().then((url) => this.items.push(url))
                         }
                     )})
