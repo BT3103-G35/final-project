@@ -11,6 +11,7 @@
     <div v-show="!checker">
         <img v-bind:src="this.info.profile"/>
         <h2>Name: {{this.info.name}}</h2>
+        <h2>Age: {{this.info.age}}</h2>
     </div>
     <button v-on:click="check()" v-show="!checker">Go Back!</button>
   </div>
