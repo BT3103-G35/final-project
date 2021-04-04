@@ -60,11 +60,19 @@ export default {
         },
         pressed() {
             var db = firebase.firestore();
+            db.collection('marketplace').add({
+                name: this.name,
+                detail: this.detail,
+                notes: this.notes,
+                imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
+                user: this.currentUser.uid,
+                type: this.itemType
+            })
             db.collection(this.currentUser.uid).add({
                 name: this.name,
                 detail: this.detail,
                 notes: this.notes,
-                image: this.image,
+                imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
                 type: this.itemType
             }).then(() => this.$router.push('/profile'))
         },
@@ -92,7 +100,7 @@ export default {
             name: '',
             detail: '',
             notes: '',
-            image: false,
+            imageRef: false,
             type: this.$route.query.id,
             itemType: ''
         }

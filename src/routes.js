@@ -7,6 +7,7 @@ import AddItem from './components/AddItem.vue'
 import Community from './components/Community.vue'
 import AddItem2 from './components/AddItem2.vue'
 import Wishlist from './components/Wishlist.vue'
+import Marketplace from './components/Marketplace.vue'
 
 export default[
     { path: '/', name: 'landing', component: Landing},
@@ -18,4 +19,5 @@ export default[
     { path: '/additem', name: 'additem', component: AddItem},
     { path: '/additem2', name: 'additem2', component: AddItem2},
     { path: '/wishlist', name: 'wishlist', component: Wishlist},
+    { path: '/marketplace', name: 'marketplace', component: Marketplace},
 ]

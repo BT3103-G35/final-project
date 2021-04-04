@@ -12,8 +12,8 @@
             <div class="num-items">
                 <h1>You Currently Have:</h1>
                 <p id="itemCount">{{ this.items.length }} Item/s</p>
-                <router-link to="/additem" tag="button-additem" exact v-if="this.items.length>0">Add more</router-link>
-                <router-link to="/wishlist" tag="button-additem" exact>wishlist placeholder</router-link>
+                <router-link to="/additem" tag="button-additem" exact v-if="this.items.length>0">Add item</router-link>
+                <router-link to="/wishlist" tag="button-additem" exact>Wishlist</router-link>
             </div>
     
         </div>
@@ -25,7 +25,10 @@
         <div class="add-item" v-else>
             <ul>
                 <li v-for="item in items" v-bind:key="item.index">
-                    <img :src="item">
+                    <img :src="item.imageRef">
+                    <p>Name: {{ item.name }}</p>
+                    <p>Details: {{ item.detail }}</p>
+                    <p>Notes: {{ item.notes }}</p>
                     <button @click="remove(item)">Remove</button>
                 </li>
             </ul>
@@ -46,18 +49,41 @@ export default {
                     // User is signed in.
                     this.loggedIn = true;
                     this.currentUser = firebase.auth().currentUser;
-                    var listRef = firebase.storage().ref('uploads/' + this.currentUser.uid);
-                    listRef.listAll().then((res) => {
-                        res.items.forEach((itemRef) => {
-                            itemRef.getDownloadURL().then((url) => this.items.push(url))
-                        }
-                    )})
+                    // var listRef = firebase.storage().ref('uploads/' + this.currentUser.uid);
+                    // listRef.listAll().then((res) => {
+                    //     console.log(res)
+                    //     res.items.forEach((itemRef) => {
+                    //         console.log(itemRef);
+                    //         itemRef.getDownloadURL().then((url) => this.items.push(url))
+                    //     }
+                    // )})
+                    this.fetchItems();
                 } else {
                     // No user is signed in.
                     this.loggedIn = false;
                     this.currentUser = false;
                 }
             });
+        },
+        fetchItems() {
+            var storageRef = firebase.storage().ref();
+            var db = firebase.firestore();
+            console.log(this.currentUser)
+            db.collection(this.currentUser.uid).get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    let imagePath = doc.data().imageRef;
+                    console.log(imagePath);
+                    storageRef.child(imagePath).getDownloadURL().then((url) => {
+                        db.collection(this.currentUser.uid).doc(doc.id).update({
+                            imageRef: url
+                        })
+                    })
+                })
+            });
+            db.collection(this.currentUser.uid).get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => this.items.push(doc.data()))
+            })
+            console.log(this.items)
         },
         remove(item){
             var pictureRef = firebase.storage().refFromURL(item);
@@ -134,7 +160,10 @@ img{
 }
 ul{
     list-style: none;
-    column-count: 2;
+    display:flex;
+}
+li{
+    margin: 5px;
 }
 .add-item img{
     width: 300px;
