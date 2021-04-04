@@ -4,14 +4,24 @@
     <p>Discover. Be Inspired.</p>
     <ul v-show="checker">
         <li v-for="pic in profile" v-bind:key="pic.name" v-on:click="details(pic)">
-            <button v-on:click="check()"><img v-bind:src="pic.profile"></button>
+            <img id="main-page-img" v-bind:src="pic.profile" v-on:click="check()">
             <p v-show="pic.show">{{pic.name}}</p>
         </li>
     </ul>
-    <div v-show="!checker">
-        <img v-bind:src="this.info.profile"/>
-        <h2>Name: {{this.info.name}}</h2>
-        <h2>Age: {{this.info.age}}</h2>
+    <div v-show="!checker" id="profile-container">
+        <div id="profile-info">
+            <img id="profile-img" v-bind:src="this.info.profile"/>
+            <p>Name: {{this.info.name}}</p>
+            <p>Age: {{this.info.age}}</p>
+            <p id="count"><b>Currently has: <br>{{this.num}} Item/s</b></p>
+        </div>
+        <div id="com-items">
+            <ul>
+                <li v-for="item in this.info.items" v-bind:key="item.index">
+                    <img v-bind:src="item"/>
+                </li>
+            </ul>
+        </div>
     </div>
     <button v-on:click="check()" v-show="!checker">Go Back!</button>
   </div>
@@ -58,7 +68,8 @@ export default {
         },
         details(pic){
             this.info = pic;
-            console.log(this.info);
+            this.num = this.count(pic.items);
+            console.log(this.num);
         },
         check(){
             if (this.checker==true){
@@ -66,7 +77,17 @@ export default {
             }else{
                 this.checker=true;
             }
+        },
+        count(array){
+            let i = 0;
+            for (const a of array){
+                if (a!=""){
+                    i++;
+                }
+            }
+            return i;
         }
+
     },
     data(){
         return{
@@ -74,13 +95,33 @@ export default {
             profile: [],
             name: false,
             checker: true,
-            info: false
+            info: false,
+            num: false
         }
     }
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#profile-container{
+    display: flex;
+}
+#profile-info{
+    width: 50%;
+}
+#com-items{
+    width: 50%;
+}
+#profile-img{
+    border-radius: 50%;
+    height: 125px;
+}
+#count{
+    font-size: 40px;
+}
+#main-page-img{
+    cursor: pointer;
+}
 h1{
     text-decoration: underline #EC6041;
     font-size: 70px;
@@ -103,4 +144,5 @@ img {
   width: 125px;
   height: auto;
 }
+
 </style>
