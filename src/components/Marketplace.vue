@@ -7,10 +7,10 @@
             <ul>
                 <li v-for="(item, index) in this.items" v-bind:key="index">
                     <img :src="item.imageRef">
-                    <p>Name: {{ item.name }}</p>
-                    <p>Detail: {{ item.detail }}</p>
-                    <p>Notes: {{ item.notes }}</p>
-                    <p>User ID: {{ item.user }}</p>
+                    <p>Name:{{ item.name }}</p>
+                    <p>Details:{{ item.detail }}</p>
+                    <p>Notes:{{ item.notes }}</p>
+                    <p>User ID:{{ item.user }}</p>
                 </li>
             </ul>
         </div>

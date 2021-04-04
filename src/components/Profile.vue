@@ -27,7 +27,7 @@
                 <li v-for="item in items" v-bind:key="item.index">
                     <img :src="item.imageRef">
                     <p>Name: {{ item.name }}</p>
-                    <p>Detail: {{ item.detail }}</p>
+                    <p>Details: {{ item.detail }}</p>
                     <p>Notes: {{ item.notes }}</p>
                     <button @click="remove(item)">Remove</button>
                 </li>
