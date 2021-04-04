@@ -8,7 +8,7 @@
             <p v-show="pic.show">{{pic.name}}</p>
         </li>
     </ul>
-    <div>
+    <div v-show="!checker">
         <img v-bind:src="this.info.profile"/>
         <h2>Name: {{this.info.name}}</h2>
     </div>
