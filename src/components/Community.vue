@@ -2,11 +2,17 @@
   <div>
     <h1> Community </h1>
     <p>Discover. Be Inspired.</p>
-    <ul>
-        <li v-for="pic in profile" v-bind:key="pic">
-            <img v-bind:src="pic.profile">
+    <ul v-show="checker">
+        <li v-for="pic in profile" v-bind:key="pic.name" v-on:click="pic.show=!pic.show; details(pic)">
+            <button v-on:click="check()"><img v-bind:src="pic.profile"></button>
+            <p v-show="pic.show">{{pic.name}}</p>
         </li>
     </ul>
+    <div>
+        <img v-bind:src="this.info.profile"/>
+        <h2>Name: {{this.info.name}}</h2>
+    </div>
+    <button v-on:click="check()">Go Back!</button>
   </div>
 </template>
 
@@ -48,12 +54,26 @@ export default {
                     this.profile.push(obj)
                 })
             })
+        },
+        details(pic){
+            this.info = pic;
+            console.log(this.info);
+        },
+        check(){
+            if (this.checker==true){
+                this.checker = false;
+            }else{
+                this.checker=true;
+            }
         }
     },
     data(){
         return{
             items:[],
-            profile: []
+            profile: [],
+            name: false,
+            checker: true,
+            info: false
         }
     }
 }
