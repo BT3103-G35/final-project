@@ -24,11 +24,11 @@
         </div>
         <div class="add-item" v-else>
             <ul>
-                <li v-for="item in items" v-bind:key="item.index">
-                    <img :src="item.imageRef">
-                    <p>Name: {{ item.name }}</p>
-                    <p>Details: {{ item.detail }}</p>
-                    <p>Notes: {{ item.notes }}</p>
+                <li v-for="item in items1" v-bind:key="item.index">
+                    <img :src="item.data().imageRef">
+                    <p>Name: {{ item.data().name }}</p>
+                    <p>Details: {{ item.data().detail }}</p>
+                    <p>Notes: {{ item.data().notes }}</p>
                     <button @click="remove(item)">Remove</button>
                 </li>
             </ul>
@@ -82,20 +82,33 @@ export default {
             });
             db.collection(this.currentUser.uid).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => this.items.push(doc.data()))
+            });
+            db.collection(this.currentUser.uid).get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => this.items1.push(doc))
             })
             console.log(this.items)
         },
         remove(item){
-            var pictureRef = firebase.storage().refFromURL(item);
+            
+            var db = firebase.firestore();
+            var pictureRef = firebase.storage().refFromURL(item.data().imageRef);
             pictureRef.delete().then(()=> location.reload());
-            //alert("Item removed successfully")
+            
+            //let doc_id = item.target.getAttribute("id");
+            //console.log('here' + doc_id)
+            db.collection(this.currentUser.uid).doc(item.id).delete().then(function() {
+                console.log('doc deleted');
+            }).catch(function(error) {
+                console.error("error removing: ", error);
+            });
         }
     },
     data(){
         return {
             loggedIn: false,
             currentUser: false,
-            items: []
+            items: [],
+            items1: []
         }
     }
 }

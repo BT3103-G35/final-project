@@ -67,14 +67,16 @@ export default {
                 imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
                 user: this.currentUser.uid,
                 type: this.itemType
-            })
+            });
+            let docRef = db.collection(this.currentUser.uid).doc();
             db.collection(this.currentUser.uid).add({
                 name: this.name,
                 detail: this.detail,
                 notes: this.notes,
                 imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
-                type: this.itemType
-            }).then(() => this.$router.push('/profile'))
+                type: this.itemType,
+                id: docRef.id
+            }).then(() => this.$router.push('/profile'));
         },
         chooseType(string) {
             this.itemType = string;
