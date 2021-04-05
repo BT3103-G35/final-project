@@ -5,13 +5,15 @@
         </div>
         <div class="marketplace-container">
             <ul>
-                <li v-for="(item, index) in this.items" v-bind:key="index">
-                    <img :src="item.imageRef">
-                    <p>Name:{{ item.name }}</p>
-                    <p>Details:{{ item.detail }}</p>
-                    <p>Notes:{{ item.notes }}</p>
-                    <p>User ID:{{ item.user }}</p>
-                </li>
+                    <li v-for="(item, index) in this.items" v-bind:key="index">
+                        <a href="item?id= + dummyID">
+                            <img :src="item.imageRef">
+                            <p>Name:{{ item.name }}</p>
+                            <p>Details:{{ item.detail }}</p>
+                            <p>Notes:{{ item.notes }}</p>
+                            <p>User ID:{{ item.user }}</p>
+                        </a>
+                    </li>
             </ul>
         </div>
     </div>
