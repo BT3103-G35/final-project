@@ -1,6 +1,6 @@
 <template>
     <div class="profile-container">
-        <div class="profile-info" v-show="checker">
+        <div class="profile-info">
             <div class="profile-name">
                 <img src="https://i.postimg.cc/yNMnZJp9/blank-profile-picture-973460-1280-1.png">
                 <div id="displayName">{{this.currentUser.displayName}}</div>
@@ -23,24 +23,15 @@
             <router-link to="/additem" tag="button-additem" exact>Click to add!</router-link>
         </div>
         <div class="add-item" v-else>
-            <ul v-show="checker">
-                <li v-for="item in items1" v-bind:key="item.index" v-on:click="details(item)">
-                    <img :src="item.data().imageRef" v-on:click="check()" id="item-image">
-                    <!--
+            <ul>
+                <li v-for="item in items1" v-bind:key="item.index">
+                    <img :src="item.data().imageRef">
                     <p>Name: {{ item.data().name }}</p>
                     <p>Details: {{ item.data().detail }}</p>
                     <p>Notes: {{ item.data().notes }}</p>
-                    -->
                     <button @click="remove(item)">Remove</button>
                 </li>
             </ul>
-            <div v-show="!checker" >
-                <img id="item-img" v-bind:src="this.info.imageRef"/>
-                <p >Name: {{this.info.name}}</p>
-                <p>Details: {{this.info.detail}}</p>
-                <p>notes: {{this.info.notes}}</p>
-                <button v-on:click="check()" v-show="!checker">Go Back!</button>
-            </div>
         </div>
     </div>
 </template>
@@ -115,23 +106,6 @@ export default {
             }).catch(function(error) {
                 console.error("error removing: ", error);
             });
-        },
-        details(item){
-            this.info = item.data();
-            /*
-            this.name = item.data().name;
-            this.details = item.data().detail;
-            this.notes = item.data().notes;
-            this.imgRef = item.data().imageRef;
-            */
-
-        },
-        check(){
-            if (this.checker==true){
-                this.checker = false;
-            }else{
-                this.checker=true;
-            }
         }
     },
     data(){
@@ -139,15 +113,7 @@ export default {
             loggedIn: false,
             currentUser: false,
             items: [],
-            items1: [],
-            /*
-            name: false,
-            details: false,
-            notes: false,
-            imgRef: false,
-            */
-            checker: true,
-            info: false
+            items1: []
         }
     }
 }
@@ -169,9 +135,6 @@ export default {
 }
 h1{
     font-size: 70px;
-}
-#item-image{
-    cursor: pointer;
 }
 button{
     height: 40px;
