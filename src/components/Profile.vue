@@ -13,7 +13,7 @@
                 <h1>You Currently Have:</h1>
                 <p id="itemCount">{{ this.items.length }} Item/s</p>
                 <button style="color: transparent; background-color: transparent; border-color: transparent; box-shadow: none;"> <router-link to="/additem" tag="button-additem" exact v-if="this.items.length>0">Add item</router-link> </button>
-                <button style="color: transparent; background-color: transparent; border-color: transparent; box-shadow: none;"> <router-link to="/wishlist" tag="button-additem" exact>Wishlist</router-link> </button>
+                <br><br><br><br><button style="color: transparent; background-color: transparent; border-color: transparent; box-shadow: none;"> <router-link to="/wishlist" tag="button-additem" exact>Wishlist</router-link> </button>
             </div>
     
         </div>
@@ -32,6 +32,17 @@
                     <button @click="remove(item)">Remove</button>
                 </li>
             </ul>
+<<<<<<< Updated upstream
+=======
+            <div v-show="!checker" >
+                <img id="item-img" v-bind:src="this.info.imageRef"/>
+                <p >Name: {{this.info.name}}</p>
+                <p>Details: {{this.info.detail}}</p>
+                <p>notes: {{this.info.notes}}</p>
+                <p> test </p>
+                <button v-on:click="check()" v-show="!checker">Go Back!</button>
+            </div>
+>>>>>>> Stashed changes
         </div>
     </div>
 </template>
