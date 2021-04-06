@@ -11,7 +11,6 @@
                             <p>Name:{{ item.name }}</p>
                             <p>Details:{{ item.detail }}</p>
                             <p>Notes:{{ item.notes }}</p>
-                            <p>User ID:{{ item.user }}</p>
                         </a>
                     </li>
             </ul>
