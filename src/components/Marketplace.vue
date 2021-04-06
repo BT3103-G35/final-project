@@ -4,14 +4,17 @@
             <h1> Marketplace </h1>
         </div>
         <div class="marketplace-container">
-            <ul>
-                <li v-for="(item, index) in this.items" v-bind:key="index">
-                    <img :src="item.imageRef">
-                    <p>Name:{{ item.name }}</p>
-                    <p>Details:{{ item.detail }}</p>
-                    <p>Notes:{{ item.notes }}</p>
-                    <p>User ID:{{ item.user }}</p>
-                </li>
+            <ul> 
+                    <li v-for="(item, index) in this.items" v-bind:key="index">
+                        <a v-on:click="redirect(item.user, item.number)"> 
+                            <img :src="item.imageRef">
+                            <p>Name:{{ item.name }}</p>
+                            <p>Details:{{ item.detail }}</p>
+                            <p>Notes:{{ item.notes }}</p>
+                            <p>User ID:{{ item.user }}</p>
+                            <p>Image ID:{{ item.imageRef }}</p>
+                        </a>
+                    </li>
             </ul>
         </div>
     </div>
@@ -22,6 +25,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/storage";
+
 export default {
     created() {
         this.setupFirebase();
@@ -57,8 +61,11 @@ export default {
             db.collection('marketplace').get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => this.items.push(doc.data()))
             })
-            console.log(this.items)
+            //console.log(this.items)
         },
+        redirect(user, number) {
+            window.location.href="/item?user=" + user + "?number=" + number;
+        }
     },
     data(){
         return {
