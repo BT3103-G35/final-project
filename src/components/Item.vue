@@ -4,28 +4,22 @@
             <div class="item-info">
                 <p> Name* </p>
                 <div class="boxed">
-                    {{item.data.name}}
+                    <p>Name: {{ item.data().name }}</p>
                 </div>
                 <p> Details* </p>
                 <div class="boxed">
-                    {{item.details}}
+                    <p>Details: {{ item.data().detail }}</p>
                 </div>
                 <p> Notes* </p>
                 <div class="boxed">
-                    {{item.notes}}
-                </div>
-                <div class="item">
-                    <img :src="item.data().imageRef">
-                    <p>Name: {{ item.data().name }}</p>
-                    <p>Details: {{ item.data().detail }}</p>
                     <p>Notes: {{ item.data().notes }}</p>
-                    <button @click="remove(item)">Remove</button>
                 </div>
+                <button @click="remove(item)">Remove</button>
             </div>
         </div>
 
         <div class="item-pictures">
-            <b-img :src="item.imgURL"></b-img>
+            <img :src="item.data().imageRef">
         </div>
     </div>
 </template>
@@ -83,7 +77,6 @@ export default {
             console.log(this.items)
         },
         remove(item){
-            
             var db = firebase.firestore();
             var pictureRef = firebase.storage().refFromURL(item.data().imageRef);
             pictureRef.delete().then(()=> location.reload());
