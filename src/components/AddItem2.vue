@@ -74,9 +74,9 @@ export default {
                 }
             });
             //var count = db.collection(this.currentUser.uid).doc("Count").get().then
-            var counter = countDocRef.get().then((doc) => {
-                doc.data().count
-            });
+            //var counter = countDocRef.get().then((doc) => {
+                //doc.data().count
+            //});
             db.collection('marketplace').add({
                 name: this.name,
                 detail: this.detail,
