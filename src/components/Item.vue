@@ -9,10 +9,10 @@
 <script>
 import firebase from "firebase/app";
 export default {
+
     mounted() {
         this.setupFirebase();
     },
-
     methods:{
         setupFirebase() {
             firebase.auth().onAuthStateChanged(user => {
@@ -28,6 +28,7 @@ export default {
                 }
             });
         },
+        
         fetchItem() {
             var db = firebase.firestore();
             db.collection('marketplace').where('user', '==', this.userID).where('count', '==', this.count).get()
@@ -39,6 +40,7 @@ export default {
             console.log(this.item);
             console.log(typeof this.userID);
             console.log(typeof this.count)
+
         }
     },
     data(){
@@ -48,6 +50,7 @@ export default {
             userID: this.$route.query.user,
             count: parseInt(this.$route.query.count),
             item: []
+
         }
     }
 }
@@ -58,4 +61,5 @@ h1{
     text-decoration: underline #EC6041;
     font-size: 70px;
 }
+
 </style>
