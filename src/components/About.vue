@@ -33,16 +33,9 @@
 
 
 <script>
-import TwitterButton from "vue-share-buttons/src/components/TwitterButton";
-import FacebookButton from "vue-share-buttons/src/components/FacebookButton";
-
-
 
 export default {
-  components: {
-    TwitterButton,
-    FacebookButton,
-  },
+
 }
 
 </script>

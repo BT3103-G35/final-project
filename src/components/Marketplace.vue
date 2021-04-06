@@ -5,14 +5,13 @@
         </div>
         <div class="marketplace-container">
             <ul> 
-                    <li v-for="(item, index) in this.items" v-bind:key="index">
-                        <a v-on:click="redirect(item.user, item.number)"> 
+                    <li v-for="(item, index) in this.items1" v-bind:key="index">
+                        <a v-on:click="redirect(item.user, item.count)"> 
                             <img :src="item.imageRef">
                             <p>Name:{{ item.name }}</p>
                             <p>Details:{{ item.detail }}</p>
                             <p>Notes:{{ item.notes }}</p>
                             <p>User ID:{{ item.user }}</p>
-                            <p>Image ID:{{ item.imageRef }}</p>
                         </a>
                     </li>
             </ul>
@@ -27,10 +26,12 @@ import "firebase/firestore";
 import "firebase/storage";
 
 export default {
+
     created() {
         this.setupFirebase();
         this.fetchItems();
     },
+
     methods:{
         setupFirebase() {
             firebase.auth().onAuthStateChanged(user => {
@@ -38,6 +39,7 @@ export default {
                     // User is signed in.
                     this.loggedIn = true;
                     this.currentUser = firebase.auth().currentUser;
+                    this.fetchItems();
                 } else {
                     // No user is signed in.
                     this.loggedIn = false;
@@ -45,33 +47,42 @@ export default {
                 }
             });
         },
+
         fetchItems() {
             var storageRef = firebase.storage().ref();
             var db = firebase.firestore();
-            db.collection('marketplace').get().then((querySnapshot) => {
+            console.log(this.currentUser)
+            db.collection(this.currentUser.uid).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     let imagePath = doc.data().imageRef;
+                    console.log(imagePath);
                     storageRef.child(imagePath).getDownloadURL().then((url) => {
-                        db.collection('marketplace').doc(doc.id).update({
+                        db.collection(this.currentUser.uid).doc(doc.id).update({
                             imageRef: url
                         })
                     })
                 })
             });
-            db.collection('marketplace').get().then((querySnapshot) => {
+            db.collection(this.currentUser.uid).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => this.items.push(doc.data()))
+            });
+            
+            db.collection('marketplace').get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => this.items1.push(doc.data()))
             })
-            //console.log(this.items)
         },
-        redirect(user, number) {
-            window.location.href="/item?user=" + user + "?number=" + number;
+
+        redirect(user, count) {
+            window.location.href="/item?user=" + user + "&count=" + count;
         }
     },
+
     data(){
         return {
             loggedIn: false,
             currentUser: false,
             items: [], // item details
+            items1: []
         }
     }
 }
