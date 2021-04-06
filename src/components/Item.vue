@@ -36,9 +36,6 @@ export default {
                     this.item.push(doc.data());
                 });
             });
-            console.log(this.item);
-            console.log(typeof this.userID);
-            console.log(typeof this.count)
         }
     },
     data(){
