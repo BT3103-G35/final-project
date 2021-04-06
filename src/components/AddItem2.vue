@@ -84,26 +84,7 @@ export default {
         },
         pressed() {
             var db = firebase.firestore();
-            var countDocRef = db.collection(this.currentUser.uid).doc("Count");
-            countDocRef.get().then((doc) => {
-                if (doc.exists) {
-                    var oldCount = doc.data().count;
-                    db.collection(this.currentUser.uid).doc("Count").update({
-                        count: oldCount + 1
-                    })
-                } else {
-                    db.collection(this.currentUser.uid).doc("Count").set({
-                        count: 0
-                    })
-                }
-            });
-            //db.collection(this.currentUser.uid).doc("Count").get().then((doc) => {
-            //    if (doc.exists) {
-            //        this.counter = doc.data().count;
-            //    } else {
-            //        console.log('Error');
-            //    }
-            //});
+
             db.collection('marketplace').add({
                 name: this.name,
                 detail: this.detail,
