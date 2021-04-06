@@ -12,8 +12,8 @@
             <div class="num-items">
                 <h1>You Currently Have:</h1>
                 <p id="itemCount">{{ this.items.length }} Item/s</p>
-                <router-link to="/additem" tag="button-additem" exact v-if="this.items.length>0">Add item</router-link>
-                <router-link to="/wishlist" tag="button-additem" exact>Wishlist</router-link>
+                <button style="color: transparent; background-color: transparent; border-color: transparent; box-shadow: none;"> <router-link to="/additem" tag="button-additem" exact v-if="this.items.length>0">Add item</router-link> </button>
+                <button style="color: transparent; background-color: transparent; border-color: transparent; box-shadow: none;"> <router-link to="/wishlist" tag="button-additem" exact>Wishlist</router-link> </button>
             </div>
     
         </div>
@@ -120,6 +120,9 @@ export default {
 </script>
 
 <style scoped>
+.test-style{
+    border: 1px red;
+}
 .profile-container{
     display: flex;
 }
