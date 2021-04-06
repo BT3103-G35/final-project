@@ -84,8 +84,7 @@ export default {
         },
         pressed() {
             var db = firebase.firestore();
-            var countDocRef = db.collection(this.currentUser.uid).doc("Count");
-            
+
             db.collection('marketplace').add({
                 name: this.name,
                 detail: this.detail,
