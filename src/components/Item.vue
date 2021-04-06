@@ -37,10 +37,13 @@ export default {
                     this.item.push(doc.data());
                 });
             });
+<<<<<<< HEAD
             console.log(this.item);
             console.log(typeof this.userID);
             console.log(typeof this.count)
 
+=======
+>>>>>>> 14194f1 (modified additem2 and item)
         }
     },
     data(){
