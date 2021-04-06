@@ -84,7 +84,6 @@ export default {
         },
         pressed() {
             var db = firebase.firestore();
-
             db.collection('marketplace').add({
                 name: this.name,
                 detail: this.detail,

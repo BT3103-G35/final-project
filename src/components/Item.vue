@@ -1,8 +1,20 @@
 <template>
     <div class="item-container">
-        {{ this.userID }} <br>
-        {{ this.count }} <br>
-        {{ this.item }}
+
+        <div class="item-information">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" size="60" :value=this.item[0].name :readonly="true"><br><br>
+            <label for="detail">Details:</label><br>
+            <textarea name="detail" rows="3" cols="60" :value=this.item[0].detail :readonly="true"></textarea><br><br>
+            <label for="notes">Notes:</label><br>
+            <textarea name="notes" rows="6" cols="60" :value=this.item[0].notes :readonly="true"></textarea><br><br>
+            <button>ADD TO WISHLIST</button>
+        </div>
+
+        <div class="item-image">
+            <!-- img :src="this.item[0].imageRef" -->
+            <img src="https://m.media-amazon.com/images/M/MV5BMTc0NTUwMTU5OV5BMl5BanBnXkFtZTcwNjAwNzQzMw@@._V1_UY1200_CR91,0,630,1200_AL_.jpg">
+        </div>
     </div>
 </template>
 
@@ -53,10 +65,35 @@ export default {
 </script>
 
 <style scoped>
-
-h1{
-    text-decoration: underline #EC6041;
-    font-size: 70px;
+.item-container{
+    display: flex;
+    margin-top: 150px;
+    font-weight: bold;
+    font-size: 25px;
 }
 
+.item-information{
+    width: 60%;
+}
+
+input{
+    padding: 12px 20px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+textarea{
+    padding: 12px 20px;
+    font-weight: bold;
+    font-size: 15px;
+}
+button{
+    background: #EC6041;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+    color: white;
+    width: 450px;
+    padding: 14px 30px;
+    font-size: 20px;
+}
 </style>
