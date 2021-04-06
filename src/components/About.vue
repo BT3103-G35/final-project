@@ -17,6 +17,9 @@
             </header>
             <div class="social-icons">
                 <h2>Stay In Touch</h2>
+                <img id="insta" src="https://i.postimg.cc/9F6LHV8Q/insta.jpg">
+                <img id="fb" src="https://i.postimg.cc/VkPWHgvS/fb.jpg">
+                <img id="email" src="https://i.postimg.cc/6QYVqN0R/email.jpg">
                 <twitter-button
                     shareUrl="document.location.href"
                     title = "Find out about Ainran!"
@@ -35,8 +38,6 @@
 <script>
 import TwitterButton from "vue-share-buttons/src/components/TwitterButton";
 import FacebookButton from "vue-share-buttons/src/components/FacebookButton";
-
-
 
 export default {
   components: {
