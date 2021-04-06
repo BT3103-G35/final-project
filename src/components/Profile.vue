@@ -92,8 +92,13 @@ export default {
             db.collection(this.currentUser.uid).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => this.items.push(doc.data()))
             });
-            db.collection(this.currentUser.uid).get().then((querySnapshot) => {
-                querySnapshot.forEach((doc) => this.items1.push(doc))
+            //db.collection(this.currentUser.uid).get().then((querySnapshot) => {
+            //    querySnapshot.forEach((doc) => this.items1.push(doc))
+            //})
+            db.collection('marketplace').where('user', '==', this.currentUser.uid)
+                    .get()
+                    .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => this.items1.push(doc))
             })
             console.log(this.items)
         },

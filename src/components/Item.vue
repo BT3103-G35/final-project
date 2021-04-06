@@ -1,32 +1,16 @@
 <template>
-    <div>
-        <div class="item-container">
-            <div class="item-info">
-                <p> Name* </p>
-                <div class="boxed">
-                    Name: {{ item.data().name }}
-                </div>
-                <p> Details* </p>
-                <div class="boxed">
-                    Details: {{ item.data().detail }}
-                </div>
-                <p> Notes* </p>
-                <div class="boxed">
-                    Notes: {{ item.data().notes }}
-                </div>
-                <button @click="remove(item)">Remove</button>
-            </div>
-            <div class="item-pictures">
-                <img :src="item.data().imageRef">
-            </div>
-        </div>
+    <div class="item-container">
+        {{ this.userID }} <br>
+        {{ this.count }} <br>
+        {{ this.item }}
     </div>
 </template>
 
 <script>
 import firebase from "firebase/app";
 export default {
-    created() {
+
+    mounted() {
         this.setupFirebase();
     },
     methods:{
@@ -35,16 +19,8 @@ export default {
                 if (user) {
                     // User is signed in.
                     this.loggedIn = true;
-                    this.currentUser = firebase.auth().currentUser;
-                    // var listRef = firebase.storage().ref('uploads/' + this.currentUser.uid);
-                    // listRef.listAll().then((res) => {
-                    //     console.log(res)
-                    //     res.items.forEach((itemRef) => {
-                    //         console.log(itemRef);
-                    //         itemRef.getDownloadURL().then((url) => this.items.push(url))
-                    //     }
-                    // )})
-                    this.fetchItems();
+                    this.currentUser = firebase.auth().currentUser.email;
+                    this.fetchItem();
                 } else {
                     // No user is signed in.
                     this.loggedIn = false;
@@ -52,96 +28,39 @@ export default {
                 }
             });
         },
-        fetchItems() {
-            var storageRef = firebase.storage().ref();
+        
+        fetchItem() {
             var db = firebase.firestore();
-            console.log(this.currentUser)
-            db.collection(this.currentUser.uid).get().then((querySnapshot) => {
+            db.collection('marketplace').where('user', '==', this.userID).where('count', '==', this.count).get()
+            .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    let imagePath = doc.data().imageRef;
-                    console.log(imagePath);
-                    storageRef.child(imagePath).getDownloadURL().then((url) => {
-                        db.collection(this.currentUser.uid).doc(doc.id).update({
-                            imageRef: url
-                        })
-                    })
-                })
+                    this.item.push(doc.data());
+                });
             });
-            db.collection(this.currentUser.uid).get().then((querySnapshot) => {
-                querySnapshot.forEach((doc) => this.items.push(doc.data()))
-            });
-            db.collection(this.currentUser.uid).get().then((querySnapshot) => {
-                querySnapshot.forEach((doc) => this.items1.push(doc))
-            })
-            console.log(this.items)
-        },
-        remove(item){
-            var db = firebase.firestore();
-            var pictureRef = firebase.storage().refFromURL(item.data().imageRef);
-            pictureRef.delete().then(()=> location.reload());
-            
-            //let doc_id = item.target.getAttribute("id");
-            //console.log('here' + doc_id)
-            db.collection(this.currentUser.uid).doc(item.id).delete().then(function() {
-                console.log('doc deleted');
-            }).catch(function(error) {
-                console.error("error removing: ", error);
-            });
+            console.log(this.item);
+            console.log(typeof this.userID);
+            console.log(typeof this.count)
+
         }
     },
     data(){
         return {
             loggedIn: false,
             currentUser: false,
-            items: [],
-            items1: []
+            userID: this.$route.query.user,
+            count: parseInt(this.$route.query.count),
+            item: []
+
         }
     }
 }
 </script>
 
 <style scoped>
-.boxed {
-  border: 1px solid orange ;
-  width: 300px;
-  height: 100px;
-}
+
 h1{
+    text-decoration: underline #EC6041;
     font-size: 70px;
 }
-.button{
-    height: 40px;
-    width: 200px;
-    font-size: 20px;
-    background-color: #EC6041;
-    color: white;
-    background: #EC6041;
-    box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
-}
-.button-additem-wishlist{
-  font-size: 30px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: white;
-  background: #EC6041;
-  box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
-  padding: 20px 24px;
-  cursor: pointer;
-}
-#displayName{
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    font-weight: bold;
-    font-size: 20px;
-}
-.item-container{
-    width:600px;
-    overflow:hidden;
-}
-.item-info{
-    width: 300px;
-    float:left; /* add this */
-}
-.item-pictures{
-    width: 300px;
-    float:left; /* add this */
-}
+
 </style>
