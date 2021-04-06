@@ -48,12 +48,36 @@ export default {
                     // User is signed in.
                     this.loggedIn = true;
                     this.currentUser = firebase.auth().currentUser;
+                    this.fetchItems();
                 } else {
                     // No user is signed in.
                     this.loggedIn = false;
                     this.currentUser = false;
                 }
             });
+        },
+        fetchItems() {
+            var storageRef = firebase.storage().ref();
+            var db = firebase.firestore();
+            console.log(this.currentUser)
+            db.collection(this.currentUser.uid).get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    let imagePath = doc.data().imageRef;
+                    console.log(imagePath);
+                    storageRef.child(imagePath).getDownloadURL().then((url) => {
+                        db.collection(this.currentUser.uid).doc(doc.id).update({
+                            imageRef: url
+                        })
+                    })
+                })
+            });
+            db.collection(this.currentUser.uid).get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => this.items.push(doc.data()))
+            });
+            db.collection(this.currentUser.uid).get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => this.items1.push(doc))
+            })
+            console.log(this.items)
         },
         onUpload(image) {
             this.image = image;
@@ -73,9 +97,12 @@ export default {
                     })
                 }
             });
-            //var count = db.collection(this.currentUser.uid).doc("Count").get().then
-            //var counter = countDocRef.get().then((doc) => {
-                //doc.data().count
+            //db.collection(this.currentUser.uid).doc("Count").get().then((doc) => {
+            //    if (doc.exists) {
+            //        this.counter = doc.data().count;
+            //    } else {
+            //        console.log('Error');
+            //    }
             //});
             db.collection('marketplace').add({
                 name: this.name,
@@ -83,8 +110,7 @@ export default {
                 notes: this.notes,
                 imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
                 user: this.currentUser.uid,
-                type: this.itemType,
-                count: 0
+                count: this.items.length
             });
             let docRef = db.collection(this.currentUser.uid).doc();
             db.collection(this.currentUser.uid).add({
@@ -92,8 +118,8 @@ export default {
                 detail: this.detail,
                 notes: this.notes,
                 imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
-                type: this.itemType,
-                id: docRef.id
+                id: docRef.id,
+                count: this.items.length
             }).then(() => this.$router.push('/profile'));
         },
         chooseType(string) {
@@ -122,7 +148,9 @@ export default {
             notes: '',
             imageRef: false,
             type: this.$route.query.id,
-            itemType: ''
+            itemType: '',
+            items: [],
+            items1: []
         }
     },
     components:{
