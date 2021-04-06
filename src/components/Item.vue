@@ -4,22 +4,21 @@
             <div class="item-info">
                 <p> Name* </p>
                 <div class="boxed">
-                    <p>Name: {{ item.data().name }}</p>
+                    Name: {{ item.data().name }}
                 </div>
                 <p> Details* </p>
                 <div class="boxed">
-                    <p>Details: {{ item.data().detail }}</p>
+                    Details: {{ item.data().detail }}
                 </div>
                 <p> Notes* </p>
                 <div class="boxed">
-                    <p>Notes: {{ item.data().notes }}</p>
+                    Notes: {{ item.data().notes }}
                 </div>
                 <button @click="remove(item)">Remove</button>
             </div>
-        </div>
-
-        <div class="item-pictures">
-            <img :src="item.data().imageRef">
+            <div class="item-pictures">
+                <img :src="item.data().imageRef">
+            </div>
         </div>
     </div>
 </template>
@@ -104,18 +103,13 @@ export default {
 <style scoped>
 .boxed {
   border: 1px solid orange ;
-}
-.profile-info{
-    width: 40%;
-    margin-left: 100px;
-}
-.add-item{
-    width: 60%;
+  width: 300px;
+  height: 100px;
 }
 h1{
     font-size: 70px;
 }
-button{
+.button{
     height: 40px;
     width: 200px;
     font-size: 20px;
@@ -124,7 +118,7 @@ button{
     background: #EC6041;
     box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
 }
-button-additem{
+.button-additem-wishlist{
   font-size: 30px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: white;
