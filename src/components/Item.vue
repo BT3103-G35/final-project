@@ -57,6 +57,7 @@ export default {
 </script>
 
 <style scoped>
+
 h1{
     text-decoration: underline #EC6041;
     font-size: 70px;
