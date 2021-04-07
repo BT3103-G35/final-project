@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="community-container">
     <h1> Community </h1>
     <p>Discover. Be Inspired.</p>
     <ul v-show="checker">
@@ -103,9 +103,6 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#profile-container{
-    display: flex;
-}
 #profile-info{
     width: 50%;
 }

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="marketplace-container">
         <div class="marketplace-title">
             <h1> Marketplace </h1>
         </div>
@@ -100,7 +100,7 @@ ul{
     list-style-type: none;
 }
 li {
-    margin: 10px;
+    margin: 30px;
 }
 img{
     width: 300px;
