@@ -105,6 +105,7 @@ export default {
 <style scoped>
 #profile-container{
     display: flex;
+    background-color:#fff2e6;
 }
 #profile-info{
     width: 50%;

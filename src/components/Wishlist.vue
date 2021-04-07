@@ -66,6 +66,8 @@ export default {
 .wishlist-container{
     display: flex;
     margin-top: 100px;
+    height: 1000px;
+    background-color:#fff2e6;
 }
 .my-wishlist{
     text-align: center;

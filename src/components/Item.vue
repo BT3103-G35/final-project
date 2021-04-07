@@ -12,8 +12,7 @@
         </div>
 
         <div class="item-image">
-            <!-- img :src="this.item[0].imageRef" -->
-            <img src="https://m.media-amazon.com/images/M/MV5BMTc0NTUwMTU5OV5BMl5BanBnXkFtZTcwNjAwNzQzMw@@._V1_UY1200_CR91,0,630,1200_AL_.jpg">
+            <img :src="this.item[0].imageRef" contain height="500px" width="500px">
         </div>
     </div>
 </template>
@@ -43,7 +42,7 @@ export default {
         
         fetchItem() {
             var db = firebase.firestore();
-            db.collection('marketplace').where('user', '==', this.userID).where('count', '==', this.count).get()
+            db.collection(this.userID).where('count', '==', this.count).get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     this.item.push(doc.data());

@@ -52,7 +52,10 @@ export default {
 </script>
 
 <style scoped>
-
+.login-container{
+    height: 1000px;
+    background-color:#fff2e6;
+}
 .wrapper{
     display: flex;
     align-items: center;

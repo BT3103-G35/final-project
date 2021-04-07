@@ -25,11 +25,13 @@
         <div class="add-item" v-else>
             <ul>
                 <li v-for="item in items" v-bind:key="item.index">
-                    <img :src="item.data().imageRef">
-                    <p>Name: {{ item.data().name }}</p>
-                    <p>Details: {{ item.data().detail }}</p>
-                    <p>Notes: {{ item.data().notes }}</p>
-                    <button @click="remove(item)">Remove</button>
+                    <a v-on:click="redirect(item.data().user, item.data().count)">
+                        <img :src="item.data().imageRef">
+                        <p>Name: {{ item.data().name }}</p>
+                        <p>Details: {{ item.data().detail }}</p>
+                        <p>Notes: {{ item.data().notes }}</p>
+                        <button @click="remove(item)">Remove</button>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -126,6 +128,7 @@ export default {
 }
 .profile-container{
     display: flex;
+    background-color: #fff2e6;
 }
 .profile-info{
     width: 40%;
@@ -182,10 +185,12 @@ img{
 }
 ul{
     list-style: none;
-    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    columns: 3
 }
 li{
-    margin: 5px;
+    margin: 30px 30px;
 }
 .add-item img{
     width: 300px;

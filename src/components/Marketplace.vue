@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="marketplace-container">
         <div class="marketplace-title">
             <h1> Marketplace </h1>
         </div>
@@ -89,6 +89,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.marketplace-container{
+    height: 1000px;
+    background-color:#fff2e6;
+}
 h1{
     text-decoration: underline #EC6041;
     font-size: 70px;
