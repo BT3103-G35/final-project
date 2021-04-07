@@ -149,8 +149,6 @@ h1{
     display:flex;
     justify-content: space-between;
     margin-left: 160px;
-    height: 1000px;
-    background-color:#fff2e6;
 }
 .upload-image{
     margin-right: 150px;

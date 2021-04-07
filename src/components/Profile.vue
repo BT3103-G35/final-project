@@ -128,7 +128,7 @@ export default {
 }
 .profile-container{
     display: flex;
-    background-color: #fff2e6;
+    background-color: #fff7e6;
 }
 .profile-info{
     width: 40%;

@@ -89,10 +89,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.marketplace-container{
-    height: 1000px;
-    background-color:#fff2e6;
-}
 h1{
     text-decoration: underline #EC6041;
     font-size: 70px;
@@ -104,7 +100,7 @@ ul{
     list-style-type: none;
 }
 li {
-    margin: 10px;
+    margin: 30px;
 }
 img{
     width: 300px;

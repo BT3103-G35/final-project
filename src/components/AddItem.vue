@@ -58,8 +58,6 @@ h1{
 }
 .additems-container{
     display: flex;
-    height: 1000px;
-    background-color:#fff2e6;
 }
 .add-need-ideas{
     width: 60%;
