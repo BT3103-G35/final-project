@@ -24,7 +24,7 @@
         </div>
         <div class="add-item" v-else>
             <ul>
-                <li v-for="item in items1" v-bind:key="item.index">
+                <li v-for="item in items" v-bind:key="item.index">
                     <img :src="item.data().imageRef">
                     <p>Name: {{ item.data().name }}</p>
                     <p>Details: {{ item.data().detail }}</p>
@@ -32,17 +32,6 @@
                     <button @click="remove(item)">Remove</button>
                 </li>
             </ul>
-<<<<<<< Updated upstream
-=======
-            <div v-show="!checker" >
-                <img id="item-img" v-bind:src="this.info.imageRef"/>
-                <p >Name: {{this.info.name}}</p>
-                <p>Details: {{this.info.detail}}</p>
-                <p>notes: {{this.info.notes}}</p>
-                <p> test </p>
-                <button v-on:click="check()" v-show="!checker">Go Back!</button>
-            </div>
->>>>>>> Stashed changes
         </div>
     </div>
 </template>
@@ -92,7 +81,7 @@ export default {
                 })
             });
             db.collection(this.currentUser.uid).get().then((querySnapshot) => {
-                querySnapshot.forEach((doc) => this.items.push(doc.data()))
+                querySnapshot.forEach((doc) => this.items.push(doc))
             });
             //db.collection(this.currentUser.uid).get().then((querySnapshot) => {
             //    querySnapshot.forEach((doc) => this.items1.push(doc))
@@ -107,16 +96,17 @@ export default {
         remove(item){
             
             var db = firebase.firestore();
+            
             var pictureRef = firebase.storage().refFromURL(item.data().imageRef);
-            pictureRef.delete().then(()=> location.reload());
+            pictureRef.delete()//.then(()=> location.reload());
             
             //let doc_id = item.target.getAttribute("id");
             //console.log('here' + doc_id)
-            db.collection(this.currentUser.uid).doc(item.id).delete().then(function() {
+            db.collection(this.currentUser.uid).doc(item.id).delete().then(() => location.reload())/*then(function() {
                 console.log('doc deleted');
             }).catch(function(error) {
                 console.error("error removing: ", error);
-            });
+            });*/
         }
     },
     data(){
