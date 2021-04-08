@@ -16,8 +16,8 @@
                         <input type="email" size="65" v-model="email" required><br><br>
                         <label for="password">Password*:</label><br>
                         <input type="password" size="65" v-model="password" required><br><br>
-                        <!-- <label for="message">Message:</label><br>
-                        <textarea id="message" name="message" rows="4" cols="60"></textarea> -->
+                        <input type='file' @change='chooseFile($event)'/>
+                        <img :src="this.image" class='ui-image' id='img'>
                         <button type="submit">SIGN UP</button>
                 </form>
 
@@ -36,13 +36,53 @@ export default {
         firebase
             .auth()
             .createUserWithEmailAndPassword(this.email, this.password)
-            .then(() => {
+            .then((auth) => {
+
+                firebase.storage().ref('users/' + auth.user.uid + '/profile.jpg').put(this.imageFile).then(function(){
+                    console.log('success');
+                }).catch(error => {
+                    console.log(error.message)
+                })
+            
             firebase.auth().currentUser.updateProfile({
-                displayName: this.name
+                displayName: this.name,
+                //profilePic: this.url
             });
+
             this.$router.push('/profile');
             })
             .catch(error => (this.error = error));
+
+            //firebase.auth().onAuthStateChanged((user) => {
+            //    if (user) {
+            //        firebase.storage().ref('users/' + user.uid + '/' + this.imageFile.name).getDownloadURL().then(imgUrl => {
+            //            this.url = imgUrl        
+            //        })
+            //        // User logged in already or has just logged in.
+            //        console.log('this ' + user.uid);
+            //    } else {
+            //        // User not logged in or has just logged out.
+            //        console.log('nothing' + this.url)
+            //   }
+            //});
+
+        },
+        chooseFile(e){
+            let file = e.target.files[0];
+            this.imageFile = file;
+            this.createImage(file);
+        },
+        createImage(file) {
+            var reader = new FileReader();
+
+            reader.onload = (e) => {
+                this.image = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        },
+        removeImage: function () {
+            this.image = false; 
+            this.imageFile = false;
         }
     },
     data() {
@@ -50,7 +90,10 @@ export default {
             name: "",
             email: "",
             password: '',
-            error: ''
+            error: '',
+            image: false,
+            imageFile: false,
+            url: false
         }
     }
 }
@@ -98,5 +141,9 @@ button{
 .error{
     color: red;
     font-size: 18px;
+}
+#img{
+    width: 150px;
+    height: 150px;
 }
 </style>

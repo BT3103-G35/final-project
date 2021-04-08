@@ -2,7 +2,8 @@
     <div class="profile-container">
         <div class="profile-info">
             <div class="profile-name">
-                <img src="https://i.postimg.cc/yNMnZJp9/blank-profile-picture-973460-1280-1.png">
+                <!--<img src="https://i.postimg.cc/yNMnZJp9/blank-profile-picture-973460-1280-1.png">-->
+                <img :src='this.url'>
                 <div id="displayName">{{this.currentUser.displayName}}</div>
             </div>
             <div class="bells">
@@ -45,6 +46,7 @@ import firebase from "firebase/app";
 export default {
     created() {
         this.setupFirebase();
+        this.fetchProfilePic();
     },
     methods:{
         setupFirebase() {
@@ -60,6 +62,15 @@ export default {
                     this.currentUser = false;
                 }
             });
+        },
+        fetchProfilePic(){
+            firebase.auth().onAuthStateChanged(user => {
+                if (user){
+                    firebase.storage().ref('users/' + user.uid + '/profile.jpg').getDownloadURL().then(imgUrl => {
+                        this.url = imgUrl
+                    })
+                }
+            })
         },
         fetchItems() {
             var storageRef = firebase.storage().ref();
@@ -121,7 +132,9 @@ export default {
             loggedIn: false,
             currentUser: false,
             items: [],
-            items1: []
+            items1: [],
+            items2: [],
+            url: false
         }
     }
 }
