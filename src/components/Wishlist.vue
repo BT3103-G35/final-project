@@ -12,8 +12,6 @@
                         <p>Details: {{ item.data().detail }}</p>
                         <p>Notes: {{ item.data().notes }}</p>
                         <button @click="redirect(item)">Go to item</button>
-                        <br> <br>
-                        <button @click="removeFromWishlist(item)">Remove</button>
                     </li>
                 </ul>
             </div>
@@ -63,23 +61,6 @@ export default {
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => this.items.push(doc))
             })
-        },
-        removeFromWishlist(item){
-            var answer=confirm("Are you sure you want to remove this item from your Wishlist?");
-            if (answer) {
-                var db = firebase.firestore();
-                db.collection(this.currentUser.uid).where('imageRef', '==', item.data().imageRef).get()
-                .then((query) => {
-                    const result = query.docs[0];
-                    result.ref.update({
-                        wishlist: false,
-                    })
-                    alert("Item successfully removed")
-                    location.reload();
-                })
-            } else {
-                alert("Your item has not been removed");
-            }
         },
         redirect(item){
             window.location.href="/item?user=" + item.data().user + "&count=" + item.data().count;
@@ -135,7 +116,6 @@ button-marketplace {
 button{
     background: #EC6041;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
     color: white;
     width: 150px;
     font-size: 20px;

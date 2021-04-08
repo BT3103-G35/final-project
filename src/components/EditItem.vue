@@ -179,7 +179,7 @@ button{
     margin: 20px;
     width: 275px;
 }
-ul {
+ul{
     columns:2;
 }
 .nothing-to-see-here{

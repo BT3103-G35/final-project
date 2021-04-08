@@ -95,6 +95,15 @@ img {
 input{
     margin-left: 70px;
 }
-
-
+button{
+    background: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    width:158px;
+    height:40px;
+    font-size:20px;
+    cursor:pointer;
+    display:inline-block;
+    margin: 8px;
+}
 </style>
