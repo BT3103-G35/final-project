@@ -8,7 +8,7 @@
             <textarea name="detail" rows="3" cols="60" :value=this.item[0].detail :readonly="true"></textarea><br><br>
             <label for="notes">Notes:</label><br>
             <textarea name="notes" rows="6" cols="60" :value=this.item[0].notes :readonly="true"></textarea><br><br>
-            <button>ADD TO WISHLIST</button>
+            <button v-if="this.userID != this.currentUser.uid">ADD TO WISHLIST</button>
         </div>
 
         <div class="item-image">
@@ -23,6 +23,8 @@ export default {
 
     mounted() {
         this.setupFirebase();
+        console.log(this.userID);
+        console.log(this.currentUser.uid)
     },
     methods:{
         setupFirebase() {
@@ -30,7 +32,7 @@ export default {
                 if (user) {
                     // User is signed in.
                     this.loggedIn = true;
-                    this.currentUser = firebase.auth().currentUser.email;
+                    this.currentUser = firebase.auth().currentUser;
                     this.fetchItem();
                 } else {
                     // No user is signed in.
@@ -57,7 +59,6 @@ export default {
             userID: this.$route.query.user,
             count: parseInt(this.$route.query.count),
             item: []
-
         }
     }
 }
