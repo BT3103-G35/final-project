@@ -16,9 +16,13 @@
                         <input type="email" size="65" v-model="email" required><br><br>
                         <label for="password">Password*:</label><br>
                         <input type="password" size="65" v-model="password" required><br><br>
-                        <input type='file' @change='chooseFile($event)'/>
+                        <p>Please upload a profile picture: </p>
+                        <input type='file' @change='chooseFile($event)' required>
+                        <!--
+                        <button @click="removeImage()" v-if="this.image">Remove image</button>
+                        -->
                         <img :src="this.image" class='ui-image' id='img'>
-                        <button type="submit">SIGN UP</button>
+                        <button type="submit" id="submit-btn">SIGN UP</button>
                 </form>
 
                 </div>
@@ -131,7 +135,7 @@ p{
     line-height: 28px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-button{
+#submit-btn{
     background: #EC6041;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
