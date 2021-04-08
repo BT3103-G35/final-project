@@ -14,11 +14,11 @@
             </div>
         </div>
         <div class="upload-image">
-            <upload v-on:upload="onUpload"></upload>
-            <br><br><br>
+            <upload align="center" v-on:upload="onUpload"></upload>
+            <br><br><br><br>
             <form @submit.prevent="pressed">
                 <label for="name">Name*:</label><br>
-                <input type="text" id="name" name="name" size="60" v-model="name" required><br><br>
+                <input type="text" id="name" name="name" size="59" v-model="name" required><br><br>
                 <label for="detail">Details*:</label><br>
                 <textarea name="detail" rows="3" cols="60" v-model="detail" required></textarea><br><br>
                 <label for="notes">Notes*:</label><br>
@@ -101,7 +101,10 @@ export default {
                 notes: this.notes,
                 imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
                 user: this.currentUser.uid,
-                count: this.items.length
+                count: this.items.length,
+                nameKeywords: this.name.split(" "),
+                detailsKeywords: this.detail.split(" "),
+                notesKeywords: this.notes.split(" ")
             });
             let docRef = db.collection(this.currentUser.uid).doc();
             db.collection(this.currentUser.uid).add({
@@ -158,12 +161,15 @@ h1{
     margin-left: 70px;
 }
 .additems-container{
+    font-size:25px;
     display:flex;
     justify-content: space-between;
-    margin-left: 160px;
+    margin-left: 145px;
+    margin-right: 145px;
+    height:1000px;
 }
 .upload-image{
-    margin-right: 150px;
+    margin-right: 145px;
     margin-top: 50px;
 }
 
@@ -175,7 +181,10 @@ button{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
     color: white;
-    width: 450px;
+    width:450px;
+    height:40px;
+    font-size:30px;
+    cursor:pointer;
 }
 ul {
     columns:2;
@@ -185,5 +194,11 @@ img {
 }
 .active {
     border: 2px dotted coral;
+}
+input{
+    font-size:15px;
+}
+textarea{
+    font-size:15px;
 }
 </style>

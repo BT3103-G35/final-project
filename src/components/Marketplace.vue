@@ -2,17 +2,43 @@
     <div class="marketplace-container">
         <div class="marketplace-title">
             <h1> Marketplace </h1>
+            <div class="search-options" v-if="this.filter == false">
+                <h2> Search by which field? </h2>
+                <input type="radio" id="name" name="search" value="name" v-on:click="searchFilter('name')">
+                <label for="name">Name</label><br>
+                <input type="radio" id="details" name="search" value="details" v-on:click="searchFilter('details')">
+                <label for="details">Details</label><br>
+                <input type="radio" id="notes" name="search" value="notes" v-on:click="searchFilter('notes')">
+                <label for="notes">Notes</label>
+            </div>
+            <div class="search-bar" v-if="this.filter == true">
+                <input class="input-search" type="text" :placeholder="'Search by ' + this.filterChoice" v-model="searchWord" name="search">
+                <button @click="search" type="submit">Submit</button>
+                <button @click="back" type="submit">Back</button>
+            </div>
         </div>
-        <div class="marketplace-container">
+        <div class="marketplace-container" v-if="this.searched==false">
             <ul> 
-                    <li v-for="(item, index) in this.items1" v-bind:key="index">
-                        <a v-on:click="redirect(item.user, item.count)"> 
-                            <img :src="item.imageRef">
-                            <p>Name:{{ item.name }}</p>
-                            <p>Details:{{ item.detail }}</p>
-                            <p>Notes:{{ item.notes }}</p>
-                        </a>
-                    </li>
+                <li v-for="(item, index) in this.items1" v-bind:key="index">
+                    <a v-on:click="redirect(item.user, item.count)"> 
+                        <img :src="item.imageRef">
+                        <p>Name:{{ item.name }}</p>
+                        <p>Details:{{ item.detail }}</p>
+                        <p>Notes:{{ item.notes }}</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="marketplace-container" v-if="this.searched==true">
+            <ul> 
+                <li v-for="(item, index) in this.searchedItems" v-bind:key="index">
+                    <a v-on:click="redirect(item.user, item.count)"> 
+                        <img :src="item.imageRef">
+                        <p>Name:{{ item.name }}</p>
+                        <p>Details:{{ item.detail }}</p>
+                        <p>Notes:{{ item.notes }}</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -78,9 +104,26 @@ export default {
                 querySnapshot.forEach((doc) => this.items1.push(doc.data()))
             })
         },
-
-        redirect(user, count) {
+        redirect(user, count){
             window.location.href="/item?user=" + user + "&count=" + count;
+        },
+        searchFilter(choice){
+            this.filter = true;
+            this.filterChoice = choice;
+        },
+        search(){
+            this.searchedItems= []; //clear the previous search returns
+            this.searched=true; //indicate that the user has already searched for something so dont show default marketplace
+            var db = firebase.firestore();
+            console.log(this.searchWord);
+            console.log(this.filterChoice);
+            db.collection('marketplace').where(this.filterChoice + 'Keywords', 'array-contains', this.searchWord).get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => this.searchedItems.push(doc.data()));
+            });
+        },
+        back(){
+            this.filter = false;
+            this.searched = false;
         }
     },
 
@@ -89,7 +132,12 @@ export default {
             loggedIn: false,
             currentUser: false,
             items: [], // item details
-            items1: []
+            items1: [],
+            filter: false,
+            filterChoice: '',
+            searchWord:'',
+            searched: false,
+            searchedItems: []
         }
     }
 }
@@ -114,5 +162,18 @@ img{
     width: 300px;
     height: 300px;
     border-radius: 0%;
+    cursor: pointer;
+}
+.input-search{
+    width:400px;
+    height:30px;
+    font-size:20px;
+}
+button{
+    height:33px;
+    font-size:20px;
+}
+#name, #details, #notes{
+    display:inline-block;
 }
 </style>

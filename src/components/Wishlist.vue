@@ -7,11 +7,11 @@
             <div class="wishlist-item">
                 <ul>
                     <li v-for="item in items" v-bind:key="item.index">
-                        <img :src="item.data().imageRef">
+                        <img @click="redirect(item)" :src="item.data().imageRef">
                         <p>Name: {{ item.data().name }}</p>
                         <p>Details: {{ item.data().detail }}</p>
                         <p>Notes: {{ item.data().notes }}</p>
-                        <button @click="removeFromWishlist(item)">Remove</button>
+                        <button @click="redirect(item)">Go to item</button>
                     </li>
                 </ul>
             </div>
@@ -62,23 +62,9 @@ export default {
                 querySnapshot.forEach((doc) => this.items.push(doc))
             })
         },
-        removeFromWishlist(item){
-            var answer=confirm("Are you sure you want to remove this item from your Wishlist?");
-            if (answer) {
-                var db = firebase.firestore();
-                db.collection(this.currentUser.uid).where('imageRef', '==', item.data().imageRef).get()
-                .then((query) => {
-                    const result = query.docs[0];
-                    result.ref.update({
-                        wishlist: false,
-                    })
-                    alert("Item successfully removed")
-                    location.reload();
-                })
-            } else {
-                alert("Your item has not been removed");
-            }
-        },
+        redirect(item){
+            window.location.href="/item?user=" + item.data().user + "&count=" + item.data().count;
+        }
     },
     data(){
         return {
@@ -130,13 +116,14 @@ button-marketplace {
 button{
     background: #EC6041;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
     color: white;
     width: 150px;
     font-size: 20px;
+    cursor: pointer;
 }
 img{
     height:200px;
     width:200px;
+    cursor: pointer;
 }
 </style>
