@@ -8,7 +8,7 @@
             <textarea name="detail" rows="3" cols="60" :value=this.item[0].detail :readonly="true"></textarea><br><br>
             <label for="notes">Notes:</label><br>
             <textarea name="notes" rows="6" cols="60" :value=this.item[0].notes :readonly="true"></textarea><br><br>
-            <button v-if="this.userID != this.currentUser.uid">ADD TO WISHLIST</button>
+            <button v-if="this.userID != this.currentUser.uid" @click="addToWishlist">Add To Wishlist!</button>
         </div>
 
         <div class="item-image">
@@ -40,8 +40,7 @@ export default {
                     this.currentUser = false;
                 }
             });
-        },
-        
+        },   
         fetchItem() {
             var db = firebase.firestore();
             db.collection(this.userID).where('count', '==', this.count).get()
@@ -50,6 +49,19 @@ export default {
                     this.item.push(doc.data());
                 });
             });
+        },
+        addToWishlist() {
+            var db = firebase.firestore();
+            db.collection(this.currentUser.uid).doc().set({
+                name: this.item[0].name,
+                detail: this.item[0].detail,
+                notes: this.item[0].notes,
+                imageRef: this.item[0].imageRef,
+                count: this.count,
+                user: this.userID,
+                wishlist: true
+            })
+             alert("Item added to your wishlist!");
         }
     },
     data(){

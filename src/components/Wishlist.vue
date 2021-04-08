@@ -5,14 +5,22 @@
         </div>
         <div class="wishlist-container">
             <div class="wishlist-item">
-                <h2>placeholder</h2>
+                <ul>
+                    <li v-for="item in items" v-bind:key="item.index">
+                        <img :src="item.data().imageRef">
+                        <p>Name: {{ item.data().name }}</p>
+                        <p>Details: {{ item.data().detail }}</p>
+                        <p>Notes: {{ item.data().notes }}</p>
+                        <button @click="removeFromWishlist(item)">Remove</button>
+                    </li>
+                </ul>
             </div>
             <div class="marketplace-text">
                 <h2>WANT MORE ITEMS?</h2>
                 <br>
                 <h3>GO TO OUR MARKETPLACE OR SIMPLY WISH</h3> <br> <h3>FOR MORE!</h3>
                 <br><br><br>
-                <router-link to="/additem" tag="button-marketplace" exact>WISHING FOR MORE?</router-link>
+                <router-link to="/marketplace" tag="button-marketplace" exact>WISHING FOR MORE?</router-link>
             </div>
         </div>
     </div>
@@ -22,7 +30,7 @@
 <script>
 import firebase from "firebase/app";
 export default {
-    created() {
+    mounted() {
         this.setupFirebase();
     },
     methods:{
@@ -32,12 +40,13 @@ export default {
                     // User is signed in.
                     this.loggedIn = true;
                     this.currentUser = firebase.auth().currentUser;
-                    var listRef = firebase.storage().ref('uploads/' + this.currentUser.uid);
+                    this.fetchItems();
+                    /*var listRef = firebase.storage().ref('uploads/' + this.currentUser.uid);
                     listRef.listAll().then((res) => {
                         res.items.forEach((itemRef) => {
                             itemRef.getDownloadURL().then((url) => this.items.push(url))
                         }
-                    )})
+                    )})*/
                 } else {
                     // No user is signed in.
                     this.loggedIn = false;
@@ -45,11 +54,31 @@ export default {
                 }
             });
         },
-        remove(item){
-            var pictureRef = firebase.storage().refFromURL(item);
-            pictureRef.delete().then(()=> location.reload());
-            //alert("Item removed successfully")
-        }
+        fetchItems() {
+            var db = firebase.firestore();
+            db.collection(this.currentUser.uid).where('wishlist', '==', true)
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => this.items.push(doc))
+            })
+        },
+        removeFromWishlist(item){
+            var answer=confirm("Are you sure you want to remove this item from your Wishlist?");
+            if (answer) {
+                var db = firebase.firestore();
+                db.collection(this.currentUser.uid).where('imageRef', '==', item.data().imageRef).get()
+                .then((query) => {
+                    const result = query.docs[0];
+                    result.ref.update({
+                        wishlist: false,
+                    })
+                    alert("Item successfully removed")
+                    location.reload();
+                })
+            } else {
+                alert("Your item has not been removed");
+            }
+        },
     },
     data(){
         return {
@@ -97,5 +126,17 @@ button-marketplace {
     box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
     padding: 20px 24px;
     cursor: pointer;
+}
+button{
+    background: #EC6041;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+    color: white;
+    width: 150px;
+    font-size: 20px;
+}
+img{
+    height:200px;
+    width:200px;
 }
 </style>
