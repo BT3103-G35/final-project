@@ -176,6 +176,7 @@ button{
     box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
     color: white;
     width: 450px;
+    cursor:pointer;
 }
 ul {
     columns:2;

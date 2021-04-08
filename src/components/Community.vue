@@ -140,6 +140,7 @@ li {
 img {
   width: 125px;
   height: auto;
+  cursor: pointer;
 }
 
 </style>

@@ -32,6 +32,7 @@
                         <p>Details: {{ item.data().detail }}</p>
                         <p>Notes: {{ item.data().notes }}</p>
                         <button @click="edit(item)">Edit</button>
+                        <br><br><br><br>
                     </a>
                 </li>
             </ul>

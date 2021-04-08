@@ -11,15 +11,15 @@
                 <textarea name="detail" rows="3" cols="60" v-model="newDetail" required></textarea><br><br>
                 <label for="notes">Notes*:</label><br>
                 <textarea name="notes" rows="6" cols="60" v-model="newNotes" required></textarea><br><br>
-                <button type="submit">Confirm changes</button>
+                <button id="submit" class="button" type="submit">I am happy with my changes!</button>
             </form>
-            <br>
-            <button @click="remove()">Remove</button>
+                <button id="remove" class="button" @click="remove()">Remove Item</button>
+                <button id="backToProfile1" class="button" @click="redirect()">Back to my profile</button>
         </div>
         <div class="nothing-to-see-here" v-if="this.deleted==1">
             <img src=https://i.postimg.cc/Qtnx6GY1/no-image-available.jpg>
             <br><br><br>
-            <button @click="redirect()">Back to my profile</button>
+            <button id="backToProfile2" @click="redirect()">Back to my profile</button>
         </div>
     </div>
 </template>
@@ -84,7 +84,8 @@ export default {
                     notes: this.newNotes,
                     //imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
                 })
-            }).then(() => this.$router.push('/profile'));
+            })
+            alert("Your changes have been applied!")
         },
                 
         remove(){
@@ -142,6 +143,7 @@ h1{
     font-size: 20px;
     margin-left: 160px;
     justify-content: space-between;
+    height: 1100px;
 }
 .edit-item{
     margin-right: 150px;
@@ -155,8 +157,27 @@ button{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
     color: white;
-    width: 275px;
     font-size: 20px;
+    cursor: pointer;
+}
+#submit{
+    height:58px;
+}
+#remove{
+    height:38px;
+}
+#backToProfile1{
+    height:38px;
+}
+#backToProfile2{
+    width:300px;
+    height:80px;
+    font-size:30px;
+}
+.button{
+    display:inline-block;
+    margin: 20px;
+    width: 275px;
 }
 ul {
     columns:2;

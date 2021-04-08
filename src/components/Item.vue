@@ -9,6 +9,7 @@
             <label for="notes">Notes:</label><br>
             <textarea name="notes" rows="6" cols="60" :value=this.item[0].notes :readonly="true"></textarea><br><br>
             <button v-if="this.userID != this.currentUser.uid" @click="addToWishlist">Add To Wishlist!</button>
+            <button v-if="this.userID == this.currentUser.uid" @click="edit">Edit your item!</button>
         </div>
 
         <div class="item-image">
@@ -52,16 +53,28 @@ export default {
         },
         addToWishlist() {
             var db = firebase.firestore();
-            db.collection(this.currentUser.uid).doc().set({
-                name: this.item[0].name,
-                detail: this.item[0].detail,
-                notes: this.item[0].notes,
-                imageRef: this.item[0].imageRef,
-                count: this.count,
-                user: this.userID,
-                wishlist: true
-            })
-             alert("Item added to your wishlist!");
+            db.collection(this.currentUser.uid).where('user', '==', this.userID).where('count', '==', this.count).where('wishlist', '==', true)
+            .get()
+            .then((query) => {
+                var result = query.docs.length;
+                if (result==0) {
+                    db.collection(this.currentUser.uid).doc().set({
+                        name: this.item[0].name,
+                        detail: this.item[0].detail,
+                        notes: this.item[0].notes,
+                        imageRef: this.item[0].imageRef,
+                        count: this.count,
+                        user: this.userID,
+                        wishlist: true
+                    });
+                    alert("Item successfully added to your Wishlist!");
+                } else {
+                    alert("This item is already in your Wishlist!")
+                }
+            });
+        },
+        edit(){
+            window.location.href="/edititem?user=" + this.userID + "&count=" + this.count;
         }
     },
     data(){
@@ -107,5 +120,6 @@ button{
     width: 450px;
     padding: 14px 30px;
     font-size: 20px;
+    cursor: pointer;
 }
 </style>

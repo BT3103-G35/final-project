@@ -114,5 +114,6 @@ img{
     width: 300px;
     height: 300px;
     border-radius: 0%;
+    cursor: pointer;
 }
 </style>

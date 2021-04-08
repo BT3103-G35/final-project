@@ -7,10 +7,12 @@
             <div class="wishlist-item">
                 <ul>
                     <li v-for="item in items" v-bind:key="item.index">
-                        <img :src="item.data().imageRef">
+                        <img @click="redirect(item)" :src="item.data().imageRef">
                         <p>Name: {{ item.data().name }}</p>
                         <p>Details: {{ item.data().detail }}</p>
                         <p>Notes: {{ item.data().notes }}</p>
+                        <button @click="redirect(item)">Go to item</button>
+                        <br> <br>
                         <button @click="removeFromWishlist(item)">Remove</button>
                     </li>
                 </ul>
@@ -79,6 +81,9 @@ export default {
                 alert("Your item has not been removed");
             }
         },
+        redirect(item){
+            window.location.href="/item?user=" + item.data().user + "&count=" + item.data().count;
+        }
     },
     data(){
         return {
@@ -134,9 +139,11 @@ button{
     color: white;
     width: 150px;
     font-size: 20px;
+    cursor: pointer;
 }
 img{
     height:200px;
     width:200px;
+    cursor: pointer;
 }
 </style>
