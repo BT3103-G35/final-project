@@ -1,21 +1,25 @@
 <template>
-    <div class="additems-container">
-        <div class="upload-image">
+    <div class="edititem-container">
+        <div class="edit-item" v-if="this.deleted==0">
             <!-- upload v-on:upload="onUpload"></upload -->
             <img :src="this.item[0].imageRef" contain height="400px" width="400px">
             <br><br><br>
             <form @submit.prevent="pressed">
                 <label for="name">Name*:</label><br>
-                <input type="text" id="name" name="name" size="60" v-model="newName" required><br><br>
+                <input type="text" id="name" name="name" size="64" v-model="newName" required><br><br>
                 <label for="detail">Details*:</label><br>
                 <textarea name="detail" rows="3" cols="60" v-model="newDetail" required></textarea><br><br>
                 <label for="notes">Notes*:</label><br>
                 <textarea name="notes" rows="6" cols="60" v-model="newNotes" required></textarea><br><br>
                 <button type="submit">Confirm changes</button>
             </form>
+            <br>
             <button @click="remove()">Remove</button>
-
-    
+        </div>
+        <div class="nothing-to-see-here" v-if="this.deleted==1">
+            <img src=https://i.postimg.cc/Qtnx6GY1/no-image-available.jpg>
+            <br><br><br>
+            <button @click="redirect()">Back to my profile</button>
         </div>
     </div>
 </template>
@@ -99,11 +103,14 @@ export default {
                     })
                 })
                 alert("Item successfully deleted");
-                window.location.href="/profile";
+                this.deleted=1;
             } else {
                 alert("Your item has not been deleted");
             }
         },
+        redirect() {
+            window.location.href="/profile";
+        }
     },
     data(){
         return {
@@ -114,7 +121,8 @@ export default {
             newNotes: '',
             userID: this.$route.query.user,
             count: parseInt(this.$route.query.count),
-            item: []
+            item: [],
+            deleted: 0
         }
     },
     /*components:{
@@ -129,16 +137,16 @@ h1{
     font-size: 30px;
     margin-left: 70px;
 }
-.additems-container{
-    display:flex;
-    justify-content: space-between;
+.edititem-container{
+    align-content:center;
+    font-size: 20px;
     margin-left: 160px;
+    justify-content: space-between;
 }
-.upload-image{
+.edit-item{
     margin-right: 150px;
     margin-top: 50px;
 }
-
 .search-bar{
     margin-left: 250px;
 }
@@ -147,15 +155,20 @@ button{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
     color: white;
-    width: 450px;
+    width: 275px;
+    font-size: 20px;
 }
 ul {
     columns:2;
 }
-img {
-    cursor: pointer;    
+.nothing-to-see-here{
+    margin-right: 150px;
+    margin-top: 50px;
 }
-.active {
-    border: 2px dotted coral;
+input{
+    font-size: 20px;
+}
+textarea{
+    font-size: 20px;
 }
 </style>
