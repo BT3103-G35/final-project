@@ -32,8 +32,6 @@
                         <p>Details: {{ item.data().detail }}</p>
                         <p>Notes: {{ item.data().notes }}</p>
                         <button @click="edit(item)">Edit</button>
-                        <br>
-                        <button @click="remove(item)">Remove</button>
                     </a>
                 </li>
             </ul>
@@ -106,20 +104,7 @@ export default {
                     .then((querySnapshot) => {
                     querySnapshot.forEach((doc) => this.items1.push(doc))
             })
-            console.log(this.items)
-        },
-        remove(item){
-            var db = firebase.firestore();
-            var pictureRef = firebase.storage().refFromURL(item.data().imageRef);
-            pictureRef.delete()
-            var docRef = db.collection('marketplace').where('user', '==', this.currentUser.uid).where('count', '==', this.items.length - 1);
-            docRef.get().then(function(querySnapshot){
-                querySnapshot.forEach(function(doc) {
-                    doc.ref.delete()
-                    .then(() => location.reload())
-                    })
-                })
-        },
+        },  
         edit(item){
             window.location.href="/edititem?user=" + item.data().user + "&count=" + item.data().count
         },
@@ -133,7 +118,6 @@ export default {
             currentUser: false,
             items: [],
             items1: [],
-            items2: [],
             url: false
         }
     }
@@ -166,6 +150,7 @@ button{
     color: white;
     background: #EC6041;
     box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+    cursor:pointer;
 }
 button-additem{
   font-size: 30px;
@@ -180,6 +165,7 @@ img{
     width: 100px;
     height: auto;
     border-radius: 50%;
+    cursor: pointer;
 }
 .bells img{
     width: 50px;
