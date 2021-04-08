@@ -25,11 +25,13 @@
         <div class="add-item" v-else>
             <ul>
                 <li v-for="item in items1" v-bind:key="item.index">
-                    <a v-on:click="redirect(item.data().user, item.data().count)">
-                        <img :src="item.data().imageRef">
+                    <a>
+                        <img v-on:click="redirect(item.data().user, item.data().count)" :src="item.data().imageRef">
                         <p>Name: {{ item.data().name }}</p>
                         <p>Details: {{ item.data().detail }}</p>
                         <p>Notes: {{ item.data().notes }}</p>
+                        <button @click="edit(item)">Edit</button>
+                        <br>
                         <button @click="remove(item)">Remove</button>
                     </a>
                 </li>
@@ -51,14 +53,6 @@ export default {
                     // User is signed in.
                     this.loggedIn = true;
                     this.currentUser = firebase.auth().currentUser;
-                    // var listRef = firebase.storage().ref('uploads/' + this.currentUser.uid);
-                    // listRef.listAll().then((res) => {
-                    //     console.log(res)
-                    //     res.items.forEach((itemRef) => {
-                    //         console.log(itemRef);
-                    //         itemRef.getDownloadURL().then((url) => this.items.push(url))
-                    //     }
-                    // )})
                     this.fetchItems();
                 } else {
                     // No user is signed in.
@@ -96,9 +90,6 @@ export default {
             db.collection(this.currentUser.uid).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => this.items.push(doc))
             });
-            //db.collection(this.currentUser.uid).get().then((querySnapshot) => {
-            //    querySnapshot.forEach((doc) => this.items1.push(doc))
-            //})
             db.collection('marketplace').where('user', '==', this.currentUser.uid)
                     .get()
                     .then((querySnapshot) => {
@@ -107,14 +98,9 @@ export default {
             console.log(this.items)
         },
         remove(item){
-            
             var db = firebase.firestore();
-            
             var pictureRef = firebase.storage().refFromURL(item.data().imageRef);
-            pictureRef.delete()//.then(()=> location.reload());
-            
-            //let doc_id = item.target.getAttribute("id");
-            //console.log('here' + doc_id)
+            pictureRef.delete()
             var docRef = db.collection('marketplace').where('user', '==', this.currentUser.uid).where('count', '==', this.items.length - 1);
             docRef.get().then(function(querySnapshot){
                 querySnapshot.forEach(function(doc) {
@@ -122,13 +108,13 @@ export default {
                     .then(() => location.reload())
                     })
                 })
+        },
+        edit(item){
+            window.location.href="/edititem?user=" + item.data().user + "&count=" + item.data().count
+        },
+        redirect(user, count) {
+            window.location.href="/item?user=" + user + "&count=" + count;
         }
-            /*then(function() {
-                console.log('doc deleted');
-            }).catch(function(error) {
-                console.error("error removing: ", error);
-            });*/
-
     },
     data(){
         return {
