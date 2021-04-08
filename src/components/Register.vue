@@ -21,6 +21,7 @@
                         <!--
                         <button @click="removeImage()" v-if="this.image">Remove image</button>
                         -->
+                        
                         <img :src="this.image" class='ui-image' id='img'>
                         <button type="submit" id="submit-btn">SIGN UP</button>
                 </form>
@@ -45,36 +46,37 @@ export default {
                 firebase.storage().ref('users/' + auth.user.uid + '/profile.jpg').put(this.imageFile).then(function(){
                     console.log('success');
                 }).catch(error => {
-                    console.log(error.message)
+                    console.log('this ' + error.message)
                 })
             
             firebase.auth().currentUser.updateProfile({
                 displayName: this.name,
-                //profilePic: this.url
             });
 
-            this.$router.push('/profile');
+            //this.$router.push('/profile');
             })
             .catch(error => (this.error = error));
-
-            //firebase.auth().onAuthStateChanged((user) => {
-            //    if (user) {
-            //        firebase.storage().ref('users/' + user.uid + '/' + this.imageFile.name).getDownloadURL().then(imgUrl => {
-            //            this.url = imgUrl        
-            //        })
-            //        // User logged in already or has just logged in.
-            //        console.log('this ' + user.uid);
-            //    } else {
-            //        // User not logged in or has just logged out.
-            //        console.log('nothing' + this.url)
-            //   }
-            //});
-
+            alert('loading..')
+            this.addPicToComm();
         },
         chooseFile(e){
             let file = e.target.files[0];
             this.imageFile = file;
             this.createImage(file);
+        },
+        addPicToComm(){
+            var db = firebase.firestore();
+            firebase.auth().onAuthStateChanged((user) => {
+                firebase.storage().ref('users/' + user.uid + '/profile.jpg').getDownloadURL().then(imgUrl => {
+                    console.log('here '+imgUrl)
+                    db.collection('community').add({
+                        imageRef: imgUrl,
+                        user: user.uid,
+                        name: this.name
+                    });
+                })
+            })
+            this.$router.push('/profile');
         },
         createImage(file) {
             var reader = new FileReader();
@@ -97,7 +99,7 @@ export default {
             error: '',
             image: false,
             imageFile: false,
-            url: false
+            //url: false
         }
     }
 }

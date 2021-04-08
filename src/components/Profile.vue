@@ -43,10 +43,13 @@
 
 <script>
 import firebase from "firebase/app";
+import "firebase/firestore";
+import "firebase/storage";
 export default {
     created() {
         this.setupFirebase();
         this.fetchProfilePic();
+        //this.addProfilePicToCollection();
     },
     methods:{
         setupFirebase() {
@@ -64,22 +67,36 @@ export default {
             });
         },
         fetchProfilePic(){
+            //var db = firebase.firestore();
             firebase.auth().onAuthStateChanged(user => {
                 if (user){
                     firebase.storage().ref('users/' + user.uid + '/profile.jpg').getDownloadURL().then(imgUrl => {
                         this.url = imgUrl
+                        //db.collection('community').add({
+                        //   imageRef: imgUrl,
+                        //    user: this.currentUser.uid
+                        //});
                     })
                 }
             })
+            //this.addProfilePicToCollection(this.url)
         },
+        //addProfilePicToCollection(){
+        //    var db = firebase.firestore();
+        //    console.log(typeof(url))
+        //    db.collection('community').add({
+        //        imageRef: url,
+        //        user: this.currentUser.uid
+        //    });
+        //},
         fetchItems() {
             var storageRef = firebase.storage().ref();
             var db = firebase.firestore();
-            console.log(this.currentUser)
+            //console.log(this.currentUser)
             db.collection(this.currentUser.uid).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     let imagePath = doc.data().imageRef;
-                    console.log(imagePath);
+                    //console.log(imagePath);
                     storageRef.child(imagePath).getDownloadURL().then((url) => {
                         db.collection(this.currentUser.uid).doc(doc.id).update({
                             imageRef: url
@@ -90,7 +107,7 @@ export default {
             db.collection('marketplace').get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     let imagePath = doc.data().imageRef;
-                    console.log(imagePath);
+                    //console.log(imagePath);
                     storageRef.child(imagePath).getDownloadURL().then((url) => {
                         db.collection('marketplace').doc(doc.id).update({
                             imageRef: url
@@ -106,7 +123,7 @@ export default {
                     .then((querySnapshot) => {
                     querySnapshot.forEach((doc) => this.items1.push(doc))
             })
-            console.log(this.items)
+            //console.log(this.items)
         },
         remove(item){
             var db = firebase.firestore();
