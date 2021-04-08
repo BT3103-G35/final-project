@@ -11,20 +11,20 @@
             </div>
             <div class="num-items">
                 <h1>You Currently Have:</h1>
-                <p id="itemCount">{{ this.items.length }} Item/s</p>
+                <p id="itemCount">{{ this.items1.length }} Item/s</p>
                 <button style="color: transparent; background-color: transparent; border-color: transparent; box-shadow: none;"> <router-link to="/additem" tag="button-additem" exact v-if="this.items.length>0">Add item</router-link> </button>
                 <br><br><br><br><button style="color: transparent; background-color: transparent; border-color: transparent; box-shadow: none;"> <router-link to="/wishlist" tag="button-additem" exact>Wishlist</router-link> </button>
             </div>
     
         </div>
-        <div class="add-item" v-if="this.items.length==0">
+        <div class="add-item" v-if="this.items1.length==0">
             <h1>Oh no...</h1>
             <h1>It seems you<br>have no items...</h1>
             <router-link to="/additem" tag="button-additem" exact>Click to add!</router-link>
         </div>
         <div class="add-item" v-else>
             <ul>
-                <li v-for="item in items" v-bind:key="item.index">
+                <li v-for="item in items1" v-bind:key="item.index">
                     <a v-on:click="redirect(item.data().user, item.data().count)">
                         <img :src="item.data().imageRef">
                         <p>Name: {{ item.data().name }}</p>
@@ -82,6 +82,17 @@ export default {
                     })
                 })
             });
+            db.collection('marketplace').get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    let imagePath = doc.data().imageRef;
+                    console.log(imagePath);
+                    storageRef.child(imagePath).getDownloadURL().then((url) => {
+                        db.collection('marketplace').doc(doc.id).update({
+                            imageRef: url
+                        })
+                    })
+                })
+            }); 
             db.collection(this.currentUser.uid).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => this.items.push(doc))
             });
@@ -104,12 +115,20 @@ export default {
             
             //let doc_id = item.target.getAttribute("id");
             //console.log('here' + doc_id)
-            db.collection(this.currentUser.uid).doc(item.id).delete().then(() => location.reload())/*then(function() {
+            var docRef = db.collection('marketplace').where('user', '==', this.currentUser.uid).where('count', '==', this.items.length - 1);
+            docRef.get().then(function(querySnapshot){
+                querySnapshot.forEach(function(doc) {
+                    doc.ref.delete()
+                    .then(() => location.reload())
+                    })
+                })
+        }
+            /*then(function() {
                 console.log('doc deleted');
             }).catch(function(error) {
                 console.error("error removing: ", error);
             });*/
-        }
+
     },
     data(){
         return {
@@ -185,12 +204,7 @@ img{
 }
 ul{
     list-style: none;
-    flex-direction: column;
     flex-wrap: wrap;
-    columns: 3
-}
-li{
-    margin: 30px 30px;
 }
 .add-item img{
     width: 300px;
