@@ -101,8 +101,7 @@ export default {
                 notes: this.notes,
                 imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
                 user: this.currentUser.uid,
-                count: this.items.length,
-                wishlist: []
+                count: this.items.length
             });
             let docRef = db.collection(this.currentUser.uid).doc();
             db.collection(this.currentUser.uid).add({
@@ -111,7 +110,8 @@ export default {
                 notes: this.notes,
                 imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
                 id: docRef.id,
-                count: this.items.length
+                count: this.items.length,
+                wishlist: false
             }).then(() => this.$router.push('/profile'));
         },
         chooseType(string) {

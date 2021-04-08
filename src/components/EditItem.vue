@@ -92,8 +92,8 @@ export default {
             if (answer) {
                 var db = firebase.firestore();
                 let collectionRef = db.collection('marketplace');
-                console.log(this.userID);
-                console.log(this.count);
+                //console.log(this.userID);
+                //console.log(this.count);
                 collectionRef.where('user', '==', this.userID).where('count', '==', this.count).get()
                 .then((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
