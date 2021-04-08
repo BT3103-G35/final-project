@@ -13,6 +13,7 @@
                 <textarea name="notes" rows="6" cols="60" v-model="newNotes" required></textarea><br><br>
                 <button type="submit">Confirm changes</button>
             </form>
+            <button @click="remove()">Remove</button>
 
     
         </div>
@@ -80,6 +81,28 @@ export default {
                     //imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
                 })
             }).then(() => this.$router.push('/profile'));
+        },
+                
+        remove(){
+            var answer=confirm("Are you sure you want to delete this item?");
+            if (answer) {
+                var db = firebase.firestore();
+                let collectionRef = db.collection('marketplace');
+                console.log(this.userID);
+                console.log(this.count);
+                collectionRef.where('user', '==', this.userID).where('count', '==', this.count).get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        doc.ref.delete();
+                        var pictureRef = firebase.storage().refFromURL(this.item[0].imageRef);
+                        pictureRef.delete();
+                    })
+                })
+                alert("Item successfully deleted");
+                window.location.href="/profile";
+            } else {
+                alert("Your item has not been deleted");
+            }
         },
     },
     data(){
