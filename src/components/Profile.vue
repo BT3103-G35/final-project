@@ -3,7 +3,7 @@
         <div class="profile-info">
             <div class="profile-name">
                 <!--<img src="https://i.postimg.cc/yNMnZJp9/blank-profile-picture-973460-1280-1.png">-->
-                <img :src='this.url'>
+                <img :src='this.url' id="profile-img"><br>
                 <div id="displayName">{{this.currentUser.displayName}}</div>
             </div>
             <div class="bells">
@@ -152,6 +152,11 @@ export default {
     width: 40%;
     margin-left: 100px;
 }
+#profile-img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
 .add-item{
     width: 60%;
 }
@@ -176,11 +181,6 @@ button-additem{
   padding: 20px 24px;
   cursor: pointer;
 }
-img{
-    width: 100px;
-    height: auto;
-    border-radius: 50%;
-}
 .bells img{
     width: 50px;
     height: auto;
@@ -195,7 +195,7 @@ img{
 #displayName{
     font-family:Georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 30px;
 }
 #itemCount{
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
