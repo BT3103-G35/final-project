@@ -71,6 +71,17 @@ export default {
                     })
                 })
             });
+            db.collection('marketplace').get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    let imagePath = doc.data().imageRef;
+                    console.log(imagePath);
+                    storageRef.child(imagePath).getDownloadURL().then((url) => {
+                        db.collection('marketplace').doc(doc.id).update({
+                            imageRef: url
+                        })
+                    })
+                })
+            });            
             db.collection(this.currentUser.uid).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => this.items.push(doc.data()))
             });
@@ -90,7 +101,8 @@ export default {
                 notes: this.notes,
                 imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
                 user: this.currentUser.uid,
-                count: this.items.length
+                count: this.items.length,
+                wishlist: []
             });
             let docRef = db.collection(this.currentUser.uid).doc();
             db.collection(this.currentUser.uid).add({
