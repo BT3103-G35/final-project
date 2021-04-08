@@ -24,8 +24,9 @@
         </div>
         <div class="add-item" v-else>
             <ul>
-                <li v-for="item in items1" v-bind:key="item.index">
+                <li v-for="item in items2" v-bind:key="item.index">
                     <a v-on:click="redirect(item.data().user, item.data().count)">
+                        {{item.id}}
                         <img :src="item.data().imageRef">
                         <p>Name: {{ item.data().name }}</p>
                         <p>Details: {{ item.data().detail }}</p>
@@ -96,9 +97,9 @@ export default {
             db.collection(this.currentUser.uid).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => this.items.push(doc))
             });
-            //db.collection(this.currentUser.uid).get().then((querySnapshot) => {
-            //    querySnapshot.forEach((doc) => this.items1.push(doc))
-            //})
+            db.collection(this.currentUser.uid).get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => this.items2.push(doc))
+            })
             db.collection('marketplace').where('user', '==', this.currentUser.uid)
                     .get()
                     .then((querySnapshot) => {
@@ -110,11 +111,17 @@ export default {
             
             var db = firebase.firestore();
             
+            //Removing from storage
             var pictureRef = firebase.storage().refFromURL(item.data().imageRef);
             pictureRef.delete()//.then(()=> location.reload());
             
             //let doc_id = item.target.getAttribute("id");
             //console.log('here' + doc_id)
+
+            //Removing from user's collection
+            db.collection(this.currentUser.uid).doc(item.id).delete().then(() => console.log('doc deleted'))
+
+            //Removing from marketplace
             var docRef = db.collection('marketplace').where('user', '==', this.currentUser.uid).where('count', '==', this.items.length - 1);
             docRef.get().then(function(querySnapshot){
                 querySnapshot.forEach(function(doc) {
@@ -135,7 +142,8 @@ export default {
             loggedIn: false,
             currentUser: false,
             items: [],
-            items1: []
+            items1: [],
+            items2: []
         }
     }
 }
