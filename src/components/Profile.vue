@@ -2,7 +2,8 @@
     <div class="profile-container">
         <div class="profile-info">
             <div class="profile-name">
-                <img src="https://i.postimg.cc/yNMnZJp9/blank-profile-picture-973460-1280-1.png">
+                <!--<img src="https://i.postimg.cc/yNMnZJp9/blank-profile-picture-973460-1280-1.png">-->
+                <img :src='this.url'>
                 <div id="displayName">{{this.currentUser.displayName}}</div>
             </div>
             <div class="bells">
@@ -44,6 +45,7 @@ import firebase from "firebase/app";
 export default {
     created() {
         this.setupFirebase();
+        this.fetchProfilePic();
     },
     methods:{
         setupFirebase() {
@@ -67,6 +69,15 @@ export default {
                     this.currentUser = false;
                 }
             });
+        },
+        fetchProfilePic(){
+            firebase.auth().onAuthStateChanged(user => {
+                if (user){
+                    firebase.storage().ref('users/' + user.uid + '/profile.jpg').getDownloadURL().then(imgUrl => {
+                        this.url = imgUrl
+                    })
+                }
+            })
         },
         fetchItems() {
             var storageRef = firebase.storage().ref();
@@ -114,9 +125,6 @@ export default {
             //Removing from storage
             var pictureRef = firebase.storage().refFromURL(item.data().imageRef);
             pictureRef.delete()//.then(()=> location.reload());
-            
-            //let doc_id = item.target.getAttribute("id");
-            //console.log('here' + doc_id)
 
             //Removing from user's collection
             db.collection(this.currentUser.uid).doc(item.id).delete().then(() => console.log('doc deleted'))
@@ -130,11 +138,7 @@ export default {
                     })
                 })
         }
-            /*then(function() {
-                console.log('doc deleted');
-            }).catch(function(error) {
-                console.error("error removing: ", error);
-            });*/
+
 
     },
     data(){
@@ -143,7 +147,8 @@ export default {
             currentUser: false,
             items: [],
             items1: [],
-            items2: []
+            items2: [],
+            url: false
         }
     }
 }
