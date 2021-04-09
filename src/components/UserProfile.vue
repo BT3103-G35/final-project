@@ -102,7 +102,7 @@ export default {
     width: 60%;
 }
 h1{
-    font-size: 50px;
+    font-size: 35px;
 }
 button{
     height: 40px;
@@ -122,7 +122,7 @@ img{
 }
 
 .num-items h1{
-    font-size: 40px;
+    font-size: 50px;
 }
 .profile-name{
     padding: 50px;
@@ -134,7 +134,7 @@ img{
 }
 #itemCount{
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 60px;
+    font-size: 40px;
 }
 ul{
     list-style: none;
