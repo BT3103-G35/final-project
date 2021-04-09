@@ -11,6 +11,8 @@ import Marketplace from './components/Marketplace.vue'
 import Item from './components/Item.vue'
 import EditItem from './components/EditItem.vue'
 import EditProfile from './components/EditProfile.vue'
+import UserProfile from './components/UserProfile.vue'
+
 
 export default[
     { path: '/', name: 'landing', component: Landing},
@@ -26,4 +28,5 @@ export default[
     { path: '/item', name: 'item', component: Item},
     { path: '/edititem', name: 'edititem', component: EditItem},
     { path: '/editprofile', name: 'editprofile', component: EditProfile},
+    { path: '/userprofile', name: 'userprofile', component: UserProfile}
 ]

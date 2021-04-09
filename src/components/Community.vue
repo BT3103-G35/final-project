@@ -4,7 +4,7 @@
     <p>Discover. Be Inspired.</p>
     <ul>
         <li v-for="pic in profile" v-bind:key="pic.index">
-            <img id="main-page-img" v-bind:src="pic.imageRef">
+            <img id="main-page-img" v-bind:src="pic.imageRef" v-on:click="redirect(pic.user)">
             <p>{{pic.name}}</p>
         </li>
     </ul>
@@ -88,6 +88,9 @@ export default {
                 }
             }
             return i;
+        },
+        redirect(user) {
+            window.location.href="/UserProfile?user=" + user;
         }
 
     },
