@@ -90,6 +90,11 @@ export default {
     width: 40%;
     margin-left: 100px;
 }
+ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
 .marketplace-text{
     width: 60%;
 }
