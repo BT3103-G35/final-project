@@ -12,6 +12,7 @@ import Item from './components/Item.vue'
 import EditItem from './components/EditItem.vue'
 import EditProfile from './components/EditProfile.vue'
 import UserProfile from './components/UserProfile.vue'
+import Chat from './components/Chat.vue'
 
 
 export default[
@@ -28,5 +29,6 @@ export default[
     { path: '/item', name: 'item', component: Item},
     { path: '/edititem', name: 'edititem', component: EditItem},
     { path: '/editprofile', name: 'editprofile', component: EditProfile},
-    { path: '/userprofile', name: 'userprofile', component: UserProfile}
+    { path: '/userprofile', name: 'userprofile', component: UserProfile},
+    { path: '/chat', name: 'chat', component: Chat}
 ]
