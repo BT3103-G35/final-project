@@ -6,40 +6,64 @@
                 <h2> Search by which field? </h2>
                 <input type="radio" id="name" name="search" value="name" v-on:click="searchFilter('name')">
                 <label for="name">Name</label><br>
+                <input type="radio" id="category" name="search" value="category" v-on:click="searchFilter('category')">
+                <label for="category">Category</label><br>
                 <input type="radio" id="details" name="search" value="details" v-on:click="searchFilter('details')">
                 <label for="details">Details</label><br>
                 <input type="radio" id="notes" name="search" value="notes" v-on:click="searchFilter('notes')">
                 <label for="notes">Notes</label>
             </div>
-            <div class="search-bar" v-if="this.filter == true">
+            <div class="search-bar" v-if="this.filter == true && this.filterChoice != 'category'">
                 <input class="input-search" type="text" :placeholder="'Search by ' + this.filterChoice" v-model="searchWord" name="search">
                 <button @click="search" type="submit">Submit</button>
                 <button @click="back" type="submit">Back</button>
             </div>
+            <div class="dropdown-menu" v-if="this.filter == true && this.filterChoice == 'category'">
+                <select v-model="chosenCategory">
+                    <option disabled value="">Choose a category</option>
+                    <option>top</option>
+                    <option>bottom</option>
+                    <option>outerwear</option>
+                    <option>footwear</option>
+                    <option>headwear</option>
+                    <option>jewellery</option>
+                    <option>accessory</option>
+                    <option>others</option>
+                </select>
+                <button @click="categorize()" type="submit">Submit</button>
+                <button @click="back" type="submit">Back</button>
+            </div>
         </div>
-        <div class="marketplace-container" v-if="this.searched==false">
+        <div class="marketplace-container" v-if="this.searched==false && this.categorized==false">
             <ul> 
                 <li v-for="(item, index) in this.items1" v-bind:key="index">
                     <a v-on:click="redirect(item.user, item.count)"> 
                         <img :src="item.imageRef">
                         <p>Name:{{ item.name }}</p>
+                        <p>Category:{{ item.category }}</p>
                         <p>Details:{{ item.detail }}</p>
                         <p>Notes:{{ item.notes }}</p>
                     </a>
                 </li>
             </ul>
         </div>
-        <div class="marketplace-container" v-if="this.searched==true">
-            <ul> 
-                <li v-for="(item, index) in this.searchedItems" v-bind:key="index">
-                    <a v-on:click="redirect(item.user, item.count)"> 
-                        <img :src="item.imageRef">
-                        <p>Name:{{ item.name }}</p>
-                        <p>Details:{{ item.detail }}</p>
-                        <p>Notes:{{ item.notes }}</p>
-                    </a>
-                </li>
-            </ul>
+        <div class="marketplace-container" v-else>
+            <div v-if="this.searchedItems.length==0">
+                <br><h3>Your search did not match any item.</h3><br>
+            </div>
+            <div v-else>
+                <ul> 
+                    <li v-for="(item, index) in this.searchedItems" v-bind:key="index">
+                        <a v-on:click="redirect(item.user, item.count)"> 
+                            <img :src="item.imageRef">
+                            <p>Name:{{ item.name }}</p>
+                            <p>Category:{{ item.category }}</p>
+                            <p>Details:{{ item.detail }}</p>
+                            <p>Notes:{{ item.notes }}</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -121,9 +145,18 @@ export default {
                 querySnapshot.forEach((doc) => this.searchedItems.push(doc.data()));
             });
         },
+        categorize(){
+            this.searchedItems= []; 
+            this.categorized=true;
+            var db = firebase.firestore();
+            db.collection('marketplace').where("category", "==", this.chosenCategory).get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => this.searchedItems.push(doc.data()));
+            });
+        },
         back(){
             this.filter = false;
             this.searched = false;
+            this.categorized = false;
         }
     },
 
@@ -137,7 +170,9 @@ export default {
             filterChoice: '',
             searchWord:'',
             searched: false,
-            searchedItems: []
+            searchedItems: [],
+            categorized: false,
+            chosenCategory: '',
         }
     }
 }

@@ -110,6 +110,7 @@ export default {
             
             db.collection('marketplace').add({
                 name: this.name,
+                category: this.type,
                 detail: this.detail,
                 notes: this.notes,
                 imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
@@ -122,6 +123,7 @@ export default {
             //let docRef = db.collection(this.currentUser.uid).doc();
             db.collection(this.currentUser.uid).add({
                 name: this.name,
+                category: this.type,
                 detail: this.detail,
                 notes: this.notes,
                 imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,

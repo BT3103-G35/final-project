@@ -215,8 +215,9 @@ img{
     font-size: 60px;
 }
 ul{
-    list-style: none;
+    display: flex;
     flex-wrap: wrap;
+    list-style: none;
 }
 .add-item img{
     width: 300px;

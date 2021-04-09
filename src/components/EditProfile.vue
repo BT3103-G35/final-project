@@ -2,12 +2,7 @@
     <div class="edit-profile-container">
         <div class="edit-profile-pic">
             <h2>Profile Picture</h2>
-            <div class="profile-pic" v-if="this.imgUrl==false">
-                <img src="https://i.postimg.cc/yNMnZJp9/blank-profile-picture-973460-1280-1.png">
-            </div>
-            <div class="profile-pic" v-else>
-                <img :src="this.imgUrl">
-            </div>
+            <img :src="this.imgUrl">
             <button @click="trigger">Change Profile Picture</button>
             <input type="file" ref="fileInput" @change="onFileChange($event)" v-show="false">
         </div>
@@ -19,8 +14,9 @@
         </div>
         <div class="change-password">
             <h2>Password</h2>
-            New password: <input type="password" v-model="newPassword" required><br><br>
-            Retype password: <input type="password" v-model="newPassword2" required><br><br><br>
+            Current password: <input type="password" v-model="currentPassword" required><br><br>
+            Enter new password: <input type="password" v-model="newPassword" required><br><br>
+            Retype new password: <input type="password" v-model="newPassword2" required><br><br><br>
             <button @click="changePassword">Change password</button>
         </div>
     </div>
@@ -80,26 +76,50 @@ export default {
             location.reload();
         },
         changeName() {
+            // Update user name in community database
+            var database = firebase.firestore();
+            database.collection("community").doc(this.currentUser.uid).update({
+                name: this.newName
+            })
+            // Update user name in firebase auth
             this.currentUser.updateProfile({
                 displayName: this.newName
             }).then(() => location.reload())
         },
         passwordMatch() {
             if (this.newPassword != this.newPassword2) {
-                alert("Passwords do not match!")
-                location.reload()
+                alert("New passwords do not match!");
+                this.pwMatch = false;
+                location.reload();
             } else {
                 this.pwMatch = true;
             }
         },
         changePassword() {
-            this.passwordMatch();
-            if (this.pwMatch) {
-                this.currentUser.updatePassword(this.newPassword).then(() => {
-                    alert("Password successfully changed")
-                    location.reload()
-                }).catch((err) => console.log(err))
-            }
+            //Reauthenticate user 
+            const user = this.currentUser;
+            const credential = firebase.auth.EmailAuthProvider.credential(
+                user.email, 
+                this.currentPassword
+            );
+            user.reauthenticateWithCredential(credential).then(() => {
+                console.log("reauthentication success");
+                //Make sure new passwords match
+                this.passwordMatch()
+                if (this.pwMatch) {
+                    //Change password
+                    user.updatePassword(this.newPassword).then(() => {
+                        alert("Password successfully changed")
+                        location.reload()
+                    }).catch((err) => {
+                        console.log(err);
+                    })
+                }
+            }).catch((err) => {
+                console.log(err);
+                alert("Current password is incorrect")
+                location.reload();
+            })
         }
     },
     data(){
@@ -111,6 +131,7 @@ export default {
             imageFile: false,
             newName: '',
             newEmail: '',
+            currentPassword: '',
             newPassword: '',
             newPassword2: '',
             pwMatch: false,
@@ -158,7 +179,7 @@ h2{
 }
 .change-password{
     float:left;
-    width: 20%;
+    width: 30%;
     text-align: left;
     padding-top: 4%;
 }
