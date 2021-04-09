@@ -2,12 +2,13 @@
   <div class="community-container">
     <h1> Community </h1>
     <p>Discover. Be Inspired.</p>
-    <ul v-show="checker">
-        <li v-for="pic in profile" v-bind:key="pic.name" v-on:click="details(pic)">
-            <img id="main-page-img" v-bind:src="pic.profile" v-on:click="check()">
-            <p v-show="pic.show">{{pic.name}}</p>
+    <ul>
+        <li v-for="pic in profile" v-bind:key="pic.index">
+            <img id="main-page-img" v-bind:src="pic.imageRef">
+            <p>{{pic.name}}</p>
         </li>
     </ul>
+    <!--
     <div v-show="!checker" id="profile-container">
         <div id="profile-info">
             <img id="profile-img" v-bind:src="this.info.profile"/>
@@ -24,6 +25,7 @@
         </div>
     </div>
     <button v-on:click="check()" v-show="!checker">Go Back!</button>
+    -->
   </div>
 </template>
 
@@ -58,7 +60,7 @@ export default {
         },
         fetchItems: function(){
             var database = firebase.firestore();
-            database.collection("dummyusers").get().then((SnapShot)=>{
+            database.collection("community").get().then((SnapShot)=>{
                 let obj={}
                 SnapShot.forEach(doc=>{
                     obj=doc.data()

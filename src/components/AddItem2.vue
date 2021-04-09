@@ -119,13 +119,12 @@ export default {
                 detailsKeywords: this.detailKeys,
                 notesKeywords: this.notesKeys
             });
-            let docRef = db.collection(this.currentUser.uid).doc();
+            //let docRef = db.collection(this.currentUser.uid).doc();
             db.collection(this.currentUser.uid).add({
                 name: this.name,
                 detail: this.detail,
                 notes: this.notes,
                 imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
-                id: docRef.id,
                 count: this.items.length,
                 wishlist: false
             }).then(() => this.$router.push('/profile'));
