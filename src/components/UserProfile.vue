@@ -2,6 +2,7 @@
     <div class="profile-container">
         <h1>TEST</h1>
         {{this.userID}}
+        {{this.userItems}}
         <div class="profile-info">
             <div class="profile-name">
                 <img :src='this.userProfilePic' id="profile-img"><br>
@@ -11,7 +12,7 @@
 
             <div class="num-items">
                 <h1>User Currently Has:</h1>
-                <p id="itemCount">{{ this.items1.length }} Item/s</p>
+                <p id="itemCount">{{ this.userItems.length }} Item/s</p>
             </div>
 
             <div>
@@ -43,7 +44,6 @@ export default {
                     // User is signed in.
                     this.loggedIn = true;
                     this.currentUser = firebase.auth().currentUser;
-                    this.fetchItems();
                 } else {
                     // No user is signed in.
                     this.loggedIn = false;
