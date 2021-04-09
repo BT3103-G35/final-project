@@ -14,21 +14,14 @@
         <div class="edit-profile-info">
             <h2>User Name</h2>
             <h3>Current name: {{ this.currentUser.displayName }}</h3>
-            New name: <input type="text" v-model="newName" required><br><br>
-            <button @click="changeName">Change user name</button><br><br><br>
-            
-            <h2>Email</h2>
-            <h3>Current email: {{ this.currentUser.email }}</h3>
-            New email: <input type="email" v-model="newEmail" required><br><br>
-            <button >Change email</button>
+            New name: <input type="text" v-model="newName" required><br><br><br>
+            <button @click="changeName">Change user name</button>
         </div>
         <div class="change-password">
             <h2>Password</h2>
-            <h3>Current password: {{ this.currentUser.password }}</h3>
-            New password: <input type="text" v-model="newPassword" required><br><br>
-            Retype password: <input type="text" v-model="newPassword2" required><br><br><br>
-            <p v-show="!this.pwMatch">Passwords do not match!</p>
-            <button>Change password</button>
+            New password: <input type="password" v-model="newPassword" required><br><br>
+            Retype password: <input type="password" v-model="newPassword2" required><br><br><br>
+            <button @click="changePassword">Change password</button>
         </div>
     </div>
 </template>
@@ -93,7 +86,19 @@ export default {
         },
         passwordMatch() {
             if (this.newPassword != this.newPassword2) {
-                this.pwMatch = false;
+                alert("Passwords do not match!")
+                location.reload()
+            } else {
+                this.pwMatch = true;
+            }
+        },
+        changePassword() {
+            this.passwordMatch();
+            if (this.pwMatch) {
+                this.currentUser.updatePassword(this.newPassword).then(() => {
+                    alert("Password successfully changed")
+                    location.reload()
+                }).catch((err) => console.log(err))
             }
         }
     },
@@ -108,7 +113,7 @@ export default {
             newEmail: '',
             newPassword: '',
             newPassword2: '',
-            pwMatch: true,
+            pwMatch: false,
         }
     },
 }
