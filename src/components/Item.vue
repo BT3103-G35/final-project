@@ -7,9 +7,11 @@
             <textarea name="detail" rows="3" cols="60" :value=this.item[0].detail :readonly="true"></textarea><br><br>
             <label for="notes">Notes:</label><br>
             <textarea name="notes" rows="6" cols="60" :value=this.item[0].notes :readonly="true"></textarea><br><br>
-            <button v-if="this.userID != this.currentUser.uid">Go to lister's profile</button>
+            <button v-if="this.userID != this.currentUser.uid" @click="goToLister">Go to lister's profile</button>
             <button v-if="this.userID != this.currentUser.uid && this.wishlist == 1" @click="removeFromWishlist">Remove from Wishlist</button>
             <button v-if="this.userID != this.currentUser.uid && this.wishlist == 0" @click="addToWishlist">Add To Wishlist!</button>
+            <br>
+            <button id="chat" v-if="this.userID != this.currentUser.uid" @click="goToChat">Send the lister a message!</button>
             <button v-if="this.userID == this.currentUser.uid" @click="edit">Edit your item!</button>
         </div>
         <div class="item-image">
@@ -94,6 +96,12 @@ export default {
         },
         edit(){
             window.location.href="/edititem?user=" + this.userID + "&count=" + this.count;
+        },
+        goToLister(){
+            window.location.href="/UserProfile?user=" + this.userID;
+        },
+        goToChat(){
+            window.location.href="/chat?user=" + this.currentUser.uid;
         }
     },
     data(){
@@ -142,5 +150,10 @@ button{
     padding: 14px 30px;
     font-size: 20px;
     cursor: pointer;
+}
+#chat{
+    background:black;
+    box-shadow: 0px 0px 0px, 0px 0px 0px;
+    width: 280px;
 }
 </style>

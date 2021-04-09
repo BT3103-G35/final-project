@@ -142,6 +142,7 @@ export default {
     border: 1px red;
 }
 .profile-container{
+    min-height: 1000px;
     display: flex;
     background-color: #fff7e6;
 }

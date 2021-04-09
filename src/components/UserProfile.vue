@@ -5,7 +5,7 @@
                 <img :src='this.userProfilePic' id="profile-img"><br>
                 <div id="displayName">{{this.userName}}</div>
                 <br><br>
-                <h1>User Currently Has:</h1>
+                <h1>{{this.userName}} Currently Has:</h1>
                 <p id="itemCount">{{ this.userItems.length }} Item/s</p>
                 
             </div>
