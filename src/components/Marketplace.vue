@@ -30,16 +30,21 @@
             </ul>
         </div>
         <div class="marketplace-container" v-if="this.searched==true">
-            <ul> 
-                <li v-for="(item, index) in this.searchedItems" v-bind:key="index">
-                    <a v-on:click="redirect(item.user, item.count)"> 
-                        <img :src="item.imageRef">
-                        <p>Name:{{ item.name }}</p>
-                        <p>Details:{{ item.detail }}</p>
-                        <p>Notes:{{ item.notes }}</p>
-                    </a>
-                </li>
-            </ul>
+            <div v-if="this.searchedItems.length==0">
+                <br><h3>Your search did not match any item. Try another keyword!</h3><br>
+            </div>
+            <div v-else>
+                <ul> 
+                    <li v-for="(item, index) in this.searchedItems" v-bind:key="index">
+                        <a v-on:click="redirect(item.user, item.count)"> 
+                            <img :src="item.imageRef">
+                            <p>Name:{{ item.name }}</p>
+                            <p>Details:{{ item.detail }}</p>
+                            <p>Notes:{{ item.notes }}</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
