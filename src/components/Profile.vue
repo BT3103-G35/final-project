@@ -131,7 +131,7 @@ export default {
             currentUser: false,
             items: [],
             items1: [],
-            url: false
+            url: false,
         }
     }
 }
@@ -216,8 +216,8 @@ img{
 }
 ul{
     display: flex;
-    flex-wrap: wrap;
     list-style: none;
+    flex-wrap: wrap;
 }
 .add-item img{
     width: 300px;
