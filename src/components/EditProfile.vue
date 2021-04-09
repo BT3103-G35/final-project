@@ -6,8 +6,9 @@
         <div class="profile-pic" v-else>
             <img :src="this.imgUrl">
         </div>
-        <button>Change Profile Picture</button>
+        <button @click="trigger">Change Profile Picture</button>
         <button>Remove Profile Picture</button>
+        <input type="file" ref="fileInput" @change="onFileChange($event)" v-show="false">
     </div>
 
 </template>
@@ -44,19 +45,42 @@ export default {
                 }
             })
         },
+        trigger() {
+            this.$refs.fileInput.click()
+        },
+        onFileChange(e) {
+            let file = e.target.files[0];
+            this.imageFile = file;
+            this.createImage(file);
+        },
+        createImage(file) {
+            var reader = new FileReader();
+            reader.onload = (e) => {
+                this.image = e.target.result;
+            };
+            reader.readAsDataURL(file);
+            this.uploadImage();
+        },
+        uploadImage() {
+            var storageRef = firebase.storage().ref('users/' + this.currentUser.uid + '/profile.jpg');
+            storageRef.put(this.imageFile);
+            location.reload();
+        },
     },
     data(){
         return {
             loggedIn: false,
             currentUser: false,
             imgUrl: false,
+            image: false,
+            imageFile: false,
         }
     },
 }
 </script>
 
 <style scoped>
-.profile-pic img{
+img{
     width: 300px;
     height: 300px;
     border-radius: 50%;
