@@ -5,6 +5,8 @@
                 <!--<img src="https://i.postimg.cc/yNMnZJp9/blank-profile-picture-973460-1280-1.png">-->
                 <img :src='this.url' id="profile-img"><br>
                 <div id="displayName">{{this.currentUser.displayName}}</div>
+                <br><br>
+                <router-link to="/editprofile" tag="button-editprofile" exact>Edit Profile</router-link>
             </div>
             <div class="bells">
                 <img src="https://i.postimg.cc/259ychNb/Bell.png">
@@ -177,6 +179,15 @@ button{
     cursor:pointer;
 }
 button-additem{
+  font-size: 30px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: white;
+  background: #EC6041;
+  box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+  padding: 20px 24px;
+  cursor: pointer;
+}
+button-editprofile{
   font-size: 30px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: white;
