@@ -81,16 +81,8 @@ export default {
                     })
                 }
             })
-            //this.addProfilePicToCollection(this.url)
         },
-        //addProfilePicToCollection(){
-        //    var db = firebase.firestore();
-        //    console.log(typeof(url))
-        //    db.collection('community').add({
-        //        imageRef: url,
-        //        user: this.currentUser.uid
-        //    });
-        //},
+
         fetchItems() {
             var storageRef = firebase.storage().ref();
             var db = firebase.firestore();
