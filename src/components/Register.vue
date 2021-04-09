@@ -53,31 +53,31 @@ export default {
                 displayName: this.name,
             });
 
-            //this.$router.push('/profile');
+            this.$router.push('/profile');
             })
             .catch(error => (this.error = error));
             alert('loading..')
-            this.addPicToComm();
+            //this.addPicToComm();
         },
         chooseFile(e){
             let file = e.target.files[0];
             this.imageFile = file;
             this.createImage(file);
         },
-        addPicToComm(){
-            var db = firebase.firestore();
-            firebase.auth().onAuthStateChanged((user) => {
-                firebase.storage().ref('users/' + user.uid + '/profile.jpg').getDownloadURL().then(imgUrl => {
-                    console.log('here '+imgUrl)
-                    db.collection('community').add({
-                        imageRef: imgUrl,
-                        user: user.uid,
-                        name: this.name
-                    });
-                })
-            })
-            this.$router.push('/profile');
-        },
+        //addPicToComm(){
+        //    var db = firebase.firestore();
+        //    firebase.auth().onAuthStateChanged((user) => {
+        //        firebase.storage().ref('users/' + user.uid + '/profile.jpg').getDownloadURL().then(imgUrl => {
+        //            console.log('here '+imgUrl)
+        //            db.collection('community').add({
+        //                imageRef: imgUrl,
+        //                user: user.uid,
+        //                name: this.name
+        //            });
+        //        })
+        //    })
+        //    this.$router.push('/profile');
+        //},
         createImage(file) {
             var reader = new FileReader();
 

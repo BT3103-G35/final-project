@@ -66,15 +66,16 @@ export default {
             });
         },
         fetchProfilePic(){
-            //var db = firebase.firestore();
+            var db = firebase.firestore();
             firebase.auth().onAuthStateChanged(user => {
                 if (user){
                     firebase.storage().ref('users/' + user.uid + '/profile.jpg').getDownloadURL().then(imgUrl => {
                         this.url = imgUrl
-                        //db.collection('community').add({
-                        //   imageRef: imgUrl,
-                        //    user: this.currentUser.uid
-                        //});
+                        db.collection('community').doc(user.uid).set({
+                            imageRef: imgUrl,
+                            user: this.currentUser.uid,
+                            name: this.currentUser.displayName
+                        });
                     })
                 }
             })
