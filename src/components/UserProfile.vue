@@ -7,9 +7,11 @@
                 <br><br>
                 <h1>User Currently Has:</h1>
                 <p id="itemCount">{{ this.userItems.length }} Item/s</p>
+                
             </div>
 
             <div id="items">
+                <h1 v-if="this.userItems.length==0" id="no-items">User has no items</h1>
                 <ul>
                     <li v-for="item in userItems" v-bind:key="item.index">
                         <img :src="item.imageRef">
@@ -81,6 +83,10 @@ export default {
 .profile-container{
     display: flex;
     background-color: #fff7e6;
+}
+#no-items{
+    margin-left: 300px;
+    margin-top: 200px
 }
 .profile-info{
     width: 40%;
