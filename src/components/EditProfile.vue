@@ -96,7 +96,7 @@ export default {
             }
         },
         changePassword() {
-            //Reauthenticate user
+            //Reauthenticate user 
             const user = this.currentUser;
             const credential = firebase.auth.EmailAuthProvider.credential(
                 user.email, 
