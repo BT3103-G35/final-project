@@ -80,6 +80,12 @@ export default {
             location.reload();
         },
         changeName() {
+            // Update user name in community database
+            var database = firebase.firestore();
+            database.collection("community").doc(this.currentUser.uid).update({
+                name: this.newName
+            })
+            // Update user name in firebase auth
             this.currentUser.updateProfile({
                 displayName: this.newName
             }).then(() => location.reload())
