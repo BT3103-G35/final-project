@@ -71,6 +71,7 @@ export default {
                 wishlist: true
             });
             alert("Item successfully added to your Wishlist!");
+            this.$router.push('/wishlist');
         },
         removeFromWishlist(){
             var answer=confirm("Are you sure you want to remove this item from your Wishlist?");
@@ -85,6 +86,7 @@ export default {
                         wishlist: false,
                     })
                     alert("Item successfully removed")
+                    this.$router.push('/wishlist')
                 })
             } else {
                 alert("Your item has not been removed");
