@@ -11,8 +11,9 @@
                     <input type="email" size="65" v-model="email" required><br><br>
                     <label for="password">Password*:</label><br>
                     <input type="password" size="65" v-model="password" required><br><br>
-                    <button type="submit">Log in</button>
-                    <div class="error" v-if="error">{{error.message}}</div> 
+                    <button id="forgot-password" @click="resetPassword">Forgot password?</button><br><br>
+                    <button type="submit">Log in</button><br><br>
+                    <div class="error" v-if="error">{{error.message}}</div>
             </form>
         </div>
 
@@ -39,6 +40,19 @@ export default {
                 .catch(error => {
                     this.error = error;
                 });
+        },
+        resetPassword() {
+            if (this.email) {
+                firebase.auth().sendPasswordResetEmail(this.email).then(() => {
+                    // Email sent.
+                    alert("Reset passward email has been sent to your email address")
+                }).catch((error) => {
+                    console.log(error);
+                });
+            } else {
+                alert("Please enter your email address");
+                location.reload();
+            }
         }
     },
     data() {
@@ -81,6 +95,12 @@ button{
     color: white;
     cursor: pointer;
 }
+#forgot-password{
+    border: none;
+    background: none;
+    color: #EC6041;
+    width: auto;
+}
 img{
     float: left;
     width: 650px;
@@ -106,7 +126,7 @@ p{
 }
 .error{
     color: red;
-    font-size: 12px;
+    font-size: 18px;
 }
 
 </style>
