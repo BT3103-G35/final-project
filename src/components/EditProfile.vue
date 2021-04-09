@@ -35,6 +35,15 @@ export default {
                 }
             });
         },
+        fetchProfilePic() {
+            firebase.auth().onAuthStateChanged(user => {
+                if (user){
+                    firebase.storage().ref('users/' + user.uid + '/profile.jpg').getDownloadURL()
+                    .then(imgUrl => this.imgUrl = imgUrl)
+                    .catch(this.imgUrl = false)
+                }
+            })
+        },
     },
     data(){
         return {
