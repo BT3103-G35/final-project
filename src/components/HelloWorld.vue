@@ -1,7 +1,11 @@
 <template>
   <div class="bg">
     <h1>Wardrobe Organiser</h1>
-    <ul>
+    <ul v-if="this.loggedIn">
+      <li><router-link to="/profile" tag="button1" exact>Profile</router-link></li>
+      <li><router-link to="/marketplace" tag="button2" exact>Marketplace</router-link></li>
+    </ul>
+    <ul v-else>
       <li><router-link to="/login" tag="button1" exact> Log In</router-link></li>
       <li><router-link to="/register" tag="button2" exact>Register</router-link></li>
     </ul>
@@ -10,9 +14,32 @@
 </template>
 
 <script>
-
+import firebase from "firebase/app";
 export default {
-
+    created() {
+        this.setupFirebase();
+    },
+    methods:{
+        setupFirebase() {
+            firebase.auth().onAuthStateChanged(user => {
+                if (user) {
+                    // User is signed in.
+                    this.loggedIn = true;
+                    this.currentUser = firebase.auth().currentUser;
+                } else {
+                    // No user is signed in.
+                    this.loggedIn = false;
+                    this.currentUser = false;
+                }
+            });
+        },
+    },
+    data(){
+        return {
+            loggedIn: false,
+            currentUser: false,
+        }
+    }
 }
 </script>
 
