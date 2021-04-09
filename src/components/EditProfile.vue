@@ -1,16 +1,36 @@
 <template>
-    <div class="edit-profile-pic-container">
-        <div class="profile-pic" v-if="this.imgUrl==false">
-            <img src="https://i.postimg.cc/yNMnZJp9/blank-profile-picture-973460-1280-1.png">
+    <div class="edit-profile-container">
+        <div class="edit-profile-pic">
+            <h2>Profile Picture</h2>
+            <div class="profile-pic" v-if="this.imgUrl==false">
+                <img src="https://i.postimg.cc/yNMnZJp9/blank-profile-picture-973460-1280-1.png">
+            </div>
+            <div class="profile-pic" v-else>
+                <img :src="this.imgUrl">
+            </div>
+            <button @click="trigger">Change Profile Picture</button>
+            <input type="file" ref="fileInput" @change="onFileChange($event)" v-show="false">
         </div>
-        <div class="profile-pic" v-else>
-            <img :src="this.imgUrl">
+        <div class="edit-profile-info">
+            <h2>User Name</h2>
+            <h3>Current name: {{ this.currentUser.displayName }}</h3>
+            New name: <input type="text" v-model="newName" required><br><br>
+            <button @click="changeName">Change user name</button><br><br><br>
+            
+            <h2>Email</h2>
+            <h3>Current email: {{ this.currentUser.email }}</h3>
+            New email: <input type="email" v-model="newEmail" required><br><br>
+            <button >Change email</button>
         </div>
-        <button @click="trigger">Change Profile Picture</button>
-        <button>Remove Profile Picture</button>
-        <input type="file" ref="fileInput" @change="onFileChange($event)" v-show="false">
+        <div class="change-password">
+            <h2>Password</h2>
+            <h3>Current password: {{ this.currentUser.password }}</h3>
+            New password: <input type="text" v-model="newPassword" required><br><br>
+            Retype password: <input type="text" v-model="newPassword2" required><br><br><br>
+            <p v-show="!this.pwMatch">Passwords do not match!</p>
+            <button>Change password</button>
+        </div>
     </div>
-
 </template>
 
 
@@ -66,6 +86,16 @@ export default {
             storageRef.put(this.imageFile);
             location.reload();
         },
+        changeName() {
+            this.currentUser.updateProfile({
+                displayName: this.newName
+            }).then(() => location.reload())
+        },
+        passwordMatch() {
+            if (this.newPassword != this.newPassword2) {
+                this.pwMatch = false;
+            }
+        }
     },
     data(){
         return {
@@ -74,6 +104,11 @@ export default {
             imgUrl: false,
             image: false,
             imageFile: false,
+            newName: '',
+            newEmail: '',
+            newPassword: '',
+            newPassword2: '',
+            pwMatch: true,
         }
     },
 }
@@ -95,5 +130,31 @@ button{
     background: #EC6041;
     box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
     cursor:pointer;
+}
+.edit-profile-container{
+    width: 100%;
+}
+h2{
+    text-decoration: underline #EC6041;
+}
+.edit-profile-pic{
+    float:left;
+    width: 20%;
+    padding-left: 10%;
+    padding-top: 4%;
+    margin-right: 10%;
+}
+.edit-profile-info{
+    float:left;
+    width: 20%;
+    text-align: left;
+    padding-top: 4%;
+    margin-right: 10%;
+}
+.change-password{
+    float:left;
+    width: 20%;
+    text-align: left;
+    padding-top: 4%;
 }
 </style>
