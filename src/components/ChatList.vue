@@ -2,14 +2,15 @@
     <div>
         <h1> My Chats </h1>
         <h2> Click on the item image to go the conversation! </h2>
+        <div style="text-align:left;" class="search-bar">
+            <input class="chat-search" type="text" placeholder="Search for item name..." v-model="searchWord" name="search">
+            <button @click="search" type="submit">Search</button>
+            <button @click="back" type="submit">Back</button>
+            <br><br><br>
+        </div>
         <div class="chat-container">
             <div class="chat-list">
-                <div class="search-bar">
-                    <input class="chat-search" type="text" placeholder="Search for item name..." v-model="searchWord" name="search">
-                    <button @click="search" type="submit">Search</button>
-                    <button @click="back" type="submit">Back</button>
-                    <br><br><br>
-                </div>
+
 
                 <div v-if="displayData.length==0">
                     <p style="font-size:20px;"> You do not have any chats. Chat with a lister to start one! </p>
@@ -213,12 +214,13 @@ export default {
 }
 .search-bar{
     margin-top:75px;
+    margin-left:60px;
 }
 .chat-list{
     margin-left:35px;
 }
 .chat-search{
-    width:400px;
+    width:487px;
     height:30px;
     font-size:20px;
 }
