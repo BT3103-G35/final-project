@@ -5,9 +5,11 @@
     <div class="search-bar">
         <input class="input-search" type="text" :placeholder="'Search User'" v-model="searchWord" name="search">
         <button @click="search" type="submit">Search</button>
+        <button @click="back" type="submit" v-if="!show">Back</button>
+
     </div>
 
-    <div>
+    <div v-if="show">
         <ul>
             <li v-for="pic in profile" v-bind:key="pic.index">
                 <img id="main-page-img" v-bind:src="pic.imageRef" v-on:click="redirect(pic.user)">
@@ -15,6 +17,16 @@
             </li>
         </ul>
     </div>
+
+    <div v-if="!show">
+        <ul>
+            <li v-for="pic in searchedItems" v-bind:key="pic.index">
+                <img id="main-page-img" v-bind:src="pic.imageRef" v-on:click="redirect(pic.user)">
+                <p>{{pic.name}}</p>
+            </li>
+        </ul>
+    </div>
+
   </div>
 </template>
 
@@ -87,9 +99,18 @@ export default {
             //this.searched=true; //indicate that the user has already searched for something so dont show default marketplace
             var db = firebase.firestore();
             console.log(this.searchWord);
-            db.collection('community').where('name', "==", this.searchWord).get().then((querySnapshot) => {
+            db.collection('community').where('name', "in", [this.searchWord, this.upperFirst(this.searchWord)]).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => this.searchedItems.push(doc.data()));
             });
+            this.show=false;
+        },
+        upperFirst(word){
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        },
+        back(){
+            this.searchedItems = [];
+            this.searchWord = '';
+            this.show = true;
         }
 
     },
@@ -103,6 +124,7 @@ export default {
             num: false,
             searchWord: '',
             searchedItems: [],
+            show: true
         }
     }
 }
