@@ -9,6 +9,7 @@
                 <br> <br>
                 <h2> Name: {{ this.item[0].name }} </h2>
                 <h2> Notes: {{ this.item[0].notes }} </h2>
+                <button class="back-to-chatlist-button" @click="redirect">Back to my chats</button>
             </div>
             
             <div class="chat">
@@ -107,7 +108,6 @@ export default {
                 }
             });
         },
-
         sendMessage() { //upon clicking send button
             if (document.getElementById("message").value == ''){
                 return false;
@@ -135,9 +135,8 @@ export default {
                 this.message=''
             }
         },
-        auto_grow(element) {
-            element.style.height = "5px";
-            element.style.height = (element.scrollHeight)+"px";
+        redirect(){
+            window.location.href="/chatlist?user=" + this.currentUser.uid;
         }
     },
 
@@ -221,5 +220,15 @@ textarea{
     overflow: hidden;
     min-height: 0px;
     max-height: 100px;
+}
+.back-to-chatlist-button{
+    height: 40px;
+    width: 250px;
+    font-size: 20px;
+    background-color: #EC6041;
+    color: white;
+    background: #EC6041;
+    box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+    cursor:pointer;
 }
 </style>
