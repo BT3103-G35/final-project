@@ -4,7 +4,7 @@
     <p>Discover. Be Inspired.</p>
     <div class="search-bar">
         <input class="input-search" type="text" :placeholder="'Search User'" v-model="searchWord" name="search">
-        <button @click="search" type="submit">Search</button>
+        <button @click="search" type="submit" v-if="show">Search</button>
         <button @click="back" type="submit" v-if="!show">Back</button>
 
     </div>
@@ -103,13 +103,21 @@ export default {
             //this.searched=true; //indicate that the user has already searched for something so dont show default marketplace
             var db = firebase.firestore();
             console.log(this.searchWord);
-            db.collection('community').where('name', "in", [this.searchWord, this.upperFirst(this.searchWord)]).get().then((querySnapshot) => {
+            
+            
+            db.collection('community').where('name', "in", this.upperFirst(this.searchWord)).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => this.searchedItems.push(doc.data()));
             });
+            /*
+            db.collection('community').where('name', ">=", this.searchWord).where('name', "<", this.searchWord + 'z').get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => this.searchedItems.push(doc.data()));
+            });
+            */
+            
             this.show=false;
         },
         upperFirst(word){
-            return word.charAt(0).toUpperCase() + word.slice(1);
+            return [word.charAt(0).toUpperCase() + word.slice(1), word.charAt(0).toLowerCase() + word.slice(1)]
         },
         back(){
             this.searchedItems = [];
