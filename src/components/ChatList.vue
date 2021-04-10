@@ -50,7 +50,7 @@
                                     <div v-if="currentUser.uid==data.seller">
                                         <img @click="toProfile(data.buyer)" class="profile-img" :src="data.chatProfilePic">
                                     </div>
-                                    <div v-else>
+                                    <div v-if="currentUser.uid==data.buyer">
                                         <img @click="toProfile(data.seller)" class="profile-img" :src="data.chatProfilePic">
                                     </div>
                                     <div style="display:flex;">
@@ -140,7 +140,7 @@ export default {
                         const result = query.docs[0];
 
                         //user is a seller, so retrieve dp of the buyer and save it to a value
-                        db.collection('community').where('user', '==', doc.data().seller).get().then((query) => {
+                        db.collection('community').where('user', '==', doc.data().buyer).get().then((query) => {
                             const result2 = query.docs[0]
             
                         //save all the necessary data to an object, an push it into displayData so we can v-for over each object later
