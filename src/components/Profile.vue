@@ -125,7 +125,7 @@ export default {
         redirect(user, count) {
             window.location.href="/item?user=" + user + "&count=" + count;
         },
-        goToChat(){
+        goToChatList(){
             window.location.href="/chatlist?user=" +this.currentUser.uid;
         }
     },
