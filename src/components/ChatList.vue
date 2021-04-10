@@ -10,68 +10,70 @@
         </div>
         <div class="chat-container">
             <div class="chat-list">
-
-
-                <div v-if="displayData.length==0">
-                    <p style="font-size:20px;"> You do not have any chats. Chat with a lister to start one! </p>
-                </div>
-
-                <div class="chat-preview" v-else>
-                    <div v-if="searched == false"> <!-- havent searched anything so just display everything -->
-                        <ul>
-                            <li class="list" v-for="data in this.displayData" v-bind:key="data.index">
-                                <div style="display:flex;">
-                                    <div v-if="currentUser.uid==data.seller">
-                                        <img @click="toProfile(data.buyer)" class="profile-img" :src="data.chatProfilePic">
-                                    </div>
-                                    <div v-else>
-                                        <img @click="toProfile(data.seller)" class="profile-img" :src="data.chatProfilePic">
-                                    </div>
-                                    <div style="display:flex;">
-                                        <div>    
-                                            <p style="font-size:22px; margin-left:35px; margin-top:10px;"> {{data.partnerName}}
-                                            <br>
-                                            <b>{{ data.itemName }}</b>
-                                            </p>
-                                            <input style="font-size:27px; margin-left:35px; line-height:0.1" :value="data.lastMessage" :readonly=true>
-                                        </div>
-                                        <div> 
-                                            <img style="margin-left:80px;" class="item-img" :src="data.imageRef" @click="redirect(data.buyer, data.seller, data.count)">
-                                        </div>
-                                    </div>
-                                </div>
-                                <br><br><br><br><br>
-                            </li>
-                        </ul>
+                <div class="chat-info">
+                    <div v-if="displayData.length==0">
+                        <p style="font-size:20px;"> You do not have any chats. Chat with a lister to start one! </p>
                     </div>
-                    <div v-else> <!-- searched for something already -->
-                        <ul>
-                            <li class="list" v-for="data in this.searchedData" v-bind:key="data.index">
-                                <div style="display:flex;">
-                                    <div v-if="currentUser.uid==data.seller">
-                                        <img @click="toProfile(data.buyer)" class="profile-img" :src="data.chatProfilePic">
-                                    </div>
-                                    <div v-if="currentUser.uid==data.buyer">
-                                        <img @click="toProfile(data.seller)" class="profile-img" :src="data.chatProfilePic">
-                                    </div>
+                    <div v-else>
+                        <div v-if="searched == false"> <!-- havent searched anything so just display everything -->
+                            <ul>
+                                <li class="list" v-for="data in this.displayData" v-bind:key="data.index">
                                     <div style="display:flex;">
-                                        <div>    
-                                            <p style="font-size:22px; margin-left:35px; margin-top:10px;"> {{data.partnerName}}
-                                            <br>
-                                            <b>{{ data.itemName }}</b>
-                                            </p>
-                                            <input style="font-size:27px; margin-left:35px; line-height:0.1" :value="data.lastMessage" :readonly=true>
+                                        <div v-if="currentUser.uid==data.seller">
+                                            <img @click="toProfile(data.buyer)" class="profile-img" :src="data.chatProfilePic">
                                         </div>
-                                        <div> 
-                                            <img style="margin-left:300px;" class="item-img" :src="data.imageRef" @click="redirect(data.buyer, data.seller, data.count)">
+                                        <div v-else>
+                                            <img @click="toProfile(data.seller)" class="profile-img" :src="data.chatProfilePic">
+                                        </div>
+                                        <div style="display:flex;">
+                                            <div>    
+                                                <p style="font-size:22px; margin-left:35px; margin-top:10px;"> {{data.partnerName}}
+                                                <br>
+                                                <b>{{ data.itemName }}</b>
+                                                </p>
+                                                <input style="font-size:27px; margin-left:35px; line-height:0.1" :value="data.lastMessage" :readonly=true>
+                                            </div>
+                                            <div> 
+                                                <img style="margin-left:80px;" class="item-img" :src="data.imageRef" @click="redirect(data.buyer, data.seller, data.count)">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <br><br><br><br><br>
-                            </li>
-                        </ul>
+                                    <br><br><br><br><br>
+                                </li>
+                            </ul>
+                        </div>
+                        <div v-else> <!-- searched for something already -->
+                            <ul>
+                                <li class="list" v-for="data in this.searchedData" v-bind:key="data.index">
+                                    <div style="display:flex;">
+                                        <div v-if="currentUser.uid==data.seller">
+                                            <img @click="toProfile(data.buyer)" class="profile-img" :src="data.chatProfilePic">
+                                        </div>
+                                        <div v-if="currentUser.uid==data.buyer">
+                                            <img @click="toProfile(data.seller)" class="profile-img" :src="data.chatProfilePic">
+                                        </div>
+                                        <div style="display:flex;">
+                                            <div>    
+                                                <p style="font-size:22px; margin-left:35px; margin-top:10px;"> {{data.partnerName}}
+                                                <br>
+                                                <b>{{ data.itemName }}</b>
+                                                </p>
+                                                <input style="font-size:27px; margin-left:35px; line-height:0.1" :value="data.lastMessage" :readonly=true>
+                                            </div>
+                                            <div> 
+                                                <img style="margin-left:300px;" class="item-img" :src="data.imageRef" @click="redirect(data.buyer, data.seller, data.count)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br><br><br><br><br>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+                <div class="chat-preview">
+                    <p> placeholder for chat preview </p>
+                </div>  
         
             </div>
         </div>
@@ -197,7 +199,7 @@ export default {
             //^^ contains objects of {profile picture of the person you are speaking with, name of the person you are speaking with,
                                     //item name, last sent message},
             searchedData:[],
-            imageRef: '' //placeholder to store each imageRef before they are pushed into displayData array
+            selectedMessages:[]
         }
     }
 }
@@ -218,6 +220,7 @@ export default {
 }
 .chat-list{
     margin-left:35px;
+    display:flex;
 }
 .chat-search{
     width:487px;
@@ -242,5 +245,8 @@ img{
     width: 75px;
     height: 75px;
     border-radius: 50%;
+}
+.chat-preview{
+    margin-left:400px;
 }
 </style>
