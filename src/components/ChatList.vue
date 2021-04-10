@@ -35,7 +35,7 @@
                                             <input style="font-size:27px; margin-left:35px; line-height:0.1" :value="data.lastMessage" :readonly=true>
                                         </div>
                                         <div> 
-                                            <img style="margin-left:150px;" class="item-img" :src="data.imageRef" @click="redirect(data.buyer, data.seller, data.count)">
+                                            <img style="margin-left:80px;" class="item-img" :src="data.imageRef" @click="redirect(data.buyer, data.seller, data.count)">
                                         </div>
                                     </div>
                                 </div>
