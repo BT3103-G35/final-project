@@ -27,6 +27,10 @@
         </ul>
     </div>
 
+    <div v-if="!show && this.searchedItems.length==0">
+        <h2>No User Found</h2>
+    </div>
+
   </div>
 </template>
 
@@ -151,24 +155,32 @@ h1{
     text-decoration: underline #EC6041;
     font-size: 70px;
 }
-ul {
-  display: flex;
-  flex-wrap: wrap;
-  list-style-type: none;
-  padding: 0;
+
+ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
 }
 li {
-  flex-grow: 1;
-  flex-basis: 300px;
-  text-align: center;
-  padding: 10px;
-  border: 1px solid #EC6041;
-  margin: 10px;
+    margin: 30px;
 }
-img {
-  width: 125px;
-  height: auto;
-  cursor: pointer;
+img{
+    width: 300px;
+    height: 300px;
+    border-radius: 0%;
+    cursor: pointer;
+}
+p{
+    text-align: center;
+}
+.input-search{
+    width:400px;
+    height:30px;
+    font-size:20px;
+}
+button{
+    height:33px;
+    font-size:20px;
 }
 
 </style>
