@@ -12,8 +12,8 @@
     <div v-if="show">
         <ul>
             <li v-for="pic in profile" v-bind:key="pic.index">
-                <img id="main-page-img" v-bind:src="pic.imageRef" v-on:click="redirect(pic.user)">
-                <p>{{pic.name}}</p>
+                <img id="main-page-img" v-bind:src="pic.imageRef" v-on:click="redirect(pic.user)" v-if="pic.user!=currentUser.uid">
+                <p v-if="pic.user!=currentUser.uid">{{pic.name}}</p>
             </li>
         </ul>
     </div>
@@ -128,7 +128,9 @@ export default {
             num: false,
             searchWord: '',
             searchedItems: [],
-            show: true
+            show: true,
+            loggedIn: false,
+            currentUser: false
         }
     }
 }

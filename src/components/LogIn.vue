@@ -5,7 +5,7 @@
             <h1><b>Welcome Back!</b></h1>
             <br>
         </div>
-        <div>
+        <div id="mid-section">
             <form id="loginform" @submit.prevent="pressed">
                     <label for="email">Email Address*:</label><br>
                     <input type="email" size="65" v-model="email" required><br><br>
@@ -14,12 +14,16 @@
                     <button id="forgot-password" @click="resetPassword">Forgot password?</button><br><br>
                     <button type="submit">Log in</button><br><br>
                     <div class="error" v-if="error">{{error.message}}</div>
+
+                    
             </form>
-        </div>
 
             <div class="img">
                 <img src="https://www.bdo.com.co/getmedia/ba0d22a6-ae5e-45fb-a3e4-d7d56008fcbf/apparel-attire-blur-994517.jpg.aspx?width=1110&height=706&ext=.jpg">
+            </div>
         </div>
+
+        
     </div>
 </template>
 
@@ -74,6 +78,12 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+#mid-section{
+    display: flex;
+}
+.img{
+    margin-left: 100px;
 }
 #loginform{
     float: left;

@@ -134,6 +134,9 @@ input{
     font-weight: bold;
     font-size: 18px;
 }
+#name{
+    width: 590px;
+}
 
 textarea{
     padding: 12px 20px;
