@@ -11,7 +11,7 @@
             <div class="bells-and-chat">
                 <img id="bell-img" src="https://i.postimg.cc/259ychNb/Bell.png">
                 <img id="bell-img" src="https://i.postimg.cc/HWynzrZn/No-Bell.png">
-                <img id="chat-img" src="https://i.postimg.cc/5tTMhMcG/Chat-Symbol.png" @click="goToChatList">
+                <img id="chat-img" src="https://i.postimg.cc/kGbcQnmX/Chat-Icon.png" @click="goToChatList">
             </div>
             <div class="num-items">
                 <h1>You Currently Have:</h1>
