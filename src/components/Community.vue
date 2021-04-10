@@ -2,30 +2,19 @@
   <div class="community-container">
     <h1> Community </h1>
     <p>Discover. Be Inspired.</p>
-    <ul>
-        <li v-for="pic in profile" v-bind:key="pic.index">
-            <img id="main-page-img" v-bind:src="pic.imageRef" v-on:click="redirect(pic.user)">
-            <p>{{pic.name}}</p>
-        </li>
-    </ul>
-    <!--
-    <div v-show="!checker" id="profile-container">
-        <div id="profile-info">
-            <img id="profile-img" v-bind:src="this.info.profile"/>
-            <p>Name: {{this.info.name}}</p>
-            <p>Age: {{this.info.age}}</p>
-            <p id="count"><b>Currently has: <br>{{this.num}} Item/s</b></p>
-        </div>
-        <div id="com-items">
-            <ul>
-                <li v-for="item in this.info.items" v-bind:key="item.index">
-                    <img v-bind:src="item"/>
-                </li>
-            </ul>
-        </div>
+    <div class="search-bar">
+        <input class="input-search" type="text" :placeholder="'Search User'" v-model="searchWord" name="search">
+        <button @click="search" type="submit">Search</button>
     </div>
-    <button v-on:click="check()" v-show="!checker">Go Back!</button>
-    -->
+
+    <div>
+        <ul>
+            <li v-for="pic in profile" v-bind:key="pic.index">
+                <img id="main-page-img" v-bind:src="pic.imageRef" v-on:click="redirect(pic.user)">
+                <p>{{pic.name}}</p>
+            </li>
+        </ul>
+    </div>
   </div>
 </template>
 
@@ -91,6 +80,16 @@ export default {
         },
         redirect(user) {
             window.location.href="/UserProfile?user=" + user;
+        },
+        search(){
+
+            //this.searchedItems= []; //clear the previous search returns
+            //this.searched=true; //indicate that the user has already searched for something so dont show default marketplace
+            var db = firebase.firestore();
+            console.log(this.searchWord);
+            db.collection('community').where('name', "==", this.searchWord).get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => this.searchedItems.push(doc.data()));
+            });
         }
 
     },
@@ -101,7 +100,9 @@ export default {
             name: false,
             checker: true,
             info: false,
-            num: false
+            num: false,
+            searchWord: '',
+            searchedItems: [],
         }
     }
 }
