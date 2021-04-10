@@ -5,22 +5,23 @@
                 <img :src='this.userProfilePic' id="profile-img"><br>
                 <div id="displayName">{{this.userName}}</div>
                 <br><br>
-                <h1>User Currently Has:</h1>
+                <h1>{{this.userName}} Currently Has:</h1>
                 <p id="itemCount">{{ this.userItems.length }} Item/s</p>
                 
             </div>
-
-            <div id="items">
-                <h1 v-if="this.userItems.length==0" id="no-items">User has no items</h1>
-                <ul>
-                    <li v-for="item in userItems" v-bind:key="item.index">
-                        <img :src="item.imageRef">
-                    </li>
-                </ul>
-            </div>
-    
         </div>
-
+        <div id="items">
+            <h1 v-if="this.userItems.length==0" id="no-items">User has no items</h1>
+            <ul>
+                <li v-for="item in userItems" v-bind:key="item.index">
+                    <img class="profileItem" :src="item.imageRef">
+                    <p>Name: {{ item.name }}</p>
+                    <p>Details: {{ item.detail }}</p>
+                    <p>Notes: {{ item.notes }}</p>
+                    <button @click="redirect(item.user, item.count)">Check it out!</button>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -49,7 +50,9 @@ export default {
         },
         fetchItems() {
             var db = firebase.firestore();
-            db.collection(this.userID).get().then((querySnapshot) => {
+            db.collection('marketplace').where('user', '==', this.userID)
+            .get()
+            .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     this.userItems.push(doc.data());
                 });
@@ -58,7 +61,10 @@ export default {
                 this.userProfilePic = url.data().imageRef
                 this.userName = url.data().name
             })
-        },  
+        },
+        redirect(user, count) {
+            window.location.href="/item?user=" + user + "&count=" + count;
+        }
     },
     data(){
         return {
@@ -84,16 +90,8 @@ export default {
     display: flex;
     background-color: #fff7e6;
 }
-#no-items{
-    margin-left: 300px;
-    margin-top: 200px
-}
 .profile-info{
     width: 40%;
-    margin-left: 100px;
-    display: flex;
-}
-.profile-name{
     margin-left: 100px;
 }
 #profile-img{
@@ -101,14 +99,11 @@ export default {
     height: 150px;
     border-radius: 50%;
 }
-#items{
-    margin-left: 250px;
-}
 .add-item{
     width: 60%;
 }
 h1{
-    font-size: 35px;
+    font-size: 70px;
 }
 button{
     height: 40px;
@@ -120,15 +115,37 @@ button{
     box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
     cursor:pointer;
 }
-
-img{
-    width: 300px;
-    height: 300px;
+button-additem{
+  font-size: 30px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: white;
+  background: #EC6041;
+  box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+  padding: 20px 24px;
+  cursor: pointer;
+}
+button-editprofile{
+  font-size: 30px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: white;
+  background: #EC6041;
+  box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+  padding: 20px 24px;
+  cursor: pointer;
+}
+#profile-img{
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
     cursor: pointer;
 }
-
+.bells img{
+    width: 50px;
+    height: auto;
+    padding: 15px;
+}
 .num-items h1{
-    font-size: 50px;
+    font-size: 40px;
 }
 .profile-name{
     padding: 50px;
@@ -140,15 +157,21 @@ img{
 }
 #itemCount{
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 40px;
+    font-size: 60px;
 }
 ul{
-    list-style: none;
+    display: flex;
     flex-wrap: wrap;
+    list-style: none;
 }
 .add-item img{
     width: 300px;
     height: 300px;
     border-radius: 0%;
+}
+.profileItem{
+    width: 300px;
+    height: 300px;
+    border-radius: 10%;
 }
 </style>

@@ -9,8 +9,8 @@
                 <router-link to="/editprofile" tag="button-editprofile" exact>Edit Profile</router-link>
             </div>
             <div class="bells">
-                <img src="https://i.postimg.cc/259ychNb/Bell.png">
-                <img src="https://i.postimg.cc/HWynzrZn/No-Bell.png">
+                <img id="bell-img" src="https://i.postimg.cc/259ychNb/Bell.png">
+                <img id="bell-img" src="https://i.postimg.cc/HWynzrZn/No-Bell.png">
             </div>
             <div class="num-items">
                 <h1>You Currently Have:</h1>
@@ -142,6 +142,7 @@ export default {
     border: 1px red;
 }
 .profile-container{
+    min-height: 1000px;
     display: flex;
     background-color: #fff7e6;
 }
@@ -222,6 +223,6 @@ ul{
 .add-item img{
     width: 300px;
     height: 300px;
-    border-radius: 0%;
+    border-radius: 10%;
 }
 </style>
