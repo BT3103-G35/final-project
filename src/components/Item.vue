@@ -101,7 +101,7 @@ export default {
             window.location.href="/UserProfile?user=" + this.userID;
         },
         goToChat(){
-            window.location.href="/chat?user=" + this.currentUser.uid;
+            window.location.href="/chat?buyer=" + this.currentUser.uid + "&seller=" + this.userID + "&count=" + this.count;
         }
     },
     data(){
