@@ -12,9 +12,9 @@
                 <div v-if="this.messages.length==0">
                     <p> Send the lister a message! </p>
                 </div>
-                <div v-else>
+                <div style="height:500px; width:600px; overflow:auto; display:flex; flex-direction: column-reverse" v-else>
                     <ul>
-                        <li v-for="message in this.messages" v-bind:key="message.index"> 
+                        <li v-for="message in this.messages" v-bind:key="message.index" v-bind:class="(currentUser.uid==message.id)?'me':'other'"> 
                         <!-- this.messages is a array containing one array of objects -->
                             {{message.sender}} : {{ message.message}}
                         </li>
@@ -75,6 +75,12 @@ export default {
                     const result = query.docs[0];
                     this.sellerName = result.data().name;
             });
+
+            db.collection('marketplace').where('user', '==', this.seller).where('count', '==', this.count).get()
+            .then((query) => {
+                    const result = query.docs[0];
+                    this.itemName = result.data().name;
+            })
             
             var messagesRef = db.collection('messages').doc(this.buyer+'&'+this.seller+'&'+this.count);
             messagesRef.get()
@@ -83,12 +89,15 @@ export default {
                     for(var message of doc.data().messages){
                         this.messages.push(message);
                     }
-                } else{
+                } else{            
                     db.collection('groups').add({
                         buyer: this.buyer,
+                        buyerName: this.buyerName,
                         seller: this.seller,
+                        sellerName:this.sellerName,
                         count: this.count,
-                        messagesRef: this.buyer + '&' + this.seller + '&' + this.count 
+                        messagesRef: this.buyer + '&' + this.seller + '&' + this.count,
+                        itemName: this.itemName
                     });
                     db.collection('messages').doc(this.buyer + '&' + this.seller + '&' + this.count).set({
                     });
@@ -98,15 +107,24 @@ export default {
 
         sendMessage() { //upon clicking send button
             var db = firebase.firestore();
+            var d = new Date();
             var message=document.getElementById("message").value; //get the message value
             if(this.currentUser.uid==this.buyer){
-                this.messages.push({sender:this.buyerName, message:message})
+                this.messages.push({id:this.buyer, sender:this.buyerName, message:message})
             }
             else{
-                this.messages.push({sender:this.sellerName, message:message})
+                this.messages.push({id:this.seller, sender:this.sellerName, message:message})
             }
             db.collection("messages").doc(this.buyer + '&' + this.seller + '&' + this.count).update({
                 messages:this.messages
+            });
+            db.collection("groups").where('messagesRef', '==', this.buyer + '&' + this.seller + '&' + this.count).get()
+            .then((query) => {
+                const result = query.docs[0];
+                result.ref.update({
+                    lastMessage: message,
+                    lastMessageTiming: d.getTime(),
+                });
             });
         }
     },
@@ -115,10 +133,11 @@ export default {
         return {
             loggedIn: false,
             currentUser: false,
-            buyer: this.$route.query.buyer,
-            seller: this.$route.query.seller,
-            buyerName:'',
-            sellerName:'',
+            buyer: this.$route.query.buyer, //id
+            seller: this.$route.query.seller, //id
+            buyerName:'', //displayed name
+            sellerName:'', //displayed name
+            itemName:'',
             count: parseInt(this.$route.query.count),
             item:[],
             messages:[],
@@ -130,6 +149,7 @@ export default {
 <style>
 .chat-body{
     display:flex;
+    height:800px;
 }
 .img{
     height:400px;
@@ -138,6 +158,25 @@ export default {
 .item{
     width:40%;
     margin-top:100px;
+}
+.me{
+    float:right;
+    background: #0084ff;
+    color: #fff;
+    clear: both;
+    padding: 20px;
+    border-radius: 30px;
+    margin-bottom: 2px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+.other{
+    background: #eee;
+    float: left;
+    clear: both;
+    padding: 20px;
+    border-radius: 30px;
+    margin-bottom: 2px;
+    font-family: Helvetica, Arial, sans-serif;
 }
 .chat{
     width:60%;
@@ -149,7 +188,16 @@ ul {
     flex-wrap: wrap;
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
+/*ul li{
+  /*display:inline-block.
+  clear: both;
+  padding: 20px;
+  border-radius: 30px;
+  margin-bottom: 2px;
+  font-family: Helvetica, Arial, sans-serif;
+}*/
 h1{
     text-decoration: underline #EC6041;
     font-size: 70px;
