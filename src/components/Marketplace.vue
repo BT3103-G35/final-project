@@ -15,7 +15,7 @@
             </div>
             <div class="search-bar" v-if="this.filter == true && this.filterChoice != 'category'">
                 <input class="input-search" type="text" :placeholder="'Search by ' + this.filterChoice" v-model="searchWord" name="search">
-                <button @click="search" type="submit">Submit</button>
+                <button @click="search" type="submit">Search</button>
                 <button @click="back" type="submit">Back</button>
             </div>
             <div class="dropdown-menu" v-if="this.filter == true && this.filterChoice == 'category'">
