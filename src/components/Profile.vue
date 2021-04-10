@@ -8,9 +8,10 @@
                 <br><br>
                 <router-link to="/editprofile" tag="button-editprofile" exact>Edit Profile</router-link>
             </div>
-            <div class="bells">
+            <div class="bells-and-chat">
                 <img id="bell-img" src="https://i.postimg.cc/259ychNb/Bell.png">
                 <img id="bell-img" src="https://i.postimg.cc/HWynzrZn/No-Bell.png">
+                <img id="chat-img" src="https://i.postimg.cc/5tTMhMcG/Chat-Symbol.png" @click="goToChatList">
             </div>
             <div class="num-items">
                 <h1>You Currently Have:</h1>
@@ -123,6 +124,9 @@ export default {
         },
         redirect(user, count) {
             window.location.href="/item?user=" + user + "&count=" + count;
+        },
+        goToChat(){
+            window.location.href="/chatlist?user=" +this.currentUser.uid;
         }
     },
     data(){
@@ -195,7 +199,7 @@ img{
     border-radius: 50%;
     cursor: pointer;
 }
-.bells img{
+.bells-and-chat img{
     width: 50px;
     height: auto;
     padding: 15px;
