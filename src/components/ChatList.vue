@@ -33,8 +33,18 @@
                                                 </p>
                                                 <input style="font-size:27px; margin-left:35px; line-height:0.1" :value="data.lastMessage" :readonly=true>
                                             </div>
-                                            <div> 
+                                            <div class="item-img"> 
                                                 <img style="margin-left:80px;" class="item-img" :src="data.imageRef" @click="redirect(data.buyer, data.seller, data.count)">
+                                            </div>
+                                            <div class="buttons">
+                                                <ul>
+                                                    <li>
+                                                        <button class="chat-button" style="margin-left:100px;" @click="redirect(data.buyer, data.seller, data.count)">Go to Chat</button>
+                                                    </li>
+                                                    <li>
+                                                        <button class="chat-button" style="margin-left:100px;" @click="showPreview(data)">Show Preview</button>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -60,8 +70,18 @@
                                                 </p>
                                                 <input style="font-size:27px; margin-left:35px; line-height:0.1" :value="data.lastMessage" :readonly=true>
                                             </div>
-                                            <div> 
-                                                <img style="margin-left:300px;" class="item-img" :src="data.imageRef" @click="redirect(data.buyer, data.seller, data.count)">
+                                            <div class="item-img"> 
+                                                <img style="margin-left:80px;" class="item-img" :src="data.imageRef" @click="redirect(data.buyer, data.seller, data.count)">
+                                            </div>
+                                            <div class="buttons">
+                                                <ul>
+                                                    <li style="margin-bottom:10px;">
+                                                        <button class="chat-button" style="margin-left:100px;" @click="redirect(data.buyer, data.seller, data.count)">Go to Chat</button>
+                                                    </li>
+                                                    <li>
+                                                        <button class="chat-button" style="margin-left:100px;" @click="showPreview(data)">Show Preview</button>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -71,10 +91,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="chat-preview">
-                    <p> placeholder for chat preview </p>
+                <div class="chat-preview" v-if="preview==true">
+                    <div style="height:300px; width:450px; overflow:auto; display:flex; flex-direction: column-reverse">
+                        <ul>
+                            <li v-for="message in this.messages" v-bind:key="message.index" v-bind:class="(currentUser.uid==message.id)?'me':'other'"> 
+                                {{message.sender}} : {{ message.message}}
+                            </li>
+                        </ul> 
+                    </div>
+                    <br><br>
+                    <input style="font-size:20px; width:400px;" id="message" v-model="this.message" placeholder="Enter message..." autocomplete="off">
+                    <button style="height:29px; font-size:20px;" @click="sendMessage()" type="submit">Send</button>       
                 </div>  
-        
             </div>
         </div>
     </div>
@@ -87,13 +115,6 @@ export default {
     created() {
         this.setupFirebase();
     },
-
-    /*computed() {
-        compare:function(a,b){
-            return b.lastMessageTiming-a.lastMessageTiming;
-        }
-    },*/
-
     methods:{
         setupFirebase() {
             firebase.auth().onAuthStateChanged(user => {
@@ -109,7 +130,6 @@ export default {
                 }
             });
         },
-
         fetchItems() {
             //var storageRef = firebase.storage().ref();
             var db = firebase.firestore();
@@ -127,7 +147,7 @@ export default {
 
                             //save all the necessary data to an object, an push it into displayData so we can v-for over each object later
                             this.displayData.push({buyer:doc.data().buyer, seller:doc.data().seller, count:parseInt(doc.data().count), 
-                                    partnerName: doc.data().sellerName, itemName: doc.data().itemName, 
+                                    myName:doc.data().buyerName, partnerName: doc.data().sellerName, itemName: doc.data().itemName, 
                                             lastMessage: doc.data().lastMessage, lastMessageTiming: doc.data().lastMessageTiming,
                                                     imageRef: result.data().imageRef, chatProfilePic: result2.data().imageRef});
                         });                    
@@ -148,7 +168,7 @@ export default {
             
                         //save all the necessary data to an object, an push it into displayData so we can v-for over each object later
                         this.displayData.push({buyer:doc.data().buyer, seller:doc.data().seller, count:parseInt(doc.data().count), 
-                                partnerName: doc.data().buyerName, itemName: doc.data().itemName, 
+                                myName:doc.data().sellerName, partnerName: doc.data().buyerName, itemName: doc.data().itemName, 
                                         lastMessage: doc.data().lastMessage, lastMessageTiming: doc.data().lastMessageTiming, 
                                                 imageRef: result.data().imageRef, chatProfilePic: result2.data().imageRef});
                         });
@@ -185,6 +205,44 @@ export default {
         },
         toProfile(user){
             window.location.href="/userprofile?user=" + user;
+        },
+        sendMessage() { //upon clicking send button
+            if (document.getElementById("message").value == ''){
+                return false;
+            } else{
+                var db = firebase.firestore();
+                var d = new Date();
+                var message=document.getElementById("message").value; //get the message value
+                this.messages.push({id:this.data.buyer, sender:this.data.myName, message:message})
+                db.collection("messages").doc(this.data.buyer + '&' + this.data.seller + '&' + this.data.count).update({
+                    messages:this.messages
+                });
+                db.collection("groups").where('messagesRef', '==', this.data.buyer + '&' + this.data.seller + '&' + this.data.count).get()
+                .then((query) => {
+                    const result = query.docs[0];
+                    result.ref.update({
+                        lastMessage: message,
+                        lastMessageTiming: d.getTime(),
+                    });
+                });
+                this.message=''
+            }
+        },
+        showPreview(data){
+            this.data=data;
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0; 
+            var db = firebase.firestore();
+            this.messages=[];
+            this.preview=true;
+            db.collection('messages').doc(data.buyer+'&'+data.seller+'&'+data.count).get()
+            .then((doc) => {
+                if(doc.exists) {
+                    for(var message of doc.data().messages){
+                        this.messages.push(message);
+                    }
+                }
+            });
         }
     },
 
@@ -199,7 +257,11 @@ export default {
             //^^ contains objects of {profile picture of the person you are speaking with, name of the person you are speaking with,
                                     //item name, last sent message},
             searchedData:[],
-            selectedMessages:[]
+            selectedMessages:[],
+            preview:false,
+            messages:[],
+            message:'',
+            data:{}
         }
     }
 }
@@ -248,5 +310,35 @@ img{
 }
 .chat-preview{
     margin-left:400px;
+}
+.me{
+    float:right;
+    background: #0084ff;
+    color: #fff;
+    clear: both;
+    padding: 20px;
+    border-radius: 30px;
+    margin-bottom: 2px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size:18px;
+}
+.other{
+    background: #eee;
+    float: left;
+    clear: both;
+    padding: 20px;
+    border-radius: 30px;
+    margin-bottom: 2px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size:18px;
+}
+.chat-button{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: white;
+  background: #EC6041;
+  cursor: pointer;
+}
+button{
+    cursor: pointer;
 }
 </style>
