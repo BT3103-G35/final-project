@@ -92,7 +92,7 @@ export default {
         pressed() {
             var db = firebase.firestore();
 
-            var nameArray = this.name.split(" ");
+            /*var nameArray = this.name.split(" ");
             nameArray.push(this.name);
             this.nameKeys = nameArray;
             
@@ -102,7 +102,7 @@ export default {
             
             var notesArray = this.notes.split(" ");
             notesArray.push(this.notes);
-            this.notesKeys = notesArray;
+            this.notesKeys = notesArray;*/
             
             db.collection('marketplace').add({
                 name: this.name,
@@ -112,9 +112,9 @@ export default {
                 imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
                 user: this.currentUser.uid,
                 count: this.items.length,
-                nameKeywords: this.nameKeys,
-                detailsKeywords: this.detailKeys,
-                notesKeywords: this.notesKeys
+                //nameKeywords: this.nameKeys,
+                //detailsKeywords: this.detailKeys,
+                //notesKeywords: this.notesKeys
             });
             //let docRef = db.collection(this.currentUser.uid).doc();
             db.collection(this.currentUser.uid).add({
@@ -156,9 +156,9 @@ export default {
             itemType: '',
             items: [],
             items1: [],
-            nameKeys: [],
-            detailKeys: [],
-            notesKeys: []
+            //nameKeys: [],
+            //detailKeys: [],
+            //notesKeys: []
         }
     },
     components:{

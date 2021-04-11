@@ -66,7 +66,7 @@ export default {
         pressed() {
             var db = firebase.firestore();
             
-            var nameArray = this.newName.split(" ");
+            /*var nameArray = this.newName.split(" ");
             nameArray.push(this.newName);
             this.nameKeys = nameArray;
             
@@ -76,7 +76,7 @@ export default {
             
             var notesArray = this.newNotes.split(" ");
             notesArray.push(this.newNotes);
-            this.notesKeys = notesArray;
+            this.notesKeys = notesArray;*/
             
             db.collection('marketplace').where('user', '==', this.userID).where('count', '==', this.count).get()
             .then((query) => {
@@ -85,9 +85,9 @@ export default {
                     name: this.newName,
                     detail: this.newDetail,
                     notes: this.newNotes,
-                    nameKeywords: this.nameKeys,
-                    detailsKeywords: this.detailKeys,
-                    notesKeywords: this.notesKeys
+                    //nameKeywords: this.nameKeys,
+                    //detailsKeywords: this.detailKeys,
+                    //notesKeywords: this.notesKeys
                     //imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
                 })
             });
@@ -139,9 +139,9 @@ export default {
             count: parseInt(this.$route.query.count),
             item: [],
             deleted: 0,
-            nameKeys: [],
-            detailKeys: [],
-            notesKeys: []
+            //nameKeys: [],
+            //detailKeys: [],
+            //notesKeys: []
         }
     },
     /*components:{
