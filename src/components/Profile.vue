@@ -87,11 +87,9 @@ export default {
         fetchItems() {
             var storageRef = firebase.storage().ref();
             var db = firebase.firestore();
-            //console.log(this.currentUser)
             db.collection(this.currentUser.uid).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     let imagePath = doc.data().imageRef;
-                    //console.log(imagePath);
                     storageRef.child(imagePath).getDownloadURL().then((url) => {
                         db.collection(this.currentUser.uid).doc(doc.id).update({
                             imageRef: url
@@ -102,7 +100,6 @@ export default {
             db.collection('marketplace').get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     let imagePath = doc.data().imageRef;
-                    //console.log(imagePath);
                     storageRef.child(imagePath).getDownloadURL().then((url) => {
                         db.collection('marketplace').doc(doc.id).update({
                             imageRef: url

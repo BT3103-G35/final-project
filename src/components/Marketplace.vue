@@ -139,8 +139,6 @@ export default {
             this.searchedItems= []; //clear the previous search returns
             this.searched=true; //indicate that the user has already searched for something so dont show default marketplace
             var db = firebase.firestore();
-            console.log(this.searchWord);
-            console.log(this.filterChoice);
             db.collection('marketplace').where(this.filterChoice + 'Keywords', 'array-contains', this.searchWord).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => this.searchedItems.push(doc.data()));
             });
