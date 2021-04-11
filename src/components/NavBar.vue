@@ -10,12 +10,23 @@
               </div>
               <p>Logged in as {{ this.currentUser }}</p>
               <ul>
-                <li><router-link to="/about" exact>About</router-link></li>
-                <li><router-link to="/marketplace" exact>Marketplace</router-link></li>
                 <li><router-link to="/community" exact>Community</router-link></li>
-                <li><router-link to="/profile" exact>Profile</router-link></li>
-                <li><button @click="signOut">Sign out</button></li>
+                <li><router-link to="/marketplace" exact>Marketplace</router-link></li>
+                <li><router-link to="/about" exact>About</router-link></li>
+                
               </ul>
+              <div class="profilepic">
+                  <!--
+                    <button class="dropbtn"><img :src='this.url' id="profile-img" @click="goToProfile"></button>
+                    -->
+                    <div class="dropdown">
+                    <input type="image" :src='this.url' class="dropbtn">
+                    <div class="dropdown-content">
+                        <a><button id="signout" @click="goToProfile">Profile</button></a>
+                        <a><button id="signout" @click="signOut">Sign out</button></a>
+                    </div>
+                    </div>
+              </div>
           </nav>
 
           <nav v-else>
@@ -41,11 +52,14 @@ export default {
     name: "navi",
     mounted() {
         this.setupFirebase();
+        this.fetchProfilePic();
     },
     data() {
         return {
             loggedIn: false,
-            currentUser: false
+            currentUser: false,
+            url: false,
+            id: false
         }
     },
     methods: {
@@ -55,12 +69,24 @@ export default {
                     // User is signed in.
                     this.loggedIn = true;
                     this.currentUser = firebase.auth().currentUser.email;
+                    this.id = firebase.auth().currentUser.uid;
                 } else {
                     // No user is signed in.
                     this.loggedIn = false;
                     this.currentUser = false;
+                    this.id = false;
+
                 }
             });
+        },
+        fetchProfilePic(){
+            firebase.auth().onAuthStateChanged(user => {
+                if (user){
+                    firebase.storage().ref('users/' + user.uid + '/profile.jpg').getDownloadURL().then(imgUrl => {
+                        this.url = imgUrl
+                    })
+                }
+            })
         },
         signOut() {
             firebase
@@ -69,8 +95,11 @@ export default {
                 .then(() => {
                 this.$router.replace({ name: "login" });
                 });
+        },
+        goToProfile(){
+            window.location.href="/Profile?user=" +this.id;
         }
-    },
+    }
 }
 </script>
 
@@ -80,8 +109,14 @@ export default {
     background-color: #ffe5cc;
     height: 72px;
 }
+#profile-img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
 .wrapper{
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto
 }
 nav{
@@ -113,20 +148,60 @@ nav li:nth-last-of-type(1){
 
 nav li a{
     color: #021718;
-    /*font-family: "Poppins", sans-serif;*/
     font-size: 20px;
     text-decoration: none;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-button{
+#signout{
     border: none;
     background: none;
     color: #021718;
-    /*font-family: "Poppins", sans-serif;*/
-    font-size: 20px;
+    font-size: 15px;
     text-decoration: none;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    cursor: pointer;
 }
 
+.dropbtn {
+  background-color: #ffe5cc;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 130px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  margin-right: 50px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  height: 30px;
+}
+.dropdown-content a:hover {background-color: #ffe5cc;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #EC6041;}
+
+input{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
 
 </style>

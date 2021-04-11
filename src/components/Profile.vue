@@ -8,8 +8,8 @@
                 <router-link to="/editprofile" tag="button-editprofile" exact>Edit Profile</router-link>
             </div>
             <div class="bells-and-chat">
-                <img id="bell-img" src="https://i.postimg.cc/259ychNb/Bell.png" onclick="document.getElementById('bell-img').src = 'https://i.postimg.cc/d1s5KtqC/Bell-blue.png'; document.getElementById('nobell-img').src = 'https://i.postimg.cc/HWynzrZn/No-Bell.png'; alert('Notifications Turned On')">
-                <img id="nobell-img" src="https://i.postimg.cc/HWynzrZn/No-Bell.png" onclick="document.getElementById('nobell-img').src = 'https://i.postimg.cc/C5qgg1K7/No-Bell-blue.png'; document.getElementById('bell-img').src = 'https://i.postimg.cc/259ychNb/Bell.png'; alert('Notifications Turned Off')">
+                <img id="bell-img" src="https://i.postimg.cc/259ychNb/Bell.png" onclick="alert('Notifications Turned On')">
+                <img id="nobell-img" src="https://i.postimg.cc/HWynzrZn/No-Bell.png" onclick="alert('Notifications Turned Off')">
                 <img id="chat-img" src="https://i.postimg.cc/kGbcQnmX/Chat-Icon.png" @click="goToChatList">
             </div>
             <div class="num-items">
