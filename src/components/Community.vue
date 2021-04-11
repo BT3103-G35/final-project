@@ -100,20 +100,14 @@ export default {
             window.location.href="/UserProfile?user=" + user;
         },
         search(){
+            for (var item of this.profile){
+                if (item.name.toUpperCase().includes(this.searchWord.toUpperCase())){
+                    console.log(item.name);
+                    console.log(item.user)
+                    this.searchedItems.push(item);
+                }
+            }
 
-            //this.searchedItems= []; //clear the previous search returns
-            //this.searched=true; //indicate that the user has already searched for something so dont show default marketplace
-            var db = firebase.firestore();            
-            
-            db.collection('community').where('name', "in", this.upperFirst(this.searchWord)).get().then((querySnapshot) => {
-                querySnapshot.forEach((doc) => this.searchedItems.push(doc.data()));
-            });
-            /*
-            db.collection('community').where('name', ">=", this.searchWord).where('name', "<", this.searchWord + 'z').get().then((querySnapshot) => {
-                querySnapshot.forEach((doc) => this.searchedItems.push(doc.data()));
-            });
-            */
-            
             this.show=false;
         },
         upperFirst(word){
