@@ -59,11 +59,9 @@ export default {
         fetchItems() {
             var storageRef = firebase.storage().ref();
             var db = firebase.firestore();
-            console.log(this.currentUser)
             db.collection(this.currentUser.uid).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     let imagePath = doc.data().imageRef;
-                    console.log(imagePath);
                     storageRef.child(imagePath).getDownloadURL().then((url) => {
                         db.collection(this.currentUser.uid).doc(doc.id).update({
                             imageRef: url
@@ -74,7 +72,6 @@ export default {
             db.collection('marketplace').get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     let imagePath = doc.data().imageRef;
-                    console.log(imagePath);
                     storageRef.child(imagePath).getDownloadURL().then((url) => {
                         db.collection('marketplace').doc(doc.id).update({
                             imageRef: url
@@ -88,7 +85,6 @@ export default {
             db.collection(this.currentUser.uid).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => this.items1.push(doc))
             })
-            console.log(this.items)
         },
         onUpload(image) {
             this.image = image;
@@ -96,7 +92,7 @@ export default {
         pressed() {
             var db = firebase.firestore();
 
-            var nameArray = this.name.split(" ");
+            /*var nameArray = this.name.split(" ");
             nameArray.push(this.name);
             this.nameKeys = nameArray;
             
@@ -106,7 +102,7 @@ export default {
             
             var notesArray = this.notes.split(" ");
             notesArray.push(this.notes);
-            this.notesKeys = notesArray;
+            this.notesKeys = notesArray;*/
             
             db.collection('marketplace').add({
                 name: this.name,
@@ -116,9 +112,9 @@ export default {
                 imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
                 user: this.currentUser.uid,
                 count: this.items.length,
-                nameKeywords: this.nameKeys,
-                detailsKeywords: this.detailKeys,
-                notesKeywords: this.notesKeys
+                //nameKeywords: this.nameKeys,
+                //detailsKeywords: this.detailKeys,
+                //notesKeywords: this.notesKeys
             });
             //let docRef = db.collection(this.currentUser.uid).doc();
             db.collection(this.currentUser.uid).add({
@@ -160,9 +156,9 @@ export default {
             itemType: '',
             items: [],
             items1: [],
-            nameKeys: [],
-            detailKeys: [],
-            notesKeys: []
+            //nameKeys: [],
+            //detailKeys: [],
+            //notesKeys: []
         }
     },
     components:{

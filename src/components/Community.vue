@@ -76,7 +76,6 @@ export default {
         details(pic){
             this.info = pic;
             this.num = this.count(pic.items);
-            console.log(this.num);
         },
         check(){
             if (this.checker==true){
@@ -101,9 +100,7 @@ export default {
 
             //this.searchedItems= []; //clear the previous search returns
             //this.searched=true; //indicate that the user has already searched for something so dont show default marketplace
-            var db = firebase.firestore();
-            console.log(this.searchWord);
-            
+            var db = firebase.firestore();            
             
             db.collection('community').where('name', "in", this.upperFirst(this.searchWord)).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => this.searchedItems.push(doc.data()));

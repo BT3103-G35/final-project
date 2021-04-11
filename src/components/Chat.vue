@@ -38,7 +38,6 @@ import "firebase/firestore";
 export default {
     mounted() {
         this.setupFirebase();
-        //console.log(this.messages);
     },
 
     methods:{

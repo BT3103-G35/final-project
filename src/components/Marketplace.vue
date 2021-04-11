@@ -8,13 +8,13 @@
                 <label for="name">Name</label><br>
                 <input type="radio" id="category" name="search" value="category" v-on:click="searchFilter('category')">
                 <label for="category">Category</label><br>
-                <input type="radio" id="details" name="search" value="details" v-on:click="searchFilter('details')">
+                <input type="radio" id="details" name="search" value="details" v-on:click="searchFilter('detail')">
                 <label for="details">Details</label><br>
                 <input type="radio" id="notes" name="search" value="notes" v-on:click="searchFilter('notes')">
                 <label for="notes">Notes</label>
             </div>
             <div class="search-bar" v-if="this.filter == true && this.filterChoice != 'category'">
-                <input class="input-search" type="text" :placeholder="'Search by ' + this.filterChoice" v-model="searchWord" name="search">
+                <input class="input-search" type="text" :placeholder="'Search by ' + this.filterChoice + '...'" v-model="searchWord" name="search">
                 <button @click="search" type="submit">Search</button>
                 <button @click="back" type="submit">Back</button>
             </div>
@@ -30,7 +30,7 @@
                     <option>accessory</option>
                     <option>others</option>
                 </select>
-                <button @click="categorize()" type="submit">Submit</button>
+                <button @click="categorize()" type="submit">Search</button>
                 <button @click="back" type="submit">Back</button>
             </div>
         </div>
@@ -138,12 +138,15 @@ export default {
         search(){
             this.searchedItems= []; //clear the previous search returns
             this.searched=true; //indicate that the user has already searched for something so dont show default marketplace
-            var db = firebase.firestore();
-            console.log(this.searchWord);
-            console.log(this.filterChoice);
-            db.collection('marketplace').where(this.filterChoice + 'Keywords', 'array-contains', this.searchWord).get().then((querySnapshot) => {
+            //var db = firebase.firestore();
+            for (var item of this.items1){ //items1 contains all the 
+                if(item[this.filterChoice].toUpperCase().includes(this.searchWord.toUpperCase())){
+                    this.searchedItems.push(item);
+                }
+            }
+            /*db.collection('marketplace').where(this.filterChoice + 'Keywords', 'array-contains', this.searchWord).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => this.searchedItems.push(doc.data()));
-            });
+            });*/
         },
         categorize(){
             this.searchedItems= []; 
@@ -157,6 +160,7 @@ export default {
             this.filter = false;
             this.searched = false;
             this.categorized = false;
+            this.searchWord='';
         }
     },
 
