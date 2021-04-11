@@ -31,7 +31,7 @@
                                                 <br>
                                                 <b>{{ data.itemName }}</b>
                                                 </p>
-                                                <input style="font-size:27px; margin-left:35px; line-height:0.1" :value="data.lastMessage" :readonly=true>
+                                                <input style="font-size:27px; margin-left:35px; line-height:0.1" v-model="data.lastMessage" :readonly=true>
                                             </div>
                                             <div class="item-img"> 
                                                 <img style="margin-left:80px;" class="item-img" :src="data.imageRef" @click="redirect(data.buyer, data.seller, data.count)">
@@ -39,7 +39,7 @@
                                             <div class="buttons">
                                                 <ul>
                                                     <li>
-                                                        <button class="chat-button" style="margin-left:100px;" @click="redirect(data.buyer, data.seller, data.count)">Go to Chat</button>
+                                                        <button class="chat-button" style="margin-left:100px;" @click="redirect(data.buyer, data.seller, data.count)">Go to full Chat Page</button>
                                                     </li>
                                                     <li>
                                                         <button class="chat-button" style="margin-left:100px;" @click="showPreview(data)">Show Preview</button>
@@ -68,7 +68,7 @@
                                                 <br>
                                                 <b>{{ data.itemName }}</b>
                                                 </p>
-                                                <input style="font-size:27px; margin-left:35px; line-height:0.1" :value="data.lastMessage" :readonly=true>
+                                                <input style="font-size:27px; margin-left:35px; line-height:0.1" v-model="data.lastMessage" :readonly=true>
                                             </div>
                                             <div class="item-img"> 
                                                 <img style="margin-left:80px;" class="item-img" :src="data.imageRef" @click="redirect(data.buyer, data.seller, data.count)">
@@ -76,7 +76,7 @@
                                             <div class="buttons">
                                                 <ul>
                                                     <li style="margin-bottom:10px;">
-                                                        <button class="chat-button" style="margin-left:100px;" @click="redirect(data.buyer, data.seller, data.count)">Go to Chat</button>
+                                                        <button class="chat-button" style="margin-left:100px;" @click="redirect(data.buyer, data.seller, data.count)">Go to full Chat Page</button>
                                                     </li>
                                                     <li>
                                                         <button class="chat-button" style="margin-left:100px;" @click="showPreview(data)">Show Preview</button>
@@ -213,11 +213,16 @@ export default {
                 var db = firebase.firestore();
                 var d = new Date();
                 var message=document.getElementById("message").value; //get the message value
-                this.messages.push({id:this.data.buyer, sender:this.data.myName, message:message})
-                db.collection("messages").doc(this.data.buyer + '&' + this.data.seller + '&' + this.data.count).update({
+                if(this.currentUser.uid==this.chosenData.buyer){
+                    this.messages.push({id:this.chosenData.buyer, sender:this.chosenData.myName, message:message})
+                }
+                else{
+                    this.messages.push({id:this.chosenData.seller, sender:this.chosenData.myName, message:message})
+                }
+                db.collection("messages").doc(this.chosenData.buyer + '&' + this.chosenData.seller + '&' + this.chosenData.count).update({
                     messages:this.messages
                 });
-                db.collection("groups").where('messagesRef', '==', this.data.buyer + '&' + this.data.seller + '&' + this.data.count).get()
+                db.collection("groups").where('messagesRef', '==', this.chosenData.buyer + '&' + this.chosenData.seller + '&' + this.chosenData.count).get()
                 .then((query) => {
                     const result = query.docs[0];
                     result.ref.update({
@@ -226,10 +231,15 @@ export default {
                     });
                 });
                 this.message=''
+                for(var data of this.displayData){
+                    if(data.buyer==this.chosenData.buyer && data.seller==this.chosenData.seller && data.count==this.chosenData.count){
+                        data.lastMessage=message;
+                    }
+                }
             }
         },
         showPreview(data){
-            this.data=data;
+            this.chosenData=data;
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0; 
             var db = firebase.firestore();
@@ -261,7 +271,7 @@ export default {
             preview:false,
             messages:[],
             message:'',
-            data:{}
+            chosenData:{}
         }
     }
 }
