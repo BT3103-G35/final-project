@@ -11,9 +11,9 @@
 
     <div v-if="show">
         <ul>
-            <li v-for="pic in profile" v-bind:key="pic.index">
-                <img id="main-page-img" v-bind:src="pic.imageRef" v-on:click="redirect(pic.user)" v-if="pic.user!=currentUser.uid">
-                <p v-if="pic.user!=currentUser.uid">{{pic.name}}</p>
+            <li v-for="pic in profile" v-bind:key="pic.index" >
+                <img id="main-page-img" v-bind:src="pic.imageRef" v-on:click="redirect(pic.user)">
+                <p><b>{{pic.name}}</b></p>
             </li>
         </ul>
     </div>
@@ -35,6 +35,7 @@
 </template>
 
 <script>
+
 import firebase from "firebase/app";
 import "firebase/firestore";
 
@@ -68,8 +69,10 @@ export default {
             database.collection("community").get().then((SnapShot)=>{
                 let obj={}
                 SnapShot.forEach(doc=>{
+                    if (doc.data().user != this.currentUser.uid){
                     obj=doc.data()
                     this.profile.push(obj)
+                    }
                 })
             })
         },
@@ -169,7 +172,7 @@ ul{
     list-style-type: none;
 }
 li {
-    margin: 30px;
+    padding: 30px;
 }
 img{
     width: 300px;
@@ -179,6 +182,7 @@ img{
 }
 p{
     text-align: center;
+    font-size: 20px;
 }
 .input-search{
     width:400px;
