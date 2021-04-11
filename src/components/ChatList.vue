@@ -213,11 +213,16 @@ export default {
                 var db = firebase.firestore();
                 var d = new Date();
                 var message=document.getElementById("message").value; //get the message value
-                this.messages.push({id:this.data.buyer, sender:this.data.myName, message:message})
-                db.collection("messages").doc(this.data.buyer + '&' + this.data.seller + '&' + this.data.count).update({
+                if(this.currentUser.uid==this.chosenData.buyer){
+                    this.messages.push({id:this.chosenData.buyer, sender:this.chosenData.myName, message:message})
+                }
+                else{
+                    this.messages.push({id:this.chosenData.seller, sender:this.chosenData.myName, message:message})
+                }
+                db.collection("messages").doc(this.chosenData.buyer + '&' + this.chosenData.seller + '&' + this.chosenData.count).update({
                     messages:this.messages
                 });
-                db.collection("groups").where('messagesRef', '==', this.data.buyer + '&' + this.data.seller + '&' + this.data.count).get()
+                db.collection("groups").where('messagesRef', '==', this.chosenData.buyer + '&' + this.chosenData.seller + '&' + this.chosenData.count).get()
                 .then((query) => {
                     const result = query.docs[0];
                     result.ref.update({
@@ -227,14 +232,14 @@ export default {
                 });
                 this.message=''
                 for(var data of this.displayData){
-                    if(data.buyer==this.data.buyer && data.seller==this.data.seller && data.count==this.data.count){
+                    if(data.buyer==this.chosenData.buyer && data.seller==this.chosenData.seller && data.count==this.chosenData.count){
                         data.lastMessage=message;
                     }
                 }
             }
         },
         showPreview(data){
-            this.data=data;
+            this.chosenData=data;
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0; 
             var db = firebase.firestore();
@@ -266,7 +271,7 @@ export default {
             preview:false,
             messages:[],
             message:'',
-            data:{}
+            chosenData:{}
         }
     }
 }
