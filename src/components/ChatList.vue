@@ -31,7 +31,7 @@
                                                 <br>
                                                 <b>{{ data.itemName }}</b>
                                                 </p>
-                                                <input style="font-size:27px; margin-left:35px; line-height:0.1" :value="data.lastMessage" :readonly=true>
+                                                <input style="font-size:27px; margin-left:35px; line-height:0.1" v-model="data.lastMessage" :readonly=true>
                                             </div>
                                             <div class="item-img"> 
                                                 <img style="margin-left:80px;" class="item-img" :src="data.imageRef" @click="redirect(data.buyer, data.seller, data.count)">
@@ -39,7 +39,7 @@
                                             <div class="buttons">
                                                 <ul>
                                                     <li>
-                                                        <button class="chat-button" style="margin-left:100px;" @click="redirect(data.buyer, data.seller, data.count)">Go to Chat</button>
+                                                        <button class="chat-button" style="margin-left:100px;" @click="redirect(data.buyer, data.seller, data.count)">Go to full Chat Page</button>
                                                     </li>
                                                     <li>
                                                         <button class="chat-button" style="margin-left:100px;" @click="showPreview(data)">Show Preview</button>
@@ -68,7 +68,7 @@
                                                 <br>
                                                 <b>{{ data.itemName }}</b>
                                                 </p>
-                                                <input style="font-size:27px; margin-left:35px; line-height:0.1" :value="data.lastMessage" :readonly=true>
+                                                <input style="font-size:27px; margin-left:35px; line-height:0.1" v-model="data.lastMessage" :readonly=true>
                                             </div>
                                             <div class="item-img"> 
                                                 <img style="margin-left:80px;" class="item-img" :src="data.imageRef" @click="redirect(data.buyer, data.seller, data.count)">
@@ -76,7 +76,7 @@
                                             <div class="buttons">
                                                 <ul>
                                                     <li style="margin-bottom:10px;">
-                                                        <button class="chat-button" style="margin-left:100px;" @click="redirect(data.buyer, data.seller, data.count)">Go to Chat</button>
+                                                        <button class="chat-button" style="margin-left:100px;" @click="redirect(data.buyer, data.seller, data.count)">Go to full Chat Page</button>
                                                     </li>
                                                     <li>
                                                         <button class="chat-button" style="margin-left:100px;" @click="showPreview(data)">Show Preview</button>
@@ -226,6 +226,11 @@ export default {
                     });
                 });
                 this.message=''
+                for(var data of this.displayData){
+                    if(data.buyer==this.data.buyer && data.seller==this.data.seller && data.count==this.data.count){
+                        data.lastMessage=message;
+                    }
+                }
             }
         },
         showPreview(data){
