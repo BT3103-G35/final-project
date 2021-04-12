@@ -6,7 +6,7 @@
           -->
           <nav v-if="loggedIn">
               <div class="logo">
-                  Ainran
+                  <a><img src="https://i.ibb.co/mDyY1hb/Ainran-dp-background.jpg" alt="Ainran-dp-background" border="0" width = "116px" height = "61px"></a>
               </div>
               <p>Logged in as {{ this.currentUser }}</p>
               <ul>
