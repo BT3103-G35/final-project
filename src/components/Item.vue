@@ -7,6 +7,12 @@
             <textarea name="detail" rows="3" cols="60" :value=this.item[0].detail :readonly="true"></textarea><br><br>
             <label for="notes">Notes:</label><br>
             <textarea name="notes" rows="6" cols="60" :value=this.item[0].notes :readonly="true"></textarea><br><br>
+            <div v-if="this.item[0].tradeable==1">
+                <p>This item is up for trade</p>
+            </div>
+            <div v-else>
+                <p>This item is not up for trade</p>
+            </div>
             <button v-if="this.userID != this.currentUser.uid" @click="goToLister">Go to lister's profile</button>
             <button v-if="this.userID != this.currentUser.uid && this.wishlist == 1" @click="removeFromWishlist">Remove from Wishlist</button>
             <button v-if="this.userID != this.currentUser.uid && this.wishlist == 0" @click="addToWishlist">Add To Wishlist!</button>
@@ -16,7 +22,7 @@
         </div>
         <div class="item-image">
             <img :src="this.item[0].imageRef" contain height="500px" width="500px">
-            <div id="app">
+            <!--div id="app">
                 <twitter-button
                     description="Hey check out this cool item I found on Ainran!"
                     btnText = "Share to Twitter!"
@@ -29,7 +35,7 @@
                     description="Hey check out this cool item I found on Ainran!"
                     btnText = "Share to Telegram!"
                 />
-                </div>
+                </div-->
         </div>
         
     </div>
@@ -37,15 +43,15 @@
 
 <script>
 import firebase from "firebase/app";
-import TwitterButton from "vue-share-buttons/src/components/TwitterButton";
+/*import TwitterButton from "vue-share-buttons/src/components/TwitterButton";
 import FacebookButton from "vue-share-buttons/src/components/FacebookButton";
-import TelegramButton from "vue-share-buttons/src/components/TelegramButton";
+import TelegramButton from "vue-share-buttons/src/components/TelegramButton";*/
 export default {
-    components: {
+    /*components: {
         TwitterButton,
         FacebookButton,
         TelegramButton,
-    },
+    },*/
     mounted() {
         this.setupFirebase();
     },
@@ -133,7 +139,8 @@ export default {
             userID: this.$route.query.user,
             count: parseInt(this.$route.query.count),
             item: [],
-            wishlist: 1
+            wishlist: 1,
+            itemLister:[]
         }
     }
 }
