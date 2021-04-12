@@ -23,6 +23,7 @@
                     <input type="image" :src='this.url' class="dropbtn">
                     <div class="dropdown-content">
                         <a><button id="signout" @click="goToProfile">Profile</button></a>
+                        <a><button id="signout" @click="goToWishList">WishList</button></a>
                         <a><button id="signout" @click="signOut">Sign out</button></a>
                     </div>
                     </div>
@@ -98,6 +99,9 @@ export default {
         },
         goToProfile(){
             window.location.href="/Profile?user=" +this.id;
+        },
+        goToWishList(){
+            window.location.href="/wishlist?user=" +this.id;
         }
     }
 }
@@ -147,6 +151,12 @@ nav li:nth-last-of-type(1){
 }
 
 nav li a{
+    color: #021718;
+    font-size: 20px;
+    text-decoration: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+p{
     color: #021718;
     font-size: 20px;
     text-decoration: none;
@@ -202,6 +212,9 @@ input{
     height: 50px;
     border-radius: 50%;
     cursor: pointer;
+}
+button{
+    width: 100px;
 }
 
 </style>
