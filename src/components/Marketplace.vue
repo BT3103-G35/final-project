@@ -5,13 +5,15 @@
             <div class="search-options" v-if="this.filter == false">
                 <h2> Search by which field? </h2>
                 <input type="radio" id="name" name="search" value="name" v-on:click="searchFilter('name')">
-                <label for="name">Name</label><br>
+                <label for="name">Name</label>
                 <input type="radio" id="category" name="search" value="category" v-on:click="searchFilter('category')">
-                <label for="category">Category</label><br>
+                <label for="category">Category</label>
                 <input type="radio" id="details" name="search" value="details" v-on:click="searchFilter('detail')">
-                <label for="details">Details</label><br>
+                <label for="details">Details</label>
                 <input type="radio" id="notes" name="search" value="notes" v-on:click="searchFilter('notes')">
                 <label for="notes">Notes</label>
+                <input type="radio" id="tradeable" name="search" value="tradeable" v-on:click="filterTradeNow()">
+                <label for="tradeable">Up-For-Trade</label>
             </div>
             <div class="search-bar" v-if="this.filter == true && this.filterChoice != 'category'">
                 <input class="input-search" type="text" :placeholder="'Search by ' + this.filterChoice + '...'" v-model="searchWord" name="search">
@@ -138,21 +140,25 @@ export default {
         search(){
             this.searchedItems= []; //clear the previous search returns
             this.searched=true; //indicate that the user has already searched for something so dont show default marketplace
-            //var db = firebase.firestore();
             for (var item of this.items1){ //items1 contains all the 
                 if(item[this.filterChoice].toUpperCase().includes(this.searchWord.toUpperCase())){
                     this.searchedItems.push(item);
                 }
             }
-            /*db.collection('marketplace').where(this.filterChoice + 'Keywords', 'array-contains', this.searchWord).get().then((querySnapshot) => {
-                querySnapshot.forEach((doc) => this.searchedItems.push(doc.data()));
-            });*/
+        },
+        filterTradeNow(){
+            this.searchedItems= [];
+            this.searched = true;
+            var db = firebase.firestore();
+            db.collection('marketplace').where('tradeable', '==', 1).get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => this.searchedItems.push(doc.data()))
+            });
         },
         categorize(){
             this.searchedItems= []; 
             this.categorized=true;
             var db = firebase.firestore();
-            db.collection('marketplace').where("category", "==", this.chosenCategory).get().then((querySnapshot) => {
+            db.collection('marketplace').where('category', '==', this.chosenCategory).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => this.searchedItems.push(doc.data()));
             });
         },
@@ -221,8 +227,13 @@ p{
     max-width: 300px;
 
 }
-label{
+label, input{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
+    font-size: 22px;
+    margin: 0 5px 0 5px;
+}
+select{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 22px;
 }
 </style>

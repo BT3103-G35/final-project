@@ -4,9 +4,6 @@
             <br><br><br><br>
             <h1> What kind of {{ this.type }} is this? </h1>
             <br>
-            <!--div id="types">
-
-            </div-->
             <form @submit.prevent="pressed">
                 <label for="name">Name*:</label><br>
                 <input type="text" id="name" name="name" size="59" placeholder="What would you call this apparel?" v-model="name" required><br><br>
