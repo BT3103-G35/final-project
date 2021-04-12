@@ -4,18 +4,14 @@
             <br><br><br><br>
             <h1> What kind of {{ this.type }} is this? </h1>
             <br>
-            <div id="types" v-if="this.type=='footwear'">
+            <!-- <div id="types" v-if="this.type=='footwear'">
                 <ul style="list-style-type:none;">
                     <li><img src="https://i.postimg.cc/rFPmdQSR/Canvas-Low-Sneakers.png" class="img" v-on:click="chooseType('Canvas Low Sneakers')"></li>
                     <li><img src="https://i.postimg.cc/vBSC2z6V/Hiking-Sneakers.png" class="img" v-on:click="chooseType('Hiking Sneakers')"></li>
                     <li><img src="https://i.postimg.cc/9MKCwVbK/Old-Schools.png" class="img" v-on:click="chooseType('Old Schools')"></li>
                     <li><img src="https://i.postimg.cc/vZqjZh3S/Athletic-Sneakers.png" class="img" v-on:click="chooseType('Athletic Sports Sneakers')"></li>
                 </ul>
-            </div>
-        </div>
-        <div class="upload-image">
-            <upload align="center" v-on:upload="onUpload"></upload>
-            <br><br><br><br>
+            </div> -->
             <form @submit.prevent="pressed">
                 <label for="name">Name*:</label><br>
                 <input type="text" id="name" name="name" size="59" v-model="name" required><br><br>
@@ -25,8 +21,9 @@
                 <textarea name="notes" rows="6" cols="60" v-model="notes" required></textarea><br><br>
                 <button type="submit">Add</button>
             </form>
-
-    
+        </div>
+        <div class="upload-image">
+            <upload align="center" v-on:upload="onUpload"></upload>
         </div>
     </div>
 </template>
@@ -171,7 +168,10 @@ export default {
 h1{
     text-decoration: underline #EC6041;
     font-size: 30px;
-    margin-left: 70px;
+    margin-left: 100px;
+}
+form{
+    margin-left: 100px;
 }
 .additems-container{
     font-size:25px;
@@ -182,8 +182,8 @@ h1{
     height:1000px;
 }
 .upload-image{
-    margin-right: 145px;
-    margin-top: 50px;
+    margin-right: 200px;
+    margin-top: 200px;
 }
 
 .search-bar{

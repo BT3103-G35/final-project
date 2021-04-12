@@ -208,6 +208,11 @@ img{
     height:30px;
     font-size:20px;
 }
+.dropdown-menu select{
+    width:400px;
+    height:30px;
+    font-size:20px;
+}
 button{
     height:33px;
     font-size:20px;
