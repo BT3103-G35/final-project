@@ -16,18 +16,17 @@
                 </div>
             </header>
             <div class="social-icons">
-                <h2>Stay In Touch</h2>
-                <img id="insta" src="https://i.postimg.cc/9F6LHV8Q/insta.jpg">
-                <img id="fb" src="https://i.postimg.cc/VkPWHgvS/fb.jpg">
-                <img id="email" src="https://i.postimg.cc/6QYVqN0R/email.jpg">
-                <twitter-button
-                    shareUrl="document.location.href"
-                    title = "Find out about Ainran!"
-                    shareDescription="Your online wardrobe organizer"/>
-                <facebook-button
-                    shareUrl="document.location.href"
-                    title = "Find out about Ainran!"
-                    shareDescription="Your online wardrobe organizer"/>
+            <h2>Stay In Touch</h2>
+                
+                <a href = "https://www.instagram.com/ainran_your_online_wardrobe/">
+                    <img id="insta" src="https://i.postimg.cc/9F6LHV8Q/insta.jpg">
+                </a>
+                <a href = "https://twitter.com/Ainran6">
+                    <img id="twitter" src="https://cdn.cms-twdigitalassets.com/content/dam/help-twitter/twitter-logo.png.twimg.768.png">
+                </a>
+                <a href="mailto:bt3103g35@gmail.com">
+                    <img id="email" src="https://i.postimg.cc/6QYVqN0R/email.jpg">
+                </a>
             </div>
         </div>
     </div>
@@ -36,9 +35,6 @@
 
 
 <script>
-//import TwitterButton from "vue-share-buttons/src/components/TwitterButton";
-//import FacebookButton from "vue-share-buttons/src/components/FacebookButton";
-
 export default {
 
 }
@@ -96,6 +92,10 @@ h2{
 }
 #insta{
     margin-left: 30px;
+}
+#twitter{
+    height: 45px;
+    width: 45px;
 }
 #fb{
     height: 45px;
