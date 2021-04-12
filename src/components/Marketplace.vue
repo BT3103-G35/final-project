@@ -218,6 +218,7 @@ button{
 }
 p{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    max-width: 300px;
 
 }
 label{
