@@ -13,7 +13,6 @@
                 <li><router-link to="/community" exact>Community</router-link></li>
                 <li><router-link to="/marketplace" exact>Marketplace</router-link></li>
                 <li><router-link to="/about" exact>About</router-link></li>
-                
               </ul>
               <div class="profilepic">
                   <!--

@@ -319,7 +319,7 @@ img{
     border-radius: 50%;
 }
 .chat-preview{
-    margin-left:400px;
+    margin-left:20%;
 }
 .me{
     float:right;
@@ -347,6 +347,7 @@ img{
   color: white;
   background: #EC6041;
   cursor: pointer;
+  width: 200px;
 }
 button{
     cursor: pointer;

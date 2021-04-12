@@ -29,8 +29,8 @@
             <div class="filter-bars">
                 <br><br>
                     <input class="input-search" type="text" :placeholder="'Search item name'" v-model="searchWord">
-                    <button @click="search" type="submit" v-if="show">Search</button>
-                    <button @click="back" type="submit" v-if="!show">Back</button>
+                    <button @click="search" type="submit">Search</button>
+                    <button @click="back" type="submit">Back</button>
                     <span></span>
                     <select class="dropdown" v-model="chosenCategory">
                         <option disabled value="">Choose a category</option>
@@ -43,8 +43,8 @@
                         <option>accessory</option>
                         <option>others</option>
                     </select>
-                    <button @click="categorize()" type="submit" v-if="show">Search</button>
-                    <button @click="back" type="submit" v-if="!show">Back</button>
+                    <button @click="categorize()" type="submit">Search</button>
+                    <button @click="back" type="submit">Back</button>
                 <br><br>
             </div>
             <div v-if="!this.searched">
@@ -174,7 +174,6 @@ export default {
                     this.searchedItems.push(item);
                 }
             }
-            this.show=false;
         },
         categorize(){
             this.searchedItems= []; 
@@ -184,13 +183,11 @@ export default {
                     this.searchedItems.push(item);
                 }
             }
-            this.show=false;
         },
         back(){
             this.searched=false;
             this.searchWord='';
             this.chosenCategory='';
-            this.show=true;
         }
     },
     data(){
@@ -205,7 +202,6 @@ export default {
             searchWord: '',
             filterChoice: 'name',
             chosenCategory: '',
-            show: true,
         }
     }
 }
