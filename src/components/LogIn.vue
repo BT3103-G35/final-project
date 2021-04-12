@@ -11,11 +11,9 @@
                     <input type="email" size="65" v-model="email" required><br><br>
                     <label for="password">Password*:</label><br>
                     <input type="password" size="65" v-model="password" required><br><br>
-                    <button id="forgot-password" @click="resetPassword">Forgot password?</button><br><br>
                     <button type="submit">Log in</button><br><br>
                     <div class="error" v-if="error">{{error.message}}</div>
-
-                    
+                    <button id="forgot-password" @click="resetPassword">Forgot password?</button><br><br>
             </form>
 
             <div class="img">
