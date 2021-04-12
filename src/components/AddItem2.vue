@@ -91,7 +91,8 @@ export default {
         },
         pressed() {
             if (!this.image) {
-                alert("Please upload an image")
+                alert("Please upload an image!")
+                return
             }
             var db = firebase.firestore();
 
