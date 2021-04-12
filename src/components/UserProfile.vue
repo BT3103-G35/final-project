@@ -18,8 +18,8 @@
                 <div class="filter-bars">
                     <br><br>
                     <input class="input-search" type="text" :placeholder="'Search item name'" v-model="searchWord">
-                    <button @click="search" type="submit">Search</button>
-                    <button @click="back" type="submit">Back</button>
+                    <button @click="search" type="submit" v-if="show">Search</button>
+                    <button @click="back" type="submit" v-if="!show">Back</button>
                     <span></span>
                     <select class="dropdown" v-model="chosenCategory">
                         <option disabled value="">Choose a category</option>
@@ -32,8 +32,8 @@
                         <option>accessory</option>
                         <option>others</option>
                     </select>
-                    <button @click="categorize()" type="submit">Search</button>
-                    <button @click="back" type="submit">Back</button>
+                    <button @click="categorize()" type="submit" v-if="show">Search</button>
+                    <button @click="back" type="submit" v-if="!show">Back</button>
                 </div>
                 <br><br>
                 <div id="items" v-if="!this.searched">
@@ -119,6 +119,7 @@ export default {
                     this.searchedItems.push(item);
                 }
             }
+            this.show=false;
         },
         categorize(){
             this.searchedItems= []; 
@@ -128,11 +129,13 @@ export default {
                     this.searchedItems.push(item);
                 }
             }
+            this.show=false;
         },
         back(){
             this.searched=false;
             this.searchWord='';
             this.chosenCategory='';
+            this.show=true;
         }
     },
     data(){
@@ -150,6 +153,7 @@ export default {
             searchedItems: [],
             searchWord: '',
             chosenCategory: '',
+            show: true,
         }
     }
 }
@@ -182,13 +186,12 @@ h1{
     width:200px;
     height:25px;
     font-size:20px;
-    margin-left: -40px;
 }
 .dropdown{
     width:200px;
     height:30px;
     font-size:20px;
-    margin-left: 40px;
+    margin-left: 80px;
 }
 .filter-bars button{
     background-color:lightgray;

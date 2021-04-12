@@ -22,7 +22,8 @@
                         <button @click="removeImage()" v-if="this.image">Remove image</button>
                         -->
                         
-                        <img :src="this.image" class='ui-image' id='img'>
+                        <img :src="this.image" class='ui-image' v-if="this.image">
+                        <br><br>
                         <button type="submit" id="submit-btn">SIGN UP</button>
                 </form>
 
@@ -114,11 +115,11 @@ export default {
     align-items: center;
     justify-content: space-between;
 }
-img{
+.wrapper img{
     width: 578px;
     height: 600px;
-    margin-left: 100px;
-    margin-top: 30px;
+    margin-left: 80%;
+    margin-top: 0%;
 }
 h1{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -126,8 +127,8 @@ h1{
 }
 .content{
     text-align: left;
-    margin-left: 50px;
-    margin-top: -80px;
+    margin-left: 80%;
+    margin-top: 0%;
     width: 471px;
     height: 500px;
     
@@ -148,7 +149,7 @@ p{
     color: red;
     font-size: 18px;
 }
-#img{
+.content img{
     width: 150px;
     height: 150px;
 }
