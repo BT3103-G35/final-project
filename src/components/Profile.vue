@@ -312,6 +312,9 @@ ul{
     list-style: none;
     flex-wrap: wrap;
 }
+li {
+    padding: 10px;
+}
 .item-container img{
     width: 300px;
     height: 300px;
