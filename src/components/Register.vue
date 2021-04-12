@@ -22,7 +22,8 @@
                         <button @click="removeImage()" v-if="this.image">Remove image</button>
                         -->
                         
-                        <img :src="this.image" class='ui-image' id='img'>
+                        <img :src="this.image" class='ui-image' id='img' v-if="this.image">
+                        <br><br>
                         <button type="submit" id="submit-btn">SIGN UP</button>
                 </form>
 
