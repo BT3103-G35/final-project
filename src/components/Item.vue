@@ -1,12 +1,23 @@
 <template>
     <div class="item-container">
         <div class="item-information">
+            <div style="display:flex;">
+                <div style="width:35%;">
+                    <img class="profile-img" style="margin-left:225px;" :src="this.itemLister[0].imageRef">
+                </div>
+                <div>
+                    <br>
+                    <span> <b>Lister:  </b></span>
+                    <span style="font-weight:normal;">{{ this.itemLister[0].name }}</span>
+                </div> 
+            </div>
+            <br><br>
             <label for="name">Name:</label><br>
             <input type="text" id="name" name="name" size="60" :value=this.item[0].name :readonly="true"><br><br>
             <label for="detail">Details:</label><br>
-            <textarea name="detail" rows="3" cols="60" :value=this.item[0].detail :readonly="true"></textarea><br><br>
+            <textarea name="detail" rows="3" cols="57" :value=this.item[0].detail :readonly="true"></textarea><br><br>
             <label for="notes">Notes:</label><br>
-            <textarea name="notes" rows="6" cols="60" :value=this.item[0].notes :readonly="true"></textarea><br><br>
+            <textarea name="notes" rows="6" cols="57" :value=this.item[0].notes :readonly="true"></textarea><br>
             <div v-if="this.item[0].tradeable==1">
                 <p>This item is up for trade</p>
             </div>
@@ -16,9 +27,9 @@
             <button v-if="this.userID != this.currentUser.uid" @click="goToLister">Go to lister's profile</button>
             <button v-if="this.userID != this.currentUser.uid && this.wishlist == 1" @click="removeFromWishlist">Remove from Wishlist</button>
             <button v-if="this.userID != this.currentUser.uid && this.wishlist == 0" @click="addToWishlist">Add To Wishlist!</button>
+            <button v-if="this.userID == this.currentUser.uid" @click="edit">Edit your item!</button>
             <br>
             <button id="chat" v-if="this.userID != this.currentUser.uid" @click="goToChat">Send the lister a message!</button>
-            <button v-if="this.userID == this.currentUser.uid" @click="edit">Edit your item!</button>
         </div>
         <div class="item-image">
             <img :src="this.item[0].imageRef" contain height="500px" width="500px">
@@ -80,14 +91,19 @@ export default {
             });
             db.collection(this.currentUser.uid).where('user', '==', this.userID).where('count', '==', this.count)
             .where('wishlist', '==', true).get()
-                .then((query) => {
-                    var result = query.docs.length;
-                    if(result == 0) { //no items that match this which are in the wishlist
-                        this.wishlist = 0; //0 means not in wishlist
-                    } else {
-                        this.wishlist = 1; //else in the wishlist
-                    }
-                })
+            .then((query) => {
+                var result = query.docs.length;
+                if(result == 0) { //no items that match this which are in the wishlist
+                    this.wishlist = 0; //0 means not in wishlist
+                } else {
+                    this.wishlist = 1; //else in the wishlist
+                }
+            });
+            db.collection('community').where('user', '==', this.userID).get()
+            .then((query) => {
+                const result = query.docs[0];
+                this.itemLister.push(result.data());
+            })
         },
         addToWishlist() {
             var db = firebase.firestore();
@@ -149,7 +165,7 @@ export default {
 <style scoped>
 .item-container{
     display: flex;
-    margin-top: 150px;
+    margin-top: 75px;
     font-weight: bold;
     font-size: 25px;
 }
@@ -180,12 +196,17 @@ button{
     width: 250px;
     margin: 10px;
     padding: 14px 30px;
-    font-size: 20px;
+    font-size: 25px;
     cursor: pointer;
 }
 #chat{
     background:black;
     box-shadow: 0px 0px 0px, 0px 0px 0px;
     width: 280px;
+}
+.profile-img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
 }
 </style>
