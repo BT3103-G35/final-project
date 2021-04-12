@@ -34,7 +34,7 @@
                                                 <input style="font-size:27px; margin-left:35px; line-height:0.1" v-model="data.lastMessage" :readonly=true>
                                             </div>
                                             <div class="item-img"> 
-                                                <img style="margin-left:80px;" class="item-img" :src="data.imageRef" @click="redirect(data.buyer, data.seller, data.count)">
+                                                <img style="margin-left:80px;" class="item-img" :src="data.imageRef">
                                             </div>
                                             <div class="buttons">
                                                 <ul>
@@ -71,7 +71,7 @@
                                                 <input style="font-size:27px; margin-left:35px; line-height:0.1" v-model="data.lastMessage" :readonly=true>
                                             </div>
                                             <div class="item-img"> 
-                                                <img style="margin-left:80px;" class="item-img" :src="data.imageRef" @click="redirect(data.buyer, data.seller, data.count)">
+                                                <img style="margin-left:80px;" class="item-img" :src="data.imageRef">
                                             </div>
                                             <div class="buttons">
                                                 <ul>
@@ -162,7 +162,7 @@ export default {
                     .get().then((query) => {
                         const result = query.docs[0];
 
-                        //user is a seller, so retrieve dp of the buyer and save it to a value
+                        //user is a seller, so retrieve dp of the buyer
                         db.collection('community').where('user', '==', doc.data().buyer).get().then((query) => {
                             const result2 = query.docs[0]
             
@@ -175,16 +175,6 @@ export default {
                     });
                 });
             });
-            /*this.displayData.sort(function(a,b) {
-                if(a.lastMessageTiming < b.lastMessageTiming) {
-                    return -1;
-                }
-                if(a.lastMessageTiming > b.lastMessageTiming) {
-                    return 1;
-                }
-                return 0;
-                return b.lastMessageTiming-a.lastMessageTiming
-            });*/
         },
         back(){ 
             this.searched = false;
