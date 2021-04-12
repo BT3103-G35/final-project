@@ -8,28 +8,40 @@
                 <div>
                     <br>
                     <span> <b>Lister:  </b></span>
-                    <span style="font-weight:normal;">{{ this.itemLister[0].name }}</span>
+                    <span style="font-weight:normal; text-decoration: underline #EC6041;">{{ this.itemLister[0].name }}</span>
+                    <br>
+                    <span style="font-weight:normal;" v-if="this.userID == currentUser.uid">(oh look, its you!)</span>
                 </div> 
             </div>
-            <br><br>
+            <br>
             <label for="name">Name:</label><br>
             <input type="text" id="name" name="name" size="60" :value=this.item[0].name :readonly="true"><br><br>
             <label for="detail">Details:</label><br>
             <textarea name="detail" rows="3" cols="57" :value=this.item[0].detail :readonly="true"></textarea><br><br>
             <label for="notes">Notes:</label><br>
             <textarea name="notes" rows="6" cols="57" :value=this.item[0].notes :readonly="true"></textarea><br>
-            <div v-if="this.item[0].tradeable==1">
-                <p>This item is up for trade</p>
+            <div v-if="this.item[0].tradeable==1" style="display:flex;">
+                <div style="margin-left:415px;">
+                    <p style="font-size:23px;">This item is up for trade</p>
+                </div>
+                <div style="margin-top:10px;">
+                    <img class="trade-indicator" src="https://i.postimg.cc/jSVLLXFY/Green-Sign.png" @click="goToChatList">
+                </div>
             </div>
-            <div v-else>
-                <p>This item is not up for trade</p>
+            <div v-else style="display:flex;">
+                <div style="margin-left:397px;">
+                    <p style="font-size:23px;">This item is not up for trade</p>
+                </div>
+                <div style="margin-top:10px;">
+                    <img class="trade-indicator" src="https://i.postimg.cc/jj3WdbVZ/Red-Sign.png" @click="goToChatList">
+                </div>
             </div>
-            <button v-if="this.userID != this.currentUser.uid" @click="goToLister">Go to lister's profile</button>
+            <button v-if="this.userID != this.currentUser.uid" @click="goToLister">See lister's profile</button>
             <button v-if="this.userID != this.currentUser.uid && this.wishlist == 1" @click="removeFromWishlist">Remove from Wishlist</button>
             <button v-if="this.userID != this.currentUser.uid && this.wishlist == 0" @click="addToWishlist">Add To Wishlist!</button>
             <button v-if="this.userID == this.currentUser.uid" @click="edit">Edit your item!</button>
             <br>
-            <button id="chat" v-if="this.userID != this.currentUser.uid" @click="goToChat">Send the lister a message!</button>
+            <button style="width:400px; padding:10px 10px;" id="chat" v-if="this.userID != this.currentUser.uid" @click="goToChat">Send the lister a message!</button>
         </div>
         <div class="item-image">
             <img :src="this.item[0].imageRef" contain height="500px" width="500px">
@@ -195,7 +207,7 @@ button{
     color: white;
     width: 250px;
     margin: 10px;
-    padding: 14px 30px;
+    padding: 10px 10px;
     font-size: 25px;
     cursor: pointer;
 }
@@ -208,5 +220,11 @@ button{
     width: 100px;
     height: 100px;
     border-radius: 50%;
+}
+.trade-indicator{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-left: 15px;
 }
 </style>
