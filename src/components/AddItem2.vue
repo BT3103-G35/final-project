@@ -4,21 +4,21 @@
             <br><br><br><br>
             <h1> What kind of {{ this.type }} is this? </h1>
             <br>
-            <!-- <div id="types" v-if="this.type=='footwear'">
-                <ul style="list-style-type:none;">
-                    <li><img src="https://i.postimg.cc/rFPmdQSR/Canvas-Low-Sneakers.png" class="img" v-on:click="chooseType('Canvas Low Sneakers')"></li>
-                    <li><img src="https://i.postimg.cc/vBSC2z6V/Hiking-Sneakers.png" class="img" v-on:click="chooseType('Hiking Sneakers')"></li>
-                    <li><img src="https://i.postimg.cc/9MKCwVbK/Old-Schools.png" class="img" v-on:click="chooseType('Old Schools')"></li>
-                    <li><img src="https://i.postimg.cc/vZqjZh3S/Athletic-Sneakers.png" class="img" v-on:click="chooseType('Athletic Sports Sneakers')"></li>
-                </ul>
-            </div> -->
+            <!--div id="types">
+
+            </div-->
             <form @submit.prevent="pressed">
                 <label for="name">Name*:</label><br>
-                <input type="text" id="name" name="name" size="59" v-model="name" required><br><br>
+                <input type="text" id="name" name="name" size="59" placeholder="What would you call this apparel?" v-model="name" required><br><br>
                 <label for="detail">Details*:</label><br>
-                <textarea name="detail" rows="3" cols="60" v-model="detail" required></textarea><br><br>
+                <textarea name="detail" rows="3" cols="60" placeholder="Color/Size/Material of your apparel goes here!" v-model="detail" required></textarea><br><br>
                 <label for="notes">Notes*:</label><br>
-                <textarea name="notes" rows="6" cols="60" v-model="notes" required></textarea><br><br>
+                <textarea name="notes" rows="6" cols="60" placeholder="Anything to take note of, such as the condition or where you bought this item!" v-model="notes" required></textarea><br><br>
+                <input type="radio" id="trade" name="search" value="true" v-on:click="setTrade(1)">
+                <label style="font-size:20px;" for="trade">Up For Trade</label>
+                <input type="radio" id="notrade" name="search" value="false" v-on:click="setTrade(0)">
+                <label style="font-size:20px;" for="notrade">Not Up For Trade</label>
+                <br><br>
                 <button type="submit">Add</button>
             </form>
         </div>
@@ -93,18 +93,6 @@ export default {
                 return
             }
             var db = firebase.firestore();
-
-            /*var nameArray = this.name.split(" ");
-            nameArray.push(this.name);
-            this.nameKeys = nameArray;
-            
-            var detailArray = this.detail.split(" ");
-            detailArray.push(this.detail);
-            this.detailKeys = detailArray; 
-            
-            var notesArray = this.notes.split(" ");
-            notesArray.push(this.notes);
-            this.notesKeys = notesArray;*/
             
             db.collection('marketplace').add({
                 name: this.name,
@@ -114,11 +102,8 @@ export default {
                 imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
                 user: this.currentUser.uid,
                 count: this.items.length,
-                //nameKeywords: this.nameKeys,
-                //detailsKeywords: this.detailKeys,
-                //notesKeywords: this.notesKeys
+                tradeable: this.tradeable
             });
-            //let docRef = db.collection(this.currentUser.uid).doc();
             db.collection(this.currentUser.uid).add({
                 name: this.name,
                 category: this.type,
@@ -144,6 +129,9 @@ export default {
                     this.className += " active";
                 });
             } 
+        },
+        setTrade(num){
+            this.tradeable=num;
         }
     },
     data(){
@@ -158,9 +146,7 @@ export default {
             itemType: '',
             items: [],
             items1: [],
-            //nameKeys: [],
-            //detailKeys: [],
-            //notesKeys: []
+            tradeable: 0
         }
     },
     components:{
