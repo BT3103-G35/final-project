@@ -226,12 +226,5 @@ ul{
     height: 300px;
     border-radius: 10%;
 }
-ul{
-    display: flex;
-    flex-wrap: wrap;
-    list-style-type: none;
-}
-li {
-    padding: 30px;
-}
+
 </style>
