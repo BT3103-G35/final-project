@@ -34,7 +34,5 @@ export default[
     { path: '/userprofile', name: 'userprofile', component: UserProfile},
     { path: '/chat', name: 'chat', component: Chat},
     { path: '/chatlist', name: 'chatlist', component: ChatList},
-    { path: '/dashboard', name: 'dashboard', component: DashBoard}
-
-    
+    { path: '/dashboard', name: 'dashboard', component: DashBoard}    
 ]
