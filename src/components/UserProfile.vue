@@ -10,17 +10,49 @@
                 
             </div>
         </div>
-        <div id="items">
-            <h1 v-if="this.userItems.length==0" id="no-items">User has no items</h1>
-            <ul>
-                <li v-for="item in userItems" v-bind:key="item.index">
-                    <img class="profileItem" :src="item.imageRef">
-                    <p>Name: {{ item.name }}</p>
-                    <p>Details: {{ item.detail }}</p>
-                    <p>Notes: {{ item.notes }}</p>
-                    <button @click="redirect(item.user, item.count)">Check it out!</button>
-                </li>
-            </ul>
+        <div>
+            <div v-if="this.userItems.length==0">
+                <h1 id="no-items">User has no items</h1>
+            </div>
+            <div v-else>
+                <div class="filter-bars">
+                    <br><br>
+                    <input class="input-search" type="text" :placeholder="'Search item name'" v-model="searchWord">
+                    <button @click="search" type="submit">Search</button>
+                    <button @click="back" type="submit">Back</button>
+                </div>
+                <br><br>
+                <div id="items" v-if="!this.searched">
+                    <ul>
+                        <li v-for="item in userItems" v-bind:key="item.index">
+                            <img class="profileItem" :src="item.imageRef">
+                            <p>Name: {{ item.name }}</p>
+                            <p>Details: {{ item.detail }}</p>
+                            <p>Notes: {{ item.notes }}</p>
+                            <button @click="redirect(item.user, item.count)">Check it out!</button>
+                        </li>
+                    </ul>
+                </div>
+                <div id="items" v-else>
+                    <div v-if="this.searchedItems.length==0">
+                        <br><h3>Your search did not match any item.</h3><br>
+                    </div>
+                    <div v-else>
+                        <ul> 
+                            <li v-for="(item, index) in this.searchedItems" v-bind:key="index">
+                                <a v-on:click="redirect(item.user, item.count)"> 
+                                    <img class="profileItem" :src="item.imageRef">
+                                    <p>Name:{{ item.name }}</p>
+                                    <p>Category:{{ item.category }}</p>
+                                    <p>Details:{{ item.detail }}</p>
+                                    <p>Notes:{{ item.notes }}</p>
+                                    <button @click="redirect(item.user, item.count)">Check it out!</button>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -64,6 +96,20 @@ export default {
         },
         redirect(user, count) {
             window.location.href="/item?user=" + user + "&count=" + count;
+        },
+        search() {
+            this.searchedItems=[];
+            this.searched=true;
+            for (var item of this.userItems){
+                if(item.name.toUpperCase().includes(this.searchWord.toUpperCase())){
+                    this.searchedItems.push(item);
+                }
+            }
+        },
+        back(){
+            this.searched=false;
+            this.searchWord='';
+            //this.chosenCategory='';
         }
     },
     data(){
@@ -76,7 +122,10 @@ export default {
             userID: this.$route.query.user,
             userItems: [],
             userProfilePic: false,
-            userName: false
+            userName: false,
+            searched: false,
+            searchedItems: [],
+            searchWord: '',
         }
     }
 }
@@ -104,6 +153,19 @@ export default {
 }
 h1{
     font-size: 70px;
+}
+.input-search{
+    width:200px;
+    height:25px;
+    font-size:20px;
+    margin-left: -40px;
+}
+.filter-bars button{
+    background-color:lightgray;
+    box-shadow: none;
+    color: black;
+    width: 100px;
+    height:30px;
 }
 button{
     height: 40px;
