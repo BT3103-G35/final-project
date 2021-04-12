@@ -87,10 +87,6 @@ export default {
             this.image = image;
         },
         pressed() {
-            if (!this.image) {
-                alert("Please upload an image")
-                return
-            }
             var db = firebase.firestore();
 
             /*var nameArray = this.name.split(" ");
