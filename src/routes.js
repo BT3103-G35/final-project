@@ -14,6 +14,7 @@ import EditProfile from './components/EditProfile.vue'
 import UserProfile from './components/UserProfile.vue'
 import ChatList from './components/ChatList.vue'
 import Chat from './components/Chat.vue'
+import DashBoard from './components/DashBoard.vue'
 
 
 export default[
@@ -33,5 +34,7 @@ export default[
     { path: '/userprofile', name: 'userprofile', component: UserProfile},
     { path: '/chat', name: 'chat', component: Chat},
     { path: '/chatlist', name: 'chatlist', component: ChatList},
+    { path: '/dashboard', name: 'dashboard', component: DashBoard}
+
     
 ]

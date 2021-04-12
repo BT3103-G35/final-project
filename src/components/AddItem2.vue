@@ -89,7 +89,7 @@ export default {
         },
         pressed() {
             if (!this.image) {
-                alert("Please upload an image!")
+                alert("Please upload/confirm image!")
                 return
             }
             var db = firebase.firestore();
@@ -111,7 +111,8 @@ export default {
                 notes: this.notes,
                 imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
                 count: this.items.length,
-                wishlist: false
+                wishlist: false,
+                filename: this.image,
             }).then(() => this.$router.push('/profile'));
         },
         chooseType(string) {

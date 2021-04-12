@@ -3,6 +3,9 @@
         <div class="edit-item" v-if="this.deleted==0">
             <!-- upload v-on:upload="onUpload"></upload -->
             <img :src="this.item[0].imageRef" contain height="400px" width="400px">
+            <br>
+            <button @click="trigger">Change Image</button>
+            <input type="file" ref="fileInput" @change="onFileChange($event)" v-show="false">
             <br><br><br>
             <form @submit.prevent="pressed">
                 <label for="name">Name*:</label><br>
@@ -59,6 +62,27 @@ export default {
                 this.newDetail=this.item[0].detail;
                 this.newNotes=this.item[0].notes;
             })
+        },
+        trigger() {
+            this.$refs.fileInput.click()
+        },
+        onFileChange(e) {
+            let file = e.target.files[0];
+            this.imageFile = file;
+            this.createImage(file);
+        },
+        createImage(file) {
+            var reader = new FileReader();
+            reader.onload = (e) => {
+                this.image = e.target.result;
+            };
+            reader.readAsDataURL(file);
+            this.uploadImage();
+        },
+        uploadImage() {
+            var storageRef = firebase.storage().ref('uploads/' + this.currentUser.uid + '/' + this.item[0].filename);
+            storageRef.put(this.imageFile);
+            location.reload();
         },
         onUpload(image) {
             this.image = image;

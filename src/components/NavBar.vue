@@ -24,6 +24,7 @@
                     <div class="dropdown-content">
                         <a><button id="signout" @click="goToProfile">Profile</button></a>
                         <a><button id="signout" @click="goToWishList">WishList</button></a>
+                        <a><button id="signout" @click="goToDashBoard">DashBoard</button></a>
                         <a><button id="signout" @click="signOut">Sign out</button></a>
                     </div>
                     </div>
@@ -102,6 +103,9 @@ export default {
         },
         goToWishList(){
             window.location.href="/wishlist?user=" +this.id;
+        },
+        goToDashBoard(){
+            window.location.href="/dashboard?user=" +this.id;
         }
     }
 }
