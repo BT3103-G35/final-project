@@ -15,7 +15,7 @@
         </div>
         <div class="upload-image">
             <upload align="center" v-on:upload="onUpload"></upload>
-            <br><br><br><br>
+            <br><br><br>
             <form @submit.prevent="pressed">
                 <label for="name">Name*:</label><br>
                 <input type="text" id="name" name="name" size="59" v-model="name" required><br><br>
@@ -214,4 +214,8 @@ input{
 textarea{
     font-size:15px;
 }
+#name{
+    width: 495px;
+}
+
 </style>

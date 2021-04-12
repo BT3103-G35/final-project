@@ -177,6 +177,8 @@ img{
 p{
     text-align: center;
     font-size: 20px;
+    text-decoration: underline #fccfa5;
+    text-decoration-thickness: 3px;
 }
 .input-search{
     width:400px;

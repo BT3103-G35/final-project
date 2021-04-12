@@ -107,7 +107,7 @@ export default {
     margin-top: -40px;
     display: flex;
     justify-content: center;
-    margin-left: 260px;
+    margin-left: 215px;
 }
 .manual-btn{
     border: 2px solid #40D3DC;

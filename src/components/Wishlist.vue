@@ -4,7 +4,7 @@
             <h1> My Wishlist </h1>
         </div>
         <div class="wishlist-container">
-            <div class="wishlist-item">
+            <div class="wishlist-item" v-if="items.length!=0">
                 <ul>
                     <li v-for="item in items" v-bind:key="item.index">
                         <img @click="redirect(item)" :src="item.data().imageRef">
@@ -15,10 +15,13 @@
                     </li>
                 </ul>
             </div>
+            <div id="empty-wishlist" v-else>
+                <p id="empty-text"><b>Your WishList is Empty...</b></p>
+            </div>
             <div class="marketplace-text">
                 <h2>WANT MORE ITEMS?</h2>
                 <br>
-                <h3>GO TO OUR MARKETPLACE OR SIMPLY WISH</h3> <br> <h3>FOR MORE!</h3>
+                <h3>GO TO OUR MARKETPLACE OR SIMPLY WISH</h3> <h3>FOR MORE!</h3>
                 <br><br><br>
                 <router-link to="/marketplace" tag="button-marketplace" exact>WISHING FOR MORE?</router-link>
             </div>
@@ -41,12 +44,7 @@ export default {
                     this.loggedIn = true;
                     this.currentUser = firebase.auth().currentUser;
                     this.fetchItems();
-                    /*var listRef = firebase.storage().ref('uploads/' + this.currentUser.uid);
-                    listRef.listAll().then((res) => {
-                        res.items.forEach((itemRef) => {
-                            itemRef.getDownloadURL().then((url) => this.items.push(url))
-                        }
-                    )})*/
+
                 } else {
                     // No user is signed in.
                     this.loggedIn = false;
@@ -94,6 +92,12 @@ ul{
     display: flex;
     flex-wrap: wrap;
     list-style: none;
+}
+#empty-text{
+    font-size: 50px;
+}
+#empty-wishlist{
+    margin-left: 150px;
 }
 .marketplace-text{
     width: 60%;

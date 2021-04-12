@@ -16,7 +16,9 @@
                 <h1>You Currently Have:</h1>
                 <p id="itemCount">{{ this.items1.length }} Item/s</p>
                 <button style="color: transparent; background-color: transparent; border-color: transparent; box-shadow: none;"> <router-link to="/additem" tag="button-additem" exact v-if="this.items.length>0">Add item</router-link> </button>
-                <br><br><br><br><button style="color: transparent; background-color: transparent; border-color: transparent; box-shadow: none;"> <router-link to="/wishlist" tag="button-additem" exact>Wishlist</router-link> </button>
+                <!--
+                <br><button style="color: transparent; background-color: transparent; border-color: transparent; box-shadow: none;"> <router-link to="/wishlist" tag="button-additem" exact>Wishlist</router-link> </button>
+                -->
             </div>
     
         </div>
@@ -142,7 +144,6 @@ export default {
     border: 1px red;
 }
 .profile-container{
-    min-height: 1000px;
     display: flex;
     background-color: #fff7e6;
 }
@@ -224,5 +225,13 @@ ul{
     width: 300px;
     height: 300px;
     border-radius: 10%;
+}
+ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+li {
+    padding: 30px;
 }
 </style>

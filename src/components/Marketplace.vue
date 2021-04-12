@@ -202,6 +202,7 @@ img{
     height: 300px;
     border-radius: 0%;
     cursor: pointer;
+    border: 5px solid #ffe5cc;
 }
 .input-search{
     width:400px;
@@ -214,5 +215,13 @@ button{
 }
 #name, #details, #notes{
     display:inline-block;
+}
+p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+label{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
 }
 </style>

@@ -174,4 +174,13 @@ ul{
     height: 300px;
     border-radius: 10%;
 }
+ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    margin-left: 150px;
+}
+li {
+    padding: 10px;
+}
 </style>

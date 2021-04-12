@@ -166,9 +166,11 @@ p{
     border: none;
     background: none;
     color: #021718;
-    font-size: 15px;
+    font-size: 20px;
     text-decoration: none;
     cursor: pointer;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
 }
 
 .dropbtn {
