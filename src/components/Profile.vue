@@ -26,13 +26,27 @@
             <router-link to="/additem" tag="button-additem" exact>Click to add!</router-link>
         </div>
         <div class="item-container" v-else>
-            <br><br>
-            <div class="search-bar">
-                <input class="input-search" type="text" :placeholder="'Search item name'" v-model="searchWord">
-                <button @click="search" type="submit">Search</button>
-                <button @click="back" type="submit">Back</button>
+            <div class="filter-bars">
+                <br><br>
+                    <input class="input-search" type="text" :placeholder="'Search item name'" v-model="searchWord">
+                    <button @click="search" type="submit">Search</button>
+                    <button @click="back" type="submit">Back</button>
+                    <span></span>
+                    <select class="dropdown" v-model="chosenCategory">
+                        <option disabled value="">Choose a category</option>
+                        <option>top</option>
+                        <option>bottom</option>
+                        <option>outerwear</option>
+                        <option>footwear</option>
+                        <option>headwear</option>
+                        <option>jewellery</option>
+                        <option>accessory</option>
+                        <option>others</option>
+                    </select>
+                    <button @click="categorize()" type="submit">Search</button>
+                    <button @click="back" type="submit">Back</button>
+                <br><br>
             </div>
-            <br><br>
             <div v-if="!this.searched">
                 <ul>
                     <li v-for="item in items1" v-bind:key="item.index">
@@ -60,6 +74,7 @@
                                 <p>Category:{{ item.data().category }}</p>
                                 <p>Details:{{ item.data().detail }}</p>
                                 <p>Notes:{{ item.data().notes }}</p>
+                                <button @click="edit(item)">Edit</button>
                             </a>
                         </li>
                     </ul>
@@ -160,9 +175,19 @@ export default {
                 }
             }
         },
+        categorize(){
+            this.searchedItems= []; 
+            this.searched=true;
+            for (var item of this.items1){
+                if(item.data()['category'] == this.chosenCategory){
+                    this.searchedItems.push(item);
+                }
+            }
+        },
         back(){
             this.searched=false;
             this.searchWord='';
+            this.chosenCategory='';
         }
     },
     data(){
@@ -176,6 +201,7 @@ export default {
             searchedItems: [],
             searchWord: '',
             filterChoice: 'name',
+            chosenCategory: '',
         }
     }
 }
@@ -209,15 +235,23 @@ h1{
     font-size: 70px;
 }
 .input-search{
-    width:400px;
+    width:200px;
+    height:25px;
+    font-size:20px;
+    margin-left: -40px;
+}
+.dropdown{
+    width:200px;
     height:30px;
     font-size:20px;
+    margin-left: 40px;
 }
-.search-bar button{
+.filter-bars button{
     background-color:lightgray;
     box-shadow: none;
     color: black;
     width: 100px;
+    height:30px;
 }
 button{
     height: 40px;
