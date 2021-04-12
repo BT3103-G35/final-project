@@ -106,19 +106,14 @@ export default {
 </script>
 
 <style scoped>
-.register-container{
-    display: flex;
-}
 .wrapper{
     display: flex;
     align-items: center;
-    justify-content: space-between;
 }
 img{
     width: 578px;
     height: 600px;
-    margin-left: 100px;
-    margin-top: 30px;
+    margin-left: 75%;
 }
 h1{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -126,11 +121,9 @@ h1{
 }
 .content{
     text-align: left;
-    margin-left: 50px;
-    margin-top: -80px;
+    margin-left: 35%;
     width: 471px;
     height: 500px;
-    
 }
 p{
     font-size: 18px;
