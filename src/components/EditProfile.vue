@@ -3,7 +3,7 @@
         <div class="edit-profile-pic">
             <h2>Profile Picture</h2>
             <img :src="this.imgUrl">
-            <button @click="trigger">Change Profile Picture</button>
+            <button style="width:230px;" @click="trigger">Change Profile Picture</button>
             <input type="file" ref="fileInput" @change="onFileChange($event)" v-show="false">
         </div>
         <div class="edit-profile-info">
@@ -150,7 +150,7 @@ button{
     display:inline-block;
     height: 40px;
     width: 200px;
-    font-size: 15px;
+    font-size: 19px;
     background-color: #EC6041;
     color: white;
     background: #EC6041;
@@ -159,6 +159,10 @@ button{
 }
 .edit-profile-container{
     width: 100%;
+    font-size: 23px;
+}
+input{
+    font-size: 18px;
 }
 h2{
     text-decoration: underline #EC6041;

@@ -85,13 +85,16 @@ export default {
     margin-top: 70px;
 }
 .wishlist-item{
-    width: 40%;
-    margin-left: 100px;
+    width: 60%;
+    margin-left: 150px;
 }
 ul{
     display: flex;
     flex-wrap: wrap;
-    list-style: none;
+    list-style-type: none;
+}
+li{
+    margin: 30px;
 }
 #empty-text{
     font-size: 50px;
@@ -100,7 +103,8 @@ ul{
     margin-left: 150px;
 }
 .marketplace-text{
-    width: 60%;
+    width: 45%;
+    margin-right:150px;
 }
 h1{
     text-decoration: underline #EC6041;
