@@ -1,7 +1,6 @@
 <template>
     <div>
         <h1> My Chats </h1>
-        <h2> Click on the item image to go the conversation! </h2>
         <div style="text-align:left;" class="search-bar">
             <input class="chat-search" type="text" placeholder="Search for item name..." v-model="searchWord" name="search">
             <button @click="search" type="submit">Search</button>
