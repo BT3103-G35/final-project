@@ -7,7 +7,6 @@ export default{
     extends: Bar,
     created(){
         this.setupFirebase();
-        this.fetchItems()
     },
     data: function() {
         return {
@@ -44,7 +43,7 @@ export default{
                 legend: {display: false},
                 title: {
                     display: true,
-                    text: 'Total number of each clothing'
+                    text: 'Total number of each clothing type that you own'
                 },
                 responsive: true,
                 maintainAspectRatio: false
@@ -52,7 +51,20 @@ export default{
         }
     },
     methods: {
-
+        setupFirebase() {
+            firebase.auth().onAuthStateChanged(user => {
+                if (user) {
+                    // User is signed in.
+                    this.loggedIn = true;
+                    this.currentUser = firebase.auth().currentUser;
+                    this.fetchItems();
+                } else {
+                    // No user is signed in.
+                    this.loggedIn = false;
+                    this.currentUser = false;
+                }
+            });
+        },
         fetchItems: function(){
             var db = firebase.firestore();
             db.collection('marketplace').where('user', '==', this.currentUser.uid).get().then((querySnapShot) =>{
@@ -74,27 +86,11 @@ export default{
                     }else{
                         this.results[7] += 1;
                     }
-                    
-                })
-                this.datacollection.datasets[0].data = this.results
-                this.renderChart(this.datacollection, this.options)
-            })
-
-        },
-        setupFirebase() {
-            firebase.auth().onAuthStateChanged(user => {
-                if (user) {
-                    // User is signed in.
-                    this.loggedIn = true;
-                    this.currentUser = firebase.auth().currentUser;
-                    this.fetchItems();
-                } else {
-                    // No user is signed in.
-                    this.loggedIn = false;
-                    this.currentUser = false;
-                }
+                });
+                this.datacollection.datasets[0].data = this.results;
+                this.renderChart(this.datacollection, this.options);
             });
-        },
+        }
     }
 }
 
