@@ -20,6 +20,20 @@
                     <input class="input-search" type="text" :placeholder="'Search item name'" v-model="searchWord">
                     <button @click="search" type="submit">Search</button>
                     <button @click="back" type="submit">Back</button>
+                    <span></span>
+                    <select class="dropdown" v-model="chosenCategory">
+                        <option disabled value="">Choose a category</option>
+                        <option>top</option>
+                        <option>bottom</option>
+                        <option>outerwear</option>
+                        <option>footwear</option>
+                        <option>headwear</option>
+                        <option>jewellery</option>
+                        <option>accessory</option>
+                        <option>others</option>
+                    </select>
+                    <button @click="categorize()" type="submit">Search</button>
+                    <button @click="back" type="submit">Back</button>
                 </div>
                 <br><br>
                 <div id="items" v-if="!this.searched">
@@ -106,6 +120,15 @@ export default {
                 }
             }
         },
+        categorize(){
+            this.searchedItems= []; 
+            this.searched=true;
+            for (var item of this.userItems){
+                if(item['category'] == this.chosenCategory){
+                    this.searchedItems.push(item);
+                }
+            }
+        },
         back(){
             this.searched=false;
             this.searchWord='';
@@ -126,6 +149,7 @@ export default {
             searched: false,
             searchedItems: [],
             searchWord: '',
+            chosenCategory: '',
         }
     }
 }
@@ -159,6 +183,12 @@ h1{
     height:25px;
     font-size:20px;
     margin-left: -40px;
+}
+.dropdown{
+    width:200px;
+    height:30px;
+    font-size:20px;
+    margin-left: 40px;
 }
 .filter-bars button{
     background-color:lightgray;
