@@ -39,10 +39,10 @@
                 <li v-for="(item, index) in this.items1" v-bind:key="index">
                     <a v-on:click="redirect(item.user, item.count)"> 
                         <img :src="item.imageRef">
-                        <p>Name:{{ item.name }}</p>
-                        <p>Category:{{ item.category }}</p>
-                        <p>Details:{{ item.detail }}</p>
-                        <p>Notes:{{ item.notes }}</p>
+                        <p>Name: {{ item.name }}</p>
+                        <p>Category: {{ item.category }}</p>
+                        <p>Details: {{ item.detail }}</p>
+                        <p>Notes: {{ item.notes }}</p>
                     </a>
                 </li>
             </ul>
@@ -56,10 +56,10 @@
                     <li v-for="(item, index) in this.searchedItems" v-bind:key="index">
                         <a v-on:click="redirect(item.user, item.count)"> 
                             <img :src="item.imageRef">
-                            <p>Name:{{ item.name }}</p>
-                            <p>Category:{{ item.category }}</p>
-                            <p>Details:{{ item.detail }}</p>
-                            <p>Notes:{{ item.notes }}</p>
+                            <p>Name: {{ item.name }}</p>
+                            <p>Category: {{ item.category }}</p>
+                            <p>Details: {{ item.detail }}</p>
+                            <p>Notes: {{ item.notes }}</p>
                         </a>
                     </li>
                 </ul>
