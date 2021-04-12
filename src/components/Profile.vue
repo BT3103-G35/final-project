@@ -25,19 +25,46 @@
             <h1>It seems you<br>have no items...</h1>
             <router-link to="/additem" tag="button-additem" exact>Click to add!</router-link>
         </div>
-        <div class="add-item" v-else>
-            <ul>
-                <li v-for="item in items1" v-bind:key="item.index">
-                    <a>
-                        <img v-on:click="redirect(item.data().user, item.data().count)" :src="item.data().imageRef">
-                        <p>Name: {{ item.data().name }}</p>
-                        <p>Details: {{ item.data().detail }}</p>
-                        <p>Notes: {{ item.data().notes }}</p>
-                        <button @click="edit(item)">Edit</button>
-                        <br><br><br><br>
-                    </a>
-                </li>
-            </ul>
+        <div class="item-container" v-else>
+            <br><br>
+            <div class="search-bar">
+                <input class="input-search" type="text" :placeholder="'Search item name'" v-model="searchWord">
+                <button @click="search" type="submit">Search</button>
+                <button @click="back" type="submit">Back</button>
+            </div>
+            <br><br>
+            <div v-if="!this.searched">
+                <ul>
+                    <li v-for="item in items1" v-bind:key="item.index">
+                        <a>
+                            <img v-on:click="redirect(item.data().user, item.data().count)" :src="item.data().imageRef">
+                            <p>Name: {{ item.data().name }}</p>
+                            <p>Details: {{ item.data().detail }}</p>
+                            <p>Notes: {{ item.data().notes }}</p>
+                            <button @click="edit(item)">Edit</button>
+                            <br><br><br><br>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div v-else>
+                <div v-if="this.searchedItems.length==0">
+                    <br><h3>Your search did not match any item.</h3><br>
+                </div>
+                <div v-else>
+                    <ul> 
+                        <li v-for="(item, index) in this.searchedItems" v-bind:key="index">
+                            <a v-on:click="redirect(item.data().user, item.data().count)"> 
+                                <img :src="item.data().imageRef">
+                                <p>Name:{{ item.data().name }}</p>
+                                <p>Category:{{ item.data().category }}</p>
+                                <p>Details:{{ item.data().detail }}</p>
+                                <p>Notes:{{ item.data().notes }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -123,6 +150,19 @@ export default {
         },
         goToChatList(){
             window.location.href="/chatlist?user=" +this.currentUser.uid;
+        },
+        search() {
+            this.searchedItems=[];
+            this.searched=true;
+            for (var item of this.items1){
+                if(item.data()[this.filterChoice].toUpperCase().includes(this.searchWord.toUpperCase())){
+                    this.searchedItems.push(item);
+                }
+            }
+        },
+        back(){
+            this.searched=false;
+            this.searchWord='';
         }
     },
     data(){
@@ -132,6 +172,10 @@ export default {
             items: [],
             items1: [],
             url: false,
+            searched: false,
+            searchedItems: [],
+            searchWord: '',
+            filterChoice: 'name',
         }
     }
 }
@@ -158,8 +202,22 @@ export default {
 .add-item{
     width: 60%;
 }
+.item-container{
+    width: 60%;
+}
 h1{
     font-size: 70px;
+}
+.input-search{
+    width:400px;
+    height:30px;
+    font-size:20px;
+}
+.search-bar button{
+    background-color:lightgray;
+    box-shadow: none;
+    color: black;
+    width: 100px;
 }
 button{
     height: 40px;
@@ -220,7 +278,7 @@ ul{
     list-style: none;
     flex-wrap: wrap;
 }
-.add-item img{
+.item-container img{
     width: 300px;
     height: 300px;
     border-radius: 10%;
