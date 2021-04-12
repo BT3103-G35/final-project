@@ -1,10 +1,9 @@
 <template>
     <div class="edititem-container">
         <div class="edit-item" v-if="this.deleted==0">
-            <!-- upload v-on:upload="onUpload"></upload -->
             <img :src="this.item[0].imageRef" contain height="400px" width="400px">
             <br>
-            <button @click="trigger">Change Image</button>
+            <button class="edit-img" @click="trigger">Change Image</button>
             <input type="file" ref="fileInput" @change="onFileChange($event)" v-show="false">
             <br><br><br>
             <form @submit.prevent="pressed">
@@ -14,6 +13,11 @@
                 <textarea name="detail" rows="3" cols="60" v-model="newDetail" required></textarea><br><br>
                 <label for="notes">Notes*:</label><br>
                 <textarea name="notes" rows="6" cols="60" v-model="newNotes" required></textarea><br><br>
+                <input type="radio" id="trade" name="trade" value=1 v-model="newTrade">
+                <label style="font-size:20px;" for="trade">Up For Trade</label>
+                <input type="radio" id="notrade" name="trade" value=0 v-model="newTrade">
+                <label style="font-size:20px;" for="notrade">Not Up For Trade</label>
+                <br><br>
                 <button id="submit" class="button" type="submit">I am happy with my changes!</button>
             </form>
                 <button id="remove" class="button" @click="remove()">Remove Item</button>
@@ -30,7 +34,6 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/firestore";
-//import upload from "./Upload.vue"
 export default {
     mounted() {
         this.setupFirebase();
@@ -61,6 +64,7 @@ export default {
                 this.newName=this.item[0].name;
                 this.newDetail=this.item[0].detail;
                 this.newNotes=this.item[0].notes;
+                this.newTrade=this.item[0].tradeable;
             })
         },
         trigger() {
@@ -90,18 +94,6 @@ export default {
         pressed() {
             var db = firebase.firestore();
             
-            /*var nameArray = this.newName.split(" ");
-            nameArray.push(this.newName);
-            this.nameKeys = nameArray;
-            
-            var detailArray = this.newDetail.split(" ");
-            detailArray.push(this.newDetail);
-            this.detailKeys = detailArray; 
-            
-            var notesArray = this.newNotes.split(" ");
-            notesArray.push(this.newNotes);
-            this.notesKeys = notesArray;*/
-            
             db.collection('marketplace').where('user', '==', this.userID).where('count', '==', this.count).get()
             .then((query) => {
                 const result = query.docs[0];
@@ -109,11 +101,8 @@ export default {
                     name: this.newName,
                     detail: this.newDetail,
                     notes: this.newNotes,
-                    //nameKeywords: this.nameKeys,
-                    //detailsKeywords: this.detailKeys,
-                    //notesKeywords: this.notesKeys
-                    //imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
-                })
+                    tradeable: this.newTrade
+                });
             });
 
             db.collection(this.userID).where('count', '==', this.count).get()
@@ -123,12 +112,11 @@ export default {
                     name: this.newName,
                     detail: this.newDetail,
                     notes: this.newNotes,
-                    //imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
-                })
-            })
-            alert("Your changes have been applied!")
-        },
-                
+                    tradeable: this.newTrade
+                });
+            });
+            alert("Your changes have been applied!");
+        }, 
         remove(){
             var answer=confirm("Are you sure you want to delete this item?");
             if (answer) {
@@ -159,18 +147,13 @@ export default {
             newName: '',
             newDetail: '',
             newNotes: '',
+            newTrade: 0,
             userID: this.$route.query.user,
             count: parseInt(this.$route.query.count),
             item: [],
             deleted: 0,
-            //nameKeys: [],
-            //detailKeys: [],
-            //notesKeys: []
         }
     },
-    /*components:{
-        upload
-    }*/
 }
 </script>
 
@@ -233,5 +216,23 @@ input{
 }
 textarea{
     font-size: 20px;
+}
+.edit-img{
+    background: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    width:158px;
+    height:40px;
+    font-size:20px;
+    cursor:pointer;
+    display:inline-block;
+    margin: 8px;
+    box-shadow: 0px 0px 0px, 0px 0px 0px;
+}
+label{
+    font-weight:bold;
+}
+input[type="radio"]{
+    margin: 0 20px 0 20px;
 }
 </style>

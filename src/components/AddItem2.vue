@@ -4,9 +4,6 @@
             <br><br><br><br>
             <h1> What kind of {{ this.type }} is this? </h1>
             <br>
-            <!--div id="types">
-
-            </div-->
             <form @submit.prevent="pressed">
                 <label for="name">Name*:</label><br>
                 <input type="text" id="name" name="name" size="59" placeholder="What would you call this apparel?" v-model="name" required><br><br>
@@ -14,9 +11,9 @@
                 <textarea name="detail" rows="3" cols="60" placeholder="Color/Size/Material of your apparel goes here!" v-model="detail" required></textarea><br><br>
                 <label for="notes">Notes*:</label><br>
                 <textarea name="notes" rows="6" cols="60" placeholder="Anything to take note of, such as the condition or where you bought this item!" v-model="notes" required></textarea><br><br>
-                <input type="radio" id="trade" name="search" value="true" v-on:click="setTrade(1)">
+                <input type="radio" id="trade" name="trade" value="true" v-on:click="setTrade(1)" required>
                 <label style="font-size:20px;" for="trade">Up For Trade</label>
-                <input type="radio" id="notrade" name="search" value="false" v-on:click="setTrade(0)">
+                <input type="radio" id="notrade" name="trade" value="false" v-on:click="setTrade(0)" required>
                 <label style="font-size:20px;" for="notrade">Not Up For Trade</label>
                 <br><br>
                 <button type="submit">Add</button>
@@ -113,6 +110,7 @@ export default {
                 count: this.items.length,
                 wishlist: false,
                 filename: this.image,
+                tradeable: this.tradeable
             }).then(() => this.$router.push('/profile'));
         },
         chooseType(string) {
