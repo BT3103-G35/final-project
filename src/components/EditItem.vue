@@ -55,7 +55,7 @@ export default {
         },
         fetchItem() {
             var db = firebase.firestore();
-            db.collection(this.userID).where('count', '==', this.count).get()
+            db.collection('marketplace').where('user', '==', this.userID).where('count', '==', this.count).get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     this.item.push(doc.data());
@@ -111,7 +111,7 @@ export default {
                 });
             });
 
-            db.collection(this.userID).where('count', '==', this.count).get()
+            db.collection(this.userID).where('user', '==', this.userID).where('count', '==', this.count).get()
             .then((query) => {
                 const result = query.docs[0];
                 result.ref.update({
