@@ -54,11 +54,18 @@ export default {
         },
         fetchItems() {
             var db = firebase.firestore();
-            db.collection(this.currentUser.uid).where('wishlist', '==', true)
-            .get()
+            db.collection(this.currentUser.uid).where('wishlist', '==', true).get()
             .then((querySnapshot) => {
-                querySnapshot.forEach((doc) => this.items.push(doc))
-            })
+                querySnapshot.forEach((doc) => {
+                    db.collection('marketplace').where('user', '==', doc.data().user).where('count', '==', parseInt(doc.data().count)).get()
+                    .then((query) => {
+                        if (query.docs.length!=0){
+                            const result = query.docs[0];
+                            this.items.push(result);
+                        }
+                    });
+                });
+            });
         },
         redirect(item){
             window.location.href="/item?user=" + item.data().user + "&count=" + item.data().count;
