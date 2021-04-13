@@ -7,10 +7,18 @@
             <input type="file" ref="fileInput" @change="onFileChange($event)" v-show="false">
         </div>
         <div class="edit-profile-info">
-            <h2>User Name</h2>
+            <h2>User Details</h2>
             <h3>Current name: {{ this.currentUser.displayName }}</h3>
             New name: <input type="text" v-model="newName" required><br><br><br>
-            <button @click="changeName">Change user name</button>
+            <h3>Gender: {{ this.gender }}</h3>
+            <input type="radio" id="Male" value="Male" name="gender" v-model="newGender" required>
+            <label>Male</label><br>
+            <input type="radio" id="Female" value="Female" name="gender" v-model="newGender">
+            <label>Female</label><br>
+            <input type="radio" id="Others" value="Others" name="gender" v-model="newGender">
+            <label>Others</label>
+            <br><br>
+            <button @click="updateDetails">Update user details</button>
         </div>
         <div class="change-password">
             <h2>Password</h2>
@@ -41,6 +49,7 @@ export default {
                     this.loggedIn = true;
                     this.currentUser = firebase.auth().currentUser;
                     this.fetchProfilePic()
+                    this.fetchGender()
                 } else {
                     // No user is signed in.
                     this.loggedIn = false;
@@ -54,6 +63,15 @@ export default {
                     firebase.storage().ref('users/' + user.uid + '/profile.jpg').getDownloadURL()
                     .then(imgUrl => this.imgUrl = imgUrl)
                     .catch(this.imgUrl = false)
+                }
+            })
+        },
+        fetchGender() {
+            firebase.auth().onAuthStateChanged(user => {
+                if (user){
+                    firebase.firestore().collection('gender').doc(this.currentUser.uid).get().then((doc)=>{
+                        this.gender = doc.data().gender;
+                    })
                 }
             })
         },
@@ -80,16 +98,23 @@ export default {
             storageRef.put(this.imageFile);
             location.reload();
         },
-        changeName() {
-            // Update user name in community database
+        updateDetails() {
             var database = firebase.firestore();
-            database.collection("community").doc(this.currentUser.uid).update({
-                name: this.newName
-            })
-            // Update user name in firebase auth
-            this.currentUser.updateProfile({
-                displayName: this.newName
-            }).then(() => location.reload())
+            if (this.newName) {
+                // Update user name in community database
+                database.collection("community").doc(this.currentUser.uid).update({
+                    name: this.newName
+                })
+                // Update user name in firebase auth
+                this.currentUser.updateProfile({
+                    displayName: this.newName
+                }).then(() => location.reload())
+            }
+            if (this.newGender) {
+                database.collection("gender").doc(this.currentUser.uid).update({
+                    gender: this.newGender
+                }).then(() => location.reload())
+            }
         },
         passwordMatch() {
             if (this.newPassword != this.newPassword2) {
@@ -150,6 +175,8 @@ export default {
             newPassword: '',
             newPassword2: '',
             pwMatch: false,
+            gender: '',
+            newGender: '',
         }
     },
 }
