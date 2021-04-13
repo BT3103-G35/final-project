@@ -1,7 +1,7 @@
 <template>
     <div class="marketplace-container">
         <div class="marketplace-title">
-            <h1> Marketplace </h1>
+            <h1> Discover </h1>
             <div class="search-options" v-if="this.filter == false">
                 <h2> Search by which field? </h2>
                 <input type="radio" id="name" name="search" value="name" v-on:click="searchFilter('name')">
