@@ -95,7 +95,7 @@ export default {
         },   
         fetchItem() {
             var db = firebase.firestore();
-            db.collection(this.userID).where('count', '==', this.count).get()
+            db.collection(this.userID).where('user', '==', this.userID).where('count', '==', this.count).get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     this.item.push(doc.data());
