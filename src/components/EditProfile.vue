@@ -23,11 +23,11 @@
         <div class="change-password">
             <h2>Password</h2>
             <label for="password">Current password:</label><br>
-            <input name="password" type="password" v-model="currentPassword" required><br><br>
+            <input name="password" type="password" v-model="currentPassword" minlength="6" required><br><br>
             <label for="newpw">Enter new password:</label><br>
-            <input name="newpw" type="password" v-model="newPassword" required><br><br>
+            <input name="newpw" type="password" v-model="newPassword" minlength="6" required><br><br>
             <label for="retype">Re-type new password:</label><br>
-            <input name="retype" type="password" v-model="newPassword2" required><br><br>
+            <input name="retype" type="password" v-model="newPassword2" minlength="6" required><br><br>
             <button @click="changePassword">Change password</button>
         </div>
     </div>
@@ -139,25 +139,26 @@ export default {
                     this.passwordMatch()
                     if (this.pwMatch) {
                         //Change password
-                        user.updatePassword(this.newPassword).then(() => {
-                            alert("Password successfully changed")
-                            location.reload()
-                        }).catch((err) => {
-                            console.log(err);
-                        })
+                        if (this.newPassword.length > 5){
+                            user.updatePassword(this.newPassword).then(() => {
+                                alert("Password successfully changed")
+                                location.reload()
+                            }).catch((err) => {
+                                console.log(err);
+                            })
+                        }else{
+                            alert("Password needs to be more than 5 characters")
+                        }
                     }
                 }).catch((err) => {
                     console.log(err);
                     alert("Current password is incorrect")
-                    location.reload();
                 })
             }else{
                 if (!this.pwMatch){
                     alert("Current password is incorrect")
-                    location.reload();
                 }else{
                     alert("New password cannot be the same as old password");
-                    location.reload()
                 }
             }
         }
