@@ -26,6 +26,8 @@ export default{
                     yAxes: [{
                         ticks :{
                             beginAtZero: true,
+                            fontSize: 15,
+                            stepSize: 1,
                         },
                         gridLines: {
                             display: true
@@ -33,7 +35,8 @@ export default{
                     }],
                     xAxes: [{
 						ticks: {
-							beginAtZero: true
+							beginAtZero: true,
+                            fontSize: 15,
 						},
 						gridLines: {
 							display: false
@@ -43,7 +46,8 @@ export default{
                 legend: {display: false},
                 title: {
                     display: true,
-                    text: 'Total number of each clothing type in the entire marketplace'
+                    text: 'Total number of each clothing type in the entire marketplace',
+                    fontSize: 25,
                 },
                 responsive: true,
                 maintainAspectRatio: false
