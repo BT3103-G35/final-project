@@ -1,6 +1,6 @@
 <template>
   <div class="chart">
-    <h1>Bar Chart</h1>
+    <h1>Overview</h1>
     <br><br>
     <ProfileChart></ProfileChart>
     <br><br><br><br><br>

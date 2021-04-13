@@ -22,7 +22,7 @@ export default{
             options: {
                 title: {
                     display: true,
-                    text: "Community's Demograaphic",
+                    text: "Community's Demographic",
                     fontSize: 25,
                 },
                 responsive: true,

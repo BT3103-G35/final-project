@@ -15,8 +15,8 @@
                         <label for="email">Email Address*:</label><br>
                         <input type="email" size="65" v-model="email" required><br><br>
                         <label for="password">Password*:</label><br>
-                        <input type="password" size="65" v-model="password" required><br>
-                        <p>Gender: </p>
+                        <input type="password" size="65" v-model="password" required><br><br>
+                        <label for="gender">Gender*: </label>
                         <input type="radio" id="Male" value="Male" name="gender" v-model="gender" required>
                         <label for="details">Male</label>
                         <input type="radio" id="Female" value="Female" name="gender" v-model="gender">
@@ -162,5 +162,10 @@ p{
 }
 button{
   cursor:pointer;
+}
+label, input{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 17px;
+    margin: 0 5px 0 5px;
 }
 </style>
