@@ -45,36 +45,15 @@
         </div>
         <div class="item-image">
             <img :src="this.item[0].imageRef" contain height="500px" width="500px">
-            <div id="app">
-                <twitter-button
-                    description="Hey check out this cool item I found on Ainran!"
-                    btnText = "Share to Twitter!"
-                /><br>
-                <facebook-button
-                    description="Hey check out this cool item I found on Ainran!"
-                    btnText = "Share to Facebook!"
-                /><br>
-                <telegram-button
-                    description="Hey check out this cool item I found on Ainran!"
-                    btnText = "Share to Telegram!"
-                />
-                </div>
         </div>
-        
     </div>
 </template>
 
 <script>
 import firebase from "firebase/app";
-import TwitterButton from "./TwitterButton";
-import FacebookButton from "./FacebookButton";
-import TelegramButton from "./TelegramButton";
+
 export default {
-    components: {
-        TwitterButton,
-        FacebookButton,
-        TelegramButton,
-    },
+
     mounted() {
         this.setupFirebase();
     },
@@ -95,7 +74,7 @@ export default {
         },   
         fetchItem() {
             var db = firebase.firestore();
-            db.collection(this.userID).where('user', '==', this.userID).where('count', '==', this.count).get()
+            db.collection('marketplace').where('user', '==', this.userID).where('count', '==', this.count).get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     this.item.push(doc.data());
@@ -108,7 +87,7 @@ export default {
                 if(result == 0) { //no items that match this which are in the wishlist
                     this.wishlist = 0; //0 means not in wishlist
                 } else {
-                    this.wishlist = 1; //else in the wishlist
+                    this.wishlist = 1; //else it is in the wishlist
                 }
             });
             db.collection('community').where('user', '==', this.userID).get()
