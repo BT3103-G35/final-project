@@ -11,6 +11,7 @@
             <router-link to="/community" tag="button-community" exact>Community</router-link>
         </div>
         <div class="additems-images">
+            <h1 id="choose-cat">Choose a category</h1>
             <slider></slider>
         </div>
 
@@ -55,6 +56,10 @@ export default {
 h1{
     text-decoration: underline #EC6041;
     font-size: 70px;
+}
+#choose-cat{
+    font-size: 40px;
+    margin-bottom: 50px;
 }
 .additems-container{
     display: flex;

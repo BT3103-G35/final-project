@@ -18,10 +18,10 @@
             <div class="social-icons">
             <h2>Stay In Touch</h2>
                 
-                <a href = "https://www.instagram.com/ainran_your_online_wardrobe/">
+                <a href = "https://www.instagram.com/ainran_your_online_wardrobe/" target="_blank">
                     <img id="insta" src="https://i.postimg.cc/9F6LHV8Q/insta.jpg">
                 </a>
-                <a href = "https://twitter.com/Ainran6">
+                <a href = "https://twitter.com/Ainran6" target="_blank">
                     <img id="twitter" src="https://cdn.cms-twdigitalassets.com/content/dam/help-twitter/twitter-logo.png.twimg.768.png">
                 </a>
                 <a href="mailto:bt3103g35@gmail.com">
