@@ -16,7 +16,7 @@ export default{
             datacollection: {
                 labels: ['top', 'bottom', 'outerwear', 'footwear', 'headwear', 'jewellery', 'accessory', 'others'],
                 datasets: [{
-                    label: 'Number of clothing',
+                    label: 'Number of items',
                     data: [],
                     backgroundColor: ['#0b6e00', '#006ca2', '#ff3333', '#d60001', '#f87979', '#f10979', '#d60001', '#0b6e00']
                 }]

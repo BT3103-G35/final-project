@@ -15,13 +15,19 @@
                         <label for="email">Email Address*:</label><br>
                         <input type="email" size="65" v-model="email" required><br><br>
                         <label for="password">Password*:</label><br>
-                        <input type="password" size="65" v-model="password" required><br><br>
+                        <input type="password" size="65" v-model="password" required><br>
+                        <p>Gender: </p>
+                        <input type="radio" id="Male" value="Male" v-model="gender">
+                        <label for="details">Male</label>
+                        <input type="radio" id="Female" value="Female" v-model="gender">
+                        <label for="notes">Female</label>
+                        <input type="radio" id="Others" value="Others" v-model="gender">
+                        <label for="tradeable">Others</label>
                         <p>Please upload a profile picture: </p>
                         <input type='file' @change='chooseFile($event)' required>
                         <!--
                         <button @click="removeImage()" v-if="this.image">Remove image</button>
                         -->
-                        
                         <img :src="this.image" class='ui-image' id='img' v-if="this.image">
                         <br><br>
                         <button type="submit" id="submit-btn">SIGN UP</button>
@@ -59,6 +65,13 @@ export default {
             .catch(error => (this.error = error));
             alert('loading..')
             //this.addPicToComm();
+
+            var db = firebase.firestore();
+            firebase.auth().onAuthStateChanged((user) => {
+                db.collection('gender').doc(user.uid).set({
+                    gender: this.gender
+                })
+            })
         },
         chooseFile(e){
             let file = e.target.files[0];
@@ -101,6 +114,7 @@ export default {
             image: false,
             imageFile: false,
             //url: false
+            gender: false
         }
     }
 }
