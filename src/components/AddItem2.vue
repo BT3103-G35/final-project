@@ -110,7 +110,8 @@ export default {
                 count: this.items.length,
                 wishlist: false,
                 filename: this.image,
-                tradeable: this.tradeable
+                tradeable: this.tradeable,
+                user: this.currentUser.uid,
             }).then(() => this.$router.push('/profile'));
         },
         chooseType(string) {
