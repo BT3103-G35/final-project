@@ -71,6 +71,8 @@ export default {
             this.uploadImage();
         },
         uploadImage() {
+            var pictureRef = firebase.storage().refFromURL(this.imgUrl);
+            pictureRef.delete();
             var storageRef = firebase.storage().ref('users/' + this.currentUser.uid + '/profile.jpg');
             storageRef.put(this.imageFile);
             location.reload();
