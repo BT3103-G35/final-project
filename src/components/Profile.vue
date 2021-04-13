@@ -15,7 +15,7 @@
             <div class="num-items">
                 <h1>You Currently Have:</h1>
                 <p id="itemCount">{{ this.items1.length }} Item/s</p>
-                <button style="color: transparent; background-color: transparent; border-color: transparent; box-shadow: none;"> <router-link to="/additem" tag="button-additem" exact v-if="this.items.length>0">Add item</router-link> </button>
+                <button style="color: transparent; background-color: transparent; border-color: transparent; box-shadow: none;"> <router-link to="/additem" tag="button-additem" exact v-if="this.items1.length>0">Add item</router-link> </button>
             </div>
     
         </div>
@@ -189,7 +189,6 @@ export default {
         return {
             loggedIn: false,
             currentUser: false,
-            items:[],
             items1: [],
             url: false,
             searchedItems: [],
