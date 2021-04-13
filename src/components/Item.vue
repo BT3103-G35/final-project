@@ -45,7 +45,7 @@
         </div>
         <div class="item-image">
             <img :src="this.item[0].imageRef" contain height="500px" width="500px">
-            <!--div id="app">
+            <div id="app">
                 <twitter-button
                     description="Hey check out this cool item I found on Ainran!"
                     btnText = "Share to Twitter!"
@@ -58,7 +58,7 @@
                     description="Hey check out this cool item I found on Ainran!"
                     btnText = "Share to Telegram!"
                 />
-                </div-->
+                </div>
         </div>
         
     </div>
@@ -66,15 +66,15 @@
 
 <script>
 import firebase from "firebase/app";
-/*import TwitterButton from "vue-share-buttons/src/components/TwitterButton";
-import FacebookButton from "vue-share-buttons/src/components/FacebookButton";
-import TelegramButton from "vue-share-buttons/src/components/TelegramButton";*/
+import TwitterButton from "./TwitterButton";
+import FacebookButton from "./FacebookButton";
+import TelegramButton from "./TelegramButton";
 export default {
-    /*components: {
+    components: {
         TwitterButton,
         FacebookButton,
         TelegramButton,
-    },*/
+    },
     mounted() {
         this.setupFirebase();
     },
