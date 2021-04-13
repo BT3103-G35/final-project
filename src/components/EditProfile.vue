@@ -14,9 +14,12 @@
         </div>
         <div class="change-password">
             <h2>Password</h2>
-            Current password: <input type="password" v-model="currentPassword" required><br><br>
-            Enter new password: <input type="password" v-model="newPassword" required><br><br>
-            Retype new password: <input type="password" v-model="newPassword2" required><br><br><br>
+            <label for="password">Current password:</label><br>
+            <input name="password" type="password" v-model="currentPassword" required><br><br>
+            <label for="newpw">Enter new password:</label><br>
+            <input name="newpw" type="password" v-model="newPassword" required><br><br>
+            <label for="retype">Re-type new password:</label><br>
+            <input name="retype" type="password" v-model="newPassword2" required><br><br>
             <button @click="changePassword">Change password</button>
         </div>
     </div>
@@ -188,5 +191,8 @@ h2{
     width: 30%;
     text-align: left;
     padding-top: 4%;
+}
+p{
+    font-size: 20px
 }
 </style>
