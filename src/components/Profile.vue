@@ -146,9 +146,6 @@ export default {
                     })
                 })
             }); 
-            db.collection(this.currentUser.uid).get().then((querySnapshot) => {
-                querySnapshot.forEach((doc) => this.items.push(doc))
-            });
             db.collection('marketplace').where('user', '==', this.currentUser.uid)
                     .get()
                     .then((querySnapshot) => {
