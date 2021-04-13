@@ -5,16 +5,20 @@
     <ProfileChart></ProfileChart>
     <br><br><br><br><br>
     <MarketplaceChart></MarketplaceChart>
+    <br><br><br>
+    <PieChartGender></PieChartGender>
   </div>
 </template>
 
 <script>
 import ProfileChart from "./BarChartProfile.js";
 import MarketplaceChart from "./BarChartMarketplace.js";
+import PieChartGender from "./PieChartGender.js"
 export default {
   components: {
     ProfileChart,
-    MarketplaceChart
+    MarketplaceChart,
+    PieChartGender
   }
 };
 </script>
