@@ -102,29 +102,39 @@ export default {
         },
         changePassword() {
             //Reauthenticate user 
-            const user = this.currentUser;
-            const credential = firebase.auth.EmailAuthProvider.credential(
-                user.email, 
-                this.currentPassword
-            );
-            user.reauthenticateWithCredential(credential).then(() => {
-                console.log("reauthentication success");
-                //Make sure new passwords match
-                this.passwordMatch()
-                if (this.pwMatch) {
-                    //Change password
-                    user.updatePassword(this.newPassword).then(() => {
-                        alert("Password successfully changed")
-                        location.reload()
-                    }).catch((err) => {
-                        console.log(err);
-                    })
+            if (this.currentPassword != this.newPassword){
+                const user = this.currentUser;
+                const credential = firebase.auth.EmailAuthProvider.credential(
+                    user.email, 
+                    this.currentPassword
+                );
+                user.reauthenticateWithCredential(credential).then(() => {
+                    console.log("reauthentication success");
+                    //Make sure new passwords match
+                    this.passwordMatch()
+                    if (this.pwMatch) {
+                        //Change password
+                        user.updatePassword(this.newPassword).then(() => {
+                            alert("Password successfully changed")
+                            location.reload()
+                        }).catch((err) => {
+                            console.log(err);
+                        })
+                    }
+                }).catch((err) => {
+                    console.log(err);
+                    alert("Current password is incorrect")
+                    location.reload();
+                })
+            }else{
+                if (!this.pwMatch){
+                    alert("Current password is incorrect")
+                    location.reload();
+                }else{
+                    alert("New password cannot be the same as old password");
+                    location.reload()
                 }
-            }).catch((err) => {
-                console.log(err);
-                alert("Current password is incorrect")
-                location.reload();
-            })
+            }
         }
     },
     data(){
