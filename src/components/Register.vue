@@ -17,11 +17,11 @@
                         <label for="password">Password*:</label><br>
                         <input type="password" size="65" v-model="password" required><br>
                         <p>Gender: </p>
-                        <input type="radio" id="Male" value="Male" v-model="gender">
+                        <input type="radio" id="Male" value="Male" name="gender" v-model="gender" required>
                         <label for="details">Male</label>
-                        <input type="radio" id="Female" value="Female" v-model="gender">
+                        <input type="radio" id="Female" value="Female" name="gender" v-model="gender">
                         <label for="notes">Female</label>
-                        <input type="radio" id="Others" value="Others" v-model="gender">
+                        <input type="radio" id="Others" value="Others" name="gender" v-model="gender">
                         <label for="tradeable">Others</label>
                         <p>Please upload a profile picture: </p>
                         <input type='file' @change='chooseFile($event)' required>
