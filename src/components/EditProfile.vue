@@ -80,8 +80,12 @@ export default {
         },
         onFileChange(e) {
             let file = e.target.files[0];
-            this.imageFile = file;
-            this.createImage(file);
+            if(file['type']==='image/jpeg') {
+                this.imageFile = file;
+                this.createImage(file);
+            } else {
+                alert("Please upload an image file")
+            }
         },
         createImage(file) {
             var reader = new FileReader();
