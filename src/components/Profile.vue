@@ -189,7 +189,6 @@ export default {
         return {
             loggedIn: false,
             currentUser: false,
-            items: [],
             items1: [],
             url: false,
             searchedItems: [],
