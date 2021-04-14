@@ -173,6 +173,7 @@ img{
     height: 300px;
     border-radius: 0%;
     cursor: pointer;
+    object-fit: cover;
 }
 p{
     text-align: center;

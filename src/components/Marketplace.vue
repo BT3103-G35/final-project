@@ -209,6 +209,7 @@ img{
     border-radius: 0%;
     cursor: pointer;
     border: 5px solid #ffe5cc;
+    object-fit: cover;
 }
 .input-search{
     width:400px;

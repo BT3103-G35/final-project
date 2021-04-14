@@ -218,6 +218,7 @@ input{
     height: 50px;
     border-radius: 50%;
     cursor: pointer;
+    object-fit: cover;
 }
 button{
     width: 100px;

@@ -5,7 +5,7 @@
                 <div style="width:35%;">
                     <img class="profile-img" style="margin-left:225px;" :src="this.itemLister[0].imageRef">
                 </div>
-                <div>
+                <div id="lister-name">
                     <br>
                     <span> <b>Lister:  </b></span>
                     <span style="font-weight:normal; text-decoration: underline #EC6041;">{{ this.itemLister[0].name }}</span>
@@ -20,7 +20,7 @@
             <textarea name="detail" rows="3" cols="57" :value=this.item[0].detail :readonly="true"></textarea><br><br>
             <label for="notes">Notes:</label><br>
             <textarea name="notes" rows="6" cols="57" :value=this.item[0].notes :readonly="true"></textarea><br>
-            <div v-if="this.item[0].tradeable==1" style="display:flex;">
+            <div id="trade" v-if="this.item[0].tradeable==1" style="display:flex;">
                 <div style="margin-left:415px;">
                     <p style="font-size:23px;">This item is up for trade</p>
                 </div>
@@ -28,7 +28,7 @@
                     <img class="trade-indicator" src="https://i.postimg.cc/jSVLLXFY/Green-Sign.png" @click="goToChatList">
                 </div>
             </div>
-            <div v-else style="display:flex;">
+            <div id="trade" v-else style="display:flex;">
                 <div style="margin-left:397px;">
                     <p style="font-size:23px;">This item is not up for trade</p>
                 </div>
@@ -160,6 +160,11 @@ export default {
     font-weight: bold;
     font-size: 25px;
 }
+#lister-name{
+    margin-left: 35px;
+    margin-top: 7px;
+}
+
 
 .item-information{
     width: 60%;
@@ -171,7 +176,7 @@ input{
     font-size: 18px;
 }
 #name{
-    width: 590px;
+    width: 560px;
 }
 
 textarea{
@@ -199,6 +204,8 @@ button{
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    object-fit: cover;
+    border: solid 5px #EC6041;
 }
 .trade-indicator{
     width: 45px;
@@ -206,4 +213,5 @@ button{
     border-radius: 50%;
     margin-left: 15px;
 }
+
 </style>

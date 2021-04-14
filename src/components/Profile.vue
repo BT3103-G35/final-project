@@ -28,8 +28,8 @@
             <div class="filter-bars">
                 <br><br>
                     <input class="input-search" type="text" :placeholder="'Search item name'" v-model="searchWord">
-                    <button @click="search" type="submit">Search</button>
-                    <button @click="back" type="submit">Back</button>
+                    <button id="filter" @click="search" type="submit">Search</button>
+                    <button id="filter" @click="back" type="submit">Back</button>
                     <span></span>
                     <select class="dropdown" v-model="chosenCategory">
                         <option disabled value="">Choose a category</option>
@@ -42,8 +42,8 @@
                         <option>accessory</option>
                         <option>others</option>
                     </select>
-                    <button @click="categorize()" type="submit">Search</button>
-                    <button @click="back" type="submit">Back</button>
+                    <button id="filter" @click="categorize()" type="submit">Search</button>
+                    <button id="filter" @click="back" type="submit">Back</button>
                 <br><br>
             </div>
             <div v-if="!this.searched">
@@ -216,6 +216,7 @@ export default {
     width: 150px;
     height: 150px;
     border-radius: 50%;
+    object-fit: cover;
 }
 .add-item{
     width: 60%;
@@ -226,29 +227,30 @@ export default {
 h1{
     font-size: 70px;
 }
+
+
 .input-search{
-    width:200px;
-    height:25px;
-    font-size:20px;
-    margin-left: -40px;
+    width:150px;
+    height:18px;
+    font-size:15px;
 }
 .dropdown{
-    width:200px;
-    height:30px;
-    font-size:20px;
+    width:150px;
+    height:25px;
+    font-size:15px;
     margin-left: 40px;
 }
-.filter-bars button{
+#filter{
     background-color:lightgray;
     box-shadow: none;
     color: black;
-    width: 100px;
-    height:30px;
+    width: 75px;
+    height:25px;
 }
 button{
     height: 40px;
     width: 200px;
-    font-size: 20px;
+    font-size: 15px;
     background-color: #EC6041;
     color: white;
     background: #EC6041;
