@@ -160,16 +160,17 @@ h1{
     text-decoration: underline #EC6041;
     font-size: 30px;
 }
+
 .additems-container{
     font-size:25px;
     display:flex;
     justify-content: space-between;
-    margin-left: 20%;
-    height:1000px;
+    margin-left: 15%;
+    height:800px;
 }
 .upload-image{
     margin-top: 10%;
-    margin-right: 20%;
+    margin-right: 15%;
 }
 .search-bar{
     margin-left: 250px;
