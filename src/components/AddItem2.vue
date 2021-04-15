@@ -99,6 +99,7 @@ export default {
                 imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
                 user: this.currentUser.uid,
                 count: this.items.length,
+                filename: this.image,
                 tradeable: this.tradeable
             });
             db.collection(this.currentUser.uid).add({
