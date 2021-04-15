@@ -78,6 +78,7 @@ export default {
         trigger() {
             this.$refs.fileInput.click()
         },
+        /*
         onFileChange(e) {
             let file = e.target.files[0];
             if(file['type']==='image/jpeg') {
@@ -86,6 +87,12 @@ export default {
             } else {
                 alert("Please upload an image file")
             }
+        },
+        */
+        onFileChange(e) {
+            let file = e.target.files[0];   
+                this.imageFile = file;
+                this.createImage(file);
         },
         createImage(file) {
             var reader = new FileReader();
