@@ -82,7 +82,7 @@ export default {
             })
             db.collection(this.currentUser.uid).doc('Count').get().then((doc) => {
                 if(doc.exists) {
-                    this.count = doc.data().Count;
+                    this.count = doc.data().count;
                 }else{
                     console.log("error");
                 }
@@ -100,7 +100,7 @@ export default {
 
             if (this.count==0) { //means this user has never uploaded an item before
                 db.collection(this.currentUser.uid).doc('Count').set({
-                    Count: 1 //i set to 1 since im going to use 0 as the count. then next time the this.count will be 1 so the no. wont repeat
+                    count: 1 //i set to 1 since im going to use 0 as the count. then next time the this.count will be 1 so the no. wont repeat
                 });
                 db.collection('marketplace').add({
                     name: this.name,
@@ -150,7 +150,7 @@ export default {
                     user: this.currentUser.uid,
                 }).then(() => this.$router.push('/profile'));
                 db.collection(this.currentUser.uid).doc('Count').update({
-                    Count: this.count + 1
+                    count: this.count + 1
                 });
             }
         },

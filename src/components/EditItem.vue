@@ -131,8 +131,15 @@ export default {
                         doc.ref.delete();
                         var pictureRef = firebase.storage().refFromURL(this.item[0].imageRef);
                         pictureRef.delete();
-                    })
-                })
+                    });
+                });
+                let collectionRef2 = db.collection(this.currentUser.uid);
+                collectionRef2.where('count', '==', this.count).get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        doc.ref.delete();
+                    });
+                });
                 alert("Item successfully deleted");
                 this.deleted=1;
             } else {
