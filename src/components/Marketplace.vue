@@ -14,6 +14,7 @@
                 <label for="notes">Notes</label>
                 <input type="radio" id="tradeable" name="search" value="tradeable" v-on:click="filterTradeNow()">
                 <label for="tradeable">Up-For-Trade</label>
+                <button @click="removeFilter" type="submit" v-if="this.searched==true">Remove filter</button>
             </div>
             <div class="search-bar" v-if="this.filter == true && this.filterChoice != 'category'">
                 <input class="input-search" type="text" :placeholder="'Search by ' + this.filterChoice + '...'" v-model="searchWord" name="search">
@@ -167,6 +168,13 @@ export default {
             this.searched = false;
             this.categorized = false;
             this.searchWord='';
+        },
+        removeFilter(){
+            this.filter = false;
+            this.searched = false;
+            this.categorized = false;
+            this.searchWord='';
+            location.reload();
         }
     },
 
