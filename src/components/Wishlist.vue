@@ -21,7 +21,7 @@
             <div class="marketplace-text">
                 <h2>WANT MORE ITEMS?</h2>
                 <br>
-                <h3>GO TO OUR MARKETPLACE OR SIMPLY WISH</h3> <h3>FOR MORE!</h3>
+                <h3>GO TO DISCOVER OR SIMPLY WISH</h3> <h3>FOR MORE!</h3>
                 <br><br><br>
                 <router-link to="/marketplace" tag="button-marketplace" exact>WISHING FOR MORE?</router-link>
             </div>
