@@ -2,7 +2,7 @@
     <div class="profile-container">
         <div class="profile-info">
             <div class="profile-name">
-                <img :src='this.url' id="profile-img"><br>
+                <img :src='this.url' id="profile-img" alt="Please reload page if image does not appear"><br>
                 <div id="displayName">{{this.currentUser.displayName}}</div>
                 <br><br>
                 <router-link to="/editprofile" tag="button-editprofile" exact>Edit Profile</router-link>
@@ -50,7 +50,7 @@
                 <ul>
                     <li v-for="item in items1" v-bind:key="item.index">
                         <a>
-                            <img v-on:click="redirect(item.data().user, item.data().count)" :src="item.data().imageRef">
+                            <img v-on:click="redirect(item.data().user, item.data().count)" :src="item.data().imageRef" alt="Please reload page if image does not appear">
                             <p>Name: {{ item.data().name }}</p>
                             <p>Details: {{ item.data().detail }}</p>
                             <p>Notes: {{ item.data().notes }}</p>

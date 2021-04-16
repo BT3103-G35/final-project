@@ -1,7 +1,7 @@
 <template>
     <div class="edititem-container">
         <div class="edit-item" v-if="this.deleted==0">
-            <img :src="this.item[0].imageRef" contain height="400px" width="400px">
+            <img :src="this.item[0].imageRef" contain height="400px" width="400px" alt="Please refresh page if image does not appear">
             <br>
             <button class="edit-img" @click="trigger">Change Image</button>
             <input type="file" ref="fileInput" @change="onFileChange($event)" v-show="false">
