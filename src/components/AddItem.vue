@@ -2,7 +2,7 @@
     <div class="additems-container">
         <div class="additems-images">
             <h1 id="choose-cat">Choose a category</h1>
-            <slider></slider>
+            <slider class="slider"></slider>
         </div>
         <div class="add-need-ideas">
             <br><br>
@@ -64,11 +64,16 @@ h1{
     display: flex;
 }
 .additems-images{
-    width: 60%;
+    margin-left: 70px;
+    margin-top: 80px;
+    width:50%
+}
+.slider{
+    margin-left: 220px;
+
 }
 .add-need-ideas{
     margin-right: 100px;
-    margin-top: 80px;
 }
 button-community{
   font-size: 20px;

@@ -214,19 +214,19 @@ h1{
     margin-right: 15%;
 }
 .upload{
-    border: solid 7px #376C12;
+    border: 8px solid #D3EAC1;
+    outline: 7px solid #376C12;
 }
 .search-bar{
     margin-left: 250px;
 }
 button{
     text-align:center;
-    background: #EC6041;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: black;
-    background: #AED191;
-    border: 4px solid #376C12;
-    box-shadow: 4px 4px 0px #507B2E, 8px 8px 0px #6B8B51;
+    background: #C7C0A1;
+    border: 4px solid #504610;
+    box-shadow: 4px 4px 0px #645F42, 8px 8px 0px #898572;
     width:300px;
     height:50px;
     font-size:30px;
