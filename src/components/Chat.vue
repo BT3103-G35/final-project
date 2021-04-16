@@ -17,7 +17,7 @@
                 <div v-if="this.messages.length==0">
                     <p> Send the lister a message! </p>
                 </div>
-                <div class="message-window" v-else>
+                <div id="message-window" v-else>
                     <ul>
                         <li v-for="message in this.messages" v-bind:key="message.index" v-bind:class="(currentUser.uid==message.id)?'me':'other'"> 
                             {{message.sender}} : {{ message.message}}
@@ -242,12 +242,13 @@ textarea{
     /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
     cursor:pointer;
 }
-.message-window{
+#message-window{
     height:460px;
-    width:700px;
+    width:750px;
     overflow:auto;
     display:flex;
     flex-direction: column-reverse;
-    border: 5px solid #376C12;
+    border: 5px solid #D3EAC1;
+    outline: 5px solid #376C12;
 }
 </style>
