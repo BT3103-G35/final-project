@@ -132,9 +132,9 @@ export default {
                     storageRef.child(imagePath).getDownloadURL().then((url) => {
                         db.collection(this.currentUser.uid).doc(doc.id).update({
                             imageRef: url
-                        })
-                    })
-                })
+                        });
+                    });
+                });
             });
             db.collection('marketplace').get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
@@ -142,15 +142,27 @@ export default {
                     storageRef.child(imagePath).getDownloadURL().then((url) => {
                         db.collection('marketplace').doc(doc.id).update({
                             imageRef: url
-                        })
-                    })
-                })
+                        });
+                    });
+                });
             }); 
             db.collection('marketplace').where('user', '==', this.currentUser.uid)
                     .get()
                     .then((querySnapshot) => {
                     querySnapshot.forEach((doc) => this.items1.push(doc))
-            })
+            });
+            //update the wishlist whenever the profile page for removed items to save space
+            db.collection(this.currentUser.uid).where('wishlist', '==', true).get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    db.collection('marketplace').where('user', '==', doc.data().user).where('count', '==', doc.data().count).get()
+                    .then((query) => {
+                        if (query.docs.length==0){
+                            doc.ref.delete();
+                        }
+                    });
+                });
+            });
         },  
         edit(item){
             window.location.href="/edititem?user=" + item.data().user + "&count=" + item.data().count
@@ -227,8 +239,6 @@ export default {
 h1{
     font-size: 70px;
 }
-
-
 .input-search{
     width:150px;
     height:18px;

@@ -70,9 +70,9 @@ export default {
                     storageRef.child(imagePath).getDownloadURL().then((url) => {
                         db.collection('marketplace').doc(doc.id).update({
                             imageRef: url
-                        })
-                    })
-                })
+                        });
+                    });
+                });
             });            
             db.collection(this.currentUser.uid).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => this.items.push(doc.data()))
@@ -80,6 +80,13 @@ export default {
             db.collection(this.currentUser.uid).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => this.items1.push(doc))
             })
+            db.collection(this.currentUser.uid).doc('Count').get().then((doc) => {
+                if(doc.exists) {
+                    this.count = doc.data().count;
+                }else{
+                    console.log("error");
+                }
+            });
         },
         onUpload(image) {
             this.image = image;
@@ -90,30 +97,62 @@ export default {
                 return
             }
             var db = firebase.firestore();
-            
-            db.collection('marketplace').add({
-                name: this.name,
-                category: this.type,
-                detail: this.detail,
-                notes: this.notes,
-                imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
-                user: this.currentUser.uid,
-                count: this.items.length,
-                filename: this.image,
-                tradeable: this.tradeable
-            });
-            db.collection(this.currentUser.uid).add({
-                name: this.name,
-                category: this.type,
-                detail: this.detail,
-                notes: this.notes,
-                imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
-                count: this.items.length,
-                wishlist: false,
-                filename: this.image,
-                tradeable: this.tradeable,
-                user: this.currentUser.uid,
-            }).then(() => this.$router.push('/profile'));
+
+            if (this.count==0) { //means this user has never uploaded an item before
+                db.collection(this.currentUser.uid).doc('Count').set({
+                    count: 1 //i set to 1 since im going to use 0 as the count. then next time the this.count will be 1 so the no. wont repeat
+                });
+                db.collection('marketplace').add({
+                    name: this.name,
+                    category: this.type,
+                    detail: this.detail,
+                    notes: this.notes,
+                    imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
+                    user: this.currentUser.uid,
+                    count: this.count, //which will be zero in this case.
+                    filename: this.image,
+                    tradeable: this.tradeable
+                });
+                db.collection(this.currentUser.uid).add({
+                    name: this.name,
+                    category: this.type,
+                    detail: this.detail,
+                    notes: this.notes,
+                    imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
+                    count: this.count,
+                    wishlist: false,
+                    filename: this.image,
+                    tradeable: this.tradeable,
+                    user: this.currentUser.uid,
+                }).then(() => this.$router.push('/profile'));
+            } else {
+                db.collection('marketplace').add({
+                    name: this.name,
+                    category: this.type,
+                    detail: this.detail,
+                    notes: this.notes,
+                    imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
+                    user: this.currentUser.uid,
+                    count: this.count, //which will be zero in this case.
+                    filename: this.image,
+                    tradeable: this.tradeable
+                });
+                db.collection(this.currentUser.uid).add({
+                    name: this.name,
+                    category: this.type,
+                    detail: this.detail,
+                    notes: this.notes,
+                    imageRef: 'uploads/'+this.currentUser.uid+'/' + this.image,
+                    count: this.count,
+                    wishlist: false,
+                    filename: this.image,
+                    tradeable: this.tradeable,
+                    user: this.currentUser.uid,
+                }).then(() => this.$router.push('/profile'));
+                db.collection(this.currentUser.uid).doc('Count').update({
+                    count: this.count + 1
+                });
+            }
         },
         chooseType(string) {
             this.itemType = string;
@@ -147,7 +186,8 @@ export default {
             itemType: '',
             items: [],
             items1: [],
-            tradeable: 0
+            tradeable: 0,
+            count: 0
         }
     },
     components:{

@@ -117,14 +117,13 @@ export default {
                 db.collection(this.currentUser.uid).where('user', '==', this.userID).where('count', '==', this.count)
                 .where('wishlist', '==', true)
                 .get()
-                .then((query) => {
-                    const result = query.docs[0];
-                    result.ref.update({
-                        wishlist: false,
-                    })
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        doc.ref.delete();
+                    });
                     alert("Item successfully removed")
                     this.$router.push('/wishlist')
-                })
+                });
             } else {
                 alert("Your item has not been removed");
             }
