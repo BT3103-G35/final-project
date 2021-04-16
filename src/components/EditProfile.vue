@@ -3,6 +3,7 @@
         <div class="edit-profile-pic">
             <h2>Profile Picture</h2>
             <img :src="this.imgUrl">
+            <br><br>
             <button style="width:230px;" @click="trigger">Change Profile Picture</button>
             <input type="file" ref="fileInput" @change="onFileChange($event)" v-show="false">
         </div>
@@ -78,17 +79,6 @@ export default {
         trigger() {
             this.$refs.fileInput.click()
         },
-        /*
-        onFileChange(e) {
-            let file = e.target.files[0];
-            if(file['type']==='image/jpeg') {
-                this.imageFile = file;
-                this.createImage(file);
-            } else {
-                alert("Please upload an image file")
-            }
-        },
-        */
         onFileChange(e) {
             let file = e.target.files[0];   
                 this.imageFile = file;
@@ -202,13 +192,13 @@ img{
 }
 button{
     display:inline-block;
-    height: 40px;
+    height: 50px;
     width: 200px;
     font-size: 19px;
-    background-color: #EC6041;
     color: white;
-    background: #EC6041;
-    box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+    background: black;
+    border: solid 3px #37601B;
+    box-shadow: 3px 3px 0px #507B2E, 5px 5px 0px #6B8B51;
     cursor:pointer;
 }
 .edit-profile-container{
@@ -219,7 +209,7 @@ input{
     font-size: 18px;
 }
 h2{
-    text-decoration: underline #EC6041;
+    text-decoration: underline #37601B;
 }
 .edit-profile-pic{
     float:left;

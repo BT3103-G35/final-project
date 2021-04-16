@@ -3,12 +3,12 @@
         <div class="item-information">
             <div style="display:flex;">
                 <div style="width:35%;">
-                    <img class="profile-img" style="margin-left:225px;" :src="this.itemLister[0].imageRef">
+                    <img class="profile-img" :src="this.itemLister[0].imageRef">
                 </div>
                 <div id="lister-name">
                     <br>
                     <span> <b>Lister:  </b></span>
-                    <span style="font-weight:normal; text-decoration: underline #EC6041;">{{ this.itemLister[0].name }}</span>
+                    <span style="font-weight:normal; text-decoration: underline #376C12;">{{ this.itemLister[0].name }}</span>
                     <br>
                     <span style="font-weight:normal;" v-if="this.userID == currentUser.uid">(oh look, its you!)</span>
                 </div> 
@@ -36,15 +36,15 @@
                     <img class="trade-indicator" src="https://i.postimg.cc/jj3WdbVZ/Red-Sign.png" @click="goToChatList">
                 </div>
             </div>
-            <button v-if="this.userID != this.currentUser.uid" @click="goToLister">See lister's profile</button>
-            <button v-if="this.userID != this.currentUser.uid && this.wishlist == 1" @click="removeFromWishlist">Remove from Wishlist</button>
-            <button v-if="this.userID != this.currentUser.uid && this.wishlist == 0" @click="addToWishlist">Add To Wishlist!</button>
-            <button v-if="this.userID == this.currentUser.uid" @click="edit">Edit your item!</button>
+            <button class="buttons" v-if="this.userID != this.currentUser.uid" @click="goToLister"><b>See lister's profile</b></button>
+            <button class="buttons" v-if="this.userID != this.currentUser.uid && this.wishlist == 1" @click="removeFromWishlist"><b>Remove from Wishlist</b></button>
+            <button class="buttons" v-if="this.userID != this.currentUser.uid && this.wishlist == 0" @click="addToWishlist"><b>Add To Wishlist!</b></button>
+            <button class="buttonss" v-if="this.userID == this.currentUser.uid" @click="edit"><b>Edit your item!</b></button>
             <br>
-            <button style="width:400px; padding:10px 10px;" id="chat" v-if="this.userID != this.currentUser.uid" @click="goToChat">Send the lister a message!</button>
+            <button class="buttonss" style="width:400px; padding:10px 10px;" id="chat" v-if="this.userID != this.currentUser.uid" @click="goToChat"><b>Send the lister a message!</b></button>
         </div>
         <div class="item-image">
-            <img :src="this.item[0].imageRef" contain height="500px" width="500px">
+            <img :src="this.item[0].imageRef" contain>
         </div>
     </div>
 </template>
@@ -163,12 +163,15 @@ export default {
     margin-left: 35px;
     margin-top: 7px;
 }
-
-
 .item-information{
     width: 60%;
 }
-
+.item-image img{
+    height:500px;
+    width:500px;
+    border: 7px solid #D3EAC1;
+    outline: 5px solid #595343;
+}
 input{
     padding: 12px 20px;
     font-weight: bold;
@@ -183,10 +186,22 @@ textarea{
     font-weight: bold;
     font-size: 18px;
 }
-button{
-    background: #EC6041;
+.buttons{
+    background: #989388;
+    border:solid 3px black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+    /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
+    color: black;
+    width: 270px;
+    margin: 10px;
+    padding: 10px 10px;
+    font-size: 25px;
+    cursor: pointer;
+}
+.buttonss{
+    background: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
     color: white;
     width: 250px;
     margin: 10px;
@@ -195,16 +210,17 @@ button{
     cursor: pointer;
 }
 #chat{
-    background:black;
-    box-shadow: 0px 0px 0px, 0px 0px 0px;
+    background:#376C12;
     width: 280px;
+    color:white;
 }
 .profile-img{
     width: 100px;
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    border: solid 5px #EC6041;
+    border: solid 5px #376C12;
+    margin-left:225px;
 }
 .trade-indicator{
     width: 45px;
@@ -212,5 +228,4 @@ button{
     border-radius: 50%;
     margin-left: 15px;
 }
-
 </style>

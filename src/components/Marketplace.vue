@@ -200,7 +200,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1{
-    text-decoration: underline #EC6041;
+    text-decoration: underline #376C12;
     font-size: 70px;
     text-align: center;
 }
@@ -217,7 +217,7 @@ img{
     height: 300px;
     border-radius: 0%;
     cursor: pointer;
-    border: 5px solid #ffe5cc;
+    border: 5px solid #D6CAAC;
     object-fit: cover;
 }
 .input-search{

@@ -43,19 +43,15 @@ export default {
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-/* Page content */
 .wrapper{
     width: 2000px;
 }
-
 .about-container{
     display: flex;
     justify-content: space-evenly;
 }
-
 header{
     display: flex;
     align-items: center;
@@ -70,21 +66,20 @@ p{
 }
 .page-content{
     width: 471px;
-    margin-left: 150px;
-    margin-top: 65x;
+    margin-left: 200px;
+    margin-top: 50px;
 }
 .image-container{
-    margin-right: 100px;
+    margin-right: 200px;
     margin-top: 45px;
 }
 
-/* Social icons */
 .social-icons img{
     margin-right: 50px;
 }
 .social-icons{
     text-align: left;
-    margin-left: 175px;
+    margin-left: 200px;
 }
 h2{
     display: inline-block;
@@ -107,5 +102,8 @@ h2{
 #email{
     height: 37px;
     width: 47px;
+}
+h1{
+    text-decoration: underline #376C12;
 }
 </style>

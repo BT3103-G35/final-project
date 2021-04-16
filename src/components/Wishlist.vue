@@ -16,14 +16,22 @@
                 </ul>
             </div>
             <div id="empty-wishlist" v-else>
-                <p id="empty-text"><b>Your WishList is Empty...</b></p>
+                <p class="empty-text"><b>Your WishList is </b></p>
+                <p class="empty-text"><b>Empty...</b></p>
             </div>
-            <div class="marketplace-text">
+            <div class="marketplace-text1" v-if="items.length==0">
                 <h2>WANT MORE ITEMS?</h2>
                 <br>
                 <h3>GO TO DISCOVER OR SIMPLY WISH</h3> <h3>FOR MORE!</h3>
                 <br><br><br>
-                <router-link to="/marketplace" tag="button-marketplace" exact>WISHING FOR MORE?</router-link>
+                <router-link to="/marketplace" tag="button-marketplace" exact><b>WISHING FOR MORE?</b></router-link>
+            </div>
+            <div class="marketplace-text2" v-if="items.length!=0">
+                <h2>WANT MORE ITEMS?</h2>
+                <br>
+                <h3>GO TO DISCOVER OR SIMPLY WISH</h3> <h3>FOR MORE!</h3>
+                <br><br><br>
+                <router-link to="/marketplace" tag="button-marketplace" exact><b>WISHING FOR MORE?</b></router-link>
             </div>
         </div>
     </div>
@@ -103,18 +111,26 @@ ul{
 li{
     margin: 30px;
 }
-#empty-text{
+.empty-text{
     font-size: 50px;
 }
 #empty-wishlist{
     margin-left: 150px;
+    width:40%
 }
-.marketplace-text{
-    width: 45%;
-    margin-right:150px;
+.marketplace-text1{
+    width: 35%;
+    margin-right:20px;
+}
+.marketplace-text2{
+    width: 35%;
+    margin-right:20px;
+    background-color:#F8EED6;
+    border: 5px solid #376C12;
+    height:373px;
 }
 h1{
-    text-decoration: underline #EC6041;
+    text-decoration: underline #376C12;
     font-size: 70px;
     text-align: center;
 }
@@ -127,19 +143,21 @@ h3{
 button-marketplace {
     font-size: 20px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: white;
-    background: #EC6041;
-    box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+    color: black;
+    background: #AED191;
+    border: 5px solid #376C12;
+    /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
     padding: 20px 24px;
     cursor: pointer;
 }
 button{
-    background: #EC6041;
+    background: #3F3726;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: white;
     width: 150px;
     font-size: 20px;
     cursor: pointer;
+    border: 3px solid black;
 }
 img{
     height:200px;

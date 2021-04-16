@@ -6,9 +6,9 @@
           -->
           <nav v-if="loggedIn">
               <div class="logo">
-                  <a><img src="https://i.ibb.co/mDyY1hb/Ainran-dp-background.jpg" alt="Ainran-dp-background" border="0" width = "116px" height = "61px"></a>
+                  <!--a><img src="https://i.ibb.co/mDyY1hb/Ainran-dp-background.jpg" alt="Ainran-dp-background" border="0" width = "116px" height = "61px"></a-->
               </div>
-              <p>Logged in as {{ this.currentUser }}</p>
+              <p><b>Logged in as {{ this.currentUser }}</b></p>
               <ul>
                 <li><router-link to="/community" exact>Community</router-link></li>
                 <li><router-link to="/marketplace" exact>Discover</router-link></li>
@@ -116,9 +116,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+li{
+    color:white;
+}
 .nav-container{
-    background-color: #ffe5cc;
+    background-color: #376C12;
     height: 72px;
+    color:white;
 }
 #profile-img{
     width: 50px;
@@ -146,7 +150,7 @@ nav .logo{
     font-style: normal;
     font-weight: 800;
     font-size: 64px;
-    color: #021718
+    color: white;
 }
 nav li{
     float: right;
@@ -159,13 +163,13 @@ nav li:nth-last-of-type(1){
 }
 
 nav li a{
-    color: #021718;
+    color:white;
     font-size: 20px;
     text-decoration: none;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 p{
-    color: #021718;
+    color: white;
     font-size: 20px;
     text-decoration: none;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -178,22 +182,18 @@ p{
     text-decoration: none;
     cursor: pointer;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
 }
-
 .dropbtn {
-  background-color: #ffe5cc;
+  background-color: #376C12;
   color: white;
   padding: 16px;
   font-size: 16px;
   border: none;
 }
-
 .dropdown {
   position: relative;
   display: inline-block;
 }
-
 .dropdown-content {
   display: none;
   position: absolute;
@@ -203,19 +203,26 @@ p{
   z-index: 1;
   margin-right: 50px;
 }
-
 .dropdown-content a {
-  color: black;
+  color: white;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
   height: 30px;
 }
-.dropdown-content a:hover {background-color: #ffe5cc;}
-
+.dropdown-content a:hover {
+    background-color: #37601B;
+}
+#signout:hover{
+    color:white;
+}
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn {background-color: #EC6041;}
+.dropdown:hover .dropbtn {background-color: #37601B;}
+
+li:hover{
+    background-color: #283D06;
+}
 
 input{
     width: 50px;

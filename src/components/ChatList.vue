@@ -16,7 +16,7 @@
                     <div v-else>
                         <div v-if="searched == false"> <!-- havent searched anything so just display everything -->
                             <ul>
-                                <li class="list" v-for="data in this.displayData" v-bind:key="data.index">
+                                <li v-for="(data, index) in this.displayData" v-bind:key="data.index" v-bind:class="(index%2 == 0)?'list-even':'list-odd'">
                                     <div style="display:flex;">
                                         <div v-if="currentUser.uid==data.seller">
                                             <img @click="toProfile(data.buyer)" class="profile-img" :src="data.chatProfilePic">
@@ -33,27 +33,27 @@
                                                 <input style="font-size:27px; margin-left:35px; line-height:0.1" v-model="data.lastMessage" :readonly=true>
                                             </div>
                                             <div class="item-img"> 
-                                                <img style="margin-left:80px;" class="item-img" :src="data.imageRef">
+                                                <img class="item-img" :src="data.imageRef">
                                             </div>
                                             <div class="buttons">
                                                 <ul>
-                                                    <li>
-                                                        <button class="chat-button" style="margin-left:100px;" @click="redirect(data.buyer, data.seller, data.count)">Go to full Chat Page</button>
+                                                    <li class="button-list">
+                                                        <button class="chat-button-full" style="margin-left:100px;" @click="redirect(data.buyer, data.seller, data.count)">Full Chat Page</button>
                                                     </li>
-                                                    <li>
-                                                        <button class="chat-button" style="margin-left:100px;" @click="showPreview(data)">Show Preview</button>
+                                                    <li class="button-list">
+                                                        <button class="chat-button-preview" style="margin-left:100px;" @click="showPreview(data)">Show Preview</button>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
-                                    <br><br><br><br><br>
+                                    <br><br>
                                 </li>
                             </ul>
                         </div>
                         <div v-else> <!-- searched for something already -->
                             <ul>
-                                <li class="list" v-for="data in this.searchedData" v-bind:key="data.index">
+                                <li v-for="(data, index) in this.searchedData" v-bind:key="data.index" v-bind:class="(index%2 == 0)?'list-even':'list-odd'">
                                     <div style="display:flex;">
                                         <div v-if="currentUser.uid==data.seller">
                                             <img @click="toProfile(data.buyer)" class="profile-img" :src="data.chatProfilePic">
@@ -70,28 +70,28 @@
                                                 <input style="font-size:27px; margin-left:35px; line-height:0.1" v-model="data.lastMessage" :readonly=true>
                                             </div>
                                             <div class="item-img"> 
-                                                <img style="margin-left:80px;" class="item-img" :src="data.imageRef">
+                                                <img class="item-img" :src="data.imageRef">
                                             </div>
                                             <div class="buttons">
                                                 <ul>
-                                                    <li style="margin-bottom:10px;">
-                                                        <button class="chat-button" style="margin-left:100px;" @click="redirect(data.buyer, data.seller, data.count)">Go to full Chat Page</button>
+                                                    <li class="button-list">
+                                                        <button class="chat-button-full" @click="redirect(data.buyer, data.seller, data.count)">Full Chat Page</button>
                                                     </li>
-                                                    <li>
-                                                        <button class="chat-button" style="margin-left:100px;" @click="showPreview(data)">Show Preview</button>
+                                                    <li class="button-list">
+                                                        <button class="chat-button-preview" @click="showPreview(data)">Show Preview</button>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
-                                    <br><br><br><br><br>
+                                    <br><br><br>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="chat-preview" v-if="preview==true">
-                    <div style="height:300px; width:450px; overflow:auto; display:flex; flex-direction: column-reverse">
+                    <div id="chat-window">
                         <ul>
                             <li v-for="message in this.messages" v-bind:key="message.index" v-bind:class="(currentUser.uid==message.id)?'me':'other'"> 
                                 {{message.sender}} : {{ message.message}}
@@ -267,6 +267,23 @@ export default {
 </script>
 
 <style scoped>
+#chat-window{
+    height:380px;
+    width:500px;
+    overflow:auto;
+    display:flex;
+    flex-direction: column-reverse;
+    border: 5px solid #D3EAC1;
+    outline: 5px solid #376C12;
+}
+.list-even{
+    border:solid 1px #3F3726;
+    background-color: #F2ECE0;
+}
+.list-odd{
+    border:solid 1px #3F3726;
+    background-color: #EBF2E0;
+}
 .chat-container{
     display:flex;
 }
@@ -321,6 +338,9 @@ img{
     font-family: Helvetica, Arial, sans-serif;
     font-size:18px;
 }
+.item-img{
+    margin-left:10px;
+}
 .other{
     background: #eee;
     float: left;
@@ -331,14 +351,29 @@ img{
     font-family: Helvetica, Arial, sans-serif;
     font-size:18px;
 }
-.chat-button{
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: white;
-  background: #EC6041;
-  cursor: pointer;
-  width: 200px;
+.chat-button-full{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    background: #376C12;
+    border:solid 3px black;
+    cursor: pointer;
+    width: 160px;
+}
+.chat-button-preview{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    background: black;
+    border:solid 3px black;
+    cursor: pointer;
+    width: 160px;
 }
 button{
     cursor: pointer;
+}
+li{
+    margin:0 0 50px 0;  
+}
+.button-list{
+     margin:0 0 5px 0;
 }
 </style>

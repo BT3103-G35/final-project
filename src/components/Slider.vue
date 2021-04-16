@@ -110,7 +110,7 @@ export default {
     margin-left: 215px;
 }
 .manual-btn{
-    border: 2px solid #EC6041;
+    border: 2px solid #376C12;
     padding: 5px;
     border-radius: 10px;
     cursor: pointer;
@@ -121,7 +121,7 @@ export default {
     margin-right: 40px;
 }
 .manual-btn:hover{
-    background: #EC6041;
+    background: #376C12;
 }
 #radio1:checked ~ .first{
     margin-left:0;

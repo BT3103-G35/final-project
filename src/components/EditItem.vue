@@ -1,24 +1,24 @@
 <template>
     <div class="edititem-container">
         <div class="edit-item" v-if="this.deleted==0">
-            <img :src="this.item[0].imageRef" contain height="400px" width="400px" alt="Please refresh page if image does not appear">
-            <br>
+            <img :src="this.item[0].imageRef" contain alt="Please refresh page if image does not appear">
+            <br><br>
             <button class="edit-img" @click="trigger">Change Image</button>
             <input type="file" ref="fileInput" @change="onFileChange($event)" v-show="false">
             <br><br><br>
             <form @submit.prevent="pressed">
-                <label for="name">Name*:</label><br>
-                <input type="text" id="name" name="name" size="64" v-model="newName" required><br><br>
-                <label for="detail">Details*:</label><br>
+                <label for="name"><b>Name*:</b></label><br>
+                <input type="text" id="name" name="name" size="63" v-model="newName" required><br><br>
+                <label for="detail"><b>Details*:</b></label><br>
                 <textarea name="detail" rows="3" cols="60" v-model="newDetail" required></textarea><br><br>
-                <label for="notes">Notes*:</label><br>
+                <label for="notes"><b>Notes*:</b></label><br>
                 <textarea name="notes" rows="6" cols="60" v-model="newNotes" required></textarea><br><br>
                 <input type="radio" id="trade" name="trade" value=1 v-model="newTrade">
                 <label style="font-size:20px;" for="trade">Up For Trade</label>
                 <input type="radio" id="notrade" name="trade" value=0 v-model="newTrade">
                 <label style="font-size:20px;" for="notrade">Not Up For Trade</label>
                 <br><br>
-                <button id="submit" class="button" type="submit">I am happy with my changes!</button>
+                <button id="submit" class="button" type="submit"><b>I am happy with my changes!</b></button>
             </form>
                 <button id="remove" class="button" @click="remove()">Remove Item</button>
                 <button id="backToProfile1" class="button" @click="redirect()">Back to my profile</button>
@@ -189,21 +189,27 @@ h1{
     margin-left: 250px;
 }
 button{
-    background: #EC6041;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
-    color: white;
-    font-size: 20px;
+    font-size: 25px;
+    color:white;
     cursor: pointer;
 }
 #submit{
+    width: 350px;
     height:58px;
+    background: black;
+    border: solid 3px #37601B;
+    box-shadow: 3px 3px 0px #507B2E, 5px 5px 0px #6B8B51;
 }
 #remove{
-    height:38px;
+    height:50px;
+    background: #37601B;
+    border: solid 3px black;
 }
 #backToProfile1{
     height:38px;
+    background: #37601B;
+    border: solid 3px black;
 }
 #backToProfile2{
     width:300px;
@@ -212,7 +218,7 @@ button{
 }
 .button{
     display:inline-block;
-    margin: 20px;
+    margin: 25px;
     width: 275px;
 }
 ul{
@@ -223,27 +229,34 @@ ul{
     margin-top: 50px;
 }
 input{
-    font-size: 20px;
+    font-size: 25px;
 }
 textarea{
-    font-size: 20px;
+    font-size: 25px;
 }
 .edit-img{
     background: black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: white;
-    width:158px;
-    height:40px;
-    font-size:20px;
+    width:200px;
+    height:50px;
+    font-size:25px;
     cursor:pointer;
     display:inline-block;
     margin: 8px;
-    box-shadow: 0px 0px 0px, 0px 0px 0px;
+    border: solid 3px #37601B;
+    box-shadow: 3px 3px 0px #507B2E, 5px 5px 0px #6B8B51;
 }
 label{
     font-weight:bold;
+    font-size: 25px;
 }
 input[type="radio"]{
     margin: 0 20px 0 20px;
+}
+img{
+    height:400px;
+    width:400px;
+    border: 5px solid #376C12;
 }
 </style>

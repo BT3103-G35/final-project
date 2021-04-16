@@ -156,7 +156,7 @@ export default {
     cursor: pointer;
 }
 h1{
-    text-decoration: underline #EC6041;
+    text-decoration: underline #376C12;
     font-size: 70px;
 }
 
@@ -178,7 +178,7 @@ img{
 p{
     text-align: center;
     font-size: 20px;
-    text-decoration: underline #fccfa5;
+    text-decoration: underline #376C12;
     text-decoration-thickness: 3px;
 }
 .input-search{
@@ -190,5 +190,4 @@ button{
     height:33px;
     font-size:20px;
 }
-
 </style>

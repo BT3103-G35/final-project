@@ -1,13 +1,13 @@
 <template>
   <div class="bg">
-    <h1>Wardrobe Organiser</h1>
+    <h1>Ainran</h1>
     <ul v-if="this.loggedIn">
-      <li><router-link to="/profile" tag="button1" exact>Profile</router-link></li>
-      <li><router-link to="/marketplace" tag="button2" exact>Marketplace</router-link></li>
+      <li><router-link to="/profile" tag="button1" exact><b>Profile</b></router-link></li>
+      <li><router-link to="/marketplace" tag="button2" exact><b>Marketplace</b></router-link></li>
     </ul>
     <ul v-else>
-      <li><router-link to="/login" tag="button1" exact> Log In</router-link></li>
-      <li><router-link to="/register" tag="button2" exact>Register</router-link></li>
+      <li><router-link to="/login" tag="button1" exact><b>Log In</b></router-link></li>
+      <li><router-link to="/register" tag="button2" exact><b>Register</b></router-link></li>
     </ul>
     
   </div>
@@ -43,7 +43,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .bg{
   background-image: url("https://i.postimg.cc/vZbhY4ZB/clothes-1.jpg");
@@ -64,27 +63,26 @@ h1{
   font-size: 86px;
 }
 li{
-    list-style: none;
-    margin-right: 50px;
-
+  list-style: none;
+  margin-right: 50px;
 }
 ul{
-    display: flex;
-    margin-left: 38%;
+  display: flex;
+  margin-left: 38%;
 }
 li a{
-    color: #021718;
-    font-size: 40px;
-    text-decoration: none;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #021718;
+  font-size: 40px;
+  text-decoration: none;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 button1{
   font-size: 30px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: #EC6041;
-  box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+  color: #376C12;
+  box-shadow: 4px 4px 0px #507B2E, 8px 8px 0px #6B8B51;
   background: #FFFFFF;
-  border: 2px solid #EC6041;
+  border: 2px solid #376C12;
   box-sizing: border-box;
   padding: 20px 24px;
   cursor: pointer;
@@ -93,8 +91,8 @@ button2{
   font-size: 30px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: white;
-  background: #EC6041;
-  box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+  background: black;
+  box-shadow: 4px 4px 0px #3F3F3E, 8px 8px 0px #61615F;
   padding: 20px 24px;
   cursor: pointer;
 }

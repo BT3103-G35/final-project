@@ -8,6 +8,7 @@
                 <img class="img" :src="this.item[0].imageRef">
                 <br> <br>
                 <h2> Name: {{ this.item[0].name }} </h2>
+                <h2> Details: {{ this.item[0].detail }} </h2>
                 <h2> Notes: {{ this.item[0].notes }} </h2>
                 <button class="back-to-chatlist-button" @click="redirect">Back to my chats</button>
             </div>
@@ -16,7 +17,7 @@
                 <div v-if="this.messages.length==0">
                     <p> Send the lister a message! </p>
                 </div>
-                <div style="height:460px; width:600px; overflow:auto; display:flex; flex-direction: column-reverse" v-else>
+                <div id="message-window" v-else>
                     <ul>
                         <li v-for="message in this.messages" v-bind:key="message.index" v-bind:class="(currentUser.uid==message.id)?'me':'other'"> 
                             {{message.sender}} : {{ message.message}}
@@ -197,12 +198,23 @@ export default {
     font-family: Helvetica, Arial, sans-serif;
     font-size:18px;
 }
+.other + .me{
+  border-bottom-right-radius: 5px;
+}
+
+.me + .me{
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.me:last-of-type {
+  border-bottom-right-radius: 30px;
+}
 .chat{
     width:60%;
     margin-top:40px;
     text-align:left;
 }
-ul {
+ul{
     text-align:left;
     flex-wrap: wrap;
     list-style-type: none;
@@ -210,7 +222,7 @@ ul {
     margin: 0;
 }
 h1{
-    text-decoration: underline #EC6041;
+    text-decoration: underline #376C12;
     font-size: 70px;
     text-align: center;
 }
@@ -224,10 +236,19 @@ textarea{
     height: 40px;
     width: 250px;
     font-size: 20px;
-    background-color: #EC6041;
+    background-color: black;
     color: white;
-    background: #EC6041;
-    box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+    background: black;
+    /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
     cursor:pointer;
+}
+#message-window{
+    height:460px;
+    width:750px;
+    overflow:auto;
+    display:flex;
+    flex-direction: column-reverse;
+    border: 5px solid #D3EAC1;
+    outline: 5px solid #376C12;
 }
 </style>
