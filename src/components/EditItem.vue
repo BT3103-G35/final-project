@@ -1,7 +1,7 @@
 <template>
     <div class="edititem-container">
         <div class="edit-item" v-if="this.deleted==0">
-            <img :src="this.item[0].imageRef" contain height="400px" width="400px">
+            <img :src="this.item[0].imageRef" contain height="400px" width="400px" alt="Please refresh page if image does not appear">
             <br>
             <button class="edit-img" @click="trigger">Change Image</button>
             <input type="file" ref="fileInput" @change="onFileChange($event)" v-show="false">
@@ -65,14 +65,14 @@ export default {
                 this.newDetail=this.item[0].detail;
                 this.newNotes=this.item[0].notes;
                 this.newTrade=this.item[0].tradeable;
-                this.filename=this.item[0].filename;
+                this.filename = this.item[0].filename;
             })
         },
         trigger() {
             this.$refs.fileInput.click()
         },
         onFileChange(e) {
-            let file = e.target.files[0];   
+            let file = e.target.files[0];
                 this.imageFile = file;
                 this.createImage(file);
         },
@@ -162,7 +162,7 @@ export default {
             count: parseInt(this.$route.query.count),
             item: [],
             deleted: 0,
-            filename: '',
+            filename: ''
         }
     },
 }

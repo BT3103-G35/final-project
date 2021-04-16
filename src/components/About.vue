@@ -50,6 +50,7 @@ export default {
 }
 .about-container{
     display: flex;
+    justify-content: space-evenly;
 }
 header{
     display: flex;

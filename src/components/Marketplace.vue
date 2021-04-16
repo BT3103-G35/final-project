@@ -14,6 +14,7 @@
                 <label for="notes">Notes</label>
                 <input type="radio" id="tradeable" name="search" value="tradeable" v-on:click="filterTradeNow()">
                 <label for="tradeable">Up-For-Trade</label>
+                <button @click="removeFilter" type="submit" v-if="this.searched==true">Remove filter</button>
             </div>
             <div class="search-bar" v-if="this.filter == true && this.filterChoice != 'category'">
                 <input class="input-search" type="text" :placeholder="'Search by ' + this.filterChoice + '...'" v-model="searchWord" name="search">
@@ -27,8 +28,8 @@
                     <option>bottom</option>
                     <option>outerwear</option>
                     <option>footwear</option>
+                    <option>dress</option>
                     <option>headwear</option>
-                    <option>jewellery</option>
                     <option>accessory</option>
                     <option>others</option>
                 </select>
@@ -54,6 +55,7 @@
                 <br><h3>Your search did not match any item.</h3><br>
             </div>
             <div v-else>
+                <br><h4 class="item-count">{{ this.searchedItems.length }} item/s found</h4>
                 <ul> 
                     <li v-for="(item, index) in this.searchedItems" v-bind:key="index">
                         <a v-on:click="redirect(item.user, item.count)"> 
@@ -167,6 +169,13 @@ export default {
             this.searched = false;
             this.categorized = false;
             this.searchWord='';
+        },
+        removeFilter(){
+            this.filter = false;
+            this.searched = false;
+            this.categorized = false;
+            this.searchWord='';
+            location.reload();
         }
     },
 
