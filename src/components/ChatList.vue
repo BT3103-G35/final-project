@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1> My Chats </h1>
-        <div style="text-align:left;" class="search-bar">
+        <div style="text-align:left;" class="search-bar" v-if="displayData.length!=0">
             <input class="chat-search" type="text" placeholder="Search for item name..." v-model="searchWord" name="search">
             <button @click="search" type="submit">Search</button>
             <button @click="back" type="submit">Back</button>
