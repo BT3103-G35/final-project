@@ -36,12 +36,12 @@
                     <img class="trade-indicator" src="https://i.postimg.cc/jj3WdbVZ/Red-Sign.png" @click="goToChatList">
                 </div>
             </div>
-            <button v-if="this.userID != this.currentUser.uid" @click="goToLister">See lister's profile</button>
-            <button v-if="this.userID != this.currentUser.uid && this.wishlist == 1" @click="removeFromWishlist">Remove from Wishlist</button>
-            <button v-if="this.userID != this.currentUser.uid && this.wishlist == 0" @click="addToWishlist">Add To Wishlist!</button>
-            <button v-if="this.userID == this.currentUser.uid" @click="edit">Edit your item!</button>
+            <button class="buttons" v-if="this.userID != this.currentUser.uid" @click="goToLister"><b>See lister's profile</b></button>
+            <button class="buttons" v-if="this.userID != this.currentUser.uid && this.wishlist == 1" @click="removeFromWishlist"><b>Remove from Wishlist</b></button>
+            <button class="buttons" v-if="this.userID != this.currentUser.uid && this.wishlist == 0" @click="addToWishlist"><b>Add To Wishlist!</b></button>
+            <button class="buttonss" v-if="this.userID == this.currentUser.uid" @click="edit"><b>Edit your item!</b></button>
             <br>
-            <button style="width:400px; padding:10px 10px;" id="chat" v-if="this.userID != this.currentUser.uid" @click="goToChat">Send the lister a message!</button>
+            <button class="buttonss" style="width:400px; padding:10px 10px;" id="chat" v-if="this.userID != this.currentUser.uid" @click="goToChat"><b>Send the lister a message!</b></button>
         </div>
         <div class="item-image">
             <img :src="this.item[0].imageRef" contain>
@@ -170,7 +170,7 @@ export default {
     height:500px;
     width:500px;
     border: 7px solid #D3EAC1;
-    outline: 5px solid #376C12;
+    outline: 5px solid #595343;
 }
 input{
     padding: 12px 20px;
@@ -186,7 +186,19 @@ textarea{
     font-weight: bold;
     font-size: 18px;
 }
-button{
+.buttons{
+    background: #989388;
+    border:solid 3px black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
+    color: black;
+    width: 270px;
+    margin: 10px;
+    padding: 10px 10px;
+    font-size: 25px;
+    cursor: pointer;
+}
+.buttonss{
     background: black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
@@ -198,10 +210,9 @@ button{
     cursor: pointer;
 }
 #chat{
-    background:#85AD64;
-    box-shadow: 0px 0px 0px, 0px 0px 0px;
+    background:#376C12;
     width: 280px;
-    color:black;
+    color:white;
 }
 .profile-img{
     width: 100px;

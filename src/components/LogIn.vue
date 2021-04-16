@@ -13,7 +13,7 @@
                     <input type="password" size="65" v-model="password" required><br><br>
                     <button type="submit">Log in</button><br><br>
                     <div class="error" v-if="error">{{error.message}}</div>
-                    <button id="forgot-password" @click="resetPassword">Forgot password?</button><br><br>
+                    <button id="forgot-password" @click="resetPassword"><b>Forgot password?</b></button><br><br>
             </form>
 
             <div class="img">
@@ -68,10 +68,6 @@ export default {
 </script>
 
 <style scoped>
-.login-container{
-    height: 1000px;
-    background-color:#fff2e6;
-}
 .wrapper{
     display: flex;
     align-items: center;
@@ -99,14 +95,14 @@ button{
     height: 40px;
     width: 100px;
     font-size: 20px;
-    background-color: #EC6041;
+    background-color: black;
     color: white;
     cursor: pointer;
 }
 #forgot-password{
     border: none;
     background: none;
-    color: #EC6041;
+    color: #376C12;
     width: auto;
 }
 img{
@@ -118,7 +114,7 @@ img{
 h1{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 75px;
-    color:#EC6041;
+    color:black;
 }
 .content{
     text-align: left;

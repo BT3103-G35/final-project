@@ -55,7 +55,7 @@
                             <p>Name: {{ item.data().name }}</p>
                             <p>Details: {{ item.data().detail }}</p>
                             <p>Notes: {{ item.data().notes }}</p>
-                            <button @click="edit(item)"><b>Edit</b></button>
+                            <button class="edit" @click="edit(item)"><b>Edit</b></button>
                             <br><br><br><br>
                         </a>
                     </li>
@@ -74,7 +74,7 @@
                                 <p>Category:{{ item.data().category }}</p>
                                 <p>Details:{{ item.data().detail }}</p>
                                 <p>Notes:{{ item.data().notes }}</p>
-                                <button @click="edit(item)"><b>Edit</b></button>
+                                <button class="edit" @click="edit(item)"><b>Edit</b></button>
                             </a>
                         </li>
                     </ul>
@@ -262,13 +262,13 @@ h1{
 .filter-bars{
     font-size:22px;
 }
-button{
+.edit{
     height: 40px;
     width: 200px;
     font-size: 15px;
-    background-color: black;
+    background-color: #3F3726;
+    border: solid 4px black;
     color: white;
-    background: black;
     /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
     cursor:pointer;
 }

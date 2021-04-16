@@ -38,10 +38,10 @@
                                             <div class="buttons">
                                                 <ul>
                                                     <li>
-                                                        <button class="chat-button" style="margin-left:100px;" @click="redirect(data.buyer, data.seller, data.count)">Go to full Chat Page</button>
+                                                        <button class="chat-button-full" style="margin-left:100px;" @click="redirect(data.buyer, data.seller, data.count)">Go to full Chat Page</button>
                                                     </li>
                                                     <li>
-                                                        <button class="chat-button" style="margin-left:100px;" @click="showPreview(data)">Show Preview</button>
+                                                        <button class="chat-button-preview" style="margin-left:100px;" @click="showPreview(data)">Show Preview</button>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -75,10 +75,10 @@
                                             <div class="buttons">
                                                 <ul>
                                                     <li style="margin-bottom:10px;">
-                                                        <button class="chat-button" style="margin-left:100px;" @click="redirect(data.buyer, data.seller, data.count)">Go to full Chat Page</button>
+                                                        <button class="chat-button-full" style="margin-left:100px;" @click="redirect(data.buyer, data.seller, data.count)">Go to full Chat Page</button>
                                                     </li>
                                                     <li>
-                                                        <button class="chat-button" style="margin-left:100px;" @click="showPreview(data)">Show Preview</button>
+                                                        <button class="chat-button-preview" style="margin-left:100px;" @click="showPreview(data)">Show Preview</button>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -331,12 +331,21 @@ img{
     font-family: Helvetica, Arial, sans-serif;
     font-size:18px;
 }
-.chat-button{
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: white;
-  background: #EC6041;
-  cursor: pointer;
-  width: 200px;
+.chat-button-full{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    background: #376C12;
+    border:solid 3px black;
+    cursor: pointer;
+    width: 200px;
+}
+.chat-button-preview{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    background: black;
+    border:solid 3px black;
+    cursor: pointer;
+    width: 200px;
 }
 button{
     cursor: pointer;

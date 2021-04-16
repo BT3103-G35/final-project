@@ -217,7 +217,7 @@ img{
     height: 300px;
     border-radius: 0%;
     cursor: pointer;
-    border: 5px solid #D3EAC1;
+    border: 5px solid #D6CAAC;
     object-fit: cover;
 }
 .input-search{

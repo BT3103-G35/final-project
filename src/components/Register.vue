@@ -25,12 +25,9 @@
                         <label for="tradeable">Others</label>
                         <p>Please upload a profile picture: </p>
                         <input type='file' @change='chooseFile($event)' required>
-                        <!--
-                        <button @click="removeImage()" v-if="this.image">Remove image</button>
-                        -->
                         <img :src="this.image" class='ui-image' id='img' v-if="this.image">
-                        <br><br>
-                        <button type="submit" id="submit-btn">SIGN UP</button>
+                        <br><br><br>
+                        <button type="submit" id="submit-btn"><b>SIGN UP</b></button>
                 </form>
 
                 </div>
@@ -78,20 +75,6 @@ export default {
             this.imageFile = file;
             this.createImage(file);
         },
-        //addPicToComm(){
-        //    var db = firebase.firestore();
-        //    firebase.auth().onAuthStateChanged((user) => {
-        //        firebase.storage().ref('users/' + user.uid + '/profile.jpg').getDownloadURL().then(imgUrl => {
-        //            console.log('here '+imgUrl)
-        //            db.collection('community').add({
-        //                imageRef: imgUrl,
-        //                user: user.uid,
-        //                name: this.name
-        //            });
-        //        })
-        //    })
-        //    this.$router.push('/profile');
-        //},
         createImage(file) {
             var reader = new FileReader();
 
@@ -146,11 +129,13 @@ p{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 #submit-btn{
-    background: #EC6041;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
-    color: white;
-    width: 455px;
+  font-size: 20px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: white;
+  background: black;
+  padding: 5px 5px;
+  cursor: pointer;
+  width:200px;
 }
 .error{
     color: red;
