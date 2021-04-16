@@ -55,6 +55,7 @@
                 <br><h3>Your search did not match any item.</h3><br>
             </div>
             <div v-else>
+                <br><h4 class="item-count">{{ this.searchedItems.length }} item/s found</h4>
                 <ul> 
                     <li v-for="(item, index) in this.searchedItems" v-bind:key="index">
                         <a v-on:click="redirect(item.user, item.count)"> 
