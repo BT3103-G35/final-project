@@ -1,5 +1,9 @@
 <template>
     <div class="additems-container">
+        <div class="additems-images">
+            <h1 id="choose-cat">Choose a category</h1>
+            <slider></slider>
+        </div>
         <div class="add-need-ideas">
             <br><br>
             <h1>Add</h1>
@@ -8,13 +12,8 @@
             <h1>Need ideas?</h1>
             <h2 style="font-size:20px">See what others in the community are wearing</h2>
             <br><br>
-            <router-link to="/community" tag="button-community" exact>Community</router-link>
+            <router-link to="/community" tag="button-community" exact><b>Community</b></router-link>
         </div>
-        <div class="additems-images">
-            <h1 id="choose-cat">Choose a category</h1>
-            <slider></slider>
-        </div>
-
     </div>
 </template>
 
@@ -54,7 +53,7 @@ export default {
 
 <style scoped>
 h1{
-    text-decoration: underline #EC6041;
+    text-decoration: underline #376C12;
     font-size: 70px;
 }
 #choose-cat{
@@ -64,19 +63,20 @@ h1{
 .additems-container{
     display: flex;
 }
-.add-need-ideas{
+.additems-images{
     width: 60%;
 }
-.additems-images{
+.add-need-ideas{
     margin-right: 100px;
     margin-top: 80px;
 }
 button-community{
-  font-size: 18px;
+  font-size: 20px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: white;
-  background: #EC6041;
-  box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+  color: black;
+  background: #D3EAC1;
+  border: 5px solid #8EBC68;
+  /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
   padding: 20px 24px;
   cursor: pointer;
 }

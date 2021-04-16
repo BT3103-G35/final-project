@@ -8,6 +8,7 @@
                 <img class="img" :src="this.item[0].imageRef">
                 <br> <br>
                 <h2> Name: {{ this.item[0].name }} </h2>
+                <h2> Details: {{ this.item[0].detail }} </h2>
                 <h2> Notes: {{ this.item[0].notes }} </h2>
                 <button class="back-to-chatlist-button" @click="redirect">Back to my chats</button>
             </div>

@@ -3,12 +3,12 @@
         <div class="item-information">
             <div style="display:flex;">
                 <div style="width:35%;">
-                    <img class="profile-img" style="margin-left:225px;" :src="this.itemLister[0].imageRef">
+                    <img class="profile-img" :src="this.itemLister[0].imageRef">
                 </div>
                 <div id="lister-name">
                     <br>
                     <span> <b>Lister:  </b></span>
-                    <span style="font-weight:normal; text-decoration: underline #EC6041;">{{ this.itemLister[0].name }}</span>
+                    <span style="font-weight:normal; text-decoration: underline #376C12;">{{ this.itemLister[0].name }}</span>
                     <br>
                     <span style="font-weight:normal;" v-if="this.userID == currentUser.uid">(oh look, its you!)</span>
                 </div> 
@@ -44,7 +44,7 @@
             <button style="width:400px; padding:10px 10px;" id="chat" v-if="this.userID != this.currentUser.uid" @click="goToChat">Send the lister a message!</button>
         </div>
         <div class="item-image">
-            <img :src="this.item[0].imageRef" contain height="500px" width="500px">
+            <img :src="this.item[0].imageRef" contain>
         </div>
     </div>
 </template>
@@ -163,12 +163,15 @@ export default {
     margin-left: 35px;
     margin-top: 7px;
 }
-
-
 .item-information{
     width: 60%;
 }
-
+.item-image img{
+    height:500px;
+    width:500px;
+    border: 7px solid #D3EAC1;
+    outline: 5px solid #376C12;
+}
 input{
     padding: 12px 20px;
     font-weight: bold;
@@ -184,9 +187,9 @@ textarea{
     font-size: 18px;
 }
 button{
-    background: #EC6041;
+    background: black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+    /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
     color: white;
     width: 250px;
     margin: 10px;
@@ -195,16 +198,18 @@ button{
     cursor: pointer;
 }
 #chat{
-    background:black;
+    background:#85AD64;
     box-shadow: 0px 0px 0px, 0px 0px 0px;
     width: 280px;
+    color:black;
 }
 .profile-img{
     width: 100px;
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    border: solid 5px #EC6041;
+    border: solid 5px #376C12;
+    margin-left:225px;
 }
 .trade-indicator{
     width: 45px;

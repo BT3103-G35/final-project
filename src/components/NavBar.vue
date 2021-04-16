@@ -6,13 +6,13 @@
           -->
           <nav v-if="loggedIn">
               <div class="logo">
-                  <a><img src="https://i.ibb.co/mDyY1hb/Ainran-dp-background.jpg" alt="Ainran-dp-background" border="0" width = "116px" height = "61px"></a>
+                  <!--a><img src="https://i.ibb.co/mDyY1hb/Ainran-dp-background.jpg" alt="Ainran-dp-background" border="0" width = "116px" height = "61px"></a-->
               </div>
-              <p>Logged in as {{ this.currentUser }}</p>
+              <p><b>Logged in as {{ this.currentUser }}</b></p>
               <ul>
-                <li><router-link to="/community" exact>Community</router-link></li>
-                <li><router-link to="/marketplace" exact>Discover</router-link></li>
-                <li><router-link to="/about" exact>About</router-link></li>
+                <li><router-link to="/community" exact><b>Community</b></router-link></li>
+                <li><router-link to="/marketplace" exact><b>Discover</b></router-link></li>
+                <li><router-link to="/about" exact><b>About</b></router-link></li>
                 
               </ul>
               <div class="profilepic">
@@ -113,9 +113,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+li{
+    color:white;
+}
 .nav-container{
-    background-color: #ffe5cc;
+    background-color: #376C12;
     height: 72px;
+    color:white;
 }
 #profile-img{
     width: 50px;
@@ -143,7 +147,7 @@ nav .logo{
     font-style: normal;
     font-weight: 800;
     font-size: 64px;
-    color: #021718
+    color: white;
 }
 nav li{
     list-style: none;
@@ -155,13 +159,13 @@ nav li:nth-last-of-type(1){
 }
 
 nav li a{
-    color: #021718;
+    color:white;
     font-size: 20px;
     text-decoration: none;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 p{
-    color: #021718;
+    color: white;
     font-size: 20px;
     text-decoration: none;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -178,7 +182,7 @@ p{
 }
 
 .dropbtn {
-  background-color: #ffe5cc;
+  background-color: #376C12;
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -201,17 +205,17 @@ p{
 }
 
 .dropdown-content a {
-  color: black;
+  color: white;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
   height: 30px;
 }
-.dropdown-content a:hover {background-color: #ffe5cc;}
+.dropdown-content a:hover {background-color: #37601B;}
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn {background-color: #EC6041;}
+.dropdown:hover .dropbtn {background-color: #37601B;}
 
 input{
     width: 50px;

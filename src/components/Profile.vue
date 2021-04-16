@@ -14,7 +14,8 @@
             </div>
             <div class="num-items">
                 <h1>You Currently Have:</h1>
-                <p id="itemCount">{{ this.items1.length }} Item/s</p>
+                <p id="itemCount" v-if="this.items1.length==1" class="itemCount"> 1 Item</p>
+                <p id="itemCount" v-else class="itemCount"> {{ this.items1.length }} Items </p>
                 <button style="color: transparent; background-color: transparent; border-color: transparent; box-shadow: none;"> <router-link to="/additem" tag="button-additem" exact v-if="this.items1.length>0">Add item</router-link> </button>
             </div>
     
@@ -54,7 +55,7 @@
                             <p>Name: {{ item.data().name }}</p>
                             <p>Details: {{ item.data().detail }}</p>
                             <p>Notes: {{ item.data().notes }}</p>
-                            <button @click="edit(item)">Edit</button>
+                            <button @click="edit(item)"><b>Edit</b></button>
                             <br><br><br><br>
                         </a>
                     </li>
@@ -73,7 +74,7 @@
                                 <p>Category:{{ item.data().category }}</p>
                                 <p>Details:{{ item.data().detail }}</p>
                                 <p>Notes:{{ item.data().notes }}</p>
-                                <button @click="edit(item)">Edit</button>
+                                <button @click="edit(item)"><b>Edit</b></button>
                             </a>
                         </li>
                     </ul>
@@ -213,16 +214,16 @@ export default {
 </script>
 
 <style scoped>
-.test-style{
-    border: 1px red;
-}
 .profile-container{
     display: flex;
-    background-color: #fff7e6;
 }
 .profile-info{
-    width: 40%;
-    margin-left: 100px;
+    margin-top:80px;
+    width: 30%;
+    margin-left: 130px;
+    background-color:#EAF8DE;
+    border: 5px solid #376C12;
+    height: 850px;
 }
 #profile-img{
     width: 150px;
@@ -234,10 +235,11 @@ export default {
     width: 60%;
 }
 .item-container{
-    width: 60%;
+    margin-left: 130px;
 }
 h1{
     font-size: 70px;
+    text-decoration: underline #376C12;
 }
 .input-search{
     width:150px;
@@ -257,22 +259,25 @@ h1{
     width: 75px;
     height:25px;
 }
+.filter-bars{
+    font-size:22px;
+}
 button{
     height: 40px;
     width: 200px;
     font-size: 15px;
-    background-color: #EC6041;
+    background-color: black;
     color: white;
-    background: #EC6041;
-    box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+    background: black;
+    /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
     cursor:pointer;
 }
 button-additem{
   font-size: 30px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: white;
-  background: #EC6041;
-  box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+  background: black;
+  /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
   padding: 20px 24px;
   cursor: pointer;
 }
@@ -280,8 +285,8 @@ button-editprofile{
   font-size: 30px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: white;
-  background: #EC6041;
-  box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+  background: black;
+  /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
   padding: 20px 24px;
   cursor: pointer;
 }
@@ -317,12 +322,11 @@ ul{
     flex-wrap: wrap;
 }
 li {
-    padding: 10px;
+    padding: 15px;
 }
 .item-container img{
     width: 300px;
     height: 300px;
     border-radius: 10%;
 }
-
 </style>

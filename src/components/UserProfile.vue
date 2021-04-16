@@ -5,13 +5,14 @@
                 <img :src='this.userProfilePic' id="profile-img"><br>
                 <div id="displayName">{{this.userName}}</div>
                 <br><br>
-                <h1>{{this.userName}} Currently Has:</h1>
-                <p id="itemCount">{{ this.userItems.length }} Item/s</p>
-                
+                <h1>{{this.userName}} </h1>
+                <h1> Currently Has:</h1>
+                <p v-if="this.userItems.length==1" class="itemCount"> 1 Item</p>
+                <p v-else class="itemCount"> {{ this.userItems.length }} Items </p>
             </div>
         </div>
-        <div>
-            <div v-if="this.userItems.length==0">
+        <div class="item-container">
+            <div class="items" v-if="this.userItems.length==0">
                 <h1 id="no-items">User has no items</h1>
             </div>
             <div v-else>
@@ -36,18 +37,18 @@
                     <button id="filter" @click="back" type="submit">Back</button>
                 </div>
                 <br><br>
-                <div id="items" v-if="!this.searched">
+                <div class="items" v-if="!this.searched">
                     <ul>
                         <li v-for="item in userItems" v-bind:key="item.index">
                             <img class="profileItem" :src="item.imageRef">
                             <p>Name: {{ item.name }}</p>
                             <p>Details: {{ item.detail }}</p>
                             <p>Notes: {{ item.notes }}</p>
-                            <button @click="redirect(item.user, item.count)">Check it out!</button>
+                            <button @click="redirect(item.user, item.count)"><b>Check it out!</b></button>
                         </li>
                     </ul>
                 </div>
-                <div id="items" v-else>
+                <div class="items" v-else>
                     <div v-if="this.searchedItems.length==0">
                         <br><h3>Your search did not match any item.</h3><br>
                     </div>
@@ -156,16 +157,16 @@ export default {
 </script>
 
 <style scoped>
-.test-style{
-    border: 1px red;
-}
 .profile-container{
     display: flex;
-    background-color: #fff7e6;
 }
 .profile-info{
-    width: 40%;
-    margin-left: 100px;
+    margin-top:80px;
+    width: 30%;
+    margin-left: 130px;
+    background-color:#EAF8DE;
+    border: 5px solid #376C12;
+    height: 720px;
 }
 
 .add-item{
@@ -196,29 +197,11 @@ button{
     height: 40px;
     width: 200px;
     font-size: 15px;
-    background-color: #EC6041;
+    background-color: black;
     color: white;
-    background: #EC6041;
-    box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
+    background: black;
+    /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
     cursor:pointer;
-}
-button-additem{
-  font-size: 30px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: white;
-  background: #EC6041;
-  box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
-  padding: 20px 24px;
-  cursor: pointer;
-}
-button-editprofile{
-  font-size: 30px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: white;
-  background: #EC6041;
-  box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
-  padding: 20px 24px;
-  cursor: pointer;
 }
 #profile-img{
     width: 150px;
@@ -244,7 +227,7 @@ button-editprofile{
     font-weight: bold;
     font-size: 30px;
 }
-#itemCount{
+.itemCount{
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 60px;
 }
@@ -265,11 +248,21 @@ ul{
 }
 ul{
     display: flex;
+    list-style: none;
     flex-wrap: wrap;
-    list-style-type: none;
-    margin-left: 150px;
 }
 li {
-    padding: 10px;
+    padding: 15px;
+}
+h1{
+    text-decoration: underline #376C12;
+}
+.item-container{
+    margin-left: 130px;
+}
+.items img{
+    width: 300px;
+    height: 300px;
+    border-radius: 10%;
 }
 </style>
