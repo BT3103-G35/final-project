@@ -65,6 +65,7 @@ export default {
                 this.newDetail=this.item[0].detail;
                 this.newNotes=this.item[0].notes;
                 this.newTrade=this.item[0].tradeable;
+                this.filename = this.item[0].filename;
             })
         },
         trigger() {
@@ -72,12 +73,8 @@ export default {
         },
         onFileChange(e) {
             let file = e.target.files[0];
-            if(file['type']==='image/jpeg') {
                 this.imageFile = file;
                 this.createImage(file);
-            } else {
-                alert("Please upload an image file")
-            }
         },
         createImage(file) {
             var reader = new FileReader();
@@ -90,7 +87,7 @@ export default {
         uploadImage() {
             var pictureRef = firebase.storage().refFromURL(this.item[0].imageRef);
             pictureRef.delete();
-            var storageRef = firebase.storage().ref('uploads/' + this.currentUser.uid + '/' + this.item[0].filename);
+            var storageRef = firebase.storage().ref('uploads/' + this.currentUser.uid + '/' + this.filename);
             storageRef.put(this.imageFile);
             location.reload();
         },
@@ -165,6 +162,7 @@ export default {
             count: parseInt(this.$route.query.count),
             item: [],
             deleted: 0,
+            filename: ''
         }
     },
 }
