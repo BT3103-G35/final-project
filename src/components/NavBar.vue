@@ -182,9 +182,7 @@ p{
     text-decoration: none;
     cursor: pointer;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
 }
-
 .dropbtn {
   background-color: #376C12;
   color: white;
@@ -192,12 +190,10 @@ p{
   font-size: 16px;
   border: none;
 }
-
 .dropdown {
   position: relative;
   display: inline-block;
 }
-
 .dropdown-content {
   display: none;
   position: absolute;
@@ -207,7 +203,6 @@ p{
   z-index: 1;
   margin-right: 50px;
 }
-
 .dropdown-content a {
   color: white;
   padding: 12px 16px;
@@ -215,11 +210,19 @@ p{
   display: block;
   height: 30px;
 }
-.dropdown-content a:hover {background-color: #37601B;}
-
+.dropdown-content a:hover {
+    background-color: #37601B;
+}
+#signout:hover{
+    color:white;
+}
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: #37601B;}
+
+li:hover{
+    background-color: #283D06;
+}
 
 input{
     width: 50px;

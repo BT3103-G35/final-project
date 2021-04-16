@@ -269,26 +269,25 @@ h1{
     background-color: #3F3726;
     border: solid 4px black;
     color: white;
-    /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
     cursor:pointer;
 }
 button-additem{
-  font-size: 30px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: white;
-  background: black;
-  /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
-  padding: 20px 24px;
-  cursor: pointer;
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    background: black;
+    box-shadow: 4px 4px 0px #507B2E, 8px 8px 0px #6B8B51;
+    padding: 20px 24px;
+    cursor: pointer;
 }
 button-editprofile{
-  font-size: 30px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: white;
-  background: black;
-  /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
-  padding: 20px 24px;
-  cursor: pointer;
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    background: black;
+    box-shadow: 4px 4px 0px #507B2E, 8px 8px 0px #6B8B51;
+    padding: 20px 24px;
+    cursor: pointer;
 }
 img{
     width: 100px;
