@@ -43,7 +43,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .bg{
   background-image: url("https://i.postimg.cc/vZbhY4ZB/clothes-1.jpg");
@@ -64,19 +63,18 @@ h1{
   font-size: 86px;
 }
 li{
-    list-style: none;
-    margin-right: 50px;
-
+  list-style: none;
+  margin-right: 50px;
 }
 ul{
-    display: flex;
-    margin-left: 38%;
+  display: flex;
+  margin-left: 38%;
 }
 li a{
-    color: #021718;
-    font-size: 40px;
-    text-decoration: none;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: #021718;
+  font-size: 40px;
+  text-decoration: none;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 button1{
   font-size: 30px;

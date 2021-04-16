@@ -5,22 +5,22 @@
             <h1> What kind of {{ this.type }} is this? </h1>
             <br>
             <form @submit.prevent="pressed">
-                <label for="name">Name*:</label><br>
+                <label for="name"><b>Name*:</b></label><br>
                 <input type="text" id="name" name="name" size="59" placeholder="What would you call this apparel?" v-model="name" required><br><br>
                 <label for="detail">Details*:</label><br>
                 <textarea name="detail" rows="3" cols="60" placeholder="Color/Size/Material of your apparel goes here!" v-model="detail" required></textarea><br><br>
                 <label for="notes">Notes*:</label><br>
                 <textarea name="notes" rows="6" cols="60" placeholder="Anything to take note of, such as the condition or where you bought this item!" v-model="notes" required></textarea><br><br>
                 <input type="radio" id="trade" name="trade" value="true" v-on:click="setTrade(1)" required>
-                <label style="font-size:20px;" for="trade">Up For Trade</label>
+                <label for="trade">Up For Trade</label>
                 <input type="radio" id="notrade" name="trade" value="false" v-on:click="setTrade(0)" required>
-                <label style="font-size:20px;" for="notrade">Not Up For Trade</label>
+                <label for="notrade">Not Up For Trade</label>
                 <br><br>
                 <button type="submit">Add</button>
             </form>
         </div>
         <div class="upload-image">
-            <upload align="center" v-on:upload="onUpload"></upload>
+            <upload class="upload" align="center" v-on:upload="onUpload"></upload>
             <br><br><br>
         </div>
     </div>
@@ -198,12 +198,12 @@ export default {
 
 <style scoped>
 h1{
-    text-decoration: underline #EC6041;
-    font-size: 30px;
+    text-decoration: underline #376C12;
+    font-size: 35px;
 }
-
 .additems-container{
     font-size:25px;
+    font-weight: bold;
     display:flex;
     justify-content: space-between;
     margin-left: 15%;
@@ -213,17 +213,24 @@ h1{
     margin-top: 10%;
     margin-right: 15%;
 }
+.upload{
+    border: solid 7px #376C12;
+}
 .search-bar{
     margin-left: 250px;
 }
 button{
+    text-align:center;
     background: #EC6041;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;
-    color: white;
-    width:450px;
-    height:40px;
+    color: black;
+    background: #AED191;
+    border: 4px solid #376C12;
+    box-shadow: 4px 4px 0px #507B2E, 8px 8px 0px #6B8B51;
+    width:300px;
+    height:50px;
     font-size:30px;
+    font-weight: bold;
     cursor:pointer;
 }
 ul {
@@ -244,5 +251,4 @@ textarea{
 #name{
     width: 495px;
 }
-
 </style>
