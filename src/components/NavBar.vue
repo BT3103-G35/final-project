@@ -13,8 +13,8 @@
                 <li><router-link to="/community" exact>Community</router-link></li>
                 <li><router-link to="/marketplace" exact>Discover</router-link></li>
                 <li><router-link to="/about" exact>About</router-link></li>
-                
               </ul>
+              <img id="chat-img" src="https://i.postimg.cc/kGbcQnmX/Chat-Icon.png" @click="goToChatList">
               <div class="profilepic">
                   <!--
                     <button class="dropbtn"><img :src='this.url' id="profile-img" @click="goToProfile"></button>
@@ -106,7 +106,10 @@ export default {
         },
         goToDashBoard(){
             window.location.href="/dashboard?user=" +this.id;
-        }
+        },
+        goToChatList(){
+            window.location.href="/chatlist?user=" +this.id;
+        },
     }
 }
 </script>
@@ -146,6 +149,7 @@ nav .logo{
     color: #021718
 }
 nav li{
+    float: right;
     list-style: none;
     margin-right: 50px;
 
@@ -223,5 +227,11 @@ input{
 button{
     width: 100px;
 }
-
+#chat-img{
+    margin-left: -10%;
+    margin-right: -10%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
 </style>
