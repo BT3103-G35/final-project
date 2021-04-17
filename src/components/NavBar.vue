@@ -33,7 +33,7 @@
 
           <nav v-else>
               <div class="logo">
-                  Ainran
+                  <a><img src="https://i.ibb.co/NNpVDmp/Ainran-Logo-words.png" alt="Ainran-dp-background" border="0" width = "140px" height = "61px"></a>
               </div>
                 <ul>
                     <li><router-link to="/" exact>Home</router-link></li>
