@@ -14,7 +14,7 @@ export default{
             currentUser: false,
             results: [0, 0, 0, 0, 0, 0, 0, 0],
             datacollection: {
-                labels: ['top', 'bottom', 'outerwear', 'footwear', 'headwear', 'jewellery', 'accessory', 'others'],
+                labels: ['top', 'bottom', 'outerwear', 'footwear', 'dress', 'headwear', 'accessory', 'others'],
                 datasets: [{
                     label: 'Number of items',
                     data: [],
@@ -81,9 +81,9 @@ export default{
                         this.results[2] += 1;
                     }else if (doc.data().category == 'footwear'){
                         this.results[3] += 1;
-                    }else if (doc.data().category == 'headwear'){
+                    }else if (doc.data().category == 'dress'){
                         this.results[4] += 1;
-                    }else if (doc.data().category == 'jewellery'){
+                    }else if (doc.data().category == 'headwear'){
                         this.results[5] += 1;
                     }else if (doc.data().category == 'accessory'){
                         this.results[6] += 1;
