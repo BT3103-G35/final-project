@@ -165,7 +165,7 @@ export default {
     margin-left: 130px;
     background-color:#EAF8DE;
     border: 5px solid #376C12;
-    height: 800px;
+    height: 900px;
 }
 
 .add-item{
