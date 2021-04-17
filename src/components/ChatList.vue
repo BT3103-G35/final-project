@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="chat-page">
         <h1> My Chats </h1>
         <div style="text-align:left;" class="search-bar" v-if="displayData.length!=0">
             <input class="chat-search" type="text" placeholder="Search for item name..." v-model="searchWord" name="search">
@@ -267,6 +267,9 @@ export default {
 </script>
 
 <style scoped>
+.chat-page{
+    height: 750px;
+}
 #chat-window{
     height:380px;
     width:500px;
@@ -325,7 +328,7 @@ img{
     border-radius: 50%;
 }
 .chat-preview{
-    margin-left:20%;
+    margin-left: 30px;
 }
 .me{
     float:right;
