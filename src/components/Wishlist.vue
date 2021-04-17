@@ -32,6 +32,8 @@
                 <h3>GO TO DISCOVER OR SIMPLY WISH</h3> <h3>FOR MORE!</h3>
                 <br><br><br>
                 <router-link to="/marketplace" tag="button-marketplace" exact><b>WISHING FOR MORE?</b></router-link>
+                <br>
+                <img class="tree-img" src="https://i.postimg.cc/ydxRSfkr/Tree-4.png">
             </div>
         </div>
     </div>
@@ -125,9 +127,9 @@ li{
 .marketplace-text2{
     width: 35%;
     margin-right:85px;
-    background-color:#F8EED6;
+    background-color:#F7FFF4;
     border: 5px solid #376C12;
-    height:373px;
+    height:600px;
 }
 h1{
     text-decoration: underline #376C12;
@@ -166,5 +168,9 @@ img{
 }
 .info{
     width: 250px;
+}
+.tree-img{
+    height:300px;
+    width:500px;
 }
 </style>
