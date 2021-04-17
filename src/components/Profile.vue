@@ -52,9 +52,9 @@
                     <li v-for="item in items1" v-bind:key="item.index">
                         <a>
                             <img v-on:click="redirect(item.data().user, item.data().count)" :src="item.data().imageRef" @error="$event.target.src='https://i.postimg.cc/15z7cNHS/Screenshot-2021-04-17-020340.jpg'">
-                            <p>Name: {{ item.data().name }}</p>
-                            <p>Details: {{ item.data().detail }}</p>
-                            <p>Notes: {{ item.data().notes }}</p>
+                            <p id="info">Name: {{ item.data().name }}</p>
+                            <p id="info">Details: {{ item.data().detail }}</p>
+                            <p id="info">Notes: {{ item.data().notes }}</p>
                             <button class="edit" @click="edit(item)"><b>Edit</b></button>
                             <br><br><br><br>
                         </a>
@@ -272,6 +272,7 @@ h1{
     border: solid 4px black;
     color: white;
     cursor:pointer;
+    margin-left: 15px;
 }
 button-additem{
     font-size: 30px;
@@ -329,5 +330,8 @@ li {
     width: 300px;
     height: 300px;
     border-radius: 10%;
+}
+#info{
+    width: 300px;
 }
 </style>
