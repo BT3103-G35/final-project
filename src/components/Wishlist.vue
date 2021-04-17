@@ -8,9 +8,9 @@
                 <ul>
                     <li v-for="item in items" v-bind:key="item.index">
                         <img @click="redirect(item)" :src="item.data().imageRef">
-                        <p>Name: {{ item.data().name }}</p>
-                        <p>Details: {{ item.data().detail }}</p>
-                        <p>Notes: {{ item.data().notes }}</p>
+                        <p class="info">Name: {{ item.data().name }}</p>
+                        <p class="info">Details: {{ item.data().detail }}</p>
+                        <p class="info">Notes: {{ item.data().notes }}</p>
                         <button @click="redirect(item)">Go to item</button>
                     </li>
                 </ul>
@@ -101,7 +101,7 @@ export default {
 }
 .wishlist-item{
     width: 60%;
-    margin-left: 150px;
+    margin-left: 85px;
 }
 ul{
     display: flex;
@@ -124,7 +124,7 @@ li{
 }
 .marketplace-text2{
     width: 35%;
-    margin-right:20px;
+    margin-right:85px;
     background-color:#F8EED6;
     border: 5px solid #376C12;
     height:373px;
@@ -160,8 +160,11 @@ button{
     border: 3px solid black;
 }
 img{
-    height:200px;
-    width:200px;
+    height:250px;
+    width:250px;
     cursor: pointer;
+}
+.info{
+    width: 250px;
 }
 </style>
