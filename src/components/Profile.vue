@@ -223,7 +223,7 @@ export default {
     margin-left: 100px;
     background-color:#EAF8DE;
     border: 5px solid #376C12;
-    width: 600px;
+    width: 450px;
     height: 900px;
 }
 #profile-img{
