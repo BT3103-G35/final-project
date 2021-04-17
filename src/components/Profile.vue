@@ -218,12 +218,13 @@ export default {
     display: flex;
 }
 .profile-info{
+    float: left;
     margin-top:80px;
-    width: 30%;
-    margin-left: 130px;
+    margin-left: 100px;
     background-color:#EAF8DE;
     border: 5px solid #376C12;
-    height: 850px;
+    width: 600px;
+    height: 900px;
 }
 #profile-img{
     width: 150px;
@@ -235,7 +236,8 @@ export default {
     width: 60%;
 }
 .item-container{
-    margin-left: 130px;
+    float: right;
+    margin-left: 150px;
 }
 h1{
     font-size: 70px;
@@ -281,7 +283,7 @@ button-additem{
     cursor: pointer;
 }
 button-editprofile{
-    font-size: 30px;
+    font-size: 20px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: white;
     background: black;
