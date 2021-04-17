@@ -162,11 +162,10 @@ export default {
 }
 .profile-info{
     margin-top:80px;
-    width: 30%;
     margin-left: 130px;
     background-color:#EAF8DE;
     border: 5px solid #376C12;
-    height: 720px;
+    height: 800px;
 }
 
 .add-item{
@@ -221,6 +220,8 @@ button{
 .profile-name{
     padding: 0px;
     margin-top: 50px;
+    width: 400px;
+
 }
 #displayName{
     font-family:Georgia, 'Times New Roman', Times, serif;
