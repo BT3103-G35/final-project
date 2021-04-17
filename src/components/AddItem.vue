@@ -24,7 +24,7 @@
             </div>
             <div v-if="this.number==3">
                 <h1>Did you know?</h1>
-                <h2 style="font-size:20px"> If everyone reused just one T-shirt, we would save 5 5.5 trillion gallons of water 
+                <h2 style="font-size:20px"> If everyone reused just one T-shirt, we would save 5.5 trillion gallons of water 
                     and 26 million pounds of carbon dioxide, helping stem the tide of environmental destruction caused by textile waste! <br><br>
                     By uploading your clothing to Ainran to reduce textile waste and joining our cause,<b> you become part of the solution!</b></h2>
                 <br><br>
