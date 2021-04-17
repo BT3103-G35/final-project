@@ -91,7 +91,7 @@ h1{
     width:50%
 }
 .slider{
-    margin-left: 140px;
+    margin-left: 120px;
 }
 .add-need-ideas{
     margin-left: 10px;
