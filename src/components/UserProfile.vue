@@ -41,9 +41,9 @@
                     <ul>
                         <li v-for="item in userItems" v-bind:key="item.index">
                             <img class="profileItem" :src="item.imageRef">
-                            <p>Name: {{ item.name }}</p>
-                            <p>Details: {{ item.detail }}</p>
-                            <p>Notes: {{ item.notes }}</p>
+                            <p id="info">Name: {{ item.name }}</p>
+                            <p id="info">Details: {{ item.detail }}</p>
+                            <p id="info">Notes: {{ item.notes }}</p>
                             <button @click="redirect(item.user, item.count)"><b>Check it out!</b></button>
                         </li>
                     </ul>
@@ -173,6 +173,9 @@ export default {
 }
 h1{
     font-size: 70px;
+}
+#info{
+    width:300px;
 }
 .input-search{
     width:150px;
