@@ -174,6 +174,7 @@ img{
     border-radius: 0%;
     cursor: pointer;
     object-fit: cover;
+    border: 5px solid #99d370;
 }
 p{
     text-align: center;

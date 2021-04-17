@@ -60,18 +60,20 @@ header{
 p{
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 22px;
     line-height: 28px;
     text-align: left;
 }
 .page-content{
-    width: 471px;
+    width: 40%;
     margin-left: 200px;
-    margin-top: 50px;
+    margin-top: 5%;
 }
 .image-container{
     margin-right: 200px;
-    margin-top: 45px;
+    margin-left: 10%;
+    margin-top: 5%;
+    width: 40%;
 }
 
 .social-icons img{
