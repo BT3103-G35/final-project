@@ -128,7 +128,7 @@ li{
     margin-right:85px;
     background-color:#F7FFF4;
     border: 5px solid #376C12;
-    height:600px;
+    height:700px;
 }
 h1{
     text-decoration: underline #376C12;

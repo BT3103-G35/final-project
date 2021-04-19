@@ -215,6 +215,7 @@ button{
     width:300px;
     height:80px;
     font-size:30px;
+    color: #37601B;
 }
 .button{
     display:inline-block;

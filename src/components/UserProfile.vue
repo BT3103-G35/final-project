@@ -28,8 +28,8 @@
                         <option>bottom</option>
                         <option>outerwear</option>
                         <option>footwear</option>
+                        <option>dress</option>
                         <option>headwear</option>
-                        <option>jewellery</option>
                         <option>accessory</option>
                         <option>others</option>
                     </select>
