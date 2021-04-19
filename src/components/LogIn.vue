@@ -73,6 +73,9 @@ export default {
     align-items: center;
     justify-content: space-between;
 }
+.error{
+    width: 400px;
+}
 #mid-section{
     display: flex;
 }
