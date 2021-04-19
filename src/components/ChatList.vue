@@ -26,11 +26,11 @@
                                         </div>
                                         <div style="display:flex;">
                                             <div>    
-                                                <p style="font-size:22px; margin-left:35px; margin-top:10px;"> {{data.partnerName}}
+                                                <p class="partnerName"> {{data.partnerName}}
                                                 <br>
                                                 <b>{{ data.itemName }}</b>
                                                 </p>
-                                                <input style="font-size:27px; margin-left:35px; line-height:0.1" v-model="data.lastMessage" :readonly=true>
+                                                <input v-model="data.lastMessage" :readonly=true>
                                             </div>
                                             <div class="item-img"> 
                                                 <img class="item-img" :src="data.imageRef">
@@ -38,10 +38,10 @@
                                             <div class="buttons">
                                                 <ul>
                                                     <li class="button-list">
-                                                        <button class="chat-button-full" style="margin-left:100px;" @click="redirect(data.buyer, data.seller, data.count)">Full Chat Page</button>
+                                                        <button class="chat-button-full" @click="redirect(data.buyer, data.seller, data.count)">Full Chat Page</button>
                                                     </li>
                                                     <li class="button-list">
-                                                        <button class="chat-button-preview" style="margin-left:100px;" @click="showPreview(data)">Show Preview</button>
+                                                        <button class="chat-button-preview" @click="showPreview(data)">Show Preview</button>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -63,11 +63,11 @@
                                         </div>
                                         <div style="display:flex;">
                                             <div>    
-                                                <p style="font-size:22px; margin-left:35px; margin-top:10px;"> {{data.partnerName}}
+                                                <p class="partnerName"> {{data.partnerName}}
                                                 <br>
                                                 <b>{{ data.itemName }}</b>
                                                 </p>
-                                                <input style="font-size:27px; margin-left:35px; line-height:0.1" v-model="data.lastMessage" :readonly=true>
+                                                <input v-model="data.lastMessage" :readonly=true>
                                             </div>
                                             <div class="item-img"> 
                                                 <img class="item-img" :src="data.imageRef">
@@ -99,8 +99,8 @@
                         </ul> 
                     </div>
                     <br><br>
-                    <input style="font-size:20px; width:400px;" id="message" v-model="this.message" placeholder="Enter message..." autocomplete="off">
-                    <button style="height:29px; font-size:20px;" @click="sendMessage()" type="submit">Send</button>       
+                    <input id="message" v-model="this.message" placeholder="Enter message..." autocomplete="off">
+                    <button class="send" @click="sendMessage()" type="submit">Send</button>       
                 </div>  
             </div>
         </div>
@@ -188,6 +188,7 @@ export default {
                     this.searchedData.push(data);
                 }
             }
+            this.preview=false;
         },
         redirect(buyer, seller, count){
             window.location.href="/chat?buyer=" + buyer + "&seller=" + seller + "&count=" + parseInt(count);
@@ -267,12 +268,23 @@ export default {
 </script>
 
 <style scoped>
+input{
+    width:300px;
+    font-size:18px;
+    margin-left:35px;
+    line-height:0.1
+}
+#message{
+    font-size:15px;
+    width:250px;
+}
 .chat-page{
-    height: 750px;
+    height: 500px;
 }
 #chat-window{
-    height:380px;
-    width:500px;
+    margin-top: 5px;
+    height:253.3px;
+    width:334px;
     overflow:auto;
     display:flex;
     flex-direction: column-reverse;
@@ -290,45 +302,38 @@ export default {
 .chat-container{
     display:flex;
 }
-.mini-profile{
-    height:100px;
-    width:100px;
-    border-radius:10%;
-}
 .search-bar{
-    margin-top:75px;
-    margin-left:60px;
+    margin-top:50px;
+    margin-left:40px;
 }
 .chat-list{
-    margin-left:35px;
+    margin-left:72px;
     display:flex;
 }
 .chat-search{
-    width:487px;
-    height:30px;
-    font-size:20px;
+    width:323px;
+    height:20px;
+    font-size:13.3px;
 }
 button{
-    height:33px;
-    font-size:20px;
-}
-.list{
-    font-size:20px;
+    height:26px;
+    font-size:13.3px;
+    cursor: pointer;
 }
 .item-img{
-    height:125px;
-    width:125px;
+    height:83.3px;
+    width:83.3px;
 }
 img{
     cursor:pointer;
 }
 .profile-img{
-    width: 75px;
-    height: 75px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
 }
 .chat-preview{
-    margin-left: 30px;
+    margin-left: 90px;
 }
 .me{
     float:right;
@@ -339,7 +344,7 @@ img{
     border-radius: 30px;
     margin-bottom: 2px;
     font-family: Helvetica, Arial, sans-serif;
-    font-size:18px;
+    font-size:12px;
 }
 .item-img{
     margin-left:10px;
@@ -352,7 +357,7 @@ img{
     border-radius: 30px;
     margin-bottom: 2px;
     font-family: Helvetica, Arial, sans-serif;
-    font-size:18px;
+    font-size:12px;
 }
 .chat-button-full{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -360,7 +365,7 @@ img{
     background: #376C12;
     border:solid 3px black;
     cursor: pointer;
-    width: 160px;
+    width: 107px;
 }
 .chat-button-preview{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -368,15 +373,25 @@ img{
     background: black;
     border:solid 3px black;
     cursor: pointer;
-    width: 160px;
+    width: 107px;
 }
-button{
-    cursor: pointer;
+ul{
+    list-style-type: none;
 }
 li{
-    margin:0 0 50px 0;  
+    margin:0 0 35px 0;  
 }
 .button-list{
-     margin:0 0 5px 0;
+    margin:0 0 3.3px 0;
+    margin-left:60px;
+}
+#send{
+    height:29px;
+    font-size:20px;
+}
+.partnerName{
+    font-size:18px;
+    margin-left:35px;
+    margin-top:10px;
 }
 </style>

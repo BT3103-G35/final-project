@@ -209,7 +209,7 @@ ul{
     list-style-type: none;
 }
 li{
-    padding: 25px;
+    padding: 18px;
 }
 img{
     width: 186px;

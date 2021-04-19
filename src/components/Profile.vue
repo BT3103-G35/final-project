@@ -70,10 +70,9 @@
                         <li v-for="(item, index) in this.searchedItems" v-bind:key="index">
                             <a v-on:click="redirect(item.data().user, item.data().count)"> 
                                 <img :src="item.data().imageRef">
-                                <p>Name:{{ item.data().name }}</p>
-                                <p>Category:{{ item.data().category }}</p>
-                                <p>Details:{{ item.data().detail }}</p>
-                                <p>Notes:{{ item.data().notes }}</p>
+                                <p id="info">Name:{{ item.data().name }}</p>
+                                <p id="info">Details:{{ item.data().detail }}</p>
+                                <p id="info">Notes:{{ item.data().notes }}</p>
                                 <button class="edit" @click="edit(item)"><b>Edit</b></button>
                             </a>
                         </li>
@@ -219,12 +218,12 @@ export default {
 }
 .profile-info{
     float: left;
-    margin-top:80px;
+    margin-top:40px;
     margin-left: 100px;
     background-color:#EAF8DE;
     border: 5px solid #376C12;
-    width: 450px;
-    height: 900px;
+    width: 320px;
+    height: 650px;
 }
 #profile-img{
     width: 150px;
@@ -237,15 +236,11 @@ export default {
 }
 .item-container{
     float: right;
-    margin-left: 150px;
-}
-h1{
-    font-size: 70px;
-    text-decoration: underline #376C12;
+    margin-left:60px;
 }
 .input-search{
     width:150px;
-    height:18px;
+    height:19px;
     font-size:15px;
 }
 .dropdown{
@@ -258,29 +253,26 @@ h1{
     background-color:lightgray;
     box-shadow: none;
     color: black;
-    width: 75px;
+    width: 60px;
     height:25px;
 }
-.filter-bars{
-    font-size:22px;
-}
 .edit{
-    height: 40px;
-    width: 200px;
+    height: 30px;
+    width: 150px;
     font-size: 15px;
     background-color: #3F3726;
     border: solid 4px black;
     color: white;
     cursor:pointer;
-    margin-left: 15px;
+    margin-left: 5px;
 }
 button-additem{
-    font-size: 30px;
+    font-size: 20px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: white;
     background: black;
     box-shadow: 4px 4px 0px #507B2E, 8px 8px 0px #6B8B51;
-    padding: 20px 24px;
+    padding: 14px 19px;
     cursor: pointer;
 }
 button-editprofile{
@@ -289,49 +281,50 @@ button-editprofile{
     color: white;
     background: black;
     box-shadow: 4px 4px 0px #507B2E, 8px 8px 0px #6B8B51;
-    padding: 20px 24px;
+    padding: 12px 15px;
     cursor: pointer;
 }
 img{
-    width: 100px;
+    width: 50px;
+    height:50px;
     height: auto;
     border-radius: 50%;
     cursor: pointer;
 }
 .bells-and-chat img{
-    width: 50px;
+    width: 35px;
     height: auto;
-    padding: 15px;
+    padding: 8px;
 }
 .num-items h1{
-    font-size: 40px;
+    font-size: 27px;
 }
 .profile-name{
-    padding: 50px;
+    padding: 30px;
 }
 #displayName{
     font-family:Georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 20px;
 }
 #itemCount{
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 60px;
+    font-size: 35px;
 }
 ul{
     display: flex;
     list-style: none;
     flex-wrap: wrap;
 }
-li {
+li{
     padding: 15px;
 }
 .item-container img{
-    width: 300px;
-    height: 300px;
+    width: 180px;
+    height: 180px;
     border-radius: 10%;
 }
 #info{
-    width: 300px;
+    width: 180px;
 }
 </style>

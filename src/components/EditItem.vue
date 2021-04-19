@@ -14,9 +14,9 @@
                 <label for="notes"><b>Notes*:</b></label><br>
                 <textarea name="notes" rows="6" cols="60" v-model="newNotes" required></textarea><br><br>
                 <input type="radio" id="trade" name="trade" value=1 v-model="newTrade">
-                <label style="font-size:20px;" for="trade">Up For Trade</label>
+                <label for="trade">Up For Trade</label>
                 <input type="radio" id="notrade" name="trade" value=0 v-model="newTrade">
-                <label style="font-size:20px;" for="notrade">Not Up For Trade</label>
+                <label for="notrade">Not Up For Trade</label>
                 <br><br>
                 <button id="submit" class="button" type="submit"><b>I am happy with my changes!</b></button>
             </form>
@@ -169,17 +169,12 @@ export default {
 </script>
 
 <style scoped>
-h1{
-    text-decoration: underline #EC6041;
-    font-size: 30px;
-    margin-left: 70px;
-}
 .edititem-container{
     align-content:center;
-    font-size: 20px;
+    font-size: 15px;
     margin-left: 160px;
     justify-content: space-between;
-    height: 1100px;
+    height: 800px;
 }
 .edit-item{
     margin-right: 150px;
@@ -190,19 +185,20 @@ h1{
 }
 button{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 25px;
+    font-size: 15px;
     color:white;
-    cursor: pointer;
+    cursor: pointer;    display:inline-block;
+
 }
 #submit{
-    width: 350px;
-    height:58px;
+    width: 250px;
+    height:40px;
     background: black;
     border: solid 3px #37601B;
     box-shadow: 3px 3px 0px #507B2E, 5px 5px 0px #6B8B51;
 }
 #remove{
-    height:50px;
+    height:40px;
     background: #37601B;
     border: solid 3px black;
 }
@@ -212,52 +208,46 @@ button{
     border: solid 3px black;
 }
 #backToProfile2{
-    width:300px;
+    width:200px;
     height:80px;
-    font-size:30px;
+    font-size:15px;
     color: #37601B;
 }
 .button{
     display:inline-block;
-    margin: 25px;
-    width: 275px;
-}
-ul{
-    columns:2;
+    margin: 15px;
+    width: 200px;
 }
 .nothing-to-see-here{
     margin-right: 150px;
     margin-top: 50px;
 }
 input{
-    font-size: 25px;
+    font-size: 15px;
 }
 textarea{
-    font-size: 25px;
+    font-size: 15px;
 }
 .edit-img{
     background: black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: white;
-    width:200px;
-    height:50px;
-    font-size:25px;
+    width:170px;
+    height:30px;
+    font-size:18px;
     cursor:pointer;
     display:inline-block;
-    margin: 8px;
+    margin: 3px;
     border: solid 3px #37601B;
     box-shadow: 3px 3px 0px #507B2E, 5px 5px 0px #6B8B51;
 }
 label{
     font-weight:bold;
-    font-size: 25px;
-}
-input[type="radio"]{
-    margin: 0 20px 0 20px;
+    font-size: 15px;
 }
 img{
-    height:400px;
-    width:400px;
+    height:250px;
+    width:250px;
     border: 5px solid #376C12;
 }
 </style>

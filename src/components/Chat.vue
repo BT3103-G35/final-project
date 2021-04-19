@@ -10,7 +10,7 @@
                 <p> Name: {{ this.item[0].name }} </p>
                 <p> Details: {{ this.item[0].detail }} </p>
                 <p> Notes: {{ this.item[0].notes }} </p>
-                <button class="back-to-chatlist-button" @click="redirect">Back to my chats</button>
+                <button class="back-to-chatlist-button" @click="redirect"><b>Back to my chats</b></button>
             </div>
             
             <div class="chat">
@@ -25,8 +25,8 @@
                     </ul> 
                 </div>
                 <br><br>
-                <input style="font-size:15px; width:400px;" id="message" v-model="this.message" placeholder="Enter message..." autocomplete="off">
-                <button style="height:23px; font-size:15px;" @click="sendMessage" type="submit">Send</button>        
+                <input id="message" v-model="this.message" placeholder="Enter message..." autocomplete="off">
+                <button id="send" @click="sendMessage" type="submit">Send</button>        
             </div>
         </div>
     </div>
@@ -158,7 +158,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .chat-body{
     display:flex;
     height:500px;
@@ -246,11 +246,19 @@ textarea{
 }
 #message-window{
     height:307px;
-    width:500px;
+    width:575px;
     overflow:auto;
     display:flex;
     flex-direction: column-reverse;
     border: 5px solid #D3EAC1;
     outline: 5px solid #376C12;
+}
+input{
+    font-size:15px;
+    width:450px;
+}
+#send{
+    height:23px;
+    font-size:15px;
 }
 </style>
