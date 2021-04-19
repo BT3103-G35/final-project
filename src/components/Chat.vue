@@ -6,10 +6,10 @@
         <div class="chat-body">
             <div class="item">
                 <img class="img" :src="this.item[0].imageRef">
-                <br> <br>
-                <h2> Name: {{ this.item[0].name }} </h2>
-                <h2> Details: {{ this.item[0].detail }} </h2>
-                <h2> Notes: {{ this.item[0].notes }} </h2>
+                <br>
+                <p> Name: {{ this.item[0].name }} </p>
+                <p> Details: {{ this.item[0].detail }} </p>
+                <p> Notes: {{ this.item[0].notes }} </p>
                 <button class="back-to-chatlist-button" @click="redirect">Back to my chats</button>
             </div>
             
@@ -176,6 +176,8 @@ export default {
 .item{
     width:40%;
     margin-top:40px;
+    font-size: 20px;
+    font-weight: bold;
 }
 .me{
     float:right;
