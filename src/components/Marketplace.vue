@@ -2,8 +2,8 @@
     <div class="marketplace-container">
         <div class="marketplace-title">
             <h1> Discover </h1>
+            <h2> Search by which field? </h2>
             <div class="search-options" v-if="this.filter == false">
-                <h2> Search by which field? </h2>
                 <input type="radio" id="name" name="search" value="name" v-on:click="searchFilter('name')">
                 <label for="name">Name</label>
                 <input type="radio" id="category" name="search" value="category" v-on:click="searchFilter('category')">
@@ -201,49 +201,52 @@ export default {
 <style scoped>
 h1{
     text-decoration: underline #376C12;
-    font-size: 70px;
-    text-align: center;
+    font-size: 45px;
 }
 ul{
     display: flex;
     flex-wrap: wrap;
     list-style-type: none;
 }
-li {
-    margin: 30px;
+li{
+    padding: 25px;
 }
 img{
-    width: 300px;
-    height: 300px;
+    width: 186px;
+    height: 186px;
     border-radius: 0%;
     cursor: pointer;
     border: 5px solid #D6CAAC;
     object-fit: cover;
 }
 .input-search{
-    width:400px;
-    height:30px;
-    font-size:20px;
+    width:260px;
+    height:20px;
 }
 button{
-    height:33px;
-    font-size:20px;
+    height:25px;
+    font-size:15px;
 }
 #name, #details, #notes{
     display:inline-block;
 }
 p{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    max-width: 300px;
-
+    max-width: 200px;
+    font-size: 12.5px;
 }
 label, input{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 22px;
-    margin: 0 5px 0 5px;
+    font-size: 15px;
+    margin: 0 3.5px 0 3.5px;
 }
 select{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 22px;
+    font-size: 15px;
+    height:25px;
+}
+.dropdown-menu{
+    font-size: 15px;
+    height: 26px;
 }
 </style>

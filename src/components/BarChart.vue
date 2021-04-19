@@ -12,7 +12,7 @@
 
 <script>
 import ProfileChart from "./BarChartProfile.js";
-import MarketplaceChart from "./BarChartMarketplace.js";
+import MarketplaceChart from "./BarChartDiscover.js";
 import PieChartGender from "./PieChartGender.js"
 export default {
   components: {
@@ -26,7 +26,7 @@ export default {
 <style scoped>
 h1{
     background-color: cadetblue;
-    line-height: 100px;
+    line-height: 70px;
     text-align: center;
     vertical-align: middle;
   }

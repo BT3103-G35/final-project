@@ -44,10 +44,6 @@ export default {
 </script>
 
 <style scoped>
-
-.wrapper{
-    width: 2000px;
-}
 .about-container{
     display: flex;
     justify-content: space-evenly;
@@ -61,27 +57,27 @@ p{
     font-style: normal;
     font-weight: normal;
     font-size: 22px;
-    line-height: 28px;
+    line-height: 130%;
     text-align: left;
 }
 .page-content{
     width: 40%;
-    margin-left: 200px;
+    margin-left: 10%;
     margin-top: 5%;
 }
 .image-container{
-    margin-right: 200px;
+    margin-right: 10%;
     margin-left: 10%;
     margin-top: 5%;
     width: 40%;
 }
 
 .social-icons img{
-    margin-right: 50px;
+    margin-right: 1%;
 }
 .social-icons{
     text-align: left;
-    margin-left: 200px;
+    margin-left: 3%;
 }
 h2{
     display: inline-block;
@@ -90,20 +86,17 @@ h2{
 .social-icons img{
     vertical-align: middle;
 }
-#insta{
-    margin-left: 30px;
-}
 #twitter{
-    height: 45px;
-    width: 45px;
+    height: 2.5%;
+    width: 2.5%;
 }
-#fb{
-    height: 45px;
-    width: 26px;
+#insta{
+    height: 2.5%;
+    width: 2.5%;
 }
 #email{
-    height: 37px;
-    width: 47px;
+    height: 2.5%;
+    width: 2.5%;
 }
 h1{
     text-decoration: underline #376C12;

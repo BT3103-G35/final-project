@@ -25,8 +25,8 @@
                     </ul> 
                 </div>
                 <br><br>
-                <input style="font-size:20px; width:400px;" id="message" v-model="this.message" placeholder="Enter message..." autocomplete="off">
-                <button style="height:29px; font-size:20px;" @click="sendMessage" type="submit">Send</button>        
+                <input style="font-size:15px; width:400px;" id="message" v-model="this.message" placeholder="Enter message..." autocomplete="off">
+                <button style="height:23px; font-size:15px;" @click="sendMessage" type="submit">Send</button>        
             </div>
         </div>
     </div>
@@ -161,22 +161,22 @@ export default {
 <style>
 .chat-body{
     display:flex;
-    height:800px;
+    height:500px;
 }
 .img{
-    height:300px;
-    width:300px;
+    height:200px;
+    width:200px;
 }
 #info{
     text-align:left;
-    font-size:15px;
-    padding: 12px 20px;
+    font-size:10px;
+    padding: 8px 13.3px;
     font-weight: bold;
 }
 .item{
-    width:40%;
+    width:37%;
     margin-top:40px;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: bold;
 }
 .me{
@@ -184,21 +184,21 @@ export default {
     background: #0084ff;
     color: #fff;
     clear: both;
-    padding: 20px;
-    border-radius: 30px;
+    padding: 13.3px;
+    border-radius: 20px;
     margin-bottom: 2px;
     font-family: Helvetica, Arial, sans-serif;
-    font-size:18px;
+    font-size:15px;
 }
 .other{
     background: #eee;
     float: left;
     clear: both;
-    padding: 20px;
-    border-radius: 30px;
+    padding: 13.3px;
+    border-radius: 20px;
     margin-bottom: 2px;
     font-family: Helvetica, Arial, sans-serif;
-    font-size:18px;
+    font-size:15px;
 }
 .other + .me{
   border-bottom-right-radius: 5px;
@@ -213,7 +213,7 @@ export default {
 }
 .chat{
     width:60%;
-    margin-top:40px;
+    margin-top:33.3px;
     text-align:left;
 }
 ul{
@@ -225,23 +225,19 @@ ul{
 }
 h1{
     text-decoration: underline #376C12;
-    font-size: 70px;
+    font-size: 45px;
     text-align: center;
-}
-h2{
-    width: 300px;
-    margin-left: 150px;
 }
 textarea{
     resize: none;
     overflow: hidden;
     min-height: 0px;
-    max-height: 100px;
+    max-height: 67px;
 }
 .back-to-chatlist-button{
-    height: 40px;
-    width: 250px;
-    font-size: 20px;
+    height: 27px;
+    width: 167px;
+    font-size: 13.3px;
     background-color: black;
     color: white;
     background: black;
@@ -249,8 +245,8 @@ textarea{
     cursor:pointer;
 }
 #message-window{
-    height:460px;
-    width:750px;
+    height:307px;
+    width:500px;
     overflow:auto;
     display:flex;
     flex-direction: column-reverse;

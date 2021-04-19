@@ -47,7 +47,7 @@ export default {
     display: flex;
     flex-flow: row wrap;
     list-style: none;
-    margin: 32px 0;
+    margin: 20px 0;
 }
 .slide-first li {
     margin: 0 10px;

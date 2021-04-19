@@ -1,7 +1,7 @@
 <template>
     <div class="additems-container">
         <div class="what-kind">
-            <br><br><br><br>
+            <br><br><br>
             <h1> What kind of {{ this.type }} is this? </h1>
             <br>
             <form @submit.prevent="pressed">
@@ -20,7 +20,7 @@
             </form>
         </div>
         <div class="upload-image">
-            <upload class="upload" align="center" v-on:upload="onUpload"></upload>
+            <upload class="upload" v-on:upload="onUpload"></upload>
             <br><br><br>
         </div>
     </div>
@@ -199,23 +199,22 @@ export default {
 <style scoped>
 h1{
     text-decoration: underline #376C12;
-    font-size: 35px;
+    font-size: 23.3px;
 }
 .additems-container{
-    font-size:25px;
+    font-size:17px;
     font-weight: bold;
     display:flex;
-    justify-content: space-between;
-    margin-left: 15%;
-    height:800px;
+    margin-left: 100px;
+    height:600px;
 }
 .upload-image{
-    margin-top: 10%;
-    margin-right: 15%;
+    margin-top: 80px;
 }
 .upload{
     border: 8px solid #D3EAC1;
     outline: 7px solid #376C12;
+    margin-left: 110px;
 }
 .search-bar{
     margin-left: 250px;
@@ -233,22 +232,16 @@ button{
     font-weight: bold;
     cursor:pointer;
 }
-ul {
-    columns:2;
-}
 img {
     cursor: pointer;    
 }
-.active {
-    border: 2px dotted coral;
-}
 input{
-    font-size:15px;
+    font-size:13px;
 }
 textarea{
-    font-size:15px;
+    font-size:13px;
 }
 #name{
-    width: 495px;
+    width: 455px;
 }
 </style>
