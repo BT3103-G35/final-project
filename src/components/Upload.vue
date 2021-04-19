@@ -1,8 +1,8 @@
 <template>
     <div id="app">
-            <div v-if="!this.image">
+            <div id="text" v-if="!this.image">
                 <br><br>
-                <h2>Select an image</h2>
+                <h3>Select an image</h3>
                 <input type="file" @change="onFileChange($event)">
             </div>
             <div v-else>

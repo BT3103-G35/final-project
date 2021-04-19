@@ -1,14 +1,14 @@
 <template>
     <div class="edit-profile-container">
         <div class="edit-profile-pic">
-            <h2>Profile Picture</h2>
+            <h3>Profile Picture</h3>
             <img :src="this.imgUrl">
             <br><br>
             <button style="width:230px;" @click="trigger">Change Profile Picture</button>
             <input type="file" ref="fileInput" @change="onFileChange($event)" v-show="false">
         </div>
         <div class="edit-profile-info">
-            <h2>User Details</h2>
+            <h3>User Details</h3>
             <h3>Current name: {{ this.currentUser.displayName }}</h3>
             New name: <input type="text" v-model="newName" required><br><br><br>
             <h3>Gender: {{ this.gender }}</h3>
@@ -22,7 +22,7 @@
             <button @click="updateDetails">Update user details</button>
         </div>
         <div class="change-password">
-            <h2>Password</h2>
+            <h3>Password</h3>
             <label for="password">Current password:</label><br>
             <input name="password" type="password" v-model="currentPassword" minlength="6" required><br><br>
             <label for="newpw">Enter new password:</label><br>
@@ -189,6 +189,9 @@ img{
     width: 300px;
     height: 300px;
     border-radius: 50%;
+}
+#id{
+    text-decoration: underline #37601B;
 }
 button{
     display:inline-block;
