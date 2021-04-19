@@ -46,7 +46,7 @@ export default{
                 legend: {display: false},
                 title: {
                     display: true,
-                    text: 'Total number of each clothing type in the entire marketplace',
+                    text: 'Total number of each clothing type in Discover',
                     fontSize: 25,
                 },
                 responsive: true,

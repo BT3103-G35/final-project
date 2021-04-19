@@ -226,6 +226,10 @@ h1{
     font-size: 70px;
     text-align: center;
 }
+h2{
+    width: 300px;
+    margin-left: 150px;
+}
 textarea{
     resize: none;
     overflow: hidden;
