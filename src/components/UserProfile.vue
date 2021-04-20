@@ -172,8 +172,8 @@ p{
     margin-left: 140px;
     background-color:#EAF8DE;
     border: 5px solid #376C12;
-    width: 320px;
     height: 555px;
+    width:320px;
 }
 .num-items h1{
     font-size: 27px;
@@ -255,5 +255,9 @@ li{
 }
 h1{
     text-decoration: underline #376C12;
+}
+#no-items{
+    margin-top:40px;
+    margin-left: 160px;
 }
 </style>

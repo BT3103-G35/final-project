@@ -23,6 +23,7 @@
         <div class="add-item" v-if="this.items1.length==0">
             <h1>Oh no...</h1>
             <h1>It seems you<br>have no items...</h1>
+            <br>
             <router-link to="/additem" tag="button-additem" exact>Click to add!</router-link>
         </div>
         <div class="item-container" v-else>
@@ -213,6 +214,10 @@ export default {
 </script>
 
 <style scoped>
+.add-item{
+    margin-left: 70px;
+    margin-top: 45px;
+}
 p{
     text-align: left;
     font-size: 12px;
@@ -258,9 +263,6 @@ p{
     color: black;
     width: 60px;
     height:25px;
-}
-.add-item{
-    width: 60%;
 }
 .item-container{
     margin-left:20px;

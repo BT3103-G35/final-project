@@ -227,7 +227,7 @@ textarea{
     border-radius: 50%;
     object-fit: cover;
     border: solid 5px #376C12;
-    margin-left:120px;
+    margin-left:125px;
 }
 .trade-indicator{
     width: 25px;
