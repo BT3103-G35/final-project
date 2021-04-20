@@ -4,7 +4,7 @@
     <br><br>
     <ProfileChart></ProfileChart>
     <br><br><br><br><br>
-    <MarketplaceChart></MarketplaceChart>
+    <DiscoverChart></DiscoverChart>
     <br><br><br>
     <PieChartGender></PieChartGender>
   </div>
@@ -12,12 +12,12 @@
 
 <script>
 import ProfileChart from "./BarChartProfile.js";
-import MarketplaceChart from "./BarChartDiscover.js";
+import DiscoverChart from "./BarChartDiscover.js";
 import PieChartGender from "./PieChartGender.js"
 export default {
   components: {
     ProfileChart,
-    MarketplaceChart,
+    DiscoverChart,
     PieChartGender
   }
 };

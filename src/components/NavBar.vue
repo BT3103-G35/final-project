@@ -11,7 +11,7 @@
               <p><b>Logged in as {{ this.currentUser }}</b></p>
               <ul>
                 <li><router-link to="/community" exact>Community</router-link></li>
-                <li><router-link to="/marketplace" exact>Discover</router-link></li>
+                <li><router-link to="/discover" exact>Discover</router-link></li>
                 <li><router-link to="/about" exact>About</router-link></li>
               </ul>
               <img id="chat-img" src="https://i.postimg.cc/kGbcQnmX/Chat-Icon.png" @click="goToChatList">

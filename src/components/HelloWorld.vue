@@ -3,7 +3,7 @@
     <h1>Ainran</h1>
     <ul v-if="this.loggedIn">
       <li><router-link to="/profile" tag="buttonin1" exact><b>Profile</b></router-link></li>
-      <li><router-link to="/marketplace" tag="buttonin2" exact><b>Marketplace</b></router-link></li>
+      <li><router-link to="/discover" tag="buttonin2" exact><b>Discover</b></router-link></li>
     </ul>
     <ul v-else>
       <li><router-link to="/login" tag="buttonout1" exact><b>Log In</b></router-link></li>
@@ -84,7 +84,7 @@ buttonin1{
   box-sizing: border-box;
   padding: 15px 18px;
   cursor: pointer;
-  margin-left: 22px;
+  margin-left: 36px;
 }
 buttonin2{
   font-size: 28px;

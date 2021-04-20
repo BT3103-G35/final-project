@@ -24,14 +24,14 @@
                 <br>
                 <h3>GO TO DISCOVER OR SIMPLY WISH</h3> <h3>FOR MORE!</h3>
                 <br><br><br>
-                <router-link to="/marketplace" tag="button-marketplace" exact><b>WISHING FOR MORE?</b></router-link>
+                <router-link to="/discover" tag="button-marketplace" exact><b>WISHING FOR MORE?</b></router-link>
             </div>
             <div class="marketplace-text2" v-if="items.length!=0">
                 <h2>WANT MORE ITEMS?</h2>
                 <br>
                 <h3>GO TO DISCOVER OR SIMPLY WISH</h3> <h3>FOR MORE!</h3>
                 <br><br><br>
-                <router-link to="/marketplace" tag="button-marketplace" exact><b>WISHING FOR MORE?</b></router-link>
+                <router-link to="/discover" tag="button-marketplace" exact><b>WISHING FOR MORE?</b></router-link>
                 <img class="tree-img" src="https://i.postimg.cc/ydxRSfkr/Tree-4.png">
             </div>
         </div>
