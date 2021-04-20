@@ -20,8 +20,8 @@
                 <br><br>
                 <button id="submit" class="button" type="submit"><b>I am happy with my changes!</b></button>
             </form>
-                <button id="remove" class="button" @click="remove()">Remove Item</button>
-                <button id="backToProfile1" class="button" @click="redirect()">Back to my profile</button>
+                <button id="remove" class="buttons" @click="remove()">Remove Item</button>
+                <button id="backToProfile1" class="buttons" @click="redirect()">Back to my profile</button>
         </div>
         <div class="nothing-to-see-here" v-if="this.deleted==1">
             <img src=https://i.postimg.cc/Qtnx6GY1/no-image-available.jpg>
@@ -187,8 +187,7 @@ button{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 15px;
     color:white;
-    cursor: pointer;    display:inline-block;
-
+    cursor: pointer;
 }
 #submit{
     width: 250px;
@@ -209,14 +208,21 @@ button{
 }
 #backToProfile2{
     width:200px;
-    height:80px;
-    font-size:15px;
-    color: #37601B;
+    height:45px;
+    font-size:20px;
+    background: #37601B;
+    border:solid 3.5px black;
+    box-shadow: 3px 3px 0px #507B2E, 6px 6px 0px #6B8B51;
 }
 .button{
     display:inline-block;
     margin: 15px;
     width: 200px;
+}
+.buttons{
+    display:inline-block;
+    margin: 15px;
+    width: 150px;
 }
 .nothing-to-see-here{
     margin-right: 150px;

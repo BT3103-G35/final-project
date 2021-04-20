@@ -36,14 +36,13 @@
                     <button id="filter" @click="categorize()" type="submit">Search</button>
                     <button id="filter" @click="back" type="submit">Back</button>
                 </div>
-                <br><br>
                 <div class="items" v-if="!this.searched">
                     <ul>
                         <li v-for="item in userItems" v-bind:key="item.index">
                             <img class="profileItem" :src="item.imageRef">
-                            <p id="info">Name: {{ item.name }}</p>
-                            <p id="info">Details: {{ item.detail }}</p>
-                            <p id="info">Notes: {{ item.notes }}</p>
+                            <p class="info">Name: {{ item.name }}</p>
+                            <p class="info">Details: {{ item.detail }}</p>
+                            <p class="info">Notes: {{ item.notes }}</p>
                             <button @click="redirect(item.user, item.count)"><b>Check it out!</b></button>
                         </li>
                     </ul>
@@ -57,10 +56,9 @@
                             <li v-for="(item, index) in this.searchedItems" v-bind:key="index">
                                 <a v-on:click="redirect(item.user, item.count)"> 
                                     <img class="profileItem" :src="item.imageRef">
-                                    <p>Name:{{ item.name }}</p>
-                                    <p>Category:{{ item.category }}</p>
-                                    <p>Details:{{ item.detail }}</p>
-                                    <p>Notes:{{ item.notes }}</p>
+                                    <p class="info">Name:{{ item.name }}</p>
+                                    <p class="info">Details:{{ item.detail }}</p>
+                                    <p class="info">Notes:{{ item.notes }}</p>
                                     <button @click="redirect(item.user, item.count)">Check it out!</button>
                                 </a>
                             </li>
@@ -157,29 +155,39 @@ export default {
 </script>
 
 <style scoped>
+p{
+    text-align: left;
+    font-size: 12px;
+    font-family: Helvetica, sans-serif;
+    font-weight:bold;
+    line-height: 200%;
+    margin-left: 10px;
+}
 .profile-container{
     display: flex;
 }
 .profile-info{
-    margin-top:80px;
-    margin-left: 130px;
+    float: left;
+    margin-top:40px;
+    margin-left: 140px;
     background-color:#EAF8DE;
     border: 5px solid #376C12;
-    height: 900px;
+    width: 320px;
+    height: 555px;
 }
-
-.add-item{
-    width: 60%;
+.num-items h1{
+    font-size: 27px;
+    text-decoration: underline #376C12;
 }
-h1{
-    font-size: 70px;
-}
-#info{
-    width:300px;
+#profile-img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 .input-search{
     width:150px;
-    height:18px;
+    height:19px;
     font-size:15px;
 }
 .dropdown{
@@ -192,39 +200,23 @@ h1{
     background-color:lightgray;
     box-shadow: none;
     color: black;
-    width: 75px;
+    width: 60px;
     height:25px;
+    margin-right: 0px;
+    border:solid 2px black;
 }
 button{
-    height: 40px;
-    width: 200px;
-    font-size: 15px;
+    height: 30px;
     background-color: black;
+    border: solid 4px #3F3726;
     color: white;
-    background: black;
-    /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
     cursor:pointer;
-}
-#profile-img{
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    cursor: pointer;
-    object-fit: cover;
-}
-.bells img{
-    width: 50px;
-    height: auto;
-    padding: 15px;
-}
-.num-items h1{
-    font-size: 40px;
+    width: 140px;
+    font-size: 13px;
+    margin-right:43px;
 }
 .profile-name{
-    padding: 0px;
-    margin-top: 50px;
-    width: 400px;
-
+    padding: 30px;
 }
 #displayName{
     font-family:Georgia, 'Times New Roman', Times, serif;
@@ -233,40 +225,35 @@ button{
 }
 .itemCount{
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 60px;
+    font-size: 35px;
+    text-align: center;
 }
 ul{
     display: flex;
     flex-wrap: wrap;
     list-style: none;
 }
-.add-item img{
-    width: 300px;
-    height: 300px;
-    border-radius: 0%;
+li{
+    padding: 23px;
 }
 .profileItem{
     width: 300px;
     height: 300px;
     border-radius: 10%;
 }
-ul{
-    display: flex;
-    list-style: none;
-    flex-wrap: wrap;
+.item-container{
+    float: right;
+    margin-left:20px;
 }
-li {
-    padding: 15px;
+.item-container img{
+    width: 190px;
+    height: 190px;
+    border-radius: 10%;
+}
+.info{
+    width: 190px;
 }
 h1{
     text-decoration: underline #376C12;
-}
-.item-container{
-    margin-left: 130px;
-}
-.items img{
-    width: 300px;
-    height: 300px;
-    border-radius: 10%;
 }
 </style>

@@ -225,10 +225,10 @@ button{
     color: black;
     background: #C7C0A1;
     border: 4px solid #504610;
-    box-shadow: 4px 4px 0px #645F42, 8px 8px 0px #898572;
-    width:300px;
-    height:50px;
-    font-size:30px;
+    box-shadow: 2px 2px 0px #645F42, 4px 4px 0px #898572;
+    width:170px;
+    height:35px;
+    font-size:19px;
     font-weight: bold;
     cursor:pointer;
 }

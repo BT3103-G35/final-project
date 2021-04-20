@@ -25,8 +25,9 @@
                         <label for="tradeable">Others</label>
                         <p>Please upload a profile picture: </p>
                         <input type='file' @change='chooseFile($event)' required>
+                        <br>
                         <img :src="this.image" class='ui-image' id='img' v-if="this.image">
-                        <br><br><br>
+                        <br>
                         <button type="submit" id="submit-btn"><b>SIGN UP</b></button>
                 </form>
 
@@ -109,33 +110,36 @@ export default {
     align-items: center;
 }
 img{
-    width: 578px;
-    height: 600px;
-    margin-left: 75%;
+    width: 380px;
+    height: 400px;
+    margin-left: 100px;
+    margin-top:30px;
 }
 h1{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 55px;
+    font-size: 45px;
+    text-decoration: underline #376C12;
+    text-align: center;
 }
 .content{
     text-align: left;
-    margin-left: 35%;
+    margin-left: 120px;
     width: 471px;
     height: 500px;
 }
 p{
-    font-size: 18px;
+    font-size: 14px;
     line-height: 28px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 #submit-btn{
-  font-size: 20px;
+  font-size: 15px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: white;
   background: black;
-  padding: 5px 5px;
+  padding: 3px 3px;
   cursor: pointer;
-  width:200px;
+  width:150px;
 }
 .error{
     color: red;
@@ -144,13 +148,13 @@ p{
 #img{
     width: 150px;
     height: 150px;
+    margin-left: 180px;
 }
 button{
   cursor:pointer;
 }
 label, input{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 17px;
-    margin: 0 5px 0 5px;
+    font-size: 12px;
 }
 </style>

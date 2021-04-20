@@ -152,7 +152,7 @@ ul{
     list-style-type: none;
 }
 li{
-    padding: 18px;
+    padding: 19px;
 }
 img{
     width: 186px;
@@ -180,5 +180,8 @@ label, input{
 button{
     height:25px;
     font-size:15px;
+}
+p{
+    font-size: 16px;
 }
 </style>

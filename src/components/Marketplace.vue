@@ -42,10 +42,10 @@
                 <li v-for="(item, index) in this.items1" v-bind:key="index">
                     <a v-on:click="redirect(item.user, item.count)"> 
                         <img :src="item.imageRef">
-                        <p>Name: {{ item.name }}</p>
-                        <p>Category: {{ item.category }}</p>
-                        <p>Details: {{ item.detail }}</p>
-                        <p>Notes: {{ item.notes }}</p>
+                        <p><b>Name:</b> {{ item.name }}</p>
+                        <p><b>Category:</b> {{ item.category }}</p>
+                        <p><b>Details:</b> {{ item.detail }}</p>
+                        <p><b>Notes:</b> {{ item.notes }}</p>
                     </a>
                 </li>
             </ul>
@@ -60,10 +60,10 @@
                     <li v-for="(item, index) in this.searchedItems" v-bind:key="index">
                         <a v-on:click="redirect(item.user, item.count)"> 
                             <img :src="item.imageRef">
-                            <p>Name: {{ item.name }}</p>
-                            <p>Category: {{ item.category }}</p>
-                            <p>Details: {{ item.detail }}</p>
-                            <p>Notes: {{ item.notes }}</p>
+                            <p><b>Name:</b> {{ item.name }}</p>
+                            <p><b>Category:</b> {{ item.category }}</p>
+                            <p><b>Details:</b> {{ item.detail }}</p>
+                            <p><b>Notes:</b> {{ item.notes }}</p>
                         </a>
                     </li>
                 </ul>
@@ -209,7 +209,7 @@ ul{
     list-style-type: none;
 }
 li{
-    padding: 18px;
+    padding: 19px;
 }
 img{
     width: 186px;
@@ -234,6 +234,7 @@ p{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     max-width: 200px;
     font-size: 12.5px;
+    text-align: left;
 }
 label, input{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;

@@ -8,8 +8,7 @@
     <ul v-else>
       <li><router-link to="/login" tag="buttonout1" exact><b>Log In</b></router-link></li>
       <li><router-link to="/register" tag="buttonout2" exact><b>Register</b></router-link></li>
-    </ul>
-    
+    </ul> 
   </div>
 </template>
 
@@ -59,15 +58,15 @@ h1{
   display: inline-block;
   vertical-align: middle;
   margin-top: 35vh;
-  font-size: 86px;
+  font-size: 75px;
 }
 li{
   list-style: none;
-  margin-right: 50px;
+  margin-right: 30px;
 }
 ul{
   display: flex;
-  margin-left: 38%;
+  margin-left: 32%;
 }
 li a{
   color: #021718;
@@ -76,24 +75,24 @@ li a{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 buttonin1{
-  font-size: 30px;
+  font-size: 28px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: #376C12;
   box-shadow: 4px 4px 0px #507B2E, 8px 8px 0px #6B8B51;
   background: #FFFFFF;
   border: 2px solid #376C12;
   box-sizing: border-box;
-  padding: 20px 24px;
+  padding: 15px 18px;
   cursor: pointer;
-  margin-left: 30px;
+  margin-left: 22px;
 }
 buttonin2{
-  font-size: 30px;
+  font-size: 28px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: white;
   background: black;
   box-shadow: 4px 4px 0px #3F3F3E, 8px 8px 0px #61615F;
-  padding: 20px 24px;
+  padding: 15px 18px;
   cursor: pointer;
 }
 buttonout1{
@@ -104,9 +103,9 @@ buttonout1{
   background: #FFFFFF;
   border: 2px solid #376C12;
   box-sizing: border-box;
-  padding: 20px 24px;
+  padding: 15px 18px;
   cursor: pointer;
-  margin-left: 60px;
+  margin-left: 38px;
 }
 buttonout2{
   font-size: 30px;
@@ -114,7 +113,7 @@ buttonout2{
   color: white;
   background: black;
   box-shadow: 4px 4px 0px #3F3F3E, 8px 8px 0px #61615F;
-  padding: 20px 24px;
+  padding: 15px 18px;
   cursor: pointer;
 }
 </style>

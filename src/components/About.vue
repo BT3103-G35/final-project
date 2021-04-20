@@ -16,7 +16,7 @@
                     </p>
                 </div>
                 <div class="image-container">
-                    <img src="https://i.postimg.cc/jq7C1Xyr/About-Us.jpg">
+                    <img class="img" src="https://i.postimg.cc/jq7C1Xyr/About-Us.jpg">
                 </div>
             </header>
             <div class="social-icons">
@@ -51,7 +51,7 @@ header{
 p{
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 130%;
     text-align: left;
 }
@@ -94,7 +94,8 @@ h2{
 h1{
     text-decoration: underline #376C12;
 }
-img{
+.img{
+    margin-top: 60px;
     height:375px;
     width:500px;
 }

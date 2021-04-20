@@ -90,7 +90,7 @@ p{
     margin-top: 2%;
 }
 .slider{
-    margin-left: 80px;
+    margin-left: 60px;
 }
 .add-need-ideas{
     margin-top: 3%;

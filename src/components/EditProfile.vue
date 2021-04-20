@@ -4,7 +4,7 @@
             <h3>Profile Picture</h3>
             <img :src="this.imgUrl">
             <br><br>
-            <button style="width:230px;" @click="trigger">Change Profile Picture</button>
+            <button style="width:200px;" @click="trigger">Change Profile Picture</button>
             <input type="file" ref="fileInput" @change="onFileChange($event)" v-show="false">
         </div>
         <div class="edit-profile-info">
@@ -186,8 +186,8 @@ export default {
 
 <style scoped>
 img{
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
 }
 #id{
@@ -195,18 +195,17 @@ img{
 }
 button{
     display:inline-block;
-    height: 50px;
-    width: 200px;
-    font-size: 19px;
+    height: 35px;
+    width: 150px;
+    font-size: 15px;
     color: white;
     background: black;
     border: solid 3px #37601B;
-    box-shadow: 3px 3px 0px #507B2E, 5px 5px 0px #6B8B51;
+    box-shadow: 2px 2px 0px #507B2E, 4px 4px 0px #6B8B51;
     cursor:pointer;
 }
 .edit-profile-container{
-    width: 100%;
-    font-size: 23px;
+    font-size: 18px;
 }
 input{
     font-size: 18px;
@@ -217,7 +216,7 @@ h2{
 .edit-profile-pic{
     float:left;
     width: 20%;
-    padding-left: 10%;
+    padding-left: 9%;
     padding-top: 4%;
     margin-right: 10%;
 }
@@ -235,6 +234,6 @@ h2{
     padding-top: 4%;
 }
 p{
-    font-size: 20px
+    font-size: 16px;
 }
 </style>

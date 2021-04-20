@@ -47,18 +47,15 @@ export default {
     display: flex;
     flex-flow: row wrap;
     list-style: none;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 .slide-first li {
-    margin: 0 10px;
     flex-basis: calc(50% - 20px);  
 }
-
 .slide-first img {
-    width: 100%;               
+    width: 70%;               
     height: auto;
 }
-
 .slide{
     width: 500px;
     height: 500px

@@ -269,9 +269,9 @@ export default {
 
 <style scoped>
 input{
-    width:300px;
+    width:250px;
     font-size:18px;
-    margin-left:35px;
+    margin-left:20px;
     line-height:0.1
 }
 #message{
@@ -284,7 +284,7 @@ input{
 #chat-window{
     margin-top: 5px;
     height:253.3px;
-    width:334px;
+    width:400px;
     overflow:auto;
     display:flex;
     flex-direction: column-reverse;
@@ -304,10 +304,10 @@ input{
 }
 .search-bar{
     margin-top:50px;
-    margin-left:40px;
+    margin-left:35px;
 }
 .chat-list{
-    margin-left:72px;
+    margin-left:16px;
     display:flex;
 }
 .chat-search{
@@ -328,12 +328,13 @@ img{
     cursor:pointer;
 }
 .profile-img{
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
 }
 .chat-preview{
     margin-left: 90px;
+    margin-top: 15px;
 }
 .me{
     float:right;
@@ -383,7 +384,7 @@ li{
 }
 .button-list{
     margin:0 0 3.3px 0;
-    margin-left:60px;
+    margin-left:25px;
 }
 #send{
     height:29px;
@@ -391,7 +392,12 @@ li{
 }
 .partnerName{
     font-size:18px;
-    margin-left:35px;
     margin-top:10px;
+    margin-left: 20px;
+    text-align: left;
+}
+h1{
+    text-decoration: underline #376C12;
+    font-size: 45px;
 }
 </style>

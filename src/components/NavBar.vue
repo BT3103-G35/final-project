@@ -33,7 +33,7 @@
 
           <nav v-else>
               <div class="logo">
-                  <a><img src="https://i.ibb.co/NNpVDmp/Ainran-Logo-words.png" alt="Ainran-dp-background" border="0" width = "140px" height = "61px"></a>
+                  <a><img src="https://i.ibb.co/NNpVDmp/Ainran-Logo-words.png" alt="Ainran-dp-background" border="0" width = "93.3" height = "40px"></a>
               </div>
                 <ul>
                     <li><router-link to="/" exact>Home</router-link></li>
@@ -130,9 +130,6 @@ li{
     border-radius: 33.3%;
     cursor: pointer;
 }
-.wrapper{
-    margin: 0 auto;
-}
 nav{
     display: flex;
     align-items: center;
@@ -150,17 +147,16 @@ nav .logo{
     font-weight: 800;
     font-size: 42.7px;
     color: white;
+    margin-left:130px;
 }
 nav li{
     float: right;
     list-style: none;
-    margin-right: 33.3px;
-
+    margin-right: 30px;
 }
 nav li:nth-last-of-type(1){
     margin: 0;
 }
-
 nav li a{
     color:white;
     font-size: 13.3px;
@@ -188,10 +184,12 @@ p{
   padding: 10.6px;
   font-size: 10.6px;
   border: none;
+  margin-right: 50px;
 }
 .dropdown {
   position: relative;
   display: inline-block;
+  margin-right: 100px;
 }
 .dropdown-content {
   display: none;
@@ -222,20 +220,18 @@ p{
 li:hover{
     background-color: #283D06;
 }
-
 input{
     width: 33.3px;
     height: 33.3px;
     border-radius: 50%;
     cursor: pointer;
     object-fit: cover;
+    margin-right: 50px;
 }
 button{
     width: 66.6px;
 }
 #chat-img{
-    margin-left: -10%;
-    margin-right: -10%;
     width: 20px;
     height: 20px;
     cursor: pointer;

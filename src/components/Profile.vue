@@ -52,11 +52,11 @@
                     <li v-for="item in items1" v-bind:key="item.index">
                         <a>
                             <img v-on:click="redirect(item.data().user, item.data().count)" :src="item.data().imageRef" @error="$event.target.src='https://i.postimg.cc/15z7cNHS/Screenshot-2021-04-17-020340.jpg'">
-                            <p id="info">Name: {{ item.data().name }}</p>
-                            <p id="info">Details: {{ item.data().detail }}</p>
-                            <p id="info">Notes: {{ item.data().notes }}</p>
+                            <p class="info">Name: {{ item.data().name }}</p>
+                            <p class="info">Details: {{ item.data().detail }}</p>
+                            <p class="info">Notes: {{ item.data().notes }}</p>
                             <button class="edit" @click="edit(item)"><b>Edit</b></button>
-                            <br><br><br><br>
+                            <br><br><br>
                         </a>
                     </li>
                 </ul>
@@ -68,12 +68,13 @@
                 <div v-else>
                     <ul> 
                         <li v-for="(item, index) in this.searchedItems" v-bind:key="index">
-                            <a v-on:click="redirect(item.data().user, item.data().count)"> 
-                                <img :src="item.data().imageRef">
-                                <p id="info">Name:{{ item.data().name }}</p>
-                                <p id="info">Details:{{ item.data().detail }}</p>
-                                <p id="info">Notes:{{ item.data().notes }}</p>
+                            <a> 
+                                <img v-on:click="redirect(item.data().user, item.data().count)" :src="item.data().imageRef">
+                                <p class="info">Name:{{ item.data().name }}</p>
+                                <p class="info">Details:{{ item.data().detail }}</p>
+                                <p class="info">Notes:{{ item.data().notes }}</p>
                                 <button class="edit" @click="edit(item)"><b>Edit</b></button>
+                                <br><br><br>
                             </a>
                         </li>
                     </ul>
@@ -213,6 +214,14 @@ export default {
 </script>
 
 <style scoped>
+p{
+    text-align: left;
+    font-size: 12px;
+    font-family: Helvetica, sans-serif;
+    font-weight:bold;
+    line-height: 200%;
+    margin-left: 10px;
+}
 .profile-container{
     display: flex;
 }
@@ -225,18 +234,14 @@ export default {
     width: 320px;
     height: 650px;
 }
+.num-items h1{
+    font-size: 27px;
+}
 #profile-img{
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-}
-.add-item{
-    width: 60%;
-}
-.item-container{
-    float: right;
-    margin-left:60px;
 }
 .input-search{
     width:150px;
@@ -256,15 +261,22 @@ export default {
     width: 60px;
     height:25px;
 }
+.add-item{
+    width: 60%;
+}
+.item-container{
+    float: right;
+    margin-left:20px;
+}
 .edit{
     height: 30px;
-    width: 150px;
-    font-size: 15px;
+    width: 140px;
+    font-size: 13px;
     background-color: #3F3726;
     border: solid 4px black;
     color: white;
     cursor:pointer;
-    margin-left: 5px;
+    margin-right:43px;
 }
 button-additem{
     font-size: 20px;
@@ -296,20 +308,18 @@ img{
     height: auto;
     padding: 8px;
 }
-.num-items h1{
-    font-size: 27px;
-}
 .profile-name{
     padding: 30px;
 }
 #displayName{
     font-family:Georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 30px;
 }
 #itemCount{
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 35px;
+    text-align: center;
 }
 ul{
     display: flex;
@@ -317,14 +327,17 @@ ul{
     flex-wrap: wrap;
 }
 li{
-    padding: 15px;
+    padding: 22px;
 }
 .item-container img{
-    width: 180px;
-    height: 180px;
+    width: 190px;
+    height: 190px;
     border-radius: 10%;
 }
-#info{
-    width: 180px;
+.info{
+    width: 190px;
+}
+h1{
+    text-decoration: underline #376C12;
 }
 </style>

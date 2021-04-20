@@ -2,12 +2,12 @@
     <div class="item-container">
         <div class="item-information">
             <div style="display:flex;">
-                <div style="width:35%;">
+                <div>
                     <img class="profile-img" :src="this.itemLister[0].imageRef">
                 </div>
                 <div id="lister-name">
                     <br>
-                    <span> <b>Lister:  </b></span>
+                    <span> <b>Lister:</b></span>
                     <span style="font-weight:normal; text-decoration: underline #376C12;">{{ this.itemLister[0].name }}</span>
                     <br>
                     <span style="font-weight:normal;" v-if="this.userID == currentUser.uid">(oh look, its you!)</span>
@@ -17,20 +17,20 @@
             <label for="name">Name:</label><br>
             <input type="text" id="name" name="name" size="60" :value=this.item[0].name :readonly="true"><br><br>
             <label for="detail">Details:</label><br>
-            <textarea name="detail" rows="3" cols="57" :value=this.item[0].detail :readonly="true"></textarea><br><br>
+            <textarea name="detail" rows="3" cols="40" :value=this.item[0].detail :readonly="true"></textarea><br><br>
             <label for="notes">Notes:</label><br>
-            <textarea name="notes" rows="6" cols="57" :value=this.item[0].notes :readonly="true"></textarea><br>
+            <textarea name="notes" rows="6" cols="40" :value=this.item[0].notes :readonly="true"></textarea><br>
             <div id="trade" v-if="this.item[0].tradeable==1" style="display:flex;">
-                <div style="margin-left:415px;">
-                    <p style="font-size:23px;">This item is up for trade</p>
+                <div style="margin-left:255px;">
+                    <p style="font-size:15px;">This item is up for trade</p>
                 </div>
                 <div style="margin-top:10px;">
                     <img class="trade-indicator" src="https://i.postimg.cc/jSVLLXFY/Green-Sign.png" @click="goToChatList">
                 </div>
             </div>
             <div id="trade" v-else style="display:flex;">
-                <div style="margin-left:397px;">
-                    <p style="font-size:23px;">This item is not up for trade</p>
+                <div style="margin-left:255px;">
+                    <p style="font-size:15px;">This item is not up for trade</p>
                 </div>
                 <div style="margin-top:10px;">
                     <img class="trade-indicator" src="https://i.postimg.cc/jj3WdbVZ/Red-Sign.png" @click="goToChatList">
@@ -39,9 +39,9 @@
             <button class="buttons" v-if="this.userID != this.currentUser.uid" @click="goToLister"><b>See lister's profile</b></button>
             <button class="buttons" v-if="this.userID != this.currentUser.uid && this.wishlist == 1" @click="removeFromWishlist"><b>Remove from Wishlist</b></button>
             <button class="buttons" v-if="this.userID != this.currentUser.uid && this.wishlist == 0" @click="addToWishlist"><b>Add To Wishlist!</b></button>
-            <button class="buttonss" v-if="this.userID == this.currentUser.uid" @click="edit"><b>Edit your item!</b></button>
+            <button class="buttonsss" v-if="this.userID == this.currentUser.uid" @click="edit"><b>Edit your item!</b></button>
             <br>
-            <button class="buttonss" style="width:400px; padding:10px 10px;" id="chat" v-if="this.userID != this.currentUser.uid" @click="goToChat"><b>Send the lister a message!</b></button>
+            <button class="buttonss" id="chat" v-if="this.userID != this.currentUser.uid" @click="goToChat"><b>Send the lister a message!</b></button>
         </div>
         <div class="item-image">
             <img :src="this.item[0].imageRef" contain>
@@ -155,76 +155,83 @@ export default {
 <style scoped>
 .item-container{
     display: flex;
-    margin-top: 75px;
+    margin-top: 35px;
     font-weight: bold;
-    font-size: 25px;
 }
 #lister-name{
-    margin-left: 35px;
-    margin-top: 7px;
+    text-align: left;
+    margin-left: 45px;
+    margin-top: 2px;
+    font-size: 18px;
 }
 .item-information{
     width: 60%;
 }
 .item-image img{
-    height:500px;
-    width:500px;
+    height:360px;
+    width:360px;
+    margin-top: 20px;
     border: 7px solid #D3EAC1;
     outline: 5px solid #595343;
 }
 input{
     padding: 12px 20px;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 13px;
 }
 #name{
-    width: 560px;
+    width: 450px;
 }
-
 textarea{
     padding: 12px 20px;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 13px;
+    width:450px;
 }
 .buttons{
     background: #989388;
     border:solid 3px black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
     color: black;
-    width: 270px;
+    width: 180px;
+    margin: 8px;
+    padding: 10px 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.buttonsss{
+    background: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    width: 200px;
     margin: 10px;
     padding: 10px 10px;
-    font-size: 25px;
+    font-size: 15px;
     cursor: pointer;
 }
 .buttonss{
     background: black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
+    border:solid 3px black;
     color: white;
-    width: 250px;
-    margin: 10px;
-    padding: 10px 10px;
-    font-size: 25px;
+    width: 200px;
+    margin: 8px;
+    padding: 7px 7px;
+    font-size: 15px;
     cursor: pointer;
-}
-#chat{
     background:#376C12;
-    width: 280px;
-    color:white;
 }
 .profile-img{
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     object-fit: cover;
     border: solid 5px #376C12;
-    margin-left:225px;
+    margin-left:120px;
 }
 .trade-indicator{
-    width: 45px;
-    height: 45px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     margin-left: 15px;
 }
