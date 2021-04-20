@@ -228,14 +228,16 @@ p{
 }
 .profile-container{
     display: flex;
+    min-height:745px;
 }
 .profile-info{
     margin-top:40px;
-    margin-left: 100px;
+    margin-left: 120px;
     background-color:#EAF8DE;
     border: 5px solid #376C12;
-    width: 220px;
-    height: 650px;
+    width: 230px;
+    min-height: 650px;
+    max-height:715px;
 }
 .num-items h1{
     font-size: 27px;
@@ -262,7 +264,7 @@ p{
     box-shadow: none;
     color: black;
     width: 60px;
-    height:25px;
+    height:25.5px;
 }
 .item-container{
     margin-left:20px;
