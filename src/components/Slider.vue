@@ -53,17 +53,14 @@ export default {
     margin: 0 10px;
     flex-basis: calc(50% - 20px);  
 }
-
 .slide-first img {
     width: 100%;               
     height: auto;
 }
-
 .slide{
     width: 500px;
     height: 500px
 }
-
 .slide ul {
     display: flex;
     flex-flow: row wrap;
@@ -74,7 +71,6 @@ export default {
     margin: 0 10px;
     flex-basis: calc(50% - 20px); 
 }
-
 .slide img {
     width: 100%;                
     height: auto;
@@ -107,7 +103,7 @@ export default {
     margin-top: -40px;
     display: flex;
     justify-content: center;
-    margin-left: 215px;
+    margin-left: 260px;
 }
 .manual-btn{
     border: 2px solid #376C12;
@@ -115,7 +111,6 @@ export default {
     border-radius: 10px;
     cursor: pointer;
     transition: 1s;
-
 }
 .manual-btn:not(:last-child){
     margin-right: 40px;

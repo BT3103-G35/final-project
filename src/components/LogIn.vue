@@ -15,7 +15,6 @@
                     <div class="error" v-if="error">{{error.message}}</div>
                     <button id="forgot-password" @click="resetPassword"><b>Forgot password?</b></button><br><br>
             </form>
-
             <div class="img">
                 <img src="https://www.bdo.com.co/getmedia/ba0d22a6-ae5e-45fb-a3e4-d7d56008fcbf/apparel-attire-blur-994517.jpg.aspx?width=1110&height=706&ext=.jpg">
             </div>
@@ -86,8 +85,8 @@ export default {
     float: left;
     text-align: left;
     padding-left: 10%;
-    padding-top: 5%;
-    font-size: 20px;
+    padding-top: 1%;
+    font-size: 18px;
 }
 input{
     height: 30px;
@@ -96,8 +95,8 @@ input{
 }
 button{
     height: 40px;
-    width: 100px;
-    font-size: 20px;
+    width: 80px;
+    font-size: 17px;
     background-color: black;
     color: white;
     cursor: pointer;
@@ -110,30 +109,17 @@ button{
 }
 img{
     float: left;
-    width: 650px;
-    height: 400px;
+    width: 450px;
+    height: 300px;
     margin-left: 5%;
 }
 h1{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 75px;
+    font-size: 55px;
     color:black;
-}
-.content{
-    text-align: left;
-    margin-left: 100px;
-    width: 471px;
-    height: 500px;
-    
-}
-p{
-    font-size: 18px;
-    line-height: 28px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .error{
     color: red;
-    font-size: 18px;
+    font-size: 17px;
 }
-
 </style>

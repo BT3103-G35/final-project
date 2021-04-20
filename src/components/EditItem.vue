@@ -14,19 +14,19 @@
                 <label for="notes"><b>Notes*:</b></label><br>
                 <textarea name="notes" rows="6" cols="60" v-model="newNotes" required></textarea><br><br>
                 <input type="radio" id="trade" name="trade" value=1 v-model="newTrade">
-                <label style="font-size:20px;" for="trade">Up For Trade</label>
+                <label for="trade">Up For Trade</label>
                 <input type="radio" id="notrade" name="trade" value=0 v-model="newTrade">
-                <label style="font-size:20px;" for="notrade">Not Up For Trade</label>
-                <br><br>
+                <label for="notrade">Not Up For Trade</label>
+                <br>
                 <button id="submit" class="button" type="submit"><b>I am happy with my changes!</b></button>
             </form>
-                <button id="remove" class="button" @click="remove()">Remove Item</button>
-                <button id="backToProfile1" class="button" @click="redirect()">Back to my profile</button>
+                <button class="buttons" @click="remove()">Remove Item</button>
+                <button class="buttons" @click="redirect()">Back to my profile</button>
         </div>
         <div class="nothing-to-see-here" v-if="this.deleted==1">
             <img src=https://i.postimg.cc/Qtnx6GY1/no-image-available.jpg>
             <br><br><br>
-            <button id="backToProfile2" @click="redirect()">Back to my profile</button>
+            <button id="backToProfile" @click="redirect()">Back to my profile</button>
         </div>
     </div>
 </template>
@@ -169,17 +169,12 @@ export default {
 </script>
 
 <style scoped>
-h1{
-    text-decoration: underline #EC6041;
-    font-size: 30px;
-    margin-left: 70px;
-}
 .edititem-container{
     align-content:center;
-    font-size: 20px;
+    font-size: 15px;
     margin-left: 160px;
     justify-content: space-between;
-    height: 1100px;
+    height: 800px;
 }
 .edit-item{
     margin-right: 150px;
@@ -190,74 +185,65 @@ h1{
 }
 button{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 25px;
+    font-size: 15px;
     color:white;
     cursor: pointer;
 }
 #submit{
-    width: 350px;
-    height:58px;
+    width: 250px;
+    height:40px;
     background: black;
     border: solid 3px #37601B;
-    box-shadow: 3px 3px 0px #507B2E, 5px 5px 0px #6B8B51;
-}
-#remove{
-    height:50px;
-    background: #37601B;
-    border: solid 3px black;
-}
-#backToProfile1{
-    height:38px;
-    background: #37601B;
-    border: solid 3px black;
-}
-#backToProfile2{
-    width:300px;
-    height:80px;
-    font-size:30px;
-    color: #37601B;
-}
-.button{
+    box-shadow: 2px 2px 0px #507B2E, 4px 4px 0px #6B8B51;
     display:inline-block;
-    margin: 25px;
-    width: 275px;
+    margin: 15px;
 }
-ul{
-    columns:2;
+#backToProfile{
+    width:200px;
+    height:45px;
+    font-size:20px;
+    background: #37601B;
+    border:solid 3.5px black;
+    box-shadow: 3px 3px 0px #507B2E, 6px 6px 0px #6B8B51;
+}
+.buttons{
+    height:38px;
+    display:inline-block;
+    margin: 15px;
+    width: 150px;
+    background: #37601B;
+    border: solid 3px black;
 }
 .nothing-to-see-here{
     margin-right: 150px;
     margin-top: 50px;
 }
 input{
-    font-size: 25px;
+    font-size: 15px;
 }
 textarea{
-    font-size: 25px;
+    font-size: 15px;
 }
 .edit-img{
     background: black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: white;
-    width:200px;
-    height:50px;
-    font-size:25px;
+    width:170px;
+    height:30px;
+    font-size:18px;
     cursor:pointer;
     display:inline-block;
-    margin: 8px;
+    margin: 3px;
     border: solid 3px #37601B;
     box-shadow: 3px 3px 0px #507B2E, 5px 5px 0px #6B8B51;
 }
 label{
     font-weight:bold;
-    font-size: 25px;
-}
-input[type="radio"]{
-    margin: 0 20px 0 20px;
+    font-size: 15px;
 }
 img{
-    height:400px;
-    width:400px;
+    height:250px;
+    width:250px;
     border: 5px solid #376C12;
 }
 </style>

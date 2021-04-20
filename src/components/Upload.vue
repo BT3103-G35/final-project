@@ -100,8 +100,8 @@ button{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: white;
     width:158px;
-    height:40px;
-    font-size:20px;
+    height:38px;
+    font-size:17px;
     cursor:pointer;
     display:inline-block;
     margin: 8px;

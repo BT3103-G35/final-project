@@ -23,6 +23,7 @@
         <div class="add-item" v-if="this.items1.length==0">
             <h1>Oh no...</h1>
             <h1>It seems you<br>have no items...</h1>
+            <br>
             <router-link to="/additem" tag="button-additem" exact>Click to add!</router-link>
         </div>
         <div class="item-container" v-else>
@@ -52,11 +53,11 @@
                     <li v-for="item in items1" v-bind:key="item.index">
                         <a>
                             <img v-on:click="redirect(item.data().user, item.data().count)" :src="item.data().imageRef" @error="$event.target.src='https://i.postimg.cc/15z7cNHS/Screenshot-2021-04-17-020340.jpg'">
-                            <p id="info">Name: {{ item.data().name }}</p>
-                            <p id="info">Details: {{ item.data().detail }}</p>
-                            <p id="info">Notes: {{ item.data().notes }}</p>
+                            <p class="info">Name: {{ item.data().name }}</p>
+                            <p class="info">Details: {{ item.data().detail }}</p>
+                            <p class="info">Notes: {{ item.data().notes }}</p>
                             <button class="edit" @click="edit(item)"><b>Edit</b></button>
-                            <br><br><br><br>
+                            <br><br><br>
                         </a>
                     </li>
                 </ul>
@@ -68,13 +69,13 @@
                 <div v-else>
                     <ul> 
                         <li v-for="(item, index) in this.searchedItems" v-bind:key="index">
-                            <a v-on:click="redirect(item.data().user, item.data().count)"> 
-                                <img :src="item.data().imageRef">
-                                <p>Name:{{ item.data().name }}</p>
-                                <p>Category:{{ item.data().category }}</p>
-                                <p>Details:{{ item.data().detail }}</p>
-                                <p>Notes:{{ item.data().notes }}</p>
+                            <a> 
+                                <img v-on:click="redirect(item.data().user, item.data().count)" :src="item.data().imageRef">
+                                <p class="info">Name:{{ item.data().name }}</p>
+                                <p class="info">Details:{{ item.data().detail }}</p>
+                                <p class="info">Notes:{{ item.data().notes }}</p>
                                 <button class="edit" @click="edit(item)"><b>Edit</b></button>
+                                <br><br><br>
                             </a>
                         </li>
                     </ul>
@@ -152,7 +153,6 @@ export default {
                     .then((querySnapshot) => {
                     querySnapshot.forEach((doc) => this.items1.push(doc))
             });
-            //update the wishlist whenever the profile page for removed items to save space
             db.collection(this.currentUser.uid).where('wishlist', '==', true).get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
@@ -214,17 +214,31 @@ export default {
 </script>
 
 <style scoped>
+.add-item{
+    margin-left: 70px;
+    margin-top: 45px;
+}
+p{
+    text-align: left;
+    font-size: 12px;
+    font-family: Helvetica, sans-serif;
+    font-weight:bold;
+    line-height: 200%;
+    margin-left: 10px;
+}
 .profile-container{
     display: flex;
 }
 .profile-info{
-    float: left;
-    margin-top:80px;
+    margin-top:40px;
     margin-left: 100px;
     background-color:#EAF8DE;
     border: 5px solid #376C12;
-    width: 450px;
-    height: 900px;
+    width: 320px;
+    height: 650px;
+}
+.num-items h1{
+    font-size: 27px;
 }
 #profile-img{
     width: 150px;
@@ -232,20 +246,9 @@ export default {
     border-radius: 50%;
     object-fit: cover;
 }
-.add-item{
-    width: 60%;
-}
-.item-container{
-    float: right;
-    margin-left: 150px;
-}
-h1{
-    font-size: 70px;
-    text-decoration: underline #376C12;
-}
 .input-search{
     width:150px;
-    height:18px;
+    height:19px;
     font-size:15px;
 }
 .dropdown{
@@ -258,29 +261,29 @@ h1{
     background-color:lightgray;
     box-shadow: none;
     color: black;
-    width: 75px;
+    width: 60px;
     height:25px;
 }
-.filter-bars{
-    font-size:22px;
+.item-container{
+    margin-left:20px;
 }
 .edit{
-    height: 40px;
-    width: 200px;
-    font-size: 15px;
+    height: 30px;
+    width: 140px;
+    font-size: 13px;
     background-color: #3F3726;
     border: solid 4px black;
     color: white;
     cursor:pointer;
-    margin-left: 15px;
+    margin-right:43px;
 }
 button-additem{
-    font-size: 30px;
+    font-size: 20px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: white;
     background: black;
     box-shadow: 4px 4px 0px #507B2E, 8px 8px 0px #6B8B51;
-    padding: 20px 24px;
+    padding: 14px 19px;
     cursor: pointer;
 }
 button-editprofile{
@@ -289,25 +292,23 @@ button-editprofile{
     color: white;
     background: black;
     box-shadow: 4px 4px 0px #507B2E, 8px 8px 0px #6B8B51;
-    padding: 20px 24px;
+    padding: 12px 15px;
     cursor: pointer;
 }
 img{
-    width: 100px;
+    width: 50px;
+    height:50px;
     height: auto;
     border-radius: 50%;
     cursor: pointer;
 }
 .bells-and-chat img{
-    width: 50px;
+    width: 35px;
     height: auto;
-    padding: 15px;
-}
-.num-items h1{
-    font-size: 40px;
+    padding: 8px;
 }
 .profile-name{
-    padding: 50px;
+    padding: 30px;
 }
 #displayName{
     font-family:Georgia, 'Times New Roman', Times, serif;
@@ -316,22 +317,26 @@ img{
 }
 #itemCount{
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 60px;
+    font-size: 35px;
+    text-align: center;
 }
 ul{
     display: flex;
     list-style: none;
     flex-wrap: wrap;
 }
-li {
-    padding: 15px;
+li{
+    padding: 22px;
 }
 .item-container img{
-    width: 300px;
-    height: 300px;
+    width: 190px;
+    height: 190px;
     border-radius: 10%;
 }
-#info{
-    width: 300px;
+.info{
+    width: 190px;
+}
+h1{
+    text-decoration: underline #376C12;
 }
 </style>

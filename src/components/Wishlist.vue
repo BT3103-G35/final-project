@@ -1,37 +1,36 @@
 <template>
-    <div>
-        <div class="my-wishlist">
-            <h1> My Wishlist </h1>
-        </div>
-        <div class="wishlist-container">
-            <div class="wishlist-item" v-if="items.length!=0">
+    <div class=wishlist-container>
+        <h1> My Wishlist </h1>
+        <br>
+        <div class="wishlist-inner-container">
+            <div class="wishlist-item-info" v-if="items.length!=0">
                 <ul>
                     <li v-for="item in items" v-bind:key="item.index">
                         <img @click="redirect(item)" :src="item.data().imageRef">
                         <p class="info">Name: {{ item.data().name }}</p>
                         <p class="info">Details: {{ item.data().detail }}</p>
                         <p class="info">Notes: {{ item.data().notes }}</p>
-                        <button @click="redirect(item)">Go to item</button>
+                        <button class="item" @click="redirect(item)">Go to item</button>
                     </li>
                 </ul>
             </div>
             <div id="empty-wishlist" v-else>
-                <p class="empty-text"><b>Your WishList is </b></p>
-                <p class="empty-text"><b>Empty...</b></p>
+                <h2 class="empty-text">Your WishList is</h2>
+                <h2 class="empty-text">Empty...</h2>
             </div>
             <div class="marketplace-text1" v-if="items.length==0">
                 <h2>WANT MORE ITEMS?</h2>
                 <br>
                 <h3>GO TO DISCOVER OR SIMPLY WISH</h3> <h3>FOR MORE!</h3>
                 <br><br><br>
-                <router-link to="/marketplace" tag="button-marketplace" exact><b>WISHING FOR MORE?</b></router-link>
+                <router-link to="/discover" tag="button-marketplace1" exact><b>WISHING FOR MORE?</b></router-link>
             </div>
             <div class="marketplace-text2" v-if="items.length!=0">
                 <h2>WANT MORE ITEMS?</h2>
                 <br>
                 <h3>GO TO DISCOVER OR SIMPLY WISH</h3> <h3>FOR MORE!</h3>
-                <br><br><br>
-                <router-link to="/marketplace" tag="button-marketplace" exact><b>WISHING FOR MORE?</b></router-link>
+                <br>
+                <router-link to="/discover" tag="button-marketplace2" exact><b>WISHING FOR MORE?</b></router-link>
                 <img class="tree-img" src="https://i.postimg.cc/ydxRSfkr/Tree-4.png">
             </div>
         </div>
@@ -92,17 +91,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.wishlist-container{
+.wishlist-inner-container{
     display: flex;
-    margin-top: 100px;
 }
-.my-wishlist{
+h1{
+    text-decoration: underline #376C12;
+    font-size: 45px;
     text-align: center;
-    margin-top: 70px;
 }
-.wishlist-item{
-    width: 60%;
-    margin-left: 85px;
+.wishlist-item-info{
+    width:70%;
 }
 ul{
     display: flex;
@@ -110,67 +108,85 @@ ul{
     list-style-type: none;
 }
 li{
-    margin: 30px;
+    padding:8px;
 }
-.empty-text{
-    font-size: 50px;
+img{
+    height:180px;
+    width:180px;
+    cursor: pointer;
+    margin-right:50px;
+}
+p{
+    text-align: left;
+    font-size: 12px;
+    font-family: Helvetica, sans-serif;
+    font-weight:bold;
+    line-height: 200%;
+    width: 180px;
+}
+.item{
+    margin-right:110px;
+    width:130px;
 }
 #empty-wishlist{
     margin-left: 150px;
-    width:40%
+    width:40%;
+    margin-top: 40px;
 }
 .marketplace-text1{
-    width: 35%;
-    margin-right:20px;
+    width: 38%;
+    margin-right:25px;
+    margin-top: 40px;
 }
 .marketplace-text2{
-    width: 35%;
-    margin-right:85px;
     background-color:#F7FFF4;
     border: 5px solid #376C12;
-    height:700px;
-}
-h1{
-    text-decoration: underline #376C12;
-    font-size: 70px;
-    text-align: center;
+    height:420px;
+    width:390px;
+    font-size:25px;
+    margin-right: 30px;
 }
 h2{
-    font-size:38px;
+    font-size:25px;
 }
 h3{
-    font-size:20px;
+    font-size:18px;
 }
-button-marketplace {
+button-marketplace1 {
     font-size: 20px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: black;
     background: #AED191;
     border: 5px solid #376C12;
     /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
-    padding: 20px 24px;
+    padding: 15px 20px;
     cursor: pointer;
+}
+button-marketplace2 {
+    font-size: 15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
+    background: #AED191;
+    border: 5px solid #376C12;
+    /*box-shadow: 4px 4px 0px #F1876F, 8px 8px 0px #F5AE9E;*/
+    padding: 15px 20px;
+    cursor: pointer;
+
 }
 button{
     background: #3F3726;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: white;
     width: 150px;
-    font-size: 20px;
+    font-size: 15px;
     cursor: pointer;
     border: 3px solid black;
 }
-img{
-    height:250px;
-    width:250px;
-    cursor: pointer;
-}
-.info{
-    width: 250px;
-}
 .tree-img{
-    height:250px;
-    width:500px;
+    float:right;
+    height:150px;
+    width:300px;
     margin-bottom: 100px;
+    margin-left:50px;
 }
 </style>

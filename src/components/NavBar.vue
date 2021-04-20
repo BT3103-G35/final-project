@@ -6,12 +6,12 @@
           -->
           <nav v-if="loggedIn">
               <div class="logo">
-                  <a><img src="https://i.ibb.co/NNpVDmp/Ainran-Logo-words.png" alt="Ainran-dp-background" border="0" width = "140px" height = "61px"></a>
+                  <a><img src="https://i.ibb.co/NNpVDmp/Ainran-Logo-words.png" alt="Ainran-dp-background" border="0" width = "93.3px" height = "40px"></a>
               </div>
               <p><b>Logged in as {{ this.currentUser }}</b></p>
               <ul>
                 <li><router-link to="/community" exact>Community</router-link></li>
-                <li><router-link to="/marketplace" exact>Discover</router-link></li>
+                <li><router-link to="/discover" exact>Discover</router-link></li>
                 <li><router-link to="/about" exact>About</router-link></li>
               </ul>
               <img id="chat-img" src="https://i.postimg.cc/kGbcQnmX/Chat-Icon.png" @click="goToChatList">
@@ -33,7 +33,7 @@
 
           <nav v-else>
               <div class="logo">
-                  <a><img src="https://i.ibb.co/NNpVDmp/Ainran-Logo-words.png" alt="Ainran-dp-background" border="0" width = "140px" height = "61px"></a>
+                  <a><img src="https://i.ibb.co/NNpVDmp/Ainran-Logo-words.png" alt="Ainran-dp-background" border="0" width = "93.3" height = "40px"></a>
               </div>
                 <ul>
                     <li><router-link to="/" exact>Home</router-link></li>
@@ -121,56 +121,51 @@ li{
 }
 .nav-container{
     background-color: #376C12;
-    height: 72px;
+    height: 48px;
     color:white;
 }
 #profile-img{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    width: 33.3px;
+    height: 33.3px;
+    border-radius: 33.3%;
     cursor: pointer;
-}
-.wrapper{
-    max-width: 1400px;
-    margin: 0 auto
 }
 nav{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 72px;
+    height: 48px;
 }
 nav ul{
     display: flex;
 }
 nav .logo{
     font-family: "Poppins", sans-serif;
-    font-size: 20px;
+    font-size: 13.3px;
     text-decoration: none;;
     font-style: normal;
     font-weight: 800;
-    font-size: 64px;
+    font-size: 42.7px;
     color: white;
+    margin-left:130px;
 }
 nav li{
     float: right;
     list-style: none;
-    margin-right: 50px;
-
+    margin-right: 30px;
 }
 nav li:nth-last-of-type(1){
     margin: 0;
 }
-
 nav li a{
     color:white;
-    font-size: 20px;
+    font-size: 13.3px;
     text-decoration: none;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 p{
     color: white;
-    font-size: 20px;
+    font-size: 13.3px;
     text-decoration: none;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
@@ -178,7 +173,7 @@ p{
     border: none;
     background: none;
     color: #021718;
-    font-size: 20px;
+    font-size: 13.3px;
     text-decoration: none;
     cursor: pointer;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -186,29 +181,31 @@ p{
 .dropbtn {
   background-color: #649641;
   color: white;
-  padding: 16px;
-  font-size: 16px;
+  padding: 10.6px;
+  font-size: 10.6px;
   border: none;
+  margin-right: 50px;
 }
 .dropdown {
   position: relative;
   display: inline-block;
+  margin-right: 100px;
 }
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
-  min-width: 130px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  min-width: 86.7px;
+  box-shadow: 0px 5.3px 10.6px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  margin-right: 50px;
+  margin-right: 33.3px;
 }
 .dropdown-content a {
   color: white;
-  padding: 12px 16px;
+  padding: 8px 5.3px;
   text-decoration: none;
   display: block;
-  height: 30px;
+  height: 20px;
 }
 .dropdown-content a:hover {
     background-color: #37601B;
@@ -223,22 +220,20 @@ p{
 li:hover{
     background-color: #283D06;
 }
-
 input{
-    width: 50px;
-    height: 50px;
+    width: 33.3px;
+    height: 33.3px;
     border-radius: 50%;
     cursor: pointer;
     object-fit: cover;
+    margin-right: 50px;
 }
 button{
-    width: 100px;
+    width: 66.6px;
 }
 #chat-img{
-    margin-left: -10%;
-    margin-right: -10%;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     cursor: pointer;
 }
 </style>
