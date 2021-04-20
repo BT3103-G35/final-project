@@ -149,13 +149,13 @@ nav .logo{
     color: white;
     margin-left:130px;
 }
-nav li{
+li{
     float: right;
     list-style: none;
     margin-right: 30px;
 }
 nav li:nth-last-of-type(1){
-    margin: 0;
+    margin-right: 90px;
 }
 nav li a{
     color:white;
