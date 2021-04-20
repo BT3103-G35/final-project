@@ -173,7 +173,7 @@ p{
     background-color:#EAF8DE;
     border: 5px solid #376C12;
     height: 555px;
-    width:320px;
+    width:220px;
 }
 .num-items h1{
     font-size: 27px;
