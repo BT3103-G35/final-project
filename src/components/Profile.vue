@@ -234,7 +234,7 @@ p{
     margin-left: 100px;
     background-color:#EAF8DE;
     border: 5px solid #376C12;
-    width: 320px;
+    width: 220px;
     height: 650px;
 }
 .num-items h1{
