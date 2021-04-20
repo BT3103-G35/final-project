@@ -152,7 +152,6 @@ export default {
                     .then((querySnapshot) => {
                     querySnapshot.forEach((doc) => this.items1.push(doc))
             });
-            //update the wishlist whenever the profile page for removed items to save space
             db.collection(this.currentUser.uid).where('wishlist', '==', true).get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
@@ -226,7 +225,6 @@ p{
     display: flex;
 }
 .profile-info{
-    float: left;
     margin-top:40px;
     margin-left: 100px;
     background-color:#EAF8DE;
@@ -265,7 +263,6 @@ p{
     width: 60%;
 }
 .item-container{
-    float: right;
     margin-left:20px;
 }
 .edit{

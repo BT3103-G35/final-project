@@ -84,7 +84,7 @@ buttonin1{
   box-sizing: border-box;
   padding: 15px 18px;
   cursor: pointer;
-  margin-left: 36px;
+  margin-left: 37px;
 }
 buttonin2{
   font-size: 28px;

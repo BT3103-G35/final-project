@@ -53,14 +53,13 @@ export default {
     flex-basis: calc(50% - 20px);  
 }
 .slide-first img {
-    width: 70%;               
+    width: 100%;               
     height: auto;
 }
 .slide{
     width: 500px;
     height: 500px
 }
-
 .slide ul {
     display: flex;
     flex-flow: row wrap;

@@ -195,7 +195,7 @@ textarea{
     color: black;
     width: 180px;
     margin: 8px;
-    padding: 10px 10px;
+    padding: 7px 7px;
     font-size: 15px;
     cursor: pointer;
 }
