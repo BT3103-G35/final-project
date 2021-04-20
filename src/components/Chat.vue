@@ -91,8 +91,19 @@ export default {
             .then((doc) => {
                 if(doc.exists) {
                     for(var message of doc.data().messages){
+                        //update the names in case users have changed them
+                        if(message.id==this.buyer){
+                            message.sender=this.buyerName;
+                        }
+                        else{
+                            message.sender=this.sellerName;
+                        }
                         this.messages.push(message);
                     }
+                    db.collections('groups').doc(this.buyer+'&'+this.seller+'&'+this.count).update({
+                        buyerName:this.buyerName,
+                        sellerName:this.sellerName
+                    })
                 } else{            
                     db.collection('groups').add({
                         buyer: this.buyer,
