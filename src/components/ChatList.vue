@@ -174,7 +174,7 @@ export default {
                 
                             //save all the necessary data to an object, an push it into displayData so we can v-for over each object later
                             this.displayData.push({buyer:doc.data().buyer, seller:doc.data().seller, count:parseInt(doc.data().count), 
-                                    myName:result3.data().name, partnerName: result2.data.name, itemName: doc.data().itemName, 
+                                    myName:result3.data().name, partnerName: result2.data().name, itemName: doc.data().itemName, 
                                             lastMessage: doc.data().lastMessage, lastMessageTiming: doc.data().lastMessageTiming, 
                                                     imageRef: result.data().imageRef, chatProfilePic: result2.data().imageRef});
                             });
