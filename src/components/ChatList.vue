@@ -92,7 +92,7 @@
                 </div>
                 <div class="chat-preview" v-if="preview==true">
                     <div id="chat-window">
-                        <ul>
+                        <ul class="preview-messages">
                             <li v-for="message in this.messages" v-bind:key="message.index" v-bind:class="(currentUser.uid==message.id)?'me':'other'"> 
                                 {{message.sender}} : {{ message.message}}
                             </li>
@@ -143,13 +143,17 @@ export default {
                         //user is a buyer, so retrieve dp of the seller
                         db.collection('community').where('user', '==', doc.data().seller).get().then((query) => {
                             const result2 = query.docs[0]
+                                        
+                            db.collection('community').where('user', '==', this.currentUser.uid).get().then((query) => {
+                                const result3 = query.docs[0];
 
-                            //save all the necessary data to an object, an push it into displayData so we can v-for over each object later
-                            this.displayData.push({buyer:doc.data().buyer, seller:doc.data().seller, count:parseInt(doc.data().count), 
-                                    myName:doc.data().buyerName, partnerName: doc.data().sellerName, itemName: doc.data().itemName, 
-                                            lastMessage: doc.data().lastMessage, lastMessageTiming: doc.data().lastMessageTiming,
-                                                    imageRef: result.data().imageRef, chatProfilePic: result2.data().imageRef});
-                        });                    
+                                //save all the necessary data to an object, an push it into displayData so we can v-for over each object later
+                                this.displayData.push({buyer:doc.data().buyer, seller:doc.data().seller, count:parseInt(doc.data().count), 
+                                        myName:result3.data().name, partnerName: result2.data().name, itemName: doc.data().itemName, 
+                                                lastMessage: doc.data().lastMessage, lastMessageTiming: doc.data().lastMessageTiming,
+                                                        imageRef: result.data().imageRef, chatProfilePic: result2.data().imageRef});
+                            });                    
+                        });
                     });
                 });
             });
@@ -164,12 +168,16 @@ export default {
                         //user is a seller, so retrieve dp of the buyer
                         db.collection('community').where('user', '==', doc.data().buyer).get().then((query) => {
                             const result2 = query.docs[0]
-            
-                        //save all the necessary data to an object, an push it into displayData so we can v-for over each object later
-                        this.displayData.push({buyer:doc.data().buyer, seller:doc.data().seller, count:parseInt(doc.data().count), 
-                                myName:doc.data().sellerName, partnerName: doc.data().buyerName, itemName: doc.data().itemName, 
-                                        lastMessage: doc.data().lastMessage, lastMessageTiming: doc.data().lastMessageTiming, 
-                                                imageRef: result.data().imageRef, chatProfilePic: result2.data().imageRef});
+
+                            db.collection('community').where('user', '==', this.currentUser.uid).get().then((query) => {
+                                const result3 = query.docs[0];
+                
+                            //save all the necessary data to an object, an push it into displayData so we can v-for over each object later
+                            this.displayData.push({buyer:doc.data().buyer, seller:doc.data().seller, count:parseInt(doc.data().count), 
+                                    myName:result3.data().name, partnerName: result2.data.name, itemName: doc.data().itemName, 
+                                            lastMessage: doc.data().lastMessage, lastMessageTiming: doc.data().lastMessageTiming, 
+                                                    imageRef: result.data().imageRef, chatProfilePic: result2.data().imageRef});
+                            });
                         });
                     });
                 });
@@ -239,6 +247,11 @@ export default {
             .then((doc) => {
                 if(doc.exists) {
                     for(var message of doc.data().messages){
+                        if(message.id==this.currentUser.uid){
+                            message.sender=this.chosenData.myName;
+                        }else{
+                            message.sender=this.chosenData.partnerName;
+                        }
                         this.messages.push(message);
                     }
                 }
@@ -261,7 +274,7 @@ export default {
             preview:false,
             messages:[],
             message:'',
-            chosenData:{}
+            chosenData:{},
         }
     }
 }
@@ -285,6 +298,7 @@ input{
     margin-top: 5px;
     height:253.3px;
     width:400px;
+    margin-left: 50px;
     overflow:auto;
     display:flex;
     flex-direction: column-reverse;
@@ -341,24 +355,33 @@ img{
     background: #0084ff;
     color: #fff;
     clear: both;
-    padding: 20px;
-    border-radius: 30px;
-    margin-bottom: 2px;
+    padding: 13.3px;
+    border-radius: 20px;
+    margin-bottom: 1px;
     font-family: Helvetica, Arial, sans-serif;
     font-size:12px;
-}
-.item-img{
-    margin-left:10px;
-}
-.other{
+    margin: 1px;
+}.other{
     background: #eee;
     float: left;
     clear: both;
-    padding: 20px;
-    border-radius: 30px;
-    margin-bottom: 2px;
+    padding: 13.3px;
+    border-radius: 20px;
+    margin-bottom: 1px;
     font-family: Helvetica, Arial, sans-serif;
     font-size:12px;
+    margin: 1px;
+}
+.other + .me{
+  border-bottom-right-radius: 5px;
+}
+
+.me + .me{
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.me:last-of-type {
+  border-bottom-right-radius: 30px;
 }
 .chat-button-full{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -376,8 +399,15 @@ img{
     cursor: pointer;
     width: 107px;
 }
-ul{
+.preview-messages{
+    text-align:left;
+    flex-wrap: wrap;
     list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+ul{
+    list-style: none;
 }
 li{
     margin:0 0 35px 0;  
