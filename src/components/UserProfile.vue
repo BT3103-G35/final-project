@@ -172,8 +172,8 @@ p{
     margin-left: 140px;
     background-color:#EAF8DE;
     border: 5px solid #376C12;
-    height: 555px;
-    width:220px;
+    width:230px;
+    height: 600px;
 }
 .num-items h1{
     font-size: 27px;
@@ -201,7 +201,7 @@ p{
     box-shadow: none;
     color: black;
     width: 60px;
-    height:25px;
+    height:25.5px;
     margin-right: 0px;
     border:solid 2px black;
 }
